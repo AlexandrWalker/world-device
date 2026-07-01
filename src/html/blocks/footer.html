@@ -1,0 +1,131 @@
+<footer id="footer" class="footer">
+
+  <svg class="footer__svg" width="1920" height="700" viewBox="0 0 1920 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_2007_1048)">
+      <rect width="1920" height="700" fill="#05204A" />
+
+      <!-- Первая волна -->
+      <g opacity="0.5" filter="url(#filter0_f_2007_1048)" class="wave wave--1">
+        <path d="M-303.511 952.809C872.365 1051.85 -96.2404 -555.425 2051.1 -177.044"
+          stroke="url(#paint0_linear_2007_1048)" stroke-width="256" stroke-miterlimit="10" />
+      </g>
+
+      <!-- Вторая волна -->
+      <g opacity="0.5" filter="url(#filter1_f_2007_1048)" class="wave wave--2">
+        <path d="M244.294 -1161.94C422.068 4.63399 1759.3 -1311.93 1891.87 864.455"
+          stroke="url(#paint1_linear_2007_1048)" stroke-width="256" stroke-miterlimit="10" />
+      </g>
+    </g>
+    <defs>
+      <filter id="filter0_f_2007_1048" x="-440.254" y="-488.835" width="2639.57" height="1700.05"
+        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="63" result="effect1_foregroundBlur_2007_1048" />
+      </filter>
+      <filter id="filter1_f_2007_1048" x="-14.5461" y="-1313.52" width="2166.48" height="2318.06"
+        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="66.15" result="effect1_foregroundBlur_2007_1048" />
+      </filter>
+      <linearGradient id="paint0_linear_2007_1048" x1="-94.8551" y1="609.048" x2="297.308" y2="1062.56"
+        gradientUnits="userSpaceOnUse">
+        <stop offset="0.29" stop-color="#062350" />
+        <stop offset="1" stop-color="#0EDDC9" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_2007_1048" x1="627.222" y1="-1039.16" x2="277.609" y2="-552.085"
+        gradientUnits="userSpaceOnUse">
+        <stop offset="0.29" stop-color="#062350" />
+        <stop offset="1" stop-color="#0EDDC9" />
+      </linearGradient>
+      <clipPath id="clip0_2007_1048">
+        <rect width="1920" height="700" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <style>
+    .wave {
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    /* Первая волна — медленное извивание */
+    .wave--1 {
+      animation: wave-flow-1 5s ease-in-out infinite;
+    }
+
+    /* Вторая волна — другой ритм */
+    .wave--2 {
+      animation: wave-flow-2 10s ease-in-out infinite;
+    }
+
+    @keyframes wave-flow-1 {
+      0% {
+        transform: translateY(0rem) scaleY(1);
+      }
+
+      25% {
+        transform: translateY(-5rem) scaleY(1.05);
+      }
+
+      50% {
+        transform: translateY(0rem) scaleY(1);
+      }
+
+      75% {
+        transform: translateY(5rem) scaleY(0.95);
+      }
+
+      100% {
+        transform: translateY(0rem) scaleY(1);
+      }
+    }
+
+    @keyframes wave-flow-2 {
+      0% {
+        transform: translateY(0rem) scaleX(1);
+      }
+
+      33% {
+        transform: translateY(15rem) scaleX(1.05);
+      }
+
+      66% {
+        transform: translateY(-15rem) scaleX(0.95);
+      }
+
+      100% {
+        transform: translateY(0rem) scaleX(1);
+      }
+    }
+  </style>
+
+  <div class="container">
+    <div class="footer__inner">
+
+
+
+    </div>
+  </div>
+</footer>
+</div>
+<!-- libs -->
+<!-- jquery -->
+<script src="./libs/jquery/jquery.v3.7.1.min.js"></script>
+<!-- fancybox -->
+<script src="./libs/fancybox/fancybox.umd.js"></script>
+<!-- gsap -->
+<script src="./libs/gsap/gsap.min.js"></script>
+<script src="./libs/gsap/ScrollTrigger.min.js"></script>
+<script src="./libs/gsap/SplitText.min.js"></script>
+<!-- lenis -->
+<script src="./libs/lenis/lenis.min.js"></script>
+<!-- swiper -->
+<script src="./libs/swiper/swiper-bundle.min.js"></script>
+<!-- scripts -->
+<script src="./js/main.js"></script>
+</body>
+
+</html>

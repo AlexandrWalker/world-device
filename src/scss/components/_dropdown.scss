@@ -1,0 +1,227 @@
+@use './../mixins' as *;
+
+.dropdown {
+  user-select: none;
+
+  position: relative;
+  z-index: 9;
+
+  &__selected {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 7rem;
+    background-color: transparent;
+    transition: all 0.3s ease;
+
+    cursor: pointer;
+
+    position: relative;
+
+    @include sm {
+      height: 3.7rem;
+    }
+
+    i {
+      --font-size: 1.5rem;
+
+      transform: rotate(90deg) translateY(-50%);
+      margin-top: -1.5rem;
+
+      color: var(--red);
+
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+
+      .dropdown.is-active & {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &-label--js {
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0.2rem;
+        background-color: var(--white-50);
+
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+
+        @include sm {
+          height: 0.3rem;
+        }
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 0.2rem;
+        background-color: var(--white);
+        transition: all 0.3s ease;
+
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+
+        @include sm {
+          height: 0.3rem;
+        }
+      }
+    }
+  }
+
+  &__input {
+    cursor: text;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    @include sm {
+      font-size: 1.6rem;
+    }
+
+    .filled &,
+    &:focus,
+    &:active,
+    &:checked {
+
+      &+.form-label {
+        height: calc(100% + 2rem);
+
+        font-size: 2rem;
+
+        top: -2rem;
+
+        @include sm {
+          height: calc(100% + 1.4rem);
+
+          font-size: 1.4rem;
+
+          top: -1.4rem;
+        }
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+
+      &+.dropdown__label {
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    &:required {
+
+      &+.form-label {
+
+        .typewriter {
+
+          &__word {
+
+            &::after {
+              content: "";
+              width: 1.6rem;
+              height: 1.6rem;
+              background-repeat: no-repeat;
+              background-size: 100%;
+
+              position: absolute;
+              top: 0;
+              right: -2rem;
+
+              @include sm {
+                width: 1rem;
+                height: 1rem;
+
+                right: -1.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    overflow: hidden;
+
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 120%;
+    color: var(--white);
+    white-space: nowrap;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    @include sm {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__container {
+    overflow: hidden;
+    pointer-events: none;
+
+    position: absolute;
+    top: calc(100% - 0.2rem);
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    .dropdown.is-active & {
+      pointer-events: all;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 4rem 3rem;
+    background-color: var(--red);
+    transform: translateY(-110%);
+    will-change: transform;
+    transition: transform 0.3s ease;
+
+    @include sm {
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+
+    .dropdown.is-active & {
+      transform: translateY(0);
+    }
+
+    .dropdown__label {
+      font-size: 2rem;
+      color: var(--white);
+
+      @include sm {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__radio {
+    display: none;
+  }
+}

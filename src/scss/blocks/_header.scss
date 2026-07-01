@@ -1,0 +1,22 @@
+@use './../mixins' as *;
+
+.header {
+  width: 100%;
+  height: var(--header-height);
+
+  // position: sticky;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__top {
+    padding: 2.2rem 0;
+  }
+}

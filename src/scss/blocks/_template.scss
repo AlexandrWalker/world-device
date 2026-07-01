@@ -1,0 +1,110 @@
+@use './../mixins' as *;
+
+.template {
+  --section-padding-bottom: 0;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__title {
+
+    h1 {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 4rem;
+      line-height: 117.5%;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &+section {
+    --section-padding-top: 3rem;
+
+    @include sm {
+      --section-padding-top: 2rem;
+    }
+  }
+
+  &__body {
+    padding: 7rem 12rem 8rem 12rem;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    position: relative;
+
+    @include sm {
+      padding: 3rem 2rem 3rem 2rem;
+      min-height: 44rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 48rem;
+
+    color: var(--white);
+
+    position: relative;
+    z-index: 2;
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__btn {
+    margin-top: 1rem;
+
+    @include sm {
+      --btn-height: 5.6rem;
+      --btn-padding-x: 3rem;
+      
+      gap: 3rem;
+
+      font-size: 1.4rem;
+    }
+  }
+
+  &__bg {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--black-50);
+
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

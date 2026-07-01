@@ -1,0 +1,80 @@
+@use './../mixins' as *;
+
+/* Хлебные крошки */
+.breadcrumbs {
+  --breadcrumbs-gap: 1rem;
+
+  width: calc(100% + (var(--container-padding) * 2));
+  margin-left: calc(var(--container-padding) * -1);
+  padding: 0 var(--container-padding);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--breadcrumbs-gap);
+    width: fit-content;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--breadcrumbs-gap);
+
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 120%;
+    color: var(--black);
+    color: var(--red);
+    white-space: nowrap;
+
+    @include sm {
+      font-size: 1.4rem;
+    }
+
+    &:first-child {
+      color: var(--accent);
+    }
+
+    &:not(:last-child) {
+
+      &::after {
+        content: "/";
+        color: var(--accent);
+      }
+    }
+  }
+
+  a {
+
+    span {
+      background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+      background-size: 0;
+      transition: .3s;
+      background-position: left;
+      background-repeat: no-repeat;
+    }
+
+    &:hover {
+
+      @include dosm {
+
+        span {
+          background-size: 100%;
+        }
+      }
+    }
+  }
+}

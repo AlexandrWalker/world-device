@@ -1,0 +1,44 @@
+@use './../mixins' as *;
+
+.accordion {
+
+  &-items {}
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: gap 0.3s ease;
+
+    &--active {
+      gap: 1.7rem;
+
+      .accordion-body {
+        grid-template-rows: 1fr;
+      }
+
+      .accordion-icon {
+        transform: rotate(180deg);
+
+        i::before {
+          content: "\e91b";
+        }
+      }
+    }
+  }
+
+  &-icon {
+    transition: all 0.3s ease;
+  }
+
+  &-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  &-content {
+    overflow: hidden;
+  }
+}

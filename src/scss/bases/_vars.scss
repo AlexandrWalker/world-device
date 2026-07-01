@@ -1,0 +1,48 @@
+@use './../mixins' as *;
+
+:root {
+  --font-family: IBMPlexSans, Arial, Verdana, sans-serif;
+  --second-family: 'SF-Pro', Arial, Verdana, sans-serif;
+
+  --container-padding: 12rem;
+  --container-width: 168rem;
+  --header-height: 15.2rem;
+  --section-padding-top: 3.5rem;
+  --section-padding-bottom: 3.5rem;
+
+  --body-bg: #F3F3F7;
+
+  --white: #FFFFFF;
+  --white-05: rgba(250, 255, 255, 0.05);
+  --white-10: rgba(250, 255, 255, 0.1);
+  --white-15: rgba(250, 255, 255, 0.15);
+  --white-50: rgba(250, 255, 255, 0.5);
+  --white-70: rgba(250, 255, 255, 0.7);
+  --white-80: rgba(250, 255, 255, 0.8);
+
+  --black: #000000;
+  --black-05: #0000000d;
+  --black-10: #0000001a;
+  --black-20: #00000033;
+  --black-50: #00000080;
+  --black-60: #00000099;
+
+  --cyan: #0EDDC9;
+  --sky: #0D95DE;
+  --blue: #3C78CD;
+  --deep-blue: #05204A;
+  --navy: #0A3C87;
+  --orange: #FF7F2A;
+  --red: #FF5B5B;
+  --green: #51CF7B;
+  --purple: #702EF5;
+
+  @include md {}
+
+  @include sm {
+    --container-padding: 1.5rem;
+    --header-height: 8.6rem;
+    --section-padding-top: 2rem;
+    --section-padding-bottom: 2rem;
+  }
+}
