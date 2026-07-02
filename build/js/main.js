@@ -442,10 +442,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (form) {
       const inputElements = document.querySelectorAll('.form-input');
+      const searchElements = document.querySelectorAll('.form-search');
       const textareaElements = document.querySelectorAll('.form-textarea');
       const className = 'filled';
 
       inputElements.forEach(element => {
+        element.addEventListener('input', function () {
+          if (this.value.trim() !== '') {
+            element.classList.add(className);
+          } else {
+            element.classList.remove(className);
+          }
+        });
+      });
+
+      searchElements.forEach(element => {
         element.addEventListener('input', function () {
           if (this.value.trim() !== '') {
             element.classList.add(className);

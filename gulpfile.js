@@ -316,14 +316,24 @@ gulp.task('fontsStyle', () => {
   });
 
   return gulp.src(`${srcFolder}`);
-  function cb() {}
+  function cb() { }
 });
 
 gulp.task('files', function () {
   return gulp
-    .src([`${srcFolder}files/**/*.*`])
+    .src([
+      `${srcFolder}files/**/*.*`,
+      `!${srcFolder}files/icons/fonts/**/*.*`,
+    ])
     .pipe(gulp.dest(`${destFolder}`))
     .pipe(browserSync.stream());
+});
+
+gulp.task('icons', function () {
+  return gulp
+    .src(`${srcFolder}files/icons/**/*.*`, { encoding: false })
+    .pipe(newer(`${destFolder}icons/`))
+    .pipe(gulp.dest(`${destFolder}icons/`));
 });
 
 gulp.task('server', function () {
@@ -351,6 +361,7 @@ gulp.task('watch', function () {
   gulp.watch(`${srcFolder}images/**/*.*`, gulp.parallel('images', 'svg'));
   gulp.watch(`${srcFolder}js/**/*.js`, gulp.parallel('js'));
   gulp.watch(`${srcFolder}files/**/*`, gulp.parallel('files'));
+  gulp.watch(`${srcFolder}files/icons/**/*.*`, gulp.parallel('icons'));
 });
 
 gulp.task('fonts', gulp.series('otfToTtf', 'ttfToWoff', 'fontsStyle', 'copyFonts'));
@@ -361,7 +372,7 @@ gulp.task(
     'clean',
     'fonts',
     gulp.series('cleanSvg', 'svg'),
-    gulp.series('html', 'styles', 'files', 'js', 'images'),
+    gulp.series('html', 'styles', 'files', 'icons', 'js', 'images'),
     gulp.parallel('server', 'watch')
   )
 );
@@ -372,6 +383,6 @@ gulp.task(
     'clean',
     'fonts',
     gulp.series('cleanSvg', 'svg'),
-    gulp.series('html', 'styles', 'files', 'js', 'images')
+    gulp.series('html', 'styles', 'files', 'icons', 'js', 'images')
   )
 );

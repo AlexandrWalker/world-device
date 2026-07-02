@@ -3,10 +3,49 @@
     <div class="header__inner">
 
       <div class="header__top">
-        @@include('./nav.html')
+        <div class="header__nav">
+          @@include('./nav.html')
+        </div>
 
         <div class="header__contacts">
-
+          <div class="header__contacts-items">
+            <div class="header__contacts-item">
+              <a class="header__contacts-link" href="tel:+78129426246">
+                <i class="icon-nav-phone"></i>
+                <span>
+                  +7 (812) 942-62-46
+                </span>
+              </a>
+            </div>
+            <div class="header__contacts-item">
+              <a class="header__contacts-link header__contacts-dropdown" href="tel:+78129426246">
+                <span>
+                  +7 (812) 942-62-46
+                </span>
+                <i class="icon-nav-chevron-down"></i>
+              </a>
+            </div>
+          </div>
+          <div class="header__contacts-items">
+            <div class="header__contacts-item">
+              <a class="header__contacts-link" href="/">
+                <i class="icon-nav-max"></i>
+                <span>
+                  Макс
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="header__contacts-items">
+            <div class="header__contacts-item">
+              <a class="header__contacts-link" href="/">
+                <i class="icon-nav-telegram"></i>
+                <span>
+                  Telegram
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -15,6 +54,81 @@
           <a class="logo" href="/">
             <img src="./../../images/logo/logo.svg" alt="">
           </a>
+        </div>
+        <div class="header__wrap">
+          <div class="header__catalog">
+            <button class="header__catalog-btn">
+              <i class="icon-bento"></i>
+              <span>
+                Каталог
+              </span>
+            </button>
+          </div>
+          <div class="header__search">
+            <form class="form" action="#">
+              <div class="header__search-icon">
+                <i class="icon-neuron"></i>
+              </div>
+              <input class="form-search" type="text" name="header_search" placeholder="ИИ поиск по сайту">
+              <button class="header__search-btn">
+                <i class="icon-search"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="header__bar">
+          <div class="header__bar-items">
+            <a class="header__bar-item" href="javascript:void(0)">
+              <div class="header__bar-icon">
+                <i class="icon-favorite"></i>
+                <div class="count">
+                  4
+                </div>
+              </div>
+              <span>
+                Избранное
+              </span>
+            </a>
+            <a class="header__bar-item" href="javascript:void(0)">
+              <div class="header__bar-icon">
+                <i class="icon-sravnenie"></i>
+                <div class="count">
+                  3
+                </div>
+              </div>
+              <span>
+                Сравнение
+              </span>
+            </a>
+            <a class="header__bar-item" href="javascript:void(0)">
+              <div class="header__bar-icon">
+                <i class="icon-cart"></i>
+                <div class="count">
+                  22
+                </div>
+              </div>
+              <span>
+                Корзина
+              </span>
+            </a>
+            <a class="header__bar-item" href="javascript:void(0)">
+              <div class="header__bar-icon">
+                <i class="icon-login"></i>
+              </div>
+              <span>
+                Войти
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="header__mobile">
+          <div class="header__mobile-search">
+            <i class="icon-search"></i>
+          </div>
+          <button id="burger-btn" class="burger__btn">
+            <span class="burger__line burger__line--first"></span>
+            <span class="burger__line burger__line--second"></span>
+          </button>
         </div>
       </div>
 

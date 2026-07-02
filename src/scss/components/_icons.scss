@@ -3,7 +3,7 @@
 /* Стили для иконок */
 [class^="icon-"],
 [class*=" icon-"] {
-  --font-size: 3rem;
+  --font-size: 1.6rem;
 
   display: flex;
   justify-content: center;
@@ -11,7 +11,6 @@
   flex-shrink: 0;
   width: var(--font-size);
   height: var(--font-size);
-  border-radius: 50%;
   transition: all 0.3s ease;
 
   font-size: var(--font-size);
@@ -19,21 +18,4 @@
 
   position: relative;
   z-index: 1;
-}
-
-.icon {
-  --border-radius: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5.6rem;
-  height: 5.6rem;
-  border-radius: var(--border-radius);
-  background-color: var(--white-50);
-  backdrop-filter: blur(12px);
-
-  color: var(--gray);
-
-  position: relative;
 }

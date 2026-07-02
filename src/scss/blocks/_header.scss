@@ -17,6 +17,267 @@
   }
 
   &__top {
+    display: none;
     padding: 2.2rem 0;
+
+    @include dosm {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+
+    &-items {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    &-link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 120%;
+      color: var(--white);
+
+      &:hover {
+        color: var(--cyan);
+      }
+
+      i {
+        --font-size: 1.6rem;
+      }
+    }
+
+    &-dropdown {
+
+      i {
+        --font-size: 0.8rem;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3.4rem;
+    padding: 0 0 1.6rem 0;
+
+    @include sm {
+      justify-content: space-between;
+      padding: 1.6rem 0;
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+  }
+
+  &__wrap {
+    display: none;
+
+    @include dosm {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+    }
+  }
+
+  &__catalog {
+    flex-shrink: 0;
+
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.9rem;
+      height: 5.4rem;
+      padding: 0 1.5rem 0 1.8rem;
+      border-radius: 1.8rem;
+      background-color: var(--white);
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 130%;
+
+      &:hover {
+        background-color: var(--cyan);
+
+        color: var(--white);
+
+        i {
+          color: var(--white);
+        }
+      }
+
+      i {
+        --font-size: 2.4rem;
+
+        color: var(--cyan);
+      }
+    }
+  }
+
+  &__search {
+    width: 100%;
+    // background: rgba(255, 255, 255, 0.37);
+
+    position: relative;
+
+    &:has(.form-search:hover,
+      .form-search.filled,
+      .form-search:focus,
+      .form-search:active,
+      .form-search:checked) {
+
+      .header__search-icon {
+        color: var(--navy);
+      }
+
+      .header__search-btn {
+        background-color: var(--navy);
+        color: var(--cyan);
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      z-index: 1;
+      transform: translateY(-50%);
+      transition: color 0.3s ease;
+
+      color: var(--cyan);
+
+      i {
+        --font-size: 2.4rem;
+        animation: neuron-live 15s linear infinite;
+      }
+    }
+
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3.8rem;
+      height: 3.8rem;
+      border-radius: 1rem;
+      background-color: var(--white);
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      z-index: 1;
+      transform: translateY(-50%);
+
+      i {
+        --font-size: 2.4rem;
+      }
+    }
+  }
+
+  &__bar {
+    display: none;
+
+    @include dosm {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 130%;
+      text-align: center;
+      color: var(--white);
+
+      &:hover {
+
+        .header__bar-icon {
+          color: var(--cyan);
+        }
+      }
+    }
+
+    &-icon {
+      position: relative;
+
+      i {
+        --font-size: 3.5rem;
+      }
+    }
+  }
+
+  &__mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+
+    @include dosm {
+      display: none;
+    }
+
+    &-search {
+      color: var(--cyan);
+
+      i {
+        --font-size: 3rem;
+      }
+    }
+  }
+}
+
+@keyframes neuron-live {
+  0% {
+    transform: translateY(0px) scale(0.9) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-0.2rem) scale(1.01) rotate(90deg);
+  }
+
+  50% {
+    transform: translateY(0px) scale(0.9) rotate(180deg);
+  }
+
+  75% {
+    transform: translateY(-0.2rem) scale(1.01) rotate(270deg);
+  }
+
+  100% {
+    transform: translateY(0px) scale(0.9) rotate(360deg);
   }
 }
