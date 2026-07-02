@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'WDIconFonts';
+  src:  url('fonts/WDIconFonts.eot?poixry');
+  src:  url('fonts/WDIconFonts.eot?poixry#iefix') format('embedded-opentype'),
+    url('fonts/WDIconFonts.ttf?poixry') format('truetype'),
+    url('fonts/WDIconFonts.woff?poixry') format('woff'),
+    url('fonts/WDIconFonts.svg?poixry#WDIconFonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'WDIconFonts' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-circle-inside::before {
+  content: "\e900";
+}
+.icon-bento::before {
+  content: "\e901";
+}
+.icon-cart::before {
+  content: "\e902";
+}
+.icon-chevron-big::before {
+  content: "\e903";
+}
+.icon-favorite::before {
+  content: "\e904";
+}
+.icon-glass-max::before {
+  content: "\e905";
+}
+.icon-glass-telegram::before {
+  content: "\e906";
+}
+.icon-headphones::before {
+  content: "\e907";
+}
+.icon-login::before {
+  content: "\e908";
+}
+.icon-max::before {
+  content: "\e909";
+}
+.icon-nav-chevron-down::before {
+  content: "\e90a";
+}
+.icon-nav-max::before {
+  content: "\e90b";
+}
+.icon-nav-phone::before {
+  content: "\e90c";
+}
+.icon-nav-telegram::before {
+  content: "\e90d";
+}
+.icon-neuron::before {
+  content: "\e90e";
+}
+.icon-search::before {
+  content: "\e90f";
+}
+.icon-sravnenie::before {
+  content: "\e910";
+}
+.icon-telegram::before {
+  content: "\e911";
+}
