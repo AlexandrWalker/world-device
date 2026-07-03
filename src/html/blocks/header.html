@@ -57,7 +57,7 @@
         </div>
         <div class="header__wrap">
           <div class="header__catalog">
-            <button class="header__catalog-btn">
+            <button id="catalog-btn" class="header__catalog-btn">
               <i class="icon-bento"></i>
               <span>
                 Каталог
@@ -69,10 +69,74 @@
               <div class="header__search-icon">
                 <i class="icon-neuron"></i>
               </div>
-              <input class="form-search" type="text" name="header_search" placeholder="ИИ поиск по сайту">
               <button class="header__search-btn">
                 <i class="icon-search"></i>
               </button>
+              <input class="form-search" type="text" name="header_search" placeholder="ИИ поиск по сайту">
+              <div class="header__search-wrap">
+                <div class="header__history">
+                  <div class="header__history-head">
+                    <div class="header__history-title">
+                      История
+                    </div>
+                    <div class="header__history-clear">
+                      Очистить
+                    </div>
+                  </div>
+                  <div class="header__history-body">
+                    <div class="header__history-items">
+                      <div class="header__history-item">
+                        <span>
+                          iPhone 17
+                        </span>
+                        <i class="icon-close"></i>
+                      </div>
+                      <div class="header__history-item">
+                        <span>
+                          AirPods 2
+                        </span>
+                        <i class="icon-close"></i>
+                      </div>
+                      <div class="header__history-item">
+                        <span>
+                          S 25 Ultra
+                        </span>
+                        <i class="icon-close"></i>
+                      </div>
+                      <div class="header__history-item">
+                        <span>
+                          XBox
+                        </span>
+                        <i class="icon-close"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="header__frequently">
+                  <div class="header__frequently-head">
+                    <div class="header__frequently-title">
+                      Часто ищут
+                    </div>
+                  </div>
+                  <div class="header__frequently-body">
+                    <a href="/">
+                      iphone 17
+                    </a>
+                    <a href="/">
+                      iphone 17 pro max 512
+                    </a>
+                    <a href="/">
+                      iphone 17 pro
+                    </a>
+                    <a href="/">
+                      iphone 13
+                    </a>
+                    <a href="/">
+                      Ноутбук
+                    </a>
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -136,3 +200,7 @@
   </div>
   <span class="nav__indicator"></span>
 </header>
+<!-- Каталог -->
+@@include('./menu.html')
+<!-- Мобильное меню -->
+@@include('./mobile-menu.html')

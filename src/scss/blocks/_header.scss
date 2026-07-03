@@ -3,6 +3,7 @@
 .header {
   width: 100%;
   height: var(--header-height);
+  transition: background-color 0.3s ease;
 
   // position: sticky;
   position: relative;
@@ -10,10 +11,37 @@
   left: 0;
   z-index: 1000;
 
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-3);
+    clip-path: inset(0 0 0 100%);
+    transition: clip-path 0.3s ease;
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    @include dosm {
+      display: none;
+    }
+
+    .burger-menu--open & {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @include sm {
+      position: relative;
+      z-index: 2;
+    }
   }
 
   &__top {
@@ -193,6 +221,40 @@
         --font-size: 2.4rem;
       }
     }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      width: 100%;
+      max-height: calc(100vh - var(--header-height));
+      border-radius: 1.8rem;
+      background-color: var(--white-90);
+      padding: 1.8rem 5rem 3.6rem 5rem;
+
+      position: absolute;
+      top: calc(100% + 0.1rem);
+      left: 0;
+      z-index: 2;
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      clip-path: inset(0 0 100% 0);
+      will-change: opacity, visibility, clip-path;
+      transition: opacity 0.3s linear, visibility 0.3s linear, clip-path 0.15s linear;
+
+      .form-search.filled+&,
+      .form-search:focus+&,
+      .form-search:active+&,
+      .form-search:checked+& {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        clip-path: inset((0 0 0 0));
+        transition: opacity 0.15s linear, visibility 0.15s linear, clip-path 0.3s linear;
+      }
+    }
   }
 
   &__bar {
@@ -255,6 +317,117 @@
 
       i {
         --font-size: 3rem;
+      }
+    }
+  }
+
+  &__history {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    padding-bottom: 3rem;
+    border-bottom: 0.1rem solid var(--black-10);
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    &-title {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 130%;
+      color: var(--black-50);
+    }
+
+    &-clear {
+      font-weight: 500;
+      font-size: 1.4rem;
+      line-height: 130%;
+      color: var(--navy);
+    }
+
+    &-body {}
+
+    &-items {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      height: 4.5rem;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      background-color: var(--white);
+
+      &:hover {
+
+        span {
+          text-shadow: 0.05rem 0 0 currentColor;
+        }
+
+        i {
+          color: var(--black);
+        }
+      }
+
+      span {
+        display: block;
+
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 143%;
+        color: var(--black);
+        transition: text-shadow 0.3s ease;
+      }
+
+      i {
+        --font-size: 1.6rem;
+
+        color: var(--black-30);
+      }
+    }
+  }
+
+  &__frequently {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    overflow-y: auto;
+
+    &-title {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 130%;
+      color: var(--black-50);
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      a {
+        width: fit-content;
+
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 130%;
+        color: var(--black);
+
+        &:hover {
+          color: var(--navy);
+          text-shadow: 0.05rem 0 0 var(--navy);
+        }
       }
     }
   }

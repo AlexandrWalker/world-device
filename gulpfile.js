@@ -144,24 +144,19 @@ gulp.task('js', function () {
 gulp.task('images', function () {
   const imgSrc = [`${srcFolder}images/**/*.*`, `!${srcFolder}images/sprite/**/*.*`];
   return gulp
-    .src(imgSrc)
-    .pipe(gulpIf(imgWebp, newer(`${destFolder}images`)))
+    .src(imgSrc, { encoding: false })
+    .pipe(newer(`${destFolder}images`))
     .pipe(gulpIf(imgWebp, webp()))
     .pipe(gulpIf(imgWebp, gulp.dest(`${destFolder}images`)))
-    .pipe(gulpIf(imgWebp, gulp.src(imgSrc)))
-    .pipe(gulpIf(imgMin, newer(`${destFolder}images`)))
+    .pipe(gulpIf(imgWebp, gulp.src(imgSrc, { encoding: false })))
     .pipe(
       gulpIf(
         imgMin,
-        imagemin(
-          [
-            gifsicle({ interlaced: true }),
-            mozjpeg({ quality: 90, progressive: true }),
-            optipng({ optimizationLevel: 3 }),
-            imageminWebp({ quality: 85 }),
-          ],
-          { verbose: true }
-        )
+        imagemin([
+          gifsicle({ interlaced: true }),
+          mozjpeg({ quality: 90, progressive: true }),
+          optipng({ optimizationLevel: 3 }),
+        ], { verbose: true })
       )
     )
     .pipe(gulp.dest(`${destFolder}images`))

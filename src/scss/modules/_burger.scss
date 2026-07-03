@@ -22,7 +22,7 @@
 
     }
 
-    &:hover {
+    &.burger-btn--open {
 
       .burger__line {
         background-color: var(--cyan);
