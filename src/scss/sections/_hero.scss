@@ -62,9 +62,9 @@
       transition: opacity 0.5s ease, visibility 0.5s ease;
 
       .swiper-slide-active & {
+        transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
         opacity: 1;
         visibility: visible;
-        transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
       }
     }
 

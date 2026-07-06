@@ -3142,11 +3142,11 @@ canvas {
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .swiper-slide-active .hero__item-content {
-  opacity: 1;
-  visibility: visible;
   -webkit-transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
   -o-transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
   transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
+  opacity: 1;
+  visibility: visible;
 }
 .hero__item-title {
   margin-bottom: 1.5rem;
