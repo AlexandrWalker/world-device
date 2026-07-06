@@ -2,26 +2,279 @@
 
 .hero {
   padding-top: calc(var(--header-height) + var(--section-padding-top));
-  height: 84.8rem;
-  background-color: var(--blue-3);
+  padding-bottom: 0;
+  min-height: 84.8rem;
+  // background-color: var(--blue-3);
 
-  background-image: url(./../../images/temp/hero-bg-1.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  // background-image: url(./../../images/temp/hero-bg-1.png);
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center;
 
   position: relative;
+
+  @include sm {
+    min-height: 68.6rem;
+  }
+
+  .container {
+    position: relative;
+    z-index: 3;
+  }
 
   &__inner {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    height: 100%;
+  }
+
+  &__slider {
+    height: 100%;
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__item {
+    height: 100%;
+    padding: 4.6rem 0 27.5rem 0;
 
     position: relative;
-    z-index: 2;
+
+    @include sm {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      padding: 2rem 0 31.2rem 0;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      max-width: 87.5rem;
+
+      color: var(--white);
+
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+
+      .swiper-slide-active & {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
+      }
+    }
+
+    &-title {
+      margin-bottom: 1.5rem;
+
+      font-weight: 600;
+      font-size: 4rem;
+      line-height: 120%;
+      text-transform: uppercase;
+
+      @include dosm {
+        margin-bottom: 3rem;
+
+        font-size: 8rem;
+      }
+
+      br {
+
+        @include sm {
+          display: none;
+        }
+      }
+
+      span {
+        color: var(--cyan);
+      }
+    }
+
+    &-text {
+      max-width: 69.6rem;
+      margin-bottom: 2.5rem;
+
+      @include sm {
+        margin-bottom: 4rem;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 120%;
+        text-transform: uppercase;
+
+        @include dosm {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    &-cover {
+      width: auto;
+      height: 67.2rem;
+
+      position: absolute;
+      bottom: -4.4rem;
+      left: 49.1rem;
+
+      @include sm {
+        width: 100vw;
+        height: 28.2rem;
+
+        // position: static;
+        bottom: 3.1rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
   }
 
   &__bg {
-    
+    min-height: 84.4rem;
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    @include sm {
+      min-height: 68.6rem;
+    }
+
+    &--desktop {
+      display: none;
+
+      @include dosm {
+        display: block;
+      }
+    }
+
+    &--mob {
+      display: block;
+
+      @include dosm {
+        display: none;
+      }
+    }
+  }
+
+  &__foot {
+    width: 100%;
+    height: auto;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+
+    &--desktop {
+      display: none;
+
+      @include dosm {
+        display: block;
+      }
+    }
+
+    &--mob {
+      display: block;
+
+      @include dosm {
+        display: none;
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  &__cover {
+    width: auto;
+    height: 67.6rem;
+
+    position: absolute;
+    right: 14.7rem;
+    bottom: 1.9rem;
+    z-index: 5;
+
+    @include sm {
+      display: none;
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__svg {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+
+    transition:
+      --gradient-color-1 1s ease-in-out,
+      --gradient-color-2 1s ease-in-out,
+      --gradient-color-3 1s ease-in-out,
+      --gradient-color-4 1s ease-in-out;
+  }
+}
+
+/* Регистрируем переменные как цвета — включает плавную анимацию */
+@property --gradient-color-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #003194;
+}
+
+@property --gradient-color-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0EDDC9;
+}
+
+@property --gradient-color-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0EDDC9;
+}
+
+@property --gradient-color-4 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #013294;
+}
+
+/* Твои темы — меняешь цвета здесь как обычно */
+.class-blue {
+  --gradient-color-1: #003194;
+  --gradient-color-2: #0EDDC9;
+  --gradient-color-3: #0EDDC9;
+  --gradient-color-4: #013294;
+}
+
+.class-purple {
+  --gradient-color-1: #363668;
+  --gradient-color-2: #A3A3C6;
+  --gradient-color-3: #C1CBE3;
+  --gradient-color-4: #363668;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-svg {
+    transition: none;
   }
 }
