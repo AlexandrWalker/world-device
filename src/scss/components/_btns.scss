@@ -51,4 +51,22 @@
       --btn-color: var(--white);
     }
   }
+
+  &--blue {
+    --btn-background: var(--blue);
+    --btn-color: var(--white);
+  }
+
+  &--gray {
+    --btn-background: var(--black-05);
+    --btn-color: var(--black);
+
+    &:hover {
+
+      @include dosm {
+        --btn-background: var(--blue-2-30);
+        --btn-color: var(--black);
+      }
+    }
+  }
 }

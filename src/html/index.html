@@ -190,7 +190,7 @@
 
       <section class="novelty">
         <div class="container">
-          <div class="novelty__inner">
+          <div class="novelty__inner general__content">
 
             <div class="general__head">
               <div class="general__title">
@@ -205,20 +205,189 @@
                 </div>
               </div>
             </div>
-            
+
+            <div class="general__body">
+              <div class="swiper novelty__slider">
+                <div class="swiper-wrapper">
+                  @@loop('./elements/card-slide-item.html', './data/card-slide-items.json')
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="general__button">
+                <div class="swiper-button-prev novelty-button-prev">
+                  <i class="icon-chevron-big"></i>
+                </div>
+                <div class="swiper-button-next novelty-button-next">
+                  <i class="icon-chevron-big"></i>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       <section class="facts">
         <div class="container">
-          <div class="facts__inner">
+          <div class="facts__inner general__content">
 
             <div class="general__head">
               <div class="general__title">
                 <h2>
                   Факты о магазине
                 </h2>
+              </div>
+            </div>
+
+            <div class="general__body">
+              <div class="facts__items">
+                <div class="facts__item">
+                  <div class="facts__item-content">
+                    <div class="facts__item-title">
+                      Гарантия <br> на товары
+                    </div>
+                    <div class="facts__item-icon">
+                      ?
+                    </div>
+                  </div>
+                  <div class="facts__item-bg">
+                    <img src="./../images/temp/facts-item-1.png" alt="">
+                  </div>
+                </div>
+                <div class="facts__item">
+                  <div class="facts__item-content">
+                    <div class="facts__item-title">
+                      Гарантия <br> на товары
+                    </div>
+                    <div class="facts__item-icon">
+                      ?
+                    </div>
+                  </div>
+                  <div class="facts__item-bg">
+                    <img src="./../images/temp/facts-item-2.png" alt="">
+                  </div>
+                </div>
+                <div class="facts__item">
+                  <div class="facts__item-content">
+                    <div class="facts__item-title">
+                      Гарантия <br> на товары
+                    </div>
+                    <div class="facts__item-icon">
+                      ?
+                    </div>
+                  </div>
+                  <div class="facts__item-bg">
+                    <img src="./../images/temp/facts-item-3.png" alt="">
+                  </div>
+                </div>
+                <div class="facts__item">
+                  <div class="facts__item-content">
+                    <div class="facts__item-title">
+                      Гарантия <br> на товары
+                    </div>
+                    <div class="facts__item-icon">
+                      ?
+                    </div>
+                  </div>
+                  <div class="facts__item-bg">
+                    <img src="./../images/temp/facts-item-4.png" alt="">
+                  </div>
+                </div>
+                <div class="facts__item">
+                  <div class="facts__item-content">
+                    <div class="facts__item-title">
+                      Гарантия <br> на товары
+                    </div>
+                    <div class="facts__item-icon">
+                      ?
+                    </div>
+                  </div>
+                  <div class="facts__item-bg">
+                    <img src="./../images/temp/facts-item-5.png" alt="">
+                  </div>
+                </div>
+                <div class="facts__item">
+                  <div class="facts__item-content">
+                    <div class="facts__item-title">
+                      Гарантия <br> на товары
+                    </div>
+                    <div class="facts__item-text">
+                      <p>
+                        Наш магазин производит обзоры на всю уникальную новую технику что бы помочь Вас с бором нового
+                        гаджета
+                      </p>
+                    </div>
+                    <a class="facts__item-btn btn" href="/">
+                      Читать обзоры
+                    </a>
+                  </div>
+                  <div class="facts__item-bg">
+                    <img src="./../images/temp/facts-item-6.png" alt="">
+                  </div>
+                </div>
+                <div class="facts__item">
+                  <div class="swiper facts__slider">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide facts__slide">
+                        <div class="facts__slide-img">
+                          <img src="./../images/temp/facts-slide-1.png" alt="">
+                        </div>
+                      </div>
+                      <div class="swiper-slide facts__slide">
+                        <div class="facts__slide-img">
+                          <img src="./../images/temp/facts-slide-1.png" alt="">
+                        </div>
+                      </div>
+                      <div class="swiper-slide facts__slide">
+                        <div class="facts__slide-img">
+                          <img src="./../images/temp/facts-slide-1.png" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="general__button">
+                    <div class="swiper-button-prev facts-button-prev">
+                      <i class="icon-chevron-big"></i>
+                    </div>
+                    <div class="swiper-button-next facts-button-next">
+                      <i class="icon-chevron-big"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-pagination facts-swiper-pagination"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="novelty">
+        <div class="container">
+          <div class="novelty__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title">
+                <h2>
+                  Лидеры продаж
+                </h2>
+              </div>
+            </div>
+
+            <div class="general__body">
+              <div class="swiper topsellers__slider">
+                <div class="swiper-wrapper">
+                  @@loop('./elements/card-slide-item.html', './data/card-slide-items.json')
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="general__button">
+                <div class="swiper-button-prev topsellers-button-prev">
+                  <i class="icon-chevron-big"></i>
+                </div>
+                <div class="swiper-button-next topsellers-button-next">
+                  <i class="icon-chevron-big"></i>
+                </div>
               </div>
             </div>
 

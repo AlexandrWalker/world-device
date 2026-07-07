@@ -673,8 +673,123 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
- * Инициализация слайдера
- */
+   * Функция для смены картинки для карточек товаров
+   */
+  (function () {
+    const cards = document.querySelectorAll('[data-gallery]');
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      const cover = card.querySelector('.card__item-cover');
+      const imgs = card.querySelectorAll('.card__item-img');
+      const dotsEl = card.querySelector('.card__item-dots');
+
+      if (!cover || imgs.length <= 1) return; // нечего листать
+
+      const total = imgs.length;
+      let current = 0;
+
+      // Генерируем полоски-индикаторы (даже если скрыты)
+      if (dotsEl) {
+        imgs.forEach((_, i) => {
+          const dot = document.createElement('span');
+          dot.className = 'card__item-dot' + (i === 0 ? ' is-active' : '');
+          dotsEl.appendChild(dot);
+        });
+      }
+      const dots = dotsEl ? dotsEl.querySelectorAll('.card__item-dot') : [];
+
+      // Показать картинку по индексу (с зацикливанием по кругу)
+      function show(index) {
+        // Безопасный modulo: -1 -> последняя, total -> первая
+        index = ((index % total) + total) % total;
+
+        if (index === current) return;
+
+        imgs[current].classList.remove('is-active');
+        imgs[index].classList.add('is-active');
+
+        if (dots.length) {
+          dots[current]?.classList.remove('is-active');
+          dots[index]?.classList.add('is-active');
+        }
+
+        current = index;
+      }
+
+      // ДЕСКТОП: переключение по зонам наведения
+      const isTouch = window.matchMedia('(hover: none)').matches;
+
+      if (!isTouch) {
+        cover.addEventListener('mousemove', (e) => {
+          const rect = cover.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const zone = Math.floor((x / rect.width) * total);
+          // на десктопе зоны НЕ зацикливаем — ограничиваем краями
+          show(Math.min(Math.max(zone, 0), total - 1));
+        });
+
+        let leaveTimer;
+        cover.addEventListener('mouseleave', () => {
+          leaveTimer = setTimeout(() => show(0), 1000);
+        });
+        cover.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
+      }
+
+      // МОБИЛА: бесконечный свайп по картинке
+      // Слушаем горизонтальный жест и не отдаём его внешнему Swiper.
+      let startX = 0;
+      let startY = 0;
+      let tracking = false;
+
+      cover.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        tracking = true;
+      }, { passive: true });
+
+      // Глушим ГОРИЗОНТАЛЬНЫЙ жест для внешнего Swiper, вертикаль пропускаем (скролл страницы)
+      cover.addEventListener('touchmove', (e) => {
+        if (!tracking) return;
+        const dx = Math.abs(e.touches[0].clientX - startX);
+        const dy = Math.abs(e.touches[0].clientY - startY);
+        if (dx > dy) e.stopPropagation();
+      }, { passive: true });
+
+      cover.addEventListener('touchend', (e) => {
+        if (!tracking) return;
+        tracking = false;
+
+        const diffX = e.changedTouches[0].clientX - startX;
+        const diffY = e.changedTouches[0].clientY - startY;
+
+        // Игнорируем вертикальные и мелкие движения
+        if (Math.abs(diffX) < 30 || Math.abs(diffX) < Math.abs(diffY)) return;
+
+        // Бесконечность: show() сам завернёт по кругу
+        if (diffX < 0) show(current + 1); // влево → вперёд (с последней на первую)
+        else show(current - 1);           // вправо → назад (с первой на последнюю)
+      }, { passive: true });
+    });
+  })();
+
+  /**
+   * Функция для кнопок контроля внутри карточки
+   */
+  (function () {
+    document.addEventListener('click', (e) => {
+      // Ищем кнопку — сработает даже при клике по вложенным элементам (иконка, span)
+      const btn = e.target.closest('.card__item-control--btn');
+      if (!btn) return;
+
+      // toggle сам добавит класс, если его нет, и уберёт, если есть
+      btn.classList.toggle('is-active');
+    });
+  })();
+
+  /**
+   * Инициализация слайдера
+   */
   (function swiperWrapper() {
 
     if (!document.querySelector('.swiper')) return;
@@ -698,61 +813,157 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const slidersConfig = [
-      // {
-      //   sliderSelector: '.produce__slider',
-      //   highlight: false,
-      //   swiperOptions: {
-      //     slidesPerGroup: 1,
-      //     slidesPerView: 1,
-      //     spaceBetween: 10,
-      //     speed: 500,
-      //     grabCursor: true,
-      //     loop: false,
-      //     touchRatio: 1.6,
-      //     resistance: true,
-      //     resistanceRatio: 0.4,
-      //     centeredSlides: false,
-      //     centeredSlidesBounds: true,
-      //     simulateTouch: true,
-      //     direction: 'horizontal',
-      //     touchStartPreventDefault: true,
-      //     touchMoveStopPropagation: true,
-      //     threshold: 8,
-      //     touchAngle: 25,
-      //     watchOverflow: true,
-      //     freeMode: {
-      //       enabled: true,
-      //       momentum: true,
-      //       momentumRatio: 0.85,
-      //       momentumVelocityRatio: 1,
-      //       momentumBounce: false,
-      //       sticky: true,
-      //     },
-      //     mousewheel: {
-      //       forceToAxis: true,
-      //       sensitivity: 1,
-      //       releaseOnEdges: true,
-      //     },
-      //     navigation: false,
-      //     breakpoints: {
-      //       0: {
-      //         slidesPerGroup: 1,
-      //         slidesPerView: 1,
-      //         spaceBetween: 20,
-      //       },
-      //       601: {
-      //         slidesPerGroup: 1,
-      //         slidesPerView: 2,
-      //         spaceBetween: 20,
-      //       },
-      //       835: {
-      //         slidesPerGroup: 1,
-      //         slidesPerView: 3,
-      //         spaceBetween: 80,
-      //       },
-      //     },
-      //   },
-      // },
+      {
+        sliderSelector: '.novelty__slider',
+        prevSelector: '.novelty-button-prev',
+        nextSelector: '.novelty-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 2,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          noSwipingClass: 'swiper-no-swiping',
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            601: {
+              slidesPerGroup: 1,
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 6,
+              spaceBetween: 20,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.topsellers__slider',
+        prevSelector: '.topsellers-button-prev',
+        nextSelector: '.topsellers-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 2,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          noSwipingClass: 'swiper-no-swiping',
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            601: {
+              slidesPerGroup: 1,
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 6,
+              spaceBetween: 20,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.facts__slider',
+        prevSelector: '.facts-button-prev',
+        nextSelector: '.facts-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 0,
+          speed: 500,
+          grabCursor: true,
+          loop: true,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          pagination: {
+            el: '.facts-swiper-pagination',
+            clickable: true,
+          },
+          freeMode: false,
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+        },
+      },
       {
         sliderSelector: '.hero__slider',
         highlight: false,
