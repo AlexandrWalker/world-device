@@ -3409,6 +3409,62 @@ canvas {
 }
 
 /* Sections */
+.category {
+  padding-top: 0;
+  margin-top: -3rem;
+}
+.category__items {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 0.8rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+.category__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.9rem 1rem 1.9rem 1rem;
+  border-radius: 1.8rem;
+  background-color: var(--white);
+  -webkit-box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
+  box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
+}
+.category__item-cover {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 7rem;
+  height: 7rem;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+.category__item-cover img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+.category__item-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 120%;
+}
+
 .facts__items {
   display: -ms-grid;
   display: grid;
@@ -3927,6 +3983,11 @@ canvas {
   .mobileMenu {
     display: none;
   }
+  .category__items {
+    -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+  }
   .facts__items {
     -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr;
     grid-template-columns: repeat(10, 1fr);
@@ -4412,6 +4473,22 @@ canvas {
     --btn-padding-x: 3rem;
     gap: 3rem;
     font-size: 1.4rem;
+  }
+  .category {
+    padding-top: 2rem;
+    margin-top: 0;
+  }
+  .category__item {
+    gap: 0.8rem;
+    padding: 1rem 0.8rem;
+    border-radius: 1.2rem;
+  }
+  .category__item-cover {
+    width: 4rem;
+    height: 4rem;
+  }
+  .category__item-title {
+    font-size: 1.2rem;
   }
   .facts__item-title {
     font-size: 1.4rem;
