@@ -231,6 +231,77 @@
       --gradient-color-3 1s ease-in-out,
       --gradient-color-4 1s ease-in-out;
   }
+
+  .swiper-pagination {
+    justify-content: flex-start;
+
+    position: absolute;
+    bottom: 16rem;
+    left: var(--container-padding);
+    z-index: 6;
+
+    @include sm {
+      justify-content: center;
+      left: unset;
+      bottom: 0;
+    }
+
+    &-bullet {
+      justify-content: flex-start;
+      width: 1.1rem;
+      height: 1.1rem;
+      margin: 0 0.5rem !important;
+      border-radius: 0.5rem;
+      background: var(--white);
+      border: 0;
+      flex-shrink: 0;
+
+      &::before {
+        display: none;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: 0.5rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        background-color: var(--gradient-color-2);
+        animation-duration: 5.3s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
+
+      &-active {
+        width: 4.8rem;
+        position: relative;
+
+        @include sm {
+          width: 2.7rem;
+        }
+
+        &::after {
+          animation-name: timeline;
+        }
+      }
+    }
+  }
+}
+
+@keyframes timeline {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 /* Регистрируем переменные как цвета — включает плавную анимацию */

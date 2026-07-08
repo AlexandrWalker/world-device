@@ -17,6 +17,23 @@
     display: none;
   }
 
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--blue-3);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    @include dosm {
+      display: none;
+    }
+  }
+
   .burger-menu--open & {
     transform: translateX(0);
   }

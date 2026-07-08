@@ -25,6 +25,24 @@
     z-index: 2;
   }
 
+  &__foot {
+
+    @include dosm {
+      display: none;
+    }
+
+    .btn {
+      --btn-width: 100%;
+      --btn-height: 3.4rem;
+      --btn-border-radius: 0.5rem;
+
+      gap: 0.5rem;
+
+      font-size: 1.2rem;
+      line-height: 100%;
+    }
+  }
+
   &__title {
 
     h1 {

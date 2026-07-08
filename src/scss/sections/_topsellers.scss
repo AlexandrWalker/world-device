@@ -2,40 +2,5 @@
 
 .topsellers {
 
-  &__slider {
-    
-    &::before {
-      content: "";
-      display: block;
-      width: var(--container-padding);
-      height: calc(100% + 10rem);
-      background-color: var(--body-bg);
-
-      position: absolute;
-      top: -5rem;
-      left: calc((var(--container-padding) + 10px) * -1);
-      z-index: 3;
-
-      @include sm {
-        display: none;
-      }
-    }
-
-    &::after {
-      content: "";
-      display: block;
-      width: var(--container-padding);
-      height: calc(100% + 10rem);
-      background-color: var(--body-bg);
-
-      position: absolute;
-      top: -5rem;
-      right: calc((var(--container-padding) + 10px) * -1);
-      z-index: 3;
-
-      @include sm {
-        display: none;
-      }
-    }
-  }
+  &__slider {}
 }

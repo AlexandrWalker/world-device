@@ -1,0 +1,46 @@
+@use './../mixins' as *;
+
+.faq {
+
+  @include sm {
+    display: none;
+  }
+
+  &__item {
+    border-radius: 1.8rem;
+    background-color: var(--white);
+    border: 0.1rem solid transparent;
+
+    &.accordion-item--active,
+    &:hover {
+      border-color: var(--cyan);
+    }
+
+    &-head {
+      padding: 2.5rem 3rem 3rem 3rem;
+      cursor: pointer;
+    }
+
+    &-title {
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 130%;
+      color: var(--navy);
+    }
+
+    &-body {
+      padding: 0 7.5rem 0 3rem;
+
+      .accordion-item--active & {
+        padding: 0 7.5rem 3rem 3rem;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      overflow: hidden;
+    }
+  }
+}
