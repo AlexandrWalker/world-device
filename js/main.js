@@ -1728,22 +1728,22 @@ document.addEventListener('DOMContentLoaded', () => {
         accumulateImpulse(direction);
         const steps = 1 + Math.round(extraImpulse);
 
-        if (swiper.params.loop) {
-          const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
-          const curr = swiper.realIndex;
-          const target = direction === 'next'
-            ? (curr + steps) % total
-            : (curr - steps + total) % total;
-          swiper.slideToLoop(target);
-        }
         // if (swiper.params.loop) {
-        //   if (direction === 'next') {
-        //     swiper.slideNext();
-        //   } else {
-        //     swiper.slidePrev();
-        //   }
-        //   return;
-        // } 
+        //   const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
+        //   const curr = swiper.realIndex;
+        //   const target = direction === 'next'
+        //     ? (curr + steps) % total
+        //     : (curr - steps + total) % total;
+        //   swiper.slideToLoop(target);
+        // }
+        if (swiper.params.loop) {
+          if (direction === 'next') {
+            swiper.slideNext();
+          } else {
+            swiper.slidePrev();
+          }
+          return;
+        } 
         else {
           const base = swiper.activeIndex;
           const target = direction === 'next'
