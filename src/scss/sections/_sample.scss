@@ -1,0 +1,54 @@
+@use './../mixins' as *;
+
+.sample {
+
+  .general {
+
+    &__title {
+
+      * {
+        font-size: 1.4rem;
+
+        @include dosm {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 124rem;
+
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 140%;
+    color: var(--black-50);
+
+    @include dosm {
+      font-size: 1.6rem;
+    }
+
+    @include dosm {
+      gap: 3rem;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 2.4rem;
+
+      li {
+        list-style: disc;
+
+        position: relative;
+
+        // &::before {
+        //   content: "";
+
+        // }
+      }
+    }
+  }
+}

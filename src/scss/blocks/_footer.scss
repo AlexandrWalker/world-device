@@ -115,10 +115,24 @@
       }
 
       a {
+        padding-bottom: 0.2rem;
+        background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+        background-size: 0;
+        transition: .3s;
+        background-position: left;
+        background-repeat: no-repeat;
+
         font-weight: 400;
         font-size: 1.6rem;
         line-height: 120%;
         color: var(--cyan);
+
+        &:hover {
+
+          @include dosm {
+            background-size: 100%;
+          }
+        }
       }
     }
   }
@@ -168,6 +182,8 @@
     }
 
     &-phone {
+      width: fit-content;
+
       font-weight: 700;
       font-size: 3rem;
       line-height: 120%;
@@ -176,9 +192,18 @@
       @include sm {
         font-size: 2.5rem;
       }
+
+      &:hover {
+
+        @include dosm {
+          color: var(--white);
+        }
+      }
     }
 
     &-mail {
+      width: fit-content;
+
       font-weight: 400;
       font-size: 1.6rem;
       line-height: 120%;
@@ -186,6 +211,13 @@
 
       @include sm {
         font-size: 1.4rem;
+      }
+
+      &:hover {
+
+        @include dosm {
+          color: var(--white);
+        }
       }
     }
 
@@ -231,6 +263,13 @@
       grid-row: 2/3;
     }
 
+    &-left {
+
+      @include sm {
+        margin-top: auto;
+      }
+    }
+
     &-center {
       display: flex;
       flex-direction: row;
@@ -239,12 +278,79 @@
 
       grid-column: 2/3;
       grid-row: 1/3;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5.2rem;
+        height: 5.2rem;
+        border-radius: 50%;
+        background-color: var(--black-05);
+
+        color: var(--cyan);
+
+        &::before {
+          backdrop-filter: unset;
+        }
+
+        .GlassMaterial::after {
+          background: none;
+        }
+
+        &:hover {
+
+          @include dosm {
+
+            i {
+              color: var(--white);
+            }
+
+            .GlassMaterial:before {
+              opacity: 0;
+            }
+
+            .GlassMaterial:after {
+              background-color: var(--accent);
+            }
+
+            .header__mid-wrap {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+
+      i {
+        --font-size: 2.2rem;
+      }
     }
 
     &-right {
 
       @include dosm {
         text-align: right;
+      }
+
+      @include sm {
+        margin-bottom: auto;
+      }
+
+      a {
+        padding-bottom: 0.1rem;
+        background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+        background-size: 0;
+        transition: .3s;
+        background-position: left;
+        background-repeat: no-repeat;
+
+        &:hover {
+
+          @include dosm {
+            background-size: 100%;
+          }
+        }
       }
     }
   }

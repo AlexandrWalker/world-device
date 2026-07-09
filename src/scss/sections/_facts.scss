@@ -33,6 +33,14 @@
       grid-column: span 2;
     }
 
+    &:hover {
+
+      .facts__item-cover {
+        transform: translateY(-1.5rem);
+        transition-delay: 0.1s;
+      }
+    }
+
     &-content {
       display: flex;
       flex-direction: column;
@@ -40,13 +48,17 @@
       height: 100%;
 
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     &-title {
       font-weight: 700;
       font-size: 2rem;
       line-height: 140%;
+
+      @include dosm {
+        max-width: 19rem;
+      }
 
       @include sm {
         font-size: 1.4rem;
@@ -113,6 +125,26 @@
       }
     }
 
+    &-cover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 29.6rem;
+      height: 29.6rem;
+      transition: transform 1s ease;
+
+      position: absolute;
+      top: 4.8rem;
+      left: 12.2rem;
+      z-index: 2;
+
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
     &:nth-child(6) {
       color: var(--black);
 
@@ -126,6 +158,8 @@
       .facts__item {
 
         &-title {
+          max-width: 100%;
+
           font-size: 4rem;
 
           @include sm {

@@ -22,7 +22,8 @@
     display: block;
     width: 100%;
     height: var(--header-height);
-    background-color: var(--blue-3);
+    // background-color: var(--blue-3);
+    background: linear-gradient(211.09deg, var(--blue-3) 20.15%, var(--cyan) 133.13%), var(--blue-3);
 
     position: absolute;
     top: 0;

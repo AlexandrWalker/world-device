@@ -65,14 +65,13 @@
 
     &-disabled {
       opacity: 0 !important;
-      pointer-events: none;
+      // pointer-events: none;
     }
   }
 
   &-pagination {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     margin: 2rem auto 0 auto;
 
     font-size: 0.5rem;
@@ -81,7 +80,7 @@
     position: static;
 
     @include domd {
-      // display: none;
+      justify-content: center;
       margin: 4rem auto 0 auto;
     }
 
@@ -97,6 +96,7 @@
       border: 0.1rem solid transparent;
       border-radius: 50%;
       transition: all 0.3s ease;
+      flex-shrink: 0;
 
       &:hover {
 

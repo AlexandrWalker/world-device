@@ -816,6 +816,46 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         sliderSelector: '.hero__slider',
         highlight: false,
+        thumbs: {
+          sliderSelector: '.hero__cover-slider',
+          highlight: false,
+          swiperOptions: {
+            slidesPerGroup: 1,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            speed: 1000,
+            grabCursor: false,
+            loop: true,
+            touchRatio: 1.6,
+            resistance: true,
+            resistanceRatio: 0.4,
+            centeredSlides: false,
+            centeredSlidesBounds: true,
+            simulateTouch: true,
+            direction: 'horizontal',
+            touchStartPreventDefault: true,
+            touchMoveStopPropagation: true,
+            threshold: 8,
+            touchAngle: 25,
+            watchOverflow: true,
+            freeMode: false,
+
+            // effect: 'fade',
+            // fadeEffect: {
+            //   crossFade: true,
+            // },
+            effect: 'flip',
+            flipEffect: {
+              slideShadows: false,
+              limitRotation: true,
+            },
+
+            autoplay: false,
+            mousewheel: false,
+            pagination: false,
+            navigation: false,
+          },
+        },
         swiperOptions: {
           slidesPerGroup: 1,
           slidesPerView: 1,
@@ -836,6 +876,10 @@ document.addEventListener('DOMContentLoaded', () => {
           touchAngle: 25,
           watchOverflow: true,
           freeMode: false,
+          effect: 'fade',
+          fadeEffect: {
+            crossFade: true,
+          },
           autoplay: {
             delay: 5000,
             disableOnInteraction: false,
@@ -883,9 +927,12 @@ document.addEventListener('DOMContentLoaded', () => {
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
+          navigation: false,
           pagination: {
             el: '.facts-swiper-pagination',
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 2,
           },
           freeMode: false,
           mousewheel: {
@@ -893,7 +940,16 @@ document.addEventListener('DOMContentLoaded', () => {
             sensitivity: 1,
             releaseOnEdges: true,
           },
-          navigation: false,
+          breakpoints: {
+            601: {
+              pagination: {
+                el: '.facts-swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
+              },
+            },
+          },
         },
       },
       {
@@ -924,6 +980,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 2,
           },
           freeMode: {
             enabled: true,
@@ -944,6 +1002,12 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 6,
               spaceBetween: 20,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
+              },
             },
           },
         },
@@ -975,6 +1039,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 2,
           },
           freeMode: {
             enabled: true,
@@ -995,6 +1061,12 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 4,
               spaceBetween: 20,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
+              },
             },
           },
         },
@@ -1119,6 +1191,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 2,
           },
           freeMode: {
             enabled: true,
@@ -1139,6 +1213,12 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 6,
               spaceBetween: 20,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
+              },
             },
           },
         },
@@ -1171,6 +1251,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 2,
           },
           freeMode: {
             enabled: true,
@@ -1191,6 +1273,12 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 4,
               spaceBetween: 20,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
+              },
             },
           },
         },
@@ -1199,9 +1287,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Инициализируем каждый слайдер из конфига
-    slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, swiperOptions }) => {
+    slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, thumbs, autoSlidesView, swiperOptions }) => {
 
       if (!document.querySelector(sliderSelector)) return;
+
+      if (autoSlidesView) {
+        applyAutoSlidesView(swiperOptions);
+      }
 
       // Ищем кнопки только если селекторы заданы в конфиге
       // Если prevSelector/nextSelector не указаны - слайдер без кнопок навигации
@@ -1212,6 +1304,18 @@ document.addEventListener('DOMContentLoaded', () => {
       // если false или не указано - передаём null и createHighlight вернёт заглушку
       const fromEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--from`) : null;
       const toEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--to`) : null;
+
+      if (thumbs) {
+        const thumbsEl = document.querySelector(thumbs.sliderSelector);
+
+        if (!thumbsEl) {
+          console.warn(`Swiper thumbs: элемент "${thumbs.sliderSelector}" не найден.`);
+        } else {
+          const thumbsSwiper = new Swiper(thumbs.sliderSelector, thumbs.swiperOptions);
+
+          swiperOptions.thumbs = { swiper: thumbsSwiper };
+        }
+      }
 
       const swiper = new Swiper(sliderSelector, swiperOptions);
 
@@ -1235,6 +1339,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    function applyAutoSlidesView(swiperOptions) {
+
+      swiperOptions.centeredSlidesBounds = false;
+
+      if (swiperOptions.freeMode) {
+        swiperOptions.freeMode.sticky = false;
+      }
+
+      const breakpoints = swiperOptions.breakpoints ?? {};
+      Object.values(breakpoints).forEach(bp => {
+        if (bp.slidesPerView === 'auto') {
+          bp.centeredSlidesBounds = false;
+          if (bp.sticky !== undefined) bp.sticky = false;
+        }
+      });
+    }
 
     // Проверяет нужен ли edgeTracker для данного слайдера.
     // Смотрим на базовый slidesPerView и на все брейкпоинты -
@@ -1579,10 +1699,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let nextBlocked = false;
         if (swiper.isEnd) {
-          const visible = getVisibleIndicesForNav();
-          const lastVisible = visible[visible.length - 1] ?? swiper.activeIndex;
-          const currentVirt = edgeTracker.getVirtualIndex() ?? swiper.activeIndex;
-          nextBlocked = currentVirt >= lastVisible;
+          const virtualIndex = edgeTracker.getVirtualIndex();
+          if (virtualIndex === null) {
+            nextBlocked = true;
+          } else {
+            const visible = getVisibleIndicesForNav();
+            const lastVisible = visible[visible.length - 1] ?? swiper.activeIndex;
+            nextBlocked = virtualIndex >= lastVisible;
+          }
         }
 
         // disabled как свойство а не атрибут - клик всё равно доходит
@@ -1604,22 +1728,23 @@ document.addEventListener('DOMContentLoaded', () => {
         accumulateImpulse(direction);
         const steps = 1 + Math.round(extraImpulse);
 
-        // if (swiper.params.loop) {
-        //   const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
-        //   const curr = swiper.realIndex;
-        //   const target = direction === 'next'
-        //     ? (curr + steps) % total
-        //     : (curr - steps + total) % total;
-        //   swiper.slideToLoop(target);
-        // }
         if (swiper.params.loop) {
-          if (direction === 'next') {
-            swiper.slideNext();
-          } else {
-            swiper.slidePrev();
-          }
-          return;
-        } else {
+          const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
+          const curr = swiper.realIndex;
+          const target = direction === 'next'
+            ? (curr + steps) % total
+            : (curr - steps + total) % total;
+          swiper.slideToLoop(target);
+        }
+        // if (swiper.params.loop) {
+        //   if (direction === 'next') {
+        //     swiper.slideNext();
+        //   } else {
+        //     swiper.slidePrev();
+        //   }
+        //   return;
+        // } 
+        else {
           const base = swiper.activeIndex;
           const target = direction === 'next'
             ? Math.min(base + steps, swiper.slides.length - 1)

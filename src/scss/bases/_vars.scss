@@ -1,12 +1,14 @@
 @use './../mixins' as *;
 
 :root {
-  --font-family: IBMPlexSans, Arial, Verdana, sans-serif;
+  // --font-family: IBMPlexSans, Arial, Verdana, sans-serif;
+  --font-family: "IBM Plex Sans", Arial, Verdana, sans-serif;
   --second-family: 'SF-Pro', Arial, Verdana, sans-serif;
 
   --container-padding: 12rem;
   --container-width: 168rem;
-  --header-height: 15.2rem;
+  // --header-height: 15.2rem;
+  --header-height: 16.3rem;
   --section-padding-top: 3.5rem;
   --section-padding-bottom: 3.5rem;
 
@@ -42,6 +44,7 @@
   --deep-blue: #05204A;
   --navy: #0A3C87;
   --navy-10: #0A3C871a;
+  --navy-50: rgba(10, 60, 135, 0.5);
   --orange: #FF7F2A;
   --red: #FF5B5B;
   --green: #51CF7B;

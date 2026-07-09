@@ -24,7 +24,10 @@
     }
 
     &:hover {
-      border-color: var(--cyan);
+
+      @include dosm {
+        border-color: var(--cyan);
+      }
     }
 
     .tag-new {
@@ -106,6 +109,10 @@
       @include sm {
         width: 12.7rem;
         height: 12.7rem;
+      }
+
+      .out-stock & {
+        filter: grayscale(100%);
       }
     }
 
@@ -280,13 +287,13 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.8rem;
-        padding: 0 0.8rem 0.8rem 0.8rem;
+        padding: 0 0.8rem 1rem 0.8rem;
       }
 
       .out-stock & {
 
         @include sm {
-          grid-template-columns: repeat(1, 1fr);
+          // grid-template-columns: repeat(1, 1fr);
         }
       }
     }
@@ -341,7 +348,14 @@
       }
 
       .out-stock & {
-        display: none;
+        --btn-background: var(--body-bg);
+        --btn-color: var(--black-20);
+
+        pointer-events: none;
+
+        @include dosm {
+          display: none;
+        }
       }
     }
 
@@ -413,6 +427,42 @@
         }
       }
     }
+
+    &-link {
+      display: none;
+      width: 100%;
+      grid-column: 1/3;
+      grid-row: 1/2;
+      margin-top: 0.2rem;
+
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 100%;
+      text-decoration: underline;
+      color: var(--navy-50);
+      text-align: center;
+
+      @include dosm {
+        display: none;
+      }
+
+      &:link,
+      &:visited {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        color: var(--navy);
+      }
+
+      .out-stock & {
+        display: block;
+
+        @include dosm {
+          display: none;
+        }
+      }
+    }
   }
 
   &__stock {
@@ -424,7 +474,11 @@
       }
 
       .out-stock & {
-        display: block;
+        display: none;
+
+        @include dosm {
+          display: block;
+        }
       }
     }
   }

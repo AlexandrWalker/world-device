@@ -4,12 +4,6 @@
   padding-top: calc(var(--header-height) + var(--section-padding-top));
   padding-bottom: 0;
   min-height: 84.8rem;
-  // background-color: var(--blue-3);
-
-  // background-image: url(./../../images/temp/hero-bg-1.png);
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-position: center;
 
   position: relative;
 
@@ -57,15 +51,15 @@
 
       color: var(--white);
 
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      // opacity: 0;
+      // visibility: hidden;
+      // transition: opacity 0.5s ease, visibility 0.5s ease;
 
-      .swiper-slide-active & {
-        transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
-        opacity: 1;
-        visibility: visible;
-      }
+      // .swiper-slide-active & {
+      //   transition: opacity 0.5s linear 0.5s, visibility 0.5s linear 0.5s;
+      //   opacity: 1;
+      //   visibility: visible;
+      // }
     }
 
     &-title {
@@ -201,7 +195,7 @@
   }
 
   &__cover {
-    width: auto;
+    width: 50.5rem;
     height: 67.6rem;
 
     position: absolute;
@@ -211,6 +205,17 @@
 
     @include sm {
       display: none;
+    }
+
+    &-slider {
+      pointer-events: none;
+      perspective: 1200px;
+    }
+
+    &-slide {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
     }
 
     img {
