@@ -812,50 +812,16 @@ document.addEventListener('DOMContentLoaded', () => {
       decayInterval: 40,
     };
 
+    /* new code */
+    // Хранилище для инстансов навигации, чтобы связывать слайдеры по имени группы
+    const syncGroups = {};
+    /* end new code */
+
     const slidersConfig = [
       {
         sliderSelector: '.hero__slider',
         highlight: false,
-        thumbs: {
-          sliderSelector: '.hero__cover-slider',
-          highlight: false,
-          swiperOptions: {
-            slidesPerGroup: 1,
-            slidesPerView: 1,
-            spaceBetween: 0,
-            speed: 1000,
-            grabCursor: false,
-            loop: true,
-            touchRatio: 1.6,
-            resistance: true,
-            resistanceRatio: 0.4,
-            centeredSlides: false,
-            centeredSlidesBounds: true,
-            simulateTouch: true,
-            direction: 'horizontal',
-            touchStartPreventDefault: true,
-            touchMoveStopPropagation: true,
-            threshold: 8,
-            touchAngle: 25,
-            watchOverflow: true,
-            freeMode: false,
-
-            // effect: 'fade',
-            // fadeEffect: {
-            //   crossFade: true,
-            // },
-            effect: 'flip',
-            flipEffect: {
-              slideShadows: false,
-              limitRotation: true,
-            },
-
-            autoplay: false,
-            mousewheel: false,
-            pagination: false,
-            navigation: false,
-          },
-        },
+        syncGroupName: 'hero-group',
         swiperOptions: {
           slidesPerGroup: 1,
           slidesPerView: 1,
@@ -904,6 +870,45 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
       {
+        sliderSelector: '.hero__cover-slider',
+        highlight: false,
+        syncGroupName: 'hero-group',
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 0,
+          speed: 1000,
+          grabCursor: true,
+          loop: true,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: false,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          allowTouchMove: true,
+          freeMode: false,
+          effect: 'fade',
+          fadeEffect: {
+            crossFade: true,
+          },
+          mousewheel: false,
+          pagination: false,
+          navigation: false,
+          breakpoints: {
+            601: {
+              spaceBetween: 0,
+            },
+          }
+        },
+      },
+      {
         sliderSelector: '.facts__slider',
         prevSelector: '.facts-button-prev',
         nextSelector: '.facts-button-next',
@@ -927,7 +932,6 @@ document.addEventListener('DOMContentLoaded', () => {
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
-          navigation: false,
           pagination: {
             el: '.facts-swiper-pagination',
             clickable: true,
@@ -943,13 +947,11 @@ document.addEventListener('DOMContentLoaded', () => {
           breakpoints: {
             601: {
               pagination: {
-                el: '.facts-swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
                 dynamicMainBullets: 3,
               },
             },
           },
+          navigation: false,
         },
       },
       {
@@ -1003,9 +1005,6 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerView: 6,
               spaceBetween: 20,
               pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
                 dynamicMainBullets: 3,
               },
             },
@@ -1062,9 +1061,6 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerView: 4,
               spaceBetween: 20,
               pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
                 dynamicMainBullets: 3,
               },
             },
@@ -1214,9 +1210,6 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerView: 6,
               spaceBetween: 20,
               pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
                 dynamicMainBullets: 3,
               },
             },
@@ -1274,9 +1267,6 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerView: 4,
               spaceBetween: 20,
               pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
                 dynamicMainBullets: 3,
               },
             },
@@ -1287,13 +1277,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Инициализируем каждый слайдер из конфига
-    slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, thumbs, autoSlidesView, swiperOptions }) => {
+    slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, swiperOptions, syncGroupName }) => {
 
       if (!document.querySelector(sliderSelector)) return;
-
-      if (autoSlidesView) {
-        applyAutoSlidesView(swiperOptions);
-      }
 
       // Ищем кнопки только если селекторы заданы в конфиге
       // Если prevSelector/nextSelector не указаны - слайдер без кнопок навигации
@@ -1304,18 +1290,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // если false или не указано - передаём null и createHighlight вернёт заглушку
       const fromEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--from`) : null;
       const toEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--to`) : null;
-
-      if (thumbs) {
-        const thumbsEl = document.querySelector(thumbs.sliderSelector);
-
-        if (!thumbsEl) {
-          console.warn(`Swiper thumbs: элемент "${thumbs.sliderSelector}" не найден.`);
-        } else {
-          const thumbsSwiper = new Swiper(thumbs.sliderSelector, thumbs.swiperOptions);
-
-          swiperOptions.thumbs = { swiper: thumbsSwiper };
-        }
-      }
 
       const swiper = new Swiper(sliderSelector, swiperOptions);
 
@@ -1334,27 +1308,25 @@ document.addEventListener('DOMContentLoaded', () => {
         : createEdgeTrackerStub();
 
       // Навигацию подключаем только если обе кнопки реально найдены в DOM
-      if (prevEl || nextEl) {
-        createNavigation(swiper, prevEl, nextEl, highlightInstance, edgeTracker);
+      // if (prevEl || nextEl) {
+      //   createNavigation(swiper, prevEl, nextEl, highlightInstance, edgeTracker);
+      // }
+
+      // Создаем навигацию (даже если физических кнопок нет, для поддержки программной синхронизации)
+      const navInstance = createNavigation(swiper, prevEl, nextEl, highlightInstance, edgeTracker);
+
+      // Если указано имя группы — регистрируем инстанс в хранилище синхронизации
+      if (syncGroupName) {
+        if (!syncGroups[syncGroupName]) {
+          syncGroups[syncGroupName] = [];
+        }
+        syncGroups[syncGroupName].push(navInstance);
+
+        // Передаем ссылку на массив группы в сам инстанс навигации
+        navInstance.setSyncGroup(syncGroups[syncGroupName]);
       }
     });
 
-    function applyAutoSlidesView(swiperOptions) {
-
-      swiperOptions.centeredSlidesBounds = false;
-
-      if (swiperOptions.freeMode) {
-        swiperOptions.freeMode.sticky = false;
-      }
-
-      const breakpoints = swiperOptions.breakpoints ?? {};
-      Object.values(breakpoints).forEach(bp => {
-        if (bp.slidesPerView === 'auto') {
-          bp.centeredSlidesBounds = false;
-          if (bp.sticky !== undefined) bp.sticky = false;
-        }
-      });
-    }
 
     // Проверяет нужен ли edgeTracker для данного слайдера.
     // Смотрим на базовый slidesPerView и на все брейкпоинты -
@@ -1646,6 +1618,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let lastDirection = null;
       let extraImpulse = 0;
       let decayTimer = null;
+      /* new code */
+      let syncGroup = []; // Список связанных навигаций
+      /* end new code */
 
       function resetImpulse() {
         extraImpulse = 0;
@@ -1699,14 +1674,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let nextBlocked = false;
         if (swiper.isEnd) {
-          const virtualIndex = edgeTracker.getVirtualIndex();
-          if (virtualIndex === null) {
-            nextBlocked = true;
-          } else {
-            const visible = getVisibleIndicesForNav();
-            const lastVisible = visible[visible.length - 1] ?? swiper.activeIndex;
-            nextBlocked = virtualIndex >= lastVisible;
-          }
+          const visible = getVisibleIndicesForNav();
+          const lastVisible = visible[visible.length - 1] ?? swiper.activeIndex;
+          const currentVirt = edgeTracker.getVirtualIndex() ?? swiper.activeIndex;
+          nextBlocked = currentVirt >= lastVisible;
         }
 
         // disabled как свойство а не атрибут - клик всё равно доходит
@@ -1715,7 +1686,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextEl) { nextEl.classList.toggle('swiper-button-disabled', nextBlocked); nextEl.disabled = nextBlocked; }
       }
 
-      function handle(direction) {
+      /* new code */
+      // Параметр isSync Call предотвращает бесконечные циклы вызовов
+      function handle(direction, isSyncCall = false) {
+        // 1. Синхронизируем вызов со связанными слайдерами
+        if (!isSyncCall && syncGroup.length > 0) {
+          syncGroup.forEach(nav => {
+            if (nav !== navInstance) {
+              // Не вызываем у самого себя
+              nav.handle(direction, true);
+            }
+          });
+        }
+
+        // 2. Обычная логика движения слайдера
         if (direction === 'next' && edgeTracker.handleEdgeNext()) {
           updateDisabled();
           return;
@@ -1725,26 +1709,37 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
+        /* end new code */
+
+        // function handle(direction) {
+        //   if (direction === 'next' && edgeTracker.handleEdgeNext()) {
+        //     updateDisabled();
+        //     return;
+        //   }
+        //   if (direction === 'prev' && edgeTracker.handleEdgePrev()) {
+        //     updateDisabled();
+        //     return;
+        //   }
+
         accumulateImpulse(direction);
         const steps = 1 + Math.round(extraImpulse);
 
-        if (swiper.params.loop) {
-          const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
-          const curr = swiper.realIndex;
-          const target = direction === 'next'
-            ? (curr + steps) % total
-            : (curr - steps + total) % total;
-          swiper.slideToLoop(target);
-        }
         // if (swiper.params.loop) {
-        //   if (direction === 'next') {
-        //     swiper.slideNext();
-        //   } else {
-        //     swiper.slidePrev();
-        //   }
-        //   return;
-        // } 
-        else {
+        //   const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
+        //   const curr = swiper.realIndex;
+        //   const target = direction === 'next'
+        //     ? (curr + steps) % total
+        //     : (curr - steps + total) % total;
+        //   swiper.slideToLoop(target);
+        // }
+        if (swiper.params.loop) {
+          if (direction === 'next') {
+            swiper.slideNext();
+          } else {
+            swiper.slidePrev();
+          }
+          return;
+        } else {
           const base = swiper.activeIndex;
           const target = direction === 'next'
             ? Math.min(base + steps, swiper.slides.length - 1)
@@ -1764,26 +1759,78 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisabled();
       }
 
+      // 1. Синхронизация в реальном времени под пальцем (для плавного эффекта fade)
+      swiper.on('setTranslate', (s, translate) => {
+        if (syncGroup.length > 0) {
+          syncGroup.forEach(nav => {
+            if (nav !== navInstance) {
+              const slaveSwiper = nav.getSwiper();
+              // Передаем точное смещение, и эффект fade на ведомом слайдере отрабатывает нативно
+              slaveSwiper.setTranslate(translate);
+            }
+          });
+        }
+      });
+
+      // 2. Синхронизация при кликах на стрелки, пагинацию или при автоплее
+      swiper.on('transitionStart', () => {
+        if (syncGroup.length > 0) {
+          syncGroup.forEach(nav => {
+            if (nav !== navInstance) {
+              const slaveSwiper = nav.getSwiper();
+              // Если индексы разошлись, принудительно подтягиваем ведомый слайдер
+              if (slaveSwiper.activeIndex !== swiper.activeIndex) {
+                slaveSwiper.slideTo(swiper.activeIndex, swiper.params.speed);
+              }
+            }
+          });
+        }
+      });
+
       if (nextEl) nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
       if (prevEl) prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
 
       swiper.on('touchStart', resetImpulse);
       swiper.on('slideChange', updateDisabled);
       swiper.on('resize', updateDisabled);
+
+      /* new code */
+      // Синхронизация при свайпах руками (Touch события)
       swiper.on('touchEnd', () => {
         const dir = swiper.swipeDirection;
         if (dir === 'next') edgeTracker.handleEdgeNext();
         else if (dir === 'prev') edgeTracker.handleEdgePrev();
         updateDisabled();
       });
-
       swiper.on('destroy', () => {
         if (decayTimer) clearInterval(decayTimer);
         decayTimer = null;
       });
-
       updateDisabled();
+
+      // Возвращаем интерфейс управления для синхронизации
+      const navInstance = {
+        handle, updateDisabled, getSwiper: () => swiper, setSyncGroup: (group) => { syncGroup = group; }
+      };
+      return navInstance;
     }
+
+    /* end new code */
+
+    // swiper.on('touchEnd', () => {
+    //   const dir = swiper.swipeDirection;
+    //   if (dir === 'next') edgeTracker.handleEdgeNext();
+    //   else if (dir === 'prev') edgeTracker.handleEdgePrev();
+    //   updateDisabled();
+    // });
+
+    // swiper.on('destroy', () => {
+    //   if (decayTimer) clearInterval(decayTimer);
+    //   decayTimer = null;
+    // });
+
+    // updateDisabled();
+    // }
 
     // Можно добавить этот код один раз, чтобы он следил за изменением высоты BODY и обновлял GSAP
     // const ro = new ResizeObserver(() => {
