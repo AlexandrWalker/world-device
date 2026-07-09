@@ -30,6 +30,7 @@
     border: 0.1rem solid transparent;
     background-color: var(--white);
     box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
+    transition: border-color 0.3s ease;
 
     @include sm {
       gap: 0.8rem;

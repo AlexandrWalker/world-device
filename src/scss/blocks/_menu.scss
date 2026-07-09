@@ -20,6 +20,7 @@
     grid-template-columns: repeat(12, 1fr);
     gap: 2rem;
     background-color: var(--white-90);
+    backdrop-filter: blur(6px);
     border-radius: 1.8rem;
     overflow: hidden;
     max-height: 98%;

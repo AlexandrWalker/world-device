@@ -206,9 +206,10 @@
       gap: 3rem;
       width: 100%;
       max-height: calc(100vh - var(--header-height));
+      padding: 1.8rem 5rem 3.6rem 5rem;
       border-radius: 1.8rem;
       background-color: var(--white-90);
-      padding: 1.8rem 5rem 3.6rem 5rem;
+      backdrop-filter: blur(6px);
 
       position: absolute;
       top: calc(100% + 0.1rem);
@@ -222,7 +223,7 @@
       will-change: opacity, visibility, clip-path;
       transition: opacity 0.3s linear, visibility 0.3s linear, clip-path 0.15s linear;
 
-      .form-search.filled+&,
+      // .form-search.filled+&,
       .form-search:focus+&,
       .form-search:active+&,
       .form-search:checked+& {
@@ -326,6 +327,7 @@
       font-size: 1.4rem;
       line-height: 130%;
       color: var(--navy);
+      cursor: pointer;
     }
 
     &-body {}
@@ -346,6 +348,8 @@
       border-radius: 0.5rem;
       background-color: var(--white);
 
+      cursor: pointer;
+
       &:hover {
 
         span {
@@ -362,7 +366,7 @@
 
         font-weight: 400;
         font-size: 1.4rem;
-        line-height: 143%;
+        line-height: 100%;
         color: var(--black);
         transition: text-shadow 0.3s ease;
       }
