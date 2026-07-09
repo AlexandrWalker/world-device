@@ -1725,6 +1725,8 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
+
+
         accumulateImpulse(direction);
         const steps = 1 + Math.round(extraImpulse);
 
@@ -1736,6 +1738,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //     : (curr - steps + total) % total;
         //   swiper.slideToLoop(target);
         // }
+
         if (swiper.params.loop) {
           if (direction === 'next') {
             swiper.slideNext();
@@ -1743,8 +1746,7 @@ document.addEventListener('DOMContentLoaded', () => {
             swiper.slidePrev();
           }
           return;
-        } 
-        else {
+        } else {
           const base = swiper.activeIndex;
           const target = direction === 'next'
             ? Math.min(base + steps, swiper.slides.length - 1)
