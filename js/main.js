@@ -840,15 +840,15 @@ document.addEventListener('DOMContentLoaded', () => {
             watchOverflow: true,
             freeMode: false,
 
-            // effect: 'fade',
-            // fadeEffect: {
-            //   crossFade: true,
-            // },
-            effect: 'flip',
-            flipEffect: {
-              slideShadows: false,
-              limitRotation: true,
+            effect: 'fade',
+            fadeEffect: {
+              crossFade: true,
             },
+            // effect: 'flip',
+            // flipEffect: {
+            //   slideShadows: false,
+            //   limitRotation: true,
+            // },
 
             autoplay: false,
             mousewheel: false,
