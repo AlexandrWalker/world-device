@@ -2417,10 +2417,37 @@ body {
   -webkit-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 1000;
+}
+.header::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: -o-linear-gradient(207.18deg, #003194 61.43%, #0EDDC9 105.45%);
+  background: linear-gradient(242.82deg, #003194 61.43%, #0EDDC9 105.45%);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
+  -o-transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.page-inner .header::before, .header-fixed .header::before {
+  opacity: 1;
+  visibility: visible;
+}
+.header .container {
+  position: relative;
+  z-index: 2;
 }
 .header__inner {
   display: -webkit-box;
@@ -2564,6 +2591,13 @@ body {
 .form-search:checked) .header__search-btn {
   background-color: var(--navy);
   color: var(--cyan);
+}
+.header__search:has(.form-search:hover,
+.form-search.filled,
+.form-search:focus,
+.form-search:active,
+.form-search:checked) .header__search-btn:hover {
+  color: var(--white);
 }
 .header__search-icon {
   position: absolute;
@@ -3779,9 +3813,9 @@ canvas {
   background-color: var(--white);
   -webkit-box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
   box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
-  -webkit-transition: border-color 0.3s ease;
-  -o-transition: border-color 0.3s ease;
-  transition: border-color 0.3s ease;
+  -webkit-transition: border-color 0.3s ease, color 0.3s ease;
+  -o-transition: border-color 0.3s ease, color 0.3s ease;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 .category__item-cover {
   display: -webkit-box;
@@ -4783,6 +4817,7 @@ canvas {
   }
   .category__item:hover {
     border-color: var(--cyan);
+    color: var(--cyan);
   }
   .facts__items {
     -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr;
