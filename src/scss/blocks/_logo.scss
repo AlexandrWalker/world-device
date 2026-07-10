@@ -2,12 +2,43 @@
 
 .logo {
   display: block;
-  width: auto;
+  width: 10.6rem;
   height: 5.4rem;
+
+  position: relative;
 
   img {
     width: auto;
     height: 100%;
     object-fit: contain;
+    transition: opacity 0.3s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &-1 {
+    opacity: 1;
+
+    .catalog-menu--open &,
+    .burger-menu--open & {
+
+      @include sm {
+        opacity: 0;
+      }
+    }
+  }
+
+  &-2 {
+    opacity: 0;
+
+    .catalog-menu--open &,
+    .burger-menu--open & {
+
+      @include sm {
+        opacity: 1;
+      }
+    }
   }
 }

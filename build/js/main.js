@@ -356,22 +356,95 @@ document.addEventListener('DOMContentLoaded', () => {
    * Функция управления поведением меню-каталога.
    */
   (function () {
-    const catalogBtn = document.getElementById('catalog-btn');
+    const catalogBtns = document.querySelectorAll('.js-catalog-btn');
     const catalogMenu = document.getElementById('catalog-menu');
 
-    if (!catalogBtn || !catalogMenu) return;
+    // Если на странице нет меню или кнопок — мягко выходим
+    if (catalogBtns.length === 0 || !catalogMenu) return;
+
+    const menuBlocks = catalogMenu.querySelectorAll('[data-target]');
+    const menuItems = catalogMenu.querySelectorAll('[data-panel]');
+
+    // Находим все обёртки строго внутри нашего меню каталога
+    const blockWrappers = catalogMenu.querySelectorAll('.menu__block-wrapper');
+    const correspondingInner = catalogMenu.querySelector('.menu__inner');
+
+    const isMobileQuery = window.matchMedia('(max-width: 600px)');
+    const observersList = [];
+
+    const updateAllWrappersHeight = () => {
+      if (blockWrappers.length === 0 || !correspondingInner) return;
+
+      blockWrappers.forEach(wrapper => {
+        if (isMobileQuery.matches) {
+          wrapper.removeAttribute('style');
+          return;
+        }
+
+        // Вычисляем высоту для десктопа
+        const innerHeight = correspondingInner.offsetHeight;
+        const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
+
+        if (finalHeight > 0) {
+          wrapper.style.maxHeight = `${finalHeight}px`;
+        }
+      });
+    };
+
+    const initHeightTracking = () => {
+      if (blockWrappers.length === 0 || !correspondingInner) return;
+
+      if (typeof ResizeObserver === 'undefined') {
+        window.addEventListener('resize', updateAllWrappersHeight);
+        window.addEventListener('orientationchange', updateAllWrappersHeight);
+        updateAllWrappersHeight();
+        return;
+      }
+
+      blockWrappers.forEach(wrapper => {
+        const observer = new ResizeObserver(() => {
+          window.requestAnimationFrame(() => {
+            if (isMobileQuery.matches) {
+              wrapper.removeAttribute('style');
+              return;
+            }
+            const innerHeight = correspondingInner.offsetHeight;
+            const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
+            if (finalHeight > 0) {
+              wrapper.style.maxHeight = `${finalHeight}px`;
+            }
+          });
+        });
+
+        observer.observe(correspondingInner);
+        observersList.push(observer);
+      });
+
+      // Делаем первый стартовый расчет высоты
+      updateAllWrappersHeight();
+    };
 
     const openMenu = () => {
-      catalogBtn.classList.add('catalog-btn--open');
+      catalogBtns.forEach(btn => btn.classList.add('catalog-btn--open'));
       document.documentElement.classList.add('catalog-menu--open');
-      lenis.stop();
+      if (typeof lenis !== 'undefined') lenis.stop();
+
+      // Пересчитываем высоту всех обёрток сразу в момент открытия
+      updateAllWrappersHeight();
+
+      if (!isMobileQuery.matches && menuBlocks.length > 0) {
+        const firstTarget = menuBlocks[0].getAttribute('data-target');
+        switchTab(firstTarget);
+      }
     };
 
     const closeMenu = () => {
-      catalogBtn.classList.remove('catalog-btn--open');
+      catalogBtns.forEach(btn => btn.classList.remove('catalog-btn--open'));
       document.documentElement.classList.remove('catalog-menu--open');
-      lenis.start();
+      if (typeof lenis !== 'undefined') lenis.start();
       document.dispatchEvent(new CustomEvent('menu:close'));
+
+      resetTabs();
     };
 
     const toggleMenu = (e) => {
@@ -385,7 +458,93 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    catalogBtn.addEventListener('click', toggleMenu);
+    const switchTab = (targetId) => {
+      menuBlocks.forEach(block => {
+        const isCurrent = block.getAttribute('data-target') === targetId;
+        block.classList.toggle('menu__block--active', isCurrent);
+      });
+
+      menuItems.forEach(item => {
+        const isCurrent = item.getAttribute('data-panel') === targetId;
+        item.classList.toggle('menu__items--active', isCurrent);
+      });
+
+      updateAllWrappersHeight();
+    };
+
+    const toggleMobileAccordion = (block, targetId) => {
+      const correspondingPanel = catalogMenu.querySelector(`[data-panel="${targetId}"]`);
+      if (!correspondingPanel) return;
+
+      const isActive = block.classList.contains('menu__block--active');
+
+      if (isActive) {
+        block.classList.remove('menu__block--active');
+        correspondingPanel.classList.remove('menu__items--active');
+        correspondingPanel.style.maxHeight = null;
+      } else {
+        resetTabs();
+        block.classList.add('menu__block--active');
+        correspondingPanel.classList.add('menu__items--active');
+        correspondingPanel.style.maxHeight = correspondingPanel.scrollHeight + 'px';
+      }
+    };
+
+    const resetTabs = () => {
+      menuBlocks.forEach(block => block.classList.remove('menu__block--active'));
+      menuItems.forEach(item => {
+        item.classList.remove('menu__items--active');
+        item.style.maxHeight = null;
+      });
+      blockWrappers.forEach(wrapper => {
+        wrapper.removeAttribute('style');
+      });
+    };
+
+    const handleBlockInteraction = (e, block, interactionType) => {
+      const targetId = block.getAttribute('data-target');
+      if (!targetId) return;
+
+      const isMobile = isMobileQuery.matches;
+
+      if (isMobile && interactionType === 'click') {
+        e.preventDefault();
+        toggleMobileAccordion(block, targetId);
+      } else if (!isMobile && interactionType === 'mouseenter') {
+        switchTab(targetId);
+      }
+    };
+
+    menuBlocks.forEach(block => {
+      block.addEventListener('mouseenter', (e) => handleBlockInteraction(e, block, 'mouseenter'));
+      block.addEventListener('click', (e) => handleBlockInteraction(e, block, 'click'));
+    });
+
+    const handleBreakpointChange = (e) => {
+      resetTabs();
+      updateAllWrappersHeight();
+
+      if (!e.matches && document.documentElement.classList.contains('catalog-menu--open') && menuBlocks.length > 0) {
+        const firstTarget = menuBlocks[0].getAttribute('data-target');
+        switchTab(firstTarget);
+      }
+    };
+
+    try {
+      isMobileQuery.addEventListener('change', handleBreakpointChange);
+    } catch (err) {
+      isMobileQuery.addListener(handleBreakpointChange);
+    }
+
+    window.addEventListener('resize', () => {
+      if (isMobileQuery.matches) {
+        blockWrappers.forEach(wrapper => wrapper.removeAttribute('style'));
+      }
+    });
+
+    catalogBtns.forEach(btn => {
+      btn.addEventListener('click', toggleMenu);
+    });
 
     window.addEventListener('keydown', (e) => {
       if (e.key === "Escape" && document.documentElement.classList.contains('catalog-menu--open')) {
@@ -395,21 +554,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', (event) => {
       const isMenuOpen = document.documentElement.classList.contains('catalog-menu--open');
-      const clickInsideMenu = catalogMenu.contains(event.target);
-      const clickOnButton = catalogBtn.contains(event.target);
 
-      // Проверяем, кликнули ли по ссылке внутри menu__list
+      let clickOnButton = false;
+      catalogBtns.forEach(btn => {
+        if (btn.contains(event.target)) {
+          clickOnButton = true;
+        }
+      });
+
+      const clickInsideMenu = catalogMenu.contains(event.target);
       const clickOnMenuLink = catalogMenu.contains(event.target) && event.target.tagName === 'A';
 
       if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
         closeMenu();
       }
 
-      // Дополнительно: закрываем меню при клике по ссылке внутри меню
       if (isMenuOpen && clickOnMenuLink) {
         closeMenu();
       }
     });
+
+    initHeightTracking();
   })();
 
   /**

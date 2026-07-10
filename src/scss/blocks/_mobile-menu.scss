@@ -4,9 +4,12 @@
   display: block;
   width: 100%;
   height: 100%;
-  background-color: var(--white);
+  background-color: var(--body-bg);
   transform: translateX(100%);
   transition: transform 0.3s ease;
+
+  max-height: 100dvh;
+  overflow-y: auto;
 
   position: absolute;
   top: 0;
@@ -17,30 +20,15 @@
     display: none;
   }
 
-  &::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: var(--header-height);
-    // background-color: var(--blue-3);
-    background: linear-gradient(211.09deg, var(--blue-3) 20.15%, var(--cyan) 133.13%), var(--blue-3);
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-
-    @include dosm {
-      display: none;
-    }
-  }
-
   .burger-menu--open & {
     transform: translateX(0);
   }
 
   &__inner {
-    padding: calc(var(--header-height) + 2rem) 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: calc(var(--header-height) + 0.4rem) 0 10.2rem 0;
   }
 
   .nav {
@@ -48,10 +36,87 @@
     ul {
       flex-direction: column;
       align-items: flex-start;
+      gap: 0.3rem;
+    }
+
+    li {
+      width: 100%;
     }
 
     a {
-      color: var(--blue);
+      display: block;
+      padding: 1.3rem 2rem;
+      border-radius: 4rem;
+      background-color: var(--white-70);
+
+      color: var(--black);
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: var(--white-70);
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &-title {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 120%;
+      color: var(--black-50);
+    }
+
+    &-phones {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      a {
+        width: fit-content;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 120%;
+        color: var(--navy);
+      }
+    }
+
+    &-social {
+      display: flex;
+      flex-direction: row;
+      gap: 0.8rem;
+    }
+
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 5.4rem;
+      height: 5.4rem;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
+
+      color: var(--white);
+
+      i {
+        --font-size: 3.6rem;
+      }
+    }
+
+    &-tg {
+      background-color: var(--sky);
+    }
+
+    &-max {
+      background-color: var(--purple);
     }
   }
 }

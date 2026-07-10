@@ -9,6 +9,10 @@
 
   position: relative;
 
+  @include sm {
+    padding: 0 0 10rem 0;
+  }
+
   &__inner {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -269,8 +273,11 @@
       align-items: center;
       gap: 1rem;
 
-      grid-column: 2/3;
-      grid-row: 1/3;
+
+      @include sm {
+        grid-column: 2/3;
+        grid-row: 1/3;
+      }
 
       a {
         display: flex;
@@ -279,17 +286,10 @@
         width: 5.2rem;
         height: 5.2rem;
         border-radius: 50%;
-        background-color: var(--black-05);
+        border: 0.1rem solid var(--cyan-10);
+        background-color: transparent;
 
         color: var(--cyan);
-
-        &::before {
-          backdrop-filter: unset;
-        }
-
-        .GlassMaterial::after {
-          background: none;
-        }
 
         &:hover {
 
@@ -297,14 +297,6 @@
 
             i {
               color: var(--white);
-            }
-
-            .GlassMaterial:before {
-              opacity: 0;
-            }
-
-            .GlassMaterial:after {
-              background-color: var(--accent);
             }
 
             .header__mid-wrap {

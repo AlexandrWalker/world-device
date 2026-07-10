@@ -18,15 +18,13 @@
 
     position: relative;
 
-    @include sm {
-
-    }
+    @include sm {}
 
     &.burger-btn--open {
+      background-color: var(--cyan);
 
       .burger__line {
-        background-color: var(--cyan);
-        width: 2rem;
+        background-color: var(--black);
       }
 
       .burger__line--first {

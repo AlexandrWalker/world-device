@@ -35,9 +35,12 @@
 
     &:hover {
 
-      .facts__item-cover {
-        transform: translateY(-1.5rem);
-        transition-delay: 0.1s;
+      @include dosm {
+
+        .facts__item-cover {
+          transform: translateY(-1.5rem);
+          transition-delay: 0.1s;
+        }
       }
     }
 
@@ -61,6 +64,8 @@
       }
 
       @include sm {
+        max-width: 11rem;
+
         font-size: 1.4rem;
       }
     }
@@ -137,6 +142,14 @@
       top: 4.8rem;
       left: 12.2rem;
       z-index: 2;
+
+      @include sm {
+        width: 15rem;
+        height: 15rem;
+
+        top: 2.8rem;
+        left: 6.5rem;
+      }
 
       img {
         width: auto;
