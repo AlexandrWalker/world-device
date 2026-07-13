@@ -22,12 +22,23 @@
     line-height: 130%;
     color: var(--black);
 
+    @include sm {
+      padding: 0 2rem 0 4.7rem;
+      background-color: var(--white-80);
+
+      color: var(--black);
+    }
+
     &::placeholder {
       font-weight: 400;
       font-size: 1.4rem;
       line-height: 130%;
       color: var(--white);
       transition: color 0.3s ease;
+
+      @include sm {
+        color: var(--black);
+      }
     }
 
     &.filled,

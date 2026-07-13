@@ -238,5 +238,9 @@
     @include dosm {
       display: none;
     }
+
+    @include sm {
+      justify-content: center;
+    }
   }
 }

@@ -140,6 +140,10 @@
     @include sm {
       justify-content: space-between;
       padding: 1.6rem 0;
+      gap: 0;
+      transition: gap 0.3s ease;
+
+      .mobile-search-menu--open & {}
     }
   }
 
@@ -148,19 +152,19 @@
   }
 
   &__wrap {
-    display: none;
-
-    @include dosm {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
-      width: 100%;
-    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
   }
 
   &__catalog {
     flex-shrink: 0;
+
+    @include sm {
+      display: none;
+    }
 
     &-btn {
       display: flex;
@@ -201,6 +205,16 @@
 
     position: relative;
 
+    @include sm {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .mobile-search-menu--open & {
+      margin-right: 0.8rem;
+    }
+
     &:has(.form-search:hover,
       .form-search.filled,
       .form-search:focus,
@@ -221,6 +235,28 @@
       }
     }
 
+    &-form {
+
+      @include sm {
+        width: 0;
+        opacity: 0;
+        pointer-events: none;
+        overflow: hidden;
+        transition: width 0.3s ease, opacity 0.3s ease;
+      }
+
+      .mobile-search-menu--open & {
+
+        @include sm {
+          width: 100%;
+          opacity: 1;
+          overflow: visible;
+          pointer-events: all;
+          transition: width 0.3s ease, opacity 0.3s ease 0.2s;
+        }
+      }
+    }
+
     &-icon {
       position: absolute;
       top: 50%;
@@ -230,6 +266,10 @@
       transition: color 0.3s ease;
 
       color: var(--cyan);
+
+      @include sm {
+        left: 1.5rem;
+      }
 
       i {
         --font-size: 2.4rem;
@@ -249,6 +289,10 @@
       opacity: 0;
       cursor: pointer;
       color: var(--black);
+
+      @include sm {
+        right: 2rem;
+      }
 
       &:hover {
         color: var(--navy);
@@ -274,6 +318,10 @@
       right: 1rem;
       z-index: 2;
       transform: translateY(-50%);
+
+      @include sm {
+        display: none;
+      }
 
       i {
         --font-size: 2.4rem;
@@ -302,6 +350,10 @@
       clip-path: inset(0 0 100% 0);
       will-change: opacity, visibility, clip-path;
       transition: opacity 0.3s linear, visibility 0.3s linear, clip-path 0.15s linear;
+
+      @include sm {
+        display: none;
+      }
 
       // .form-search.filled+&,
       .form-search:focus+&,
@@ -372,9 +424,18 @@
     }
 
     &-search {
+      margin-right: 1.5rem;
       transition: opacity 0.3s ease;
 
       color: var(--cyan);
+
+      @include dosm {
+        display: none;
+      }
+
+      .mobile-search-menu--open & {
+        display: none;
+      }
 
       .catalog-menu--open &,
       .burger-menu--open & {
@@ -426,6 +487,7 @@
     &-items {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       gap: 1rem;
     }
 

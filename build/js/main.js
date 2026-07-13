@@ -578,29 +578,38 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция управления поведением меню-бургера.
+   * Функция управления поведением мобильного меню и поиска.
    */
   (function () {
     const burgerBtn = document.getElementById('burger-btn');
     const burgerMenu = document.getElementById('burger-menu');
 
+    // ДОБАВЛЕНО: новые элементы для мобильного поиска
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    const mobileSearchMenu = document.getElementById('mobile-search-menu');
+
+    if (!burgerBtn || !burgerMenu) return;
+
+    // === ЛОГИКА БУРГЕР-МЕНЮ ===
     const openMenu = () => {
+      // Безопасность: перед открытием бургера принудительно закрываем поиск, если он открыт
+      if (mobileSearchMenu) closeSearch();
+
       burgerBtn.classList.add('burger-btn--open');
       document.documentElement.classList.add('burger-menu--open');
-      lenis.stop();
+      if (typeof lenis !== 'undefined') lenis.stop();
     };
 
     const closeMenu = () => {
       burgerBtn.classList.remove('burger-btn--open');
       document.documentElement.classList.remove('burger-menu--open');
-      lenis.start();
+      if (typeof lenis !== 'undefined') lenis.start();
       document.dispatchEvent(new CustomEvent('menu:close'));
     };
 
     const toggleMenu = (e) => {
       e.preventDefault();
       const isMenuOpen = document.documentElement.classList.contains('burger-menu--open');
-
       if (isMenuOpen) {
         closeMenu();
       } else {
@@ -608,32 +617,154 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    burgerBtn.addEventListener('click', toggleMenu);
+    // === ЛОГИКА МОБИЛЬНОГО ПОИСКА ===
+    const openSearch = () => {
+      // Безопасность: перед открытием поиска закрываем бургер-меню
+      closeMenu();
 
+      if (mobileSearchBtn) mobileSearchBtn.classList.add('mobile-search-btn--open');
+      document.documentElement.classList.add('mobile-search-menu--open');
+      if (typeof lenis !== 'undefined') lenis.stop();
+    };
+
+    const closeSearch = () => {
+      if (mobileSearchBtn) mobileSearchBtn.classList.remove('mobile-search-btn--open');
+      document.documentElement.classList.remove('mobile-search-menu--open');
+      if (typeof lenis !== 'undefined') lenis.start();
+    };
+
+    const toggleSearch = (e) => {
+      e.preventDefault();
+      const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
+      if (isSearchOpen) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    };
+
+    // Слушатель для кнопки бургера (открывает/закрывает бургер И закрывает поиск)
+    // Улучшенный слушатель для кнопки бургера с приоритетом закрытия поиска
+    burgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
+
+      // ТРЕБОВАНИЕ: если поиск открыт, клик по бургеру ТОЛЬКО закрывает его и больше ничего не делает
+      if (isSearchOpen) {
+        closeSearch();
+        return; // Прерываем функцию, чтобы toggleMenu(e) не сработал и бургер-меню не открылось
+      }
+
+      // Если поиск закрыт — бургер работает в своем штатном режиме
+      toggleMenu(e);
+    });
+
+    // ДОБАВЛЕНО: Слушатель для кнопки поиска
+    if (mobileSearchBtn && mobileSearchMenu) {
+      mobileSearchBtn.addEventListener('click', toggleSearch);
+    }
+
+    // ОБРАБОТКА ИСКАЙПА (Закрывает оба меню)
     window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && document.documentElement.classList.contains('burger-menu--open')) {
-        closeMenu();
+      if (e.key === "Escape") {
+        if (document.documentElement.classList.contains('burger-menu--open')) closeMenu();
+        if (document.documentElement.classList.contains('mobile-search-menu--open')) closeSearch();
       }
     });
 
+    // ОБРАБОТКА КЛИКОВ ПО СТРАНИЦЕ С ИСКЛЮЧЕНИЕМ ДЛЯ HEADER__SEARCH
     document.addEventListener('click', (event) => {
       const isMenuOpen = document.documentElement.classList.contains('burger-menu--open');
+      const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
+
+      // Находим блок-исключение header__search
+      const headerSearch = document.querySelector('.header__search');
+      // Проверяем, был ли клик совершен внутри этого блока
+      const clickInsideHeaderSearch = headerSearch ? headerSearch.contains(event.target) : false;
+
       const clickInsideMenu = burgerMenu.contains(event.target);
       const clickOnButton = burgerBtn.contains(event.target);
-
-      // Проверяем, кликнули ли по ссылке внутри menu__list
       const clickOnMenuLink = burgerMenu.contains(event.target) && event.target.tagName === 'A';
 
-      if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
+      // 1. Логика закрытия бургер-меню
+      // ДОБАВЛЕНО ИСКЛЮЧЕНИЕ: меню НЕ закроется, если клик был внутри .header__search
+      if (isMenuOpen && !clickInsideMenu && !clickOnButton && !clickInsideHeaderSearch) {
         closeMenu();
       }
-
-      // Дополнительно: закрываем меню при клике по ссылке внутри меню
       if (isMenuOpen && clickOnMenuLink) {
         closeMenu();
       }
+
+      // 2. Логика закрытия меню поиска
+      if (isSearchOpen && mobileSearchMenu && mobileSearchBtn) {
+        const clickInsideSearch = mobileSearchMenu.contains(event.target);
+        const clickOnSearchButton = mobileSearchBtn.contains(event.target);
+
+        // ДОБАВЛЕНО ИСКЛЮЧЕНИЕ: поиск НЕ закроется, если клик был внутри .header__search
+        if (!clickInsideSearch && !clickOnSearchButton && !clickOnButton && !clickInsideHeaderSearch) {
+          closeSearch();
+        }
+      }
     });
   })();
+
+  /**
+   * Функция управления поведением меню-поиска
+   */
+  // (function () {
+  //   const mobileSearchBtn = document.getElementById('mobile-search-btn');
+  //   const mobileSearchMenu = document.getElementById('mobile-search-menu');
+
+  //   const openMenu = () => {
+  //     mobileSearchBtn.classList.add('mobile-search-btn--open');
+  //     document.documentElement.classList.add('mobile-search-menu--open');
+  //     lenis.stop();
+  //   };
+
+  //   const closeMenu = () => {
+  //     mobileSearchBtn.classList.remove('mobile-search-btn--open');
+  //     document.documentElement.classList.remove('mobile-search-menu--open');
+  //     lenis.start();
+  //     document.dispatchEvent(new CustomEvent('menu:close'));
+  //   };
+
+  //   const toggleMenu = (e) => {
+  //     e.preventDefault();
+  //     const isMenuOpen = document.documentElement.classList.contains('mobile-search-menu--open');
+
+  //     if (isMenuOpen) {
+  //       closeMenu();
+  //     } else {
+  //       openMenu();
+  //     }
+  //   };
+
+  //   mobileSearchBtn.addEventListener('click', toggleMenu);
+
+  //   window.addEventListener('keydown', (e) => {
+  //     if (e.key === "Escape" && document.documentElement.classList.contains('mobile-search-menu--open')) {
+  //       closeMenu();
+  //     }
+  //   });
+
+  //   document.addEventListener('click', (event) => {
+  //     const isMenuOpen = document.documentElement.classList.contains('mobile-search-menu--open');
+  //     const clickInsideMenu = mobileSearchMenu.contains(event.target);
+  //     const clickOnButton = mobileSearchBtn.contains(event.target);
+
+  //     // Проверяем, кликнули ли по ссылке внутри menu__list
+  //     const clickOnMenuLink = mobileSearchMenu.contains(event.target) && event.target.tagName === 'A';
+
+  //     if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
+  //       closeMenu();
+  //     }
+
+  //     // Дополнительно: закрываем меню при клике по ссылке внутри меню
+  //     if (isMenuOpen && clickOnMenuLink) {
+  //       closeMenu();
+  //     }
+  //   });
+  // })();
 
   /**
    * Функция для фикс. кнопки связи
@@ -835,6 +966,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initSync();
+  })();
+
+  /**
+   * Функция для проигрывания видео-иконки при наведении
+   */
+  (function () {
+    const jsVideoItems = document.querySelectorAll('.js-video-item');
+    if (!jsVideoItems.length) return;
+
+    jsVideoItems.forEach(iconVideoItem => {
+      const jsVideo = iconVideoItem.querySelector('.js-video');
+      if (!jsVideo) return;
+
+      let isPlaying = false;
+
+      jsVideo.muted = true;
+      jsVideo.loop = false;
+
+      iconVideoItem.addEventListener('mouseenter', () => {
+        if (isPlaying) return;
+
+        isPlaying = true;
+
+        const playPromise = jsVideo.play();
+
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            isPlaying = false;
+          });
+        }
+      });
+
+      jsVideo.addEventListener('ended', () => {
+        isPlaying = false;
+        jsVideo.currentTime = 0;
+      });
+    });
   })();
 
   /**
@@ -1096,8 +1264,9 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.facts-swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 2,
+            renderBullet: function (index, className) {
+              return `<span class="${className}" data-index="${index}"></span>`;
+            }
           },
           freeMode: false,
           mousewheel: {
@@ -1110,8 +1279,9 @@ document.addEventListener('DOMContentLoaded', () => {
               pagination: {
                 el: '.facts-swiper-pagination',
                 clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 3,
+                renderBullet: function (index, className) {
+                  return `<span class="${className}" data-index="${index}"></span>`;
+                }
               },
             },
           },
@@ -1145,8 +1315,9 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 2,
+            renderBullet: function (index, className) {
+              return `<span class="${className}" data-index="${index}"></span>`;
+            }
           },
           freeMode: {
             enabled: true,
@@ -1170,8 +1341,9 @@ document.addEventListener('DOMContentLoaded', () => {
               pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 3,
+                renderBullet: function (index, className) {
+                  return `<span class="${className}" data-index="${index}"></span>`;
+                }
               },
             },
           },
@@ -1204,8 +1376,9 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 2,
+            renderBullet: function (index, className) {
+              return `<span class="${className}" data-index="${index}"></span>`;
+            }
           },
           freeMode: {
             enabled: true,
@@ -1229,8 +1402,9 @@ document.addEventListener('DOMContentLoaded', () => {
               pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 3,
+                renderBullet: function (index, className) {
+                  return `<span class="${className}" data-index="${index}"></span>`;
+                }
               },
             },
           },
@@ -1286,44 +1460,29 @@ document.addEventListener('DOMContentLoaded', () => {
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
-          slidesPerView: 0.66,
+          slidesPerView: 'auto',
           spaceBetween: 8,
-          speed: 500,
-          grabCursor: true,
+          speed: 5000,
           loop: true,
-          touchRatio: 1.6,
-          resistance: true,
-          resistanceRatio: 0.4,
-          centeredSlides: false,
-          centeredSlidesBounds: false,
-          simulateTouch: true,
           direction: 'horizontal',
-          touchStartPreventDefault: true,
-          touchMoveStopPropagation: true,
-          threshold: 8,
-          touchAngle: 25,
           watchOverflow: true,
+          allowTouchMove: false,
+          simulateTouch: false,
+          grabCursor: false,
+          mousewheel: false,
+          autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+          },
           freeMode: {
             enabled: true,
-            momentum: true,
-            momentumRatio: 0.85,
-            momentumVelocityRatio: 1,
-            momentumBounce: false,
+            momentum: false,
             sticky: false,
-          },
-          mousewheel: {
-            forceToAxis: true,
-            sensitivity: 1,
-            releaseOnEdges: true,
           },
           navigation: false,
           breakpoints: {
             601: {
-              slidesPerGroup: 1,
-              slidesPerView: 1,
               spaceBetween: 10,
-              centeredSlides: true,
-              centeredSlidesBounds: true,
             },
           },
         },
@@ -1356,8 +1515,9 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 2,
+            renderBullet: function (index, className) {
+              return `<span class="${className}" data-index="${index}"></span>`;
+            }
           },
           freeMode: {
             enabled: true,
@@ -1381,8 +1541,9 @@ document.addEventListener('DOMContentLoaded', () => {
               pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 3,
+                renderBullet: function (index, className) {
+                  return `<span class="${className}" data-index="${index}"></span>`;
+                }
               },
             },
           },
@@ -1416,8 +1577,9 @@ document.addEventListener('DOMContentLoaded', () => {
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 2,
+            renderBullet: function (index, className) {
+              return `<span class="${className}" data-index="${index}"></span>`;
+            }
           },
           freeMode: {
             enabled: true,
@@ -1441,8 +1603,9 @@ document.addEventListener('DOMContentLoaded', () => {
               pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 3,
+                renderBullet: function (index, className) {
+                  return `<span class="${className}" data-index="${index}"></span>`;
+                }
               },
             },
           },
@@ -1483,6 +1646,43 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const swiper = new Swiper(sliderSelector, swiperOptions);
+
+      if (swiperOptions.pagination && swiperOptions.pagination.el) {
+        swiper.on('slideChange', () => {
+          const paginationEl = swiper.pagination?.el;
+          if (!paginationEl) return;
+
+          const realIndex = swiper.realIndex;
+          const step = 2.9; // 2.7rem ширина + 0.2rem отступы
+          const bullets = paginationEl.querySelectorAll('.swiper-pagination-bullet');
+          const totalBullets = bullets.length;
+
+          let translateValue = 0;
+
+          // Начинаем двигать карусель только с 3-го буллета (индекс 2)
+          if (realIndex >= 2) {
+            // Защита правого края: если мы уперлись в последние 2 слайда, 
+            // останавливаем карусель, чтобы не показывать пустоту справа
+            if (realIndex >= totalBullets - 2) {
+              translateValue = (totalBullets - 5) * -step;
+            } else {
+              // Центрируем активный буллет на 3-й позиции (индекс 2)
+              translateValue = (realIndex - 2) * -step;
+            }
+          }
+
+          // Защитный фолбек: если слайдов всего меньше 5, карусель вообще не должна двигаться
+          if (totalBullets <= 5) {
+            translateValue = 0;
+          }
+
+          // Применяем плавное смещение к каждому буллету
+          bullets.forEach(bullet => {
+            bullet.style.transform = `translateX(${translateValue}rem)`;
+            bullet.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+          });
+        });
+      }
 
       // Управление пагинацией через кастомный флаг hidePagination в брейкпоинтах
       initPaginationBreakpoint(swiper);

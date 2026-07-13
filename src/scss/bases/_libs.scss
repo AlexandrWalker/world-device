@@ -73,15 +73,24 @@
     display: flex;
     flex-direction: row;
     margin: 2rem auto 0 auto;
-
     font-size: 0.5rem;
     line-height: 0.5rem;
-
     position: static;
+    max-width: 20rem;
+    width: 20rem;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     @include domd {
       justify-content: center;
       margin: 4rem auto 0 auto;
+    }
+
+    &-inner {
+      display: flex;
+      flex-direction: row;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &-bullet {
@@ -108,10 +117,6 @@
         }
       }
 
-      // &:nth-child(n + 5) {
-      //   display: none;
-      // }
-
       &::before {
         content: "";
         width: 1.1rem;
@@ -128,8 +133,9 @@
     }
 
     &-bullets {
-
+      
       &-dynamic {
+
         transform: scale(1) !important;
       }
     }

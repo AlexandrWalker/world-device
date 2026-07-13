@@ -66,7 +66,7 @@
             </button>
           </div>
           <div class="header__search">
-            <form class="form" action="#">
+            <form class="form header__search-form" action="#">
               <div class="header__search-icon">
                 <i class="icon-neuron"></i>
               </div>
@@ -143,6 +143,9 @@
               </div>
               <div class="header__search-overlay"></div>
             </form>
+            <button id="mobile-search-btn" class="header__mobile-search">
+              <i class="icon-search"></i>
+            </button>
           </div>
         </div>
         <div class="header__bar">
@@ -191,9 +194,6 @@
           </div>
         </div>
         <div class="header__mobile">
-          <div class="header__mobile-search">
-            <i class="icon-search"></i>
-          </div>
           <button id="burger-btn" class="burger__btn">
             <span class="burger__line burger__line--first"></span>
             <span class="burger__line burger__line--second"></span>
@@ -209,5 +209,7 @@
 @@include('./menu.html')
 <!-- Мобильное меню -->
 @@include('./mobile-menu.html')
+<!-- Мобильное меню поиска -->
+@@include('./mobile-search.html')
 <!-- Фиксированные соц. сети -->
 @@include('./fixed-social.html')
