@@ -1120,6 +1120,145 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  (function () {
+    // Находим инпут на странице
+    const searchInput = document.querySelector('.form-search');
+    if (!searchInput) return;
+
+    const htmlEl = document.documentElement;
+
+    // Функция, которая проверяет все условия и управляет оверлеем
+    const checkSearchState = () => {
+      // Проверяем, есть ли в инпуте текст
+      if (searchInput.value.trim() !== '') {
+        searchInput.classList.add('filled');
+      } else {
+        searchInput.classList.remove('filled');
+      }
+
+      // Условия для включения оверлея: инпут в фокусе ИЛИ имеет текст (класс filled)
+      const isFocused = document.activeElement === searchInput;
+      const isFilled = searchInput.classList.contains('filled');
+
+      if (isFocused || isFilled) {
+        htmlEl.classList.add('overlay--active');
+      } else {
+        htmlEl.classList.remove('overlay--active');
+      }
+    };
+
+    // 1. Слушаем фокус (когда пользователь кликнул в инпут)
+    searchInput.addEventListener('focus', checkSearchState);
+
+    // 2. Слушаем потерю фокуса (когда пользователь кликнул в другое место)
+    searchInput.addEventListener('blur', checkSearchState);
+
+    // 3. Слушаем ввод текста (чтобы мгновенно реагировать на появление/удаление букв и класс filled)
+    searchInput.addEventListener('input', checkSearchState);
+
+    // Подстраховка: проверяем состояние при первой загрузке страницы (если там что-то уже вписано автозаполнением)
+    checkSearchState();
+  })();
+
+  /**
+   * Анимация текста
+   */
+  gsap.utils.toArray('[data-split="lines"]').forEach(dataSplitLines => {
+    const textSplits = dataSplitLines.querySelectorAll('h1, h2, p');
+
+    const isMobile = window.innerWidth < 600;
+    const animSettings = {
+      duration: isMobile ? 0.2 : 0.3, // на мобилке дольше
+      stagger: isMobile ? 0.1 : 0.1  // на мобилке задержка больше
+    };
+
+    textSplits.forEach(textSplit => {
+
+      if (isMobile) {
+        const brs = textSplit.querySelectorAll('br');
+        brs.forEach(br => br.remove());
+      }
+
+      if (textSplit && !isMobile) SplitText.create(textSplit, {
+        type: "words,lines",
+        mask: "lines",
+        linesClass: "line",
+        autoSplit: true,
+        onSplit: inst => gsap.from(inst.lines, {
+          yPercent: 120,
+          duration: animSettings.duration,
+          stagger: animSettings.stagger,
+          scrollTrigger: {
+            trigger: dataSplitLines,
+            start: "top 95%",
+            end: "bottom top",
+          }
+        })
+      });
+
+    });
+  });
+
+  gsap.utils.toArray('[data-split="text"]').forEach(dataSplitText => {
+    const isMobile = window.innerWidth < 600;
+    const textSplit = dataSplitText.querySelectorAll('*');
+    if (textSplit && !isMobile) SplitText.create(textSplit, {
+      type: "words",
+      aria: "hidden",
+      onSplit: split => gsap.from(split.words, {
+        opacity: 0,
+        // duration: 0.3,
+        duration: isMobile ? 0.2 : 0.3,
+        // stagger: 0.05,
+        stagger: isMobile ? 0.03 : 0.05,
+        ease: "sine.out",
+        scrollTrigger: {
+          trigger: dataSplitText,
+          start: "top 95%",
+          end: "bottom top",
+        }
+      })
+    });
+  });
+
+  /**
+   * Анимация блоков
+   */
+  (function () {
+    const isMobile = window.innerWidth < 600;
+
+    if (!isMobile) {
+      const animItems = document.querySelectorAll('.anim-items')
+      animItems.forEach(items => {
+        const item = items.querySelectorAll('.anim-item')
+        gsap.from(item, {
+
+          // Начальное состояние: уменьшены и прозрачны
+          scale: 0.8,
+          opacity: 0,
+
+          // Настройки появления по очереди
+          stagger: {
+            each: 0.2, // задержка 0.2 сек между каждым айтемом
+            from: "start" // начинаем с первого в DOM
+          },
+
+          duration: 0.8,
+          ease: "back.out(1.7)", // пружинистый эффект в конце увеличения
+
+          // Настройка скролла
+          scrollTrigger: {
+            trigger: items, // Родитель всей сетки (замените на ваш класс)
+            start: "top 90%", // Анимация начнется, когда верх блока достигнет 85% высоты экрана
+            // toggleActions: "play none none none" // Проигрывать при скролле вниз, откатывать при скролле вверх
+
+            onEnter: () => items.classList.add('anim-animated'),
+          }
+        });
+      });
+    }
+  })();
+
   /**
    * Инициализация слайдера
    */

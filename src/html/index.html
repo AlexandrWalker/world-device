@@ -242,7 +242,7 @@
               <a class="category__item js-video-item" href="/world-device">
                 <div class="category__item-cover">
                   <video class="js-video" muted playsinline preload="auto">
-                    <source src="./video/dyson-2.mp4" type="video/mp4">
+                    <source src="./video/dyson.mp4" type="video/mp4">
                   </video>
                 </div>
                 <div class="category__item-title">
@@ -359,7 +359,7 @@
           <div class="novelty__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Новинки
                 </h2>
@@ -398,7 +398,7 @@
           <div class="facts__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Факты о магазине
                 </h2>
@@ -406,8 +406,8 @@
             </div>
 
             <div class="general__body">
-              <div class="facts__items">
-                <div class="facts__item">
+              <div class="facts__items anim-items">
+                <div class="facts__item anim-item">
                   <div class="facts__item-content">
                     <div class="facts__item-title">
                       Гарантия <br> на товары
@@ -423,7 +423,7 @@
                     <img src="./../images/temp/facts-item-cover-1.png" alt="">
                   </div>
                 </div>
-                <div class="facts__item">
+                <div class="facts__item anim-item">
                   <div class="facts__item-content">
                     <div class="facts__item-title">
                       15 лет <br>
@@ -440,7 +440,7 @@
                     <img src="./../images/temp/facts-item-cover-2.png" alt="">
                   </div>
                 </div>
-                <div class="facts__item">
+                <div class="facts__item anim-item">
                   <div class="facts__item-content">
                     <div class="facts__item-title">
                       24 часа <br>
@@ -457,7 +457,7 @@
                     <img src="./../images/temp/facts-item-cover-3.png" alt="">
                   </div>
                 </div>
-                <div class="facts__item">
+                <div class="facts__item anim-item">
                   <div class="facts__item-content">
                     <div class="facts__item-title">
                       Доставка <br> день в&nbsp;день
@@ -473,7 +473,7 @@
                     <img src="./../images/temp/facts-item-cover-4.png" alt="">
                   </div>
                 </div>
-                <div class="facts__item">
+                <div class="facts__item anim-item">
                   <div class="facts__item-content">
                     <div class="facts__item-title">
                       10&nbsp;000&nbsp;+ <br>
@@ -490,7 +490,7 @@
                     <img src="./../images/temp/facts-item-cover-5.png" alt="">
                   </div>
                 </div>
-                <div class="facts__item">
+                <div class="facts__item anim-item">
                   <div class="facts__item-content">
                     <div class="facts__item-title">
                       Обзоры на технику
@@ -509,7 +509,7 @@
                     <img src="./../images/temp/facts-item-6.png" alt="">
                   </div>
                 </div>
-                <div class="facts__item">
+                <div class="facts__item anim-item">
                   <div class="swiper facts__slider">
                     <div class="swiper-wrapper">
                       <div class="swiper-slide facts__slide">
@@ -551,7 +551,7 @@
           <div class="topsellers__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Лидеры продаж
                 </h2>
@@ -584,7 +584,7 @@
           <div class="blog__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Блог
                 </h2>
@@ -599,7 +599,7 @@
 
             <div class="general__body">
               <div class="swiper swiper-side-block blog__slider">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper anim-items">
                   @@loop('./elements/blog-slide-item.html', './data/blog-slide-items.json')
                 </div>
                 <div class="swiper-pagination"></div>
@@ -623,7 +623,7 @@
           <div class="brands__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Бренды
                 </h2>
@@ -647,7 +647,7 @@
           <div class="reviews__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Отзывы о магазине
                 </h2>
@@ -662,7 +662,7 @@
 
             <div class="general__body">
               <div class="swiper swiper-side-block reviews__slider">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper anim-items">
                   @@loop('./elements/reviews-slide-item.html', './data/reviews-slide-items.json')
                 </div>
                 <div class="swiper-pagination"></div>
@@ -693,7 +693,7 @@
           <div class="faq__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Частые вопросы
                 </h2>
@@ -701,8 +701,8 @@
             </div>
 
             <div class="general__body">
-              <div class="faq__items accordion-items">
-                <div class="faq__item accordion-item">
+              <div class="faq__items accordion-items anim-items">
+                <div class="faq__item accordion-item anim-item">
                   <div class="faq__item-head">
                     <div class="faq__item-title">
                       Почему в World Devices дешевле?
@@ -727,7 +727,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="faq__item accordion-item">
+                <div class="faq__item accordion-item anim-item">
                   <div class="faq__item-head">
                     <div class="faq__item-title">
                       Вы продаете новые оригинальные телефоны?
@@ -752,7 +752,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="faq__item accordion-item">
+                <div class="faq__item accordion-item anim-item">
                   <div class="faq__item-head">
                     <div class="faq__item-title">
                       Вопрос о гарантии
@@ -777,7 +777,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="faq__item accordion-item">
+                <div class="faq__item accordion-item anim-item">
                   <div class="faq__item-head">
                     <div class="faq__item-title">
                       Как можно оплатить товар?
@@ -802,7 +802,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="faq__item accordion-item">
+                <div class="faq__item accordion-item anim-item">
                   <div class="faq__item-head">
                     <div class="faq__item-title">
                       Есть ли у вас какие-то скидки или акции?
@@ -842,7 +842,7 @@
           <div class="sample__inner general__content">
 
             <div class="general__head">
-              <div class="general__title">
+              <div class="general__title" data-split="lines">
                 <h2>
                   Почему именно мы:
                 </h2>

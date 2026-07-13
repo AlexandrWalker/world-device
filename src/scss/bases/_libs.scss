@@ -17,7 +17,7 @@
 
       position: absolute;
       top: -5rem;
-      left: calc((var(--container-padding) + 1rem) * -1);
+      left: calc((var(--container-padding) + 1.3rem) * -1);
       z-index: 3;
 
       @include sm {
@@ -34,7 +34,7 @@
 
       position: absolute;
       top: -5rem;
-      right: calc((var(--container-padding) + 1rem) * -1);
+      right: calc((var(--container-padding) + 1.3rem) * -1);
       z-index: 3;
 
       @include sm {
@@ -133,7 +133,7 @@
     }
 
     &-bullets {
-      
+
       &-dynamic {
 
         transform: scale(1) !important;
