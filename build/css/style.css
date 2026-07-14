@@ -1674,7 +1674,10 @@ body {
 
 .GlassMaterial {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1;
   overflow: visible;
   pointer-events: none;
@@ -1683,7 +1686,10 @@ body {
 .GlassMaterial:before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 11;
   display: block;
   border-radius: var(--corner-radius);
@@ -1708,7 +1714,10 @@ body {
   content: "";
   display: block;
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 3;
   overflow: hidden;
   border-radius: var(--corner-radius);
@@ -1720,7 +1729,10 @@ body {
 
 .GlassMaterial > div {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: var(--corner-radius);
@@ -1788,7 +1800,10 @@ body {
 .GlassContainer:before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 20;
   display: block;
   border-radius: var(--corner-radius);
@@ -3739,7 +3754,10 @@ body {
   -ms-transform-origin: top center;
   transform-origin: top center;
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 9999;
 }
 
@@ -3921,7 +3939,10 @@ canvas {
   width: 100%;
   height: 100%;
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1;
 }
 .template__bg::before {
@@ -3931,7 +3952,10 @@ canvas {
   height: 100%;
   background-color: var(--black-50);
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 2;
 }
 .template__bg img {
@@ -4757,7 +4781,10 @@ canvas {
 .hero__bg {
   min-height: 84.4rem;
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1;
 }
 .hero__bg--desktop {
@@ -4789,23 +4816,14 @@ canvas {
 .hero__cover {
   width: 50.5rem;
   height: 67.6rem;
+  pointer-events: none;
   position: absolute;
   right: 14.7rem;
   bottom: 1.9rem;
   z-index: 5;
 }
-.hero__cover-slider {
-  pointer-events: none;
-  -webkit-perspective: 1200px;
-  perspective: 1200px;
-}
-.hero__cover-slide {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
 .hero__cover img {
+  max-width: 100%;
   width: auto;
   height: 100%;
   -o-object-fit: contain;
@@ -4823,6 +4841,7 @@ canvas {
   -ms-flex-pack: start;
   justify-content: flex-start;
   position: absolute;
+  top: unset;
   bottom: 16rem;
   left: var(--container-padding);
   z-index: 6;

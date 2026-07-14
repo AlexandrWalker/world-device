@@ -120,7 +120,6 @@
         width: 100vw;
         height: 28.2rem;
 
-        // position: static;
         bottom: 3.1rem;
         left: 50%;
         transform: translateX(-50%);
@@ -138,7 +137,10 @@
     min-height: 84.4rem;
 
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 1;
 
     @include sm {
@@ -197,6 +199,7 @@
   &__cover {
     width: 50.5rem;
     height: 67.6rem;
+    pointer-events: none;
 
     position: absolute;
     right: 14.7rem;
@@ -208,17 +211,17 @@
     }
 
     &-slider {
-      pointer-events: none;
-      perspective: 1200px;
+      // perspective: 1200px;
     }
 
     &-slide {
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform-style: preserve-3d;
+      // backface-visibility: hidden;
+      // -webkit-backface-visibility: hidden;
+      // transform-style: preserve-3d;
     }
 
     img {
+      max-width: 100%;
       width: auto;
       height: 100%;
       object-fit: contain;
@@ -241,6 +244,7 @@
     justify-content: flex-start;
 
     position: absolute;
+    top: unset;
     bottom: 16rem;
     left: var(--container-padding);
     z-index: 6;

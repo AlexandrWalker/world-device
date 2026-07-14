@@ -1321,7 +1321,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //   slideShadows: false,
             //   limitRotation: true,
             // },
-
             autoplay: false,
             mousewheel: false,
             pagination: false,
@@ -2309,6 +2308,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slidesPerView: 1,
       loop: false,
       speed: 0,
+      grabCursor: true,
       allowTouchMove: false,
       init: false,
     });
