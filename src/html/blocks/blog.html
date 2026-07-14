@@ -1,0 +1,38 @@
+<section class="blog">
+  <div class="container">
+    <div class="blog__inner general__content">
+
+      <div class="general__head">
+        <div class="general__title" data-split="lines">
+          <h2>
+            @@title
+          </h2>
+        </div>
+        <div class="general__btns">
+          <a class="btn" href="/world-device">
+            Все статьи и обзоры
+            <i class="icon-arrow-circle-inside"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="general__body">
+        <div class="swiper swiper-side-block blog__slider">
+          <div class="swiper-wrapper anim-items">
+            @@loop('./../elements/blog-slide-item.html', './data/blog-slide-items.json')
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="general__button">
+          <div class="swiper-button-prev blog-button-prev">
+            <i class="icon-chevron-big"></i>
+          </div>
+          <div class="swiper-button-next blog-button-next">
+            <i class="icon-chevron-big"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

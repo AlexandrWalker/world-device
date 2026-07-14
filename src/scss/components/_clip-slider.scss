@@ -1,0 +1,31 @@
+.clip-slider {
+  overflow: hidden;
+
+  .swiper-slide {
+    overflow: hidden; // режет внутренний сдвиг → эффект шторки
+  }
+
+  .clip-inner {
+    width: 100%;
+    height: 100%;
+    // Swiper двигает сам слайд; компенсируем ВНУТРИ через свою переменную,
+    // которую Swiper не перезаписывает
+  }
+
+  .facts__slide-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.08);
+    transition: transform 0.5s ease;
+  }
+
+  .swiper-slide-active img {
+    transform: scale(1);
+  }
+}

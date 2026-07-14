@@ -1,0 +1,45 @@
+<section class="reviews">
+  <div class="container">
+    <div class="reviews__inner general__content">
+
+      <div class="general__head">
+        <div class="general__title" data-split="lines">
+          <h2>
+            @@title
+          </h2>
+        </div>
+        <div class="general__btns">
+          <a class="btn" href="/world-device">
+            Больше отзывов
+            <i class="icon-arrow-circle-inside"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="general__body">
+        <div class="swiper swiper-side-block reviews__slider">
+          <div class="swiper-wrapper anim-items">
+            @@loop('./../elements/reviews-slide-item.html', './data/reviews-slide-items.json')
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="general__button">
+          <div class="swiper-button-prev reviews-button-prev">
+            <i class="icon-chevron-big"></i>
+          </div>
+          <div class="swiper-button-next reviews-button-next">
+            <i class="icon-chevron-big"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="general__foot">
+        <a class="btn btn--blue" href="/world-device">
+          Больше отзывов
+          <i class="icon-arrow-circle-inside"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

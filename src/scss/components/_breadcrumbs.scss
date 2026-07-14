@@ -19,40 +19,45 @@
     margin: 0;
   }
 
-  &__items {
+  ul {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--breadcrumbs-gap);
-    width: fit-content;
+    width: 100%;
+
+    @include dosm {
+      padding: 1.25rem 1.5rem;
+      background-color: var(--white);
+      border-radius: 0.5rem;
+    }
   }
 
-  &__item {
+  li {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--breadcrumbs-gap);
 
     font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 120%;
-    color: var(--black);
-    color: var(--red);
+    font-size: 1.4rem;
+    line-height: 143%;
     white-space: nowrap;
 
     @include sm {
       font-size: 1.4rem;
     }
 
-    &:first-child {
-      color: var(--accent);
+    &:last-child {
+      color: var(--black);
     }
 
     &:not(:last-child) {
+      color: var(--navy-2);
 
       &::after {
         content: "/";
-        color: var(--accent);
+        color: var(--navy-2);
       }
     }
   }

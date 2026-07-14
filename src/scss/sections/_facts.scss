@@ -218,6 +218,58 @@
     }
   }
 
+  &__slider {
+    position: relative;
+    overflow: visible;
+    touch-action: pan-y;
+
+    a,
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+
+    .swiper-wrapper {
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      transition: none !important; // безопасно: speed:0, Swiper не двигает
+      transform: none !important;
+
+      .swiper-slide {
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-clip-path: inset(0 0 0 100%);
+        clip-path: inset(0 0 0 100%);
+        transition: clip-path 0.5s ease, -webkit-clip-path 0.5s ease;
+
+        &.s--prev {
+          z-index: 1;
+          -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
+        }
+
+        &.s--active {
+          z-index: 2;
+          -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1);
+          transition: transform 0.5s ease;
+        }
+      }
+    }
+  }
+
   &__slide {
 
     &-img {
@@ -241,6 +293,49 @@
 
     @include sm {
       justify-content: center;
+    }
+  }
+}
+
+.facts-swiper-pagination {
+
+  .facts-pagination-bullet {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    margin: 0 0.1rem !important;
+    background-color: transparent;
+    opacity: 1;
+    border: 0.1rem solid transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &:hover {
+
+      &::before {
+
+        @include dosm {
+          background-color: var(--cyan);
+        }
+      }
+    }
+
+    &::before {
+      content: "";
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background-color: var(--navy);
+      transition: all 0.3s ease;
+    }
+
+    &--active {
+      border-color: var(--navy);
     }
   }
 }

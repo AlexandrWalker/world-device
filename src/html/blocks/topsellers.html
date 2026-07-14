@@ -1,0 +1,32 @@
+<section class="topsellers">
+  <div class="container">
+    <div class="topsellers__inner general__content">
+
+      <div class="general__head">
+        <div class="general__title" data-split="lines">
+          <h2>
+            Лидеры продаж
+          </h2>
+        </div>
+      </div>
+
+      <div class="general__body">
+        <div class="swiper swiper-side-block topsellers__slider">
+          <div class="swiper-wrapper">
+            @@loop('./../elements/card-slide-item.html', './data/topsellers-card-slide-items.json')
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="general__button">
+          <div class="swiper-button-prev topsellers-button-prev">
+            <i class="icon-chevron-big"></i>
+          </div>
+          <div class="swiper-button-next topsellers-button-next">
+            <i class="icon-chevron-big"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page">
+@@include('blocks/head.html', {"title": "World Device"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="/world-device">
+                    <span>
+                      На главную
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <span>
+                    Избранное
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__wrapper">
+              <div class="template__title" data-split="lines">
+                <h1>
+                  Избранное
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      @@include('./blocks/blog.html', {"title": "Блог"})
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

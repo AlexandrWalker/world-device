@@ -115,8 +115,38 @@
       align-items: center;
       gap: 0.5rem;
 
+      color: var(--orange);
+
       i {
-        font-size: 1rem;
+        --font-size: 1rem;
+      }
+
+      &.rating-4 {
+
+        i:nth-child(n+5) {
+          display: none;
+        }
+      }
+
+      &.rating-3 {
+
+        i:nth-child(n+4) {
+          display: none;
+        }
+      }
+
+      &.rating-2 {
+
+        i:nth-child(n+3) {
+          display: none;
+        }
+      }
+
+      &.rating-1 {
+
+        i:nth-child(n+2) {
+          display: none;
+        }
       }
     }
 

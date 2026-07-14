@@ -1,12 +1,13 @@
 @use './../mixins' as *;
 
 .template {
-  --section-padding-bottom: 0;
+  --section-padding-top: 3rem;
+  --section-padding-bottom: 0.5rem;
 
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
 
     @include sm {
       gap: 2rem;
@@ -14,27 +15,24 @@
   }
 
   &__title {
+    color: var(--navy);
 
     h1 {
       font-family: var(--second-family);
-      font-weight: 400;
-      font-size: 4rem;
-      line-height: 117.5%;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 5rem;
+      line-height: 120%;
 
       @include sm {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
     }
   }
 
-  &+section {
-    --section-padding-top: 3rem;
 
-    @include sm {
-      --section-padding-top: 2rem;
-    }
-  }
+
+
+
 
   &__body {
     padding: 7rem 12rem 8rem 12rem;
@@ -71,7 +69,7 @@
     @include sm {
       --btn-height: 5.6rem;
       --btn-padding-x: 3rem;
-      
+
       gap: 3rem;
 
       font-size: 1.4rem;

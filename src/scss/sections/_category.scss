@@ -1,12 +1,15 @@
 @use './../mixins' as *;
 
 .category {
-  padding-top: 0;
-  margin-top: -3rem;
 
-  @include sm {
-    padding-top: 2rem;
-    margin-top: 0;
+  .main-page & {
+    padding-top: 0;
+    margin-top: -3rem;
+
+    @include sm {
+      padding-top: 2rem;
+      margin-top: 0;
+    }
   }
 
   &__items {
@@ -81,6 +84,76 @@
 
       @include sm {
         font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+
+    @include dosm {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1.8rem;
+    padding: 3rem;
+    background-color: var(--white);
+
+    border: 0.1rem solid transparent;
+    box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
+    transition: border-color 0.3s ease, color 0.3s ease;
+
+    @include sm {
+      flex-direction: row;
+      gap: 0.8rem;
+      padding: 1rem 0.8rem;
+      border-radius: 1.2rem;
+    }
+
+    &:hover {
+
+      @include dosm {
+        border-color: var(--cyan);
+      }
+    }
+
+    &-cover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20rem;
+      height: 20rem;
+      flex-shrink: 0;
+
+      @include sm {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      video {
+        display: block;
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 120%;
+
+      @include sm {
+        font-size: 1.4rem;
       }
     }
   }
