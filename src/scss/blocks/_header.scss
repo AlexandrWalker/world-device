@@ -78,7 +78,10 @@
     }
 
     .header-fixed & {
-      gap: 1rem;
+
+      @include dosm {
+        gap: 1rem;
+      }
     }
   }
 
@@ -96,7 +99,10 @@
     }
 
     .header-fixed & {
-      padding: 1rem 0;
+
+      @include dosm {
+        padding: 1rem 0;
+      }
     }
   }
 
@@ -160,7 +166,10 @@
 
 
     .header-fixed & {
-      padding: 0 0 1rem 0;
+
+      @include dosm {
+        padding: 0 0 1rem 0;
+      }
     }
   }
 
