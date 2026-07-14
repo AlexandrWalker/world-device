@@ -1375,57 +1375,59 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         },
       },
-      {
-        sliderSelector: '.facts__slider',
-        prevSelector: '.facts-button-prev',
-        nextSelector: '.facts-button-next',
-        highlight: false,
-        swiperOptions: {
-          slidesPerGroup: 1,
-          slidesPerView: 1,
-          spaceBetween: 0,
-          speed: 500,
-          grabCursor: true,
-          loop: true,
-          touchRatio: 1.6,
-          resistance: true,
-          resistanceRatio: 0.4,
-          centeredSlides: false,
-          centeredSlidesBounds: true,
-          simulateTouch: true,
-          direction: 'horizontal',
-          touchStartPreventDefault: true,
-          touchMoveStopPropagation: true,
-          threshold: 8,
-          touchAngle: 25,
-          watchOverflow: true,
-          navigation: false,
-          pagination: {
-            el: '.facts-swiper-pagination',
-            clickable: true,
-            renderBullet: function (index, className) {
-              return `<span class="${className}" data-index="${index}"></span>`;
-            }
-          },
-          freeMode: false,
-          mousewheel: {
-            forceToAxis: true,
-            sensitivity: 1,
-            releaseOnEdges: true,
-          },
-          breakpoints: {
-            601: {
-              pagination: {
-                el: '.facts-swiper-pagination',
-                clickable: true,
-                renderBullet: function (index, className) {
-                  return `<span class="${className}" data-index="${index}"></span>`;
-                }
-              },
-            },
-          },
-        },
-      },
+      // {
+      //   sliderSelector: '.facts__slider',
+      //   prevSelector: '.facts-button-prev',
+      //   nextSelector: '.facts-button-next',
+      //   clipEffect: true,
+      //   highlight: false,
+      //   swiperOptions: {
+      //     slidesPerGroup: 1,
+      //     slidesPerView: 1,
+      //     spaceBetween: 0,
+      //     speed: 500,
+      //     grabCursor: true,
+      //     loop: false,
+      //     touchRatio: 1.6,
+      //     resistance: true,
+      //     resistanceRatio: 0.4,
+      //     centeredSlides: false,
+      //     centeredSlidesBounds: true,
+      //     simulateTouch: true,
+      //     direction: 'horizontal',
+      //     touchStartPreventDefault: true,
+      //     touchMoveStopPropagation: true,
+      //     threshold: 8,
+      //     touchAngle: 25,
+      //     watchOverflow: true,
+      //     navigation: false,
+      //     allowTouchMove: false,
+      //     pagination: {
+      //       el: '.facts-swiper-pagination',
+      //       clickable: true,
+      //       renderBullet: function (index, className) {
+      //         return `<span class="${className}" data-index="${index}"></span>`;
+      //       }
+      //     },
+      //     freeMode: false,
+      //     mousewheel: {
+      //       forceToAxis: true,
+      //       sensitivity: 1,
+      //       releaseOnEdges: true,
+      //     },
+      //     breakpoints: {
+      //       601: {
+      //         pagination: {
+      //           el: '.facts-swiper-pagination',
+      //           clickable: true,
+      //           renderBullet: function (index, className) {
+      //             return `<span class="${className}" data-index="${index}"></span>`;
+      //           }
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
       {
         sliderSelector: '.novelty__slider',
         prevSelector: '.novelty-button-prev',
@@ -1605,10 +1607,10 @@ document.addEventListener('DOMContentLoaded', () => {
           loop: true,
           direction: 'horizontal',
           watchOverflow: true,
-          allowTouchMove: false,
-          simulateTouch: false,
-          grabCursor: false,
-          mousewheel: false,
+          allowTouchMove: true,
+          simulateTouch: true,
+          grabCursor: true,
+          mousewheel: true,
           autoplay: {
             delay: 0,
             disableOnInteraction: false,
@@ -1752,7 +1754,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     ];
 
-
     // Инициализируем каждый слайдер из конфига
     slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, thumbs, autoSlidesView, swiperOptions }) => {
 
@@ -1873,7 +1874,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-
     // Заглушка edgeTracker для слайдеров где он не нужен (slidesPerView = 1).
     // Возвращает тот же API что и настоящий edgeTracker - navigation не знает разницы
     function createEdgeTrackerStub() {
@@ -1884,7 +1884,6 @@ document.addEventListener('DOMContentLoaded', () => {
         getVirtualIndex: () => null,
       };
     }
-
 
     // Управление видимостью пагинации через кастомный флаг hidePagination.
     // Swiper не умеет включать/выключать пагинацию через breakpoints нативно,
@@ -1904,7 +1903,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Проверяем сразу после инициализации - брейкпоинт уже мог сработать
       applyVisibility();
     }
-
 
     // Highlight - анимированный фон резинка между слайдами.
     // Если элементов --from и --to нет в DOM - возвращаем заглушку.
@@ -2298,6 +2296,145 @@ document.addEventListener('DOMContentLoaded', () => {
     // ro.observe(document.body);
 
   })();
+
+  function initClipSlider(selector) {
+    const container = document.querySelector(selector);
+    if (!container) return null;
+
+    const paginationEl =
+      container.querySelector('.facts-swiper-pagination') ||
+      document.querySelector('.facts-swiper-pagination');
+
+    const swiper = new Swiper(selector, {
+      slidesPerView: 1,
+      loop: false,
+      speed: 0,
+      allowTouchMove: false,
+      init: false,
+    });
+
+    const total = () => swiper.slides.length;
+    let prevIndex = 0;
+    let blocked = false;
+    const DURATION = 500;
+
+    function renderBullets() {
+      if (!paginationEl) return;
+      paginationEl.innerHTML = '';
+      for (let i = 0; i < total(); i++) {
+        const b = document.createElement('span');
+        b.className = 'facts-pagination-bullet';
+        b.dataset.index = i;
+        if (i === swiper.activeIndex) b.classList.add('facts-pagination-bullet--active');
+        paginationEl.appendChild(b);
+      }
+    }
+
+    function updateBullets() {
+      if (!paginationEl) return;
+      paginationEl.querySelectorAll('.facts-pagination-bullet').forEach((b, i) => {
+        b.classList.toggle('facts-pagination-bullet--active', i === swiper.activeIndex);
+      });
+    }
+
+    swiper.on('slideChange', () => {
+      animate(prevIndex, swiper.activeIndex);
+      prevIndex = swiper.activeIndex;
+      updateBullets();
+    });
+
+    function goTo(index) {
+      if (blocked) return;
+      const to = ((index % total()) + total()) % total();
+      if (to === swiper.activeIndex) return;
+      blocked = true;
+      setTimeout(() => { blocked = false; }, DURATION);
+      swiper.slideTo(to, 0);
+    }
+
+    function go(isRight) {
+      goTo(swiper.activeIndex + (isRight ? 1 : -1));
+    }
+
+    function animate(from, to) {
+      if (from === to) return;
+      const isRight = to > from || (from === total() - 1 && to === 0);
+      const cur = swiper.slides[from];
+      const next = swiper.slides[to];
+      if (!cur || !next) return;
+
+      cur.classList.remove('s--active', 's--active-prev');
+
+      const nextImg = next.querySelector('img');
+      if (nextImg) {
+        nextImg.style.transition = 'none';
+        nextImg.style.transform = 'scale(1.3)';
+        nextImg.getBoundingClientRect();
+      }
+
+      next.classList.add('s--active');
+      if (!isRight) next.classList.add('s--active-prev');
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (nextImg) {
+          nextImg.style.transition = 'transform 0.5s ease';
+          nextImg.style.transform = 'scale(1)';
+        }
+      }));
+
+      const curImg = cur.querySelector('img');
+      if (curImg) {
+        curImg.style.transition = 'transform 0.2s ease';
+        curImg.style.transform = 'scale(1)';
+      }
+
+      container.querySelector('.swiper-slide.s--prev')?.classList.remove('s--prev');
+      let prev = to - 1;
+      if (prev < 0) prev = total() - 1;
+      swiper.slides[prev].classList.add('s--prev');
+    }
+
+    let startX = null;
+    const THRESHOLD = 50;
+
+    container.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      startX = e.clientX;
+      container.setPointerCapture?.(e.pointerId);
+    }, { passive: true });
+
+    container.addEventListener('pointerup', e => {
+      if (startX !== null) {
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) >= THRESHOLD) go(dx < 0);
+      }
+      startX = null;
+    });
+
+    document.querySelector('.facts-button-next')?.addEventListener('click', () => go(true));
+    document.querySelector('.facts-button-prev')?.addEventListener('click', () => go(false));
+
+    if (paginationEl) {
+      paginationEl.addEventListener('click', e => {
+        const bullet = e.target.closest('[data-index]');
+        if (!bullet) return;
+        const to = Number(bullet.dataset.index);
+        if (!Number.isNaN(to)) goTo(to);
+      });
+    }
+
+    swiper.slides[0]?.classList.add('s--active');
+    swiper.slides[total() - 1]?.classList.add('s--prev');
+
+    swiper.init();
+    renderBullets();
+
+    return swiper;
+  }
+
+  if (document.querySelector('.facts__slider')) {
+    initClipSlider('.facts__slider');
+  }
 
   /**
    * Инициализация Fancybox

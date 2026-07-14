@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'WDIconFonts';
-  src:  url('fonts/WDIconFonts.eot?d80ofh');
-  src:  url('fonts/WDIconFonts.eot?d80ofh#iefix') format('embedded-opentype'),
-    url('fonts/WDIconFonts.ttf?d80ofh') format('truetype'),
-    url('fonts/WDIconFonts.woff?d80ofh') format('woff'),
-    url('fonts/WDIconFonts.svg?d80ofh#WDIconFonts') format('svg');
+  src:  url('fonts/WDIconFonts.eot?cxv584');
+  src:  url('fonts/WDIconFonts.eot?cxv584#iefix') format('embedded-opentype'),
+    url('fonts/WDIconFonts.ttf?cxv584') format('truetype'),
+    url('fonts/WDIconFonts.woff?cxv584') format('woff'),
+    url('fonts/WDIconFonts.svg?cxv584#WDIconFonts') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -28,57 +28,84 @@
 .icon-arrow-circle-inside:before {
   content: "\e900";
 }
-.icon-bento:before {
+.icon-arrow-up-stroke:before {
   content: "\e901";
 }
-.icon-cart:before {
+.icon-bento:before {
   content: "\e902";
 }
-.icon-chevron-big:before {
+.icon-cart:before {
   content: "\e903";
 }
-.icon-close:before {
+.icon-chevron-big:before {
   content: "\e904";
 }
-.icon-favorite:before {
+.icon-close:before {
   content: "\e905";
 }
-.icon-glass-max:before {
+.icon-favorite:before {
   content: "\e906";
 }
-.icon-glass-telegram:before {
+.icon-filter:before {
   content: "\e907";
 }
-.icon-headphones:before {
+.icon-glass-max:before {
   content: "\e908";
 }
-.icon-login:before {
+.icon-glass-telegram:before {
   content: "\e909";
 }
-.icon-max:before {
+.icon-headphones:before {
   content: "\e90a";
 }
-.icon-nav-chevron-down:before {
+.icon-kebab:before {
   content: "\e90b";
 }
-.icon-nav-max:before {
+.icon-list:before {
   content: "\e90c";
 }
-.icon-nav-phone:before {
+.icon-login:before {
   content: "\e90d";
 }
-.icon-nav-telegram:before {
+.icon-max:before {
   content: "\e90e";
 }
-.icon-neuron:before {
+.icon-nav-chevron-down:before {
   content: "\e90f";
 }
-.icon-search:before {
+.icon-nav-max:before {
   content: "\e910";
 }
-.icon-sravnenie:before {
+.icon-nav-phone:before {
   content: "\e911";
 }
-.icon-telegram:before {
+.icon-nav-telegram:before {
   content: "\e912";
+}
+.icon-neuron:before {
+  content: "\e913";
+}
+.icon-person:before {
+  content: "\e914";
+}
+.icon-rating-star:before {
+  content: "\e915";
+}
+.icon-search:before {
+  content: "\e916";
+}
+.icon-share:before {
+  content: "\e917";
+}
+.icon-sravnenie:before {
+  content: "\e918";
+}
+.icon-telegram:before {
+  content: "\e919";
+}
+.icon-trade-in:before {
+  content: "\e91a";
+}
+.icon-trash:before {
+  content: "\e91b";
 }
