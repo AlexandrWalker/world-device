@@ -30,8 +30,6 @@ const sass = gulpsass(dartSass);
 
 //IMAGES
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
-import webp from 'gulp-webp';
-import imageminWebp from 'imagemin-webp';
 import svgsprite from 'gulp-svg-sprite';
 
 //FONTS
@@ -53,7 +51,6 @@ const destFolder = isModeP ? docsFolder : buildFolder;
 // TUMBLERS
 const svgHtml = false; // Также нужно вкл или выкл коммент в index.html
 const imgAvif = false;
-const imgWebp = false;
 const imgMin = imgMinify || isModeP ? true : false;
 const typography = false;
 
@@ -146,9 +143,6 @@ gulp.task('images', function () {
   return gulp
     .src(imgSrc, { encoding: false })
     .pipe(newer(`${destFolder}images`))
-    .pipe(gulpIf(imgWebp, webp()))
-    .pipe(gulpIf(imgWebp, gulp.dest(`${destFolder}images`)))
-    .pipe(gulpIf(imgWebp, gulp.src(imgSrc, { encoding: false })))
     .pipe(
       gulpIf(
         imgMin,

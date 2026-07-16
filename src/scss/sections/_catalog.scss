@@ -1,0 +1,45 @@
+@use './../mixins' as *;
+
+.catalog {
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+
+    @include dosm {
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  &__block {
+
+    @include dosm {
+      grid-column: 3/13;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+
+    @include dosm {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+    }
+  }
+}

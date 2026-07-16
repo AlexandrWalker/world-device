@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Плавный скролл к целевому элементу через Lenis
     function scrollToTarget(target) {
       lenis.scrollTo(target, {
-        offset: -60,
+        // offset: -60,
+        offset: -150,
         duration: 1.5,
       });
     }
@@ -1751,6 +1752,54 @@ document.addEventListener('DOMContentLoaded', () => {
           },
         },
       },
+      {
+        sliderSelector: '.category__slider',
+        prevSelector: '.category-button-prev',
+        nextSelector: '.category-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 2,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          noSwipingClass: 'swiper-no-swiping',
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            601: {
+              slidesPerGroup: 1,
+              slidesPerView: 7,
+              spaceBetween: 10,
+            },
+          },
+        },
+      }
     ];
 
     // Инициализируем каждый слайдер из конфига

@@ -2,6 +2,34 @@
 
 .blog {
 
+  &-page {
+
+    .blog {
+
+      .general__btns {
+        display: none;
+      }
+
+      .general__title h2 {
+
+        @include sm {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+
+    @include dosm {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
   &__item {
     display: flex;
     flex-direction: column;
@@ -11,6 +39,7 @@
     border: 0.1rem solid transparent;
     border-radius: 1.8rem;
     overflow: hidden;
+    transition: border-color 0.3s ease;
 
     @include sm {
       border-radius: 1.2rem;

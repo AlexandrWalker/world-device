@@ -1,0 +1,8 @@
+@use './../mixins' as *;
+
+.filter {
+
+  @include dosm {
+    grid-column: 1/3;
+  }
+}

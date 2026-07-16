@@ -22,15 +22,8 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/world-device/blogs.html">
-                    <span>
-                      Блог
-                    </span>
-                  </a>
-                </li>
-                <li>
                   <span>
-                    Кредит и рассрочка
+                    Блог
                   </span>
                 </li>
               </ul>
@@ -39,9 +32,33 @@
             <div class="template__wrapper">
               <div class="template__title" data-split="lines">
                 <h1>
-                  Кредит и рассрочка
+                  Блог
                 </h1>
               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="blog">
+        <div class="container">
+          <div class="blog__inner">
+
+            <div class="general__tabs">
+              <button class="general__tab is-active" type="button">
+                Обзоры
+              </button>
+              <button class="general__tab" type="button">
+                Статьи
+              </button>
+              <button class="general__tab" type="button">
+                Все вместе
+              </button>
+            </div>
+
+            <div class="blog__items anim-items">
+              @@loop('./elements/blog-item.html', './data/blog-slide-items.json')
             </div>
 
           </div>

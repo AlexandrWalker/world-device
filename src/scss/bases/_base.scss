@@ -39,7 +39,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   @include sm {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -111,4 +111,16 @@ img {
   section {
     animation: none !important;
   }
+}
+
+.color-gray {
+  color: var(--black-25);
+}
+
+.color-purple {
+  color: #702FF4;
+}
+
+.color-sky {
+  color: var(--sky);
 }

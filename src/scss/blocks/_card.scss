@@ -158,7 +158,9 @@
     }
 
     &-offer {
-      width: 100%;
+      max-width: 100%;
+      width: auto;
+      height: 2.3rem;
       padding: 0 3.5rem;
 
       position: absolute;
@@ -173,8 +175,8 @@
       }
 
       img {
-        width: 100%;
-        height: auto;
+        width: auto;
+        height: 100%;
         object-fit: contain;
       }
     }
