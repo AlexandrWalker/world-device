@@ -43,6 +43,10 @@
       grid-column: 6/13;
       grid-row: 1/2;
     }
+
+    .guarantee & {
+      margin-bottom: 2rem;
+    }
   }
 
   &__body {
@@ -95,6 +99,14 @@
       margin-bottom: 3rem;
     }
 
+    .guarantee & {
+      margin-bottom: 0;
+
+      @include sm {
+        margin-bottom: 0;
+      }
+    }
+
     h1 {
       font-weight: 700;
       font-size: 5rem;
@@ -112,6 +124,21 @@
   }
 
   &__content {
+
+    .action {
+      background-color: var(--white);
+      padding: 1rem 1.4rem 1.3rem 2rem;
+      border-radius: 0.5rem;
+      margin-bottom: 4rem;
+
+      font-style: italic;
+      color: var(--navy);
+
+      @include sm {
+        margin-bottom: 2rem;
+        padding: 2rem 1.5rem;
+      }
+    }
 
     h2 {
       padding-top: 2rem;
@@ -136,10 +163,18 @@
       &:last-child {
         margin-bottom: 0;
       }
+
+      .guarantee & {
+        color: var(--black);
+      }
     }
 
     b {
       color: var(--navy);
+
+      .guarantee & {
+        color: var(--black);
+      }
     }
 
     img {
@@ -191,6 +226,21 @@
         position: absolute;
         bottom: 0;
         left: 0;
+      }
+    }
+
+    span {
+      display: block;
+      margin-bottom: 4rem;
+
+      color: var(--black-50);
+
+      @include sm {
+        margin-bottom: 2rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }

@@ -4435,6 +4435,9 @@ canvas {
   grid-row: 1/2;
   margin-bottom: 3rem;
 }
+.guarantee .article__head {
+  margin-bottom: 2rem;
+}
 .article__body {
   -ms-grid-row: 3;
   -ms-grid-row-span: 1;
@@ -4482,6 +4485,9 @@ canvas {
 .article__title {
   margin-bottom: 4rem;
 }
+.guarantee .article__title {
+  margin-bottom: 0;
+}
 .article__title h1 {
   font-weight: 700;
   font-size: 5rem;
@@ -4489,6 +4495,14 @@ canvas {
   color: var(--navy);
 }
 .article__text {
+  color: var(--navy);
+}
+.article__content .action {
+  background-color: var(--white);
+  padding: 1rem 1.4rem 1.3rem 2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 4rem;
+  font-style: italic;
   color: var(--navy);
 }
 .article__content h2 {
@@ -4505,8 +4519,14 @@ canvas {
 .article__content p:last-child {
   margin-bottom: 0;
 }
+.guarantee .article__content p {
+  color: var(--black);
+}
 .article__content b {
   color: var(--navy);
+}
+.guarantee .article__content b {
+  color: var(--black);
 }
 .article__content img {
   padding-top: 2rem;
@@ -4541,6 +4561,14 @@ canvas {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+.article__content span {
+  display: block;
+  margin-bottom: 4rem;
+  color: var(--black-50);
+}
+.article__content span:last-child {
+  margin-bottom: 0;
 }
 .article__foot {
   display: -webkit-box;
@@ -7586,8 +7614,15 @@ canvas {
   .article__title {
     margin-bottom: 3rem;
   }
+  .guarantee .article__title {
+    margin-bottom: 0;
+  }
   .article__title h1 {
     font-size: 3rem;
+  }
+  .article__content .action {
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
   }
   .article__content h2 {
     padding-top: 1rem;
@@ -7600,6 +7635,9 @@ canvas {
   }
   .article__content ul li {
     margin-bottom: 1.5rem;
+  }
+  .article__content span {
+    margin-bottom: 2rem;
   }
   .article__foot {
     margin-top: 3rem;
