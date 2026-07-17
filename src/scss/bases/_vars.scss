@@ -34,6 +34,7 @@
   --black-30: rgba(0, 0, 0, 0.3);
   --black-50: #00000080;
   --black-60: #00000099;
+  --black-2: #101010;
 
   --gray-light: #F7F7F7;
   --cyan: #0EDDC9;
@@ -42,6 +43,7 @@
   --blue: #3C78CD;
   --blue-2: #3063B4;
   --blue-2-05: rgba(48, 99, 180, 0.05);
+  --blue-2-10: rgba(48, 99, 180, 0.1);
   --blue-2-30: rgba(48, 99, 180, 0.3);
   --blue-3: #003194;
   --deep-blue: #05204A;
@@ -54,6 +56,7 @@
   --orange: #FF7F2A;
   --red: #FF5B5B;
   --green: #51CF7B;
+  --green-2: #0DAE35;
   --purple: #702EF5;
 
   @include md {}

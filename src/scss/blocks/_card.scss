@@ -10,7 +10,8 @@
     gap: 2rem;
     height: 100%;
     background-color: var(--white);
-    box-shadow: 0px 16px 16px rgba(48, 99, 180, 0.1);
+    // box-shadow: 0px 16px 16px rgba(48, 99, 180, 0.1);
+    box-shadow: 0px 14px 14px rgba(48, 99, 180, 0.1);
     border: 0.1rem solid transparent;
     border-radius: 1.8rem;
     transition: border-color 0.3s ease;
@@ -30,34 +31,7 @@
       }
     }
 
-    .tag-new {
-      background-color: var(--red);
-    }
-
-    .tag-special {
-      background-color: var(--cyan);
-    }
-
-    .tag-hit {
-      background-color: var(--orange);
-    }
-
-    &-head {
-      padding: 6.4rem 2.6rem 3.8rem 2.6rem;
-      background-color: var(--gray-light);
-
-      position: relative;
-
-      @include sm {
-        padding: 5.1rem 2.45rem 3.2rem 2.45rem;
-      }
-    }
-
-    &-tags {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    .tags {
       width: calc(100% - 6rem);
 
       position: absolute;
@@ -72,27 +46,14 @@
       }
     }
 
-    &-tag {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: auto;
-      height: 2.4rem;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
+    &-head {
+      padding: 6.4rem 2.6rem 3.8rem 2.6rem;
+      background-color: var(--gray-light);
 
-      font-weight: 500;
-      font-size: 1rem;
-      line-height: 100%;
-      text-align: center;
-      color: var(--white);
+      position: relative;
 
       @include sm {
-        height: 2rem;
-        padding: 0 0.5rem;
-        border-radius: 0.3rem;
-
-        font-size: 0.8rem;
+        padding: 5.1rem 2.45rem 3.2rem 2.45rem;
       }
     }
 

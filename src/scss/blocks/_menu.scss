@@ -91,6 +91,7 @@
       padding: 1.3rem 2rem;
       border-right: 0.1rem solid var(--black-05);
       border-bottom: 0.1rem solid var(--black-05);
+      transition: background-color 0.3s ease;
 
       position: relative;
       z-index: 2;
@@ -126,6 +127,8 @@
       font-size: 1.4rem;
       line-height: 130%;
       color: var(--navy);
+
+      transition: color 0.3s ease;
 
       @include sm {
         font-weight: 700;
@@ -209,7 +212,7 @@
       .menu__block--active+& {
 
         @include sm {
-          grid-template-rows: auto;
+          grid-template-rows: 1fr;
           margin-bottom: 0.3rem;
         }
       }
@@ -233,6 +236,7 @@
 
       @include sm {
         overflow: hidden;
+        transition: all 0.3s ease;
       }
     }
 
@@ -252,12 +256,20 @@
 
       @include sm {
         max-height: none !important;
+        transition: all 0.3s ease;
       }
 
       &.menu__items--active {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transition: clip-path 0.3s ease, opacity 0.3s ease;
+
+        @include dosm {
+          opacity: 1;
+          clip-path: inset(0 0 0 0);
+          transition: clip-path 0.3s ease, opacity 0.3s ease;
+        }
+
+        @include sm {
+          transition: all 0.3s ease;
+        }
       }
     }
   }
@@ -265,12 +277,17 @@
   &__items {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    transition: all 0.3s ease;
     gap: 0.3rem 0;
 
     @include dosm {
       grid-template-columns: repeat(8, 1fr);
       gap: 4rem 2rem;
       padding: 7.2rem 0 7.6rem 0;
+    }
+
+    @include sm {
+      overflow: hidden;
     }
 
     &.activated {
@@ -296,7 +313,7 @@
       padding: 1.3rem 2rem 1.3rem 2rem;
       border-radius: 4rem;
       background-color: var(--white);
-      transition: padding 0.3s ease, gap 0.3s ease, border-radius 0.3s ease;
+      transition: padding 0.3s ease, gap 0.3s ease, border-radius 0.3s ease, opacity 0.3s ease;
     }
 
     &.accordion-item--active {

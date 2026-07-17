@@ -1113,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     document.addEventListener('click', (e) => {
       // Ищем кнопку — сработает даже при клике по вложенным элементам (иконка, span)
-      const btn = e.target.closest('.card__item-control--btn');
+      const btn = e.target.closest('.item-btn--js');
       if (!btn) return;
 
       // toggle сам добавит класс, если его нет, и уберёт, если есть
@@ -1715,6 +1715,7 @@ document.addEventListener('DOMContentLoaded', () => {
           touchAngle: 25,
           watchOverflow: true,
           noSwipingClass: 'swiper-no-swiping',
+          watchSlidesProgress: true,
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -1799,7 +1800,73 @@ document.addEventListener('DOMContentLoaded', () => {
             },
           },
         },
-      }
+      },
+      {
+        sliderSelector: '.product__slider-big',
+        prevSelector: '.product-button-prev',
+        nextSelector: '.product-button-next',
+        highlight: false,
+        thumbs: {
+          sliderSelector: '.product__slider-min',
+          highlight: false,
+          swiperOptions: {
+            slidesPerGroup: 1,
+            slidesPerView: 5,
+            spaceBetween: 10,
+            speed: 1000,
+            grabCursor: false,
+            loop: false,
+            touchRatio: 1.6,
+            resistance: true,
+            resistanceRatio: 0.4,
+            centeredSlides: false,
+            centeredSlidesBounds: true,
+            simulateTouch: true,
+            direction: 'horizontal',
+            touchStartPreventDefault: true,
+            touchMoveStopPropagation: true,
+            threshold: 8,
+            touchAngle: 25,
+            watchOverflow: true,
+            freeMode: false,
+            autoplay: false,
+            mousewheel: false,
+            pagination: false,
+            navigation: false,
+          },
+        },
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 0,
+          speed: 1000,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          freeMode: false,
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          pagination: {
+            el: '.product-swiper-pagination',
+            clickable: true,
+          },
+          navigation: false,
+        },
+      },
     ];
 
     // Инициализируем каждый слайдер из конфига

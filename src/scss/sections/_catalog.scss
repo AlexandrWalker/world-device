@@ -5,13 +5,129 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+
+    @include dosm {
+      gap: 3rem;
+    }
   }
 
   &__head {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
+
+    @include dosm {
+      gap: 4rem;
+    }
+  }
+
+  &__control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem 2rem;
+
+    &-filter {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+
+      @include dosm {
+        gap: 3rem;
+      }
+    }
+
+    &-btns {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--white-50);
+      border-radius: 0.8rem;
+      width: 4rem;
+      height: 4rem;
+
+      color: var(--navy);
+
+      &:hover,
+      &--active {
+        color: var(--cyan);
+      }
+
+      i {
+        --font-size: 1.92rem;
+      }
+
+      &--items {
+        // color: var(--navy);
+
+        @include sm {
+          display: none;
+        }
+      }
+
+      &--list {
+        // color: var(--navy);
+
+        @include sm {
+          display: none;
+        }
+      }
+
+      &--filter {
+        color: var(--cyan);
+
+        @include dosm {
+          display: none;
+        }
+      }
+    }
+
+    &-link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 120%;
+      color: var(--navy);
+
+      @include dosm {
+        font-size: 1.6rem;
+      }
+
+      i {
+        --font-size: 1.6rem;
+
+        color: var(--cyan);
+      }
+
+      span {
+        position: relative;
+
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          border-bottom: 0.2rem dotted var(--navy);
+
+          position: absolute;
+          bottom: 0.1rem;
+          left: 0;
+        }
+      }
+    }
   }
 
   &__body {
@@ -22,6 +138,13 @@
     @include dosm {
       grid-template-columns: repeat(12, 1fr);
       gap: 2rem;
+    }
+
+    .filter {
+
+      @include sm {
+        display: none;
+      }
     }
   }
 

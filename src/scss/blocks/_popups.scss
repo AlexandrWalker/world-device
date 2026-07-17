@@ -3,15 +3,16 @@
 .popup {
   display: none;
   padding: 6rem;
-  border-radius: 1rem;
-  background-color: var(--gray);
+  border-radius: 1.8rem;
+  background-color: var(--white);
   max-width: 61.3rem;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 
   @include sm {
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
+    border-radius: 1.2rem;
   }
   
   &__wrap {

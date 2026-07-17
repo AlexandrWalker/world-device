@@ -69,4 +69,22 @@
       }
     }
   }
+
+  &--blue-light {
+    --btn-background: var(--blue-2-10);
+    --btn-color: var(--navy);
+  }
+
+  &--cyan {
+    --btn-background: var(--cyan);
+    --btn-color: var(--white);
+
+    &:hover {
+
+      @include dosm {
+        --btn-background: var(--blue-2-30);
+        --btn-color: var(--black);
+      }
+    }
+  }
 }
