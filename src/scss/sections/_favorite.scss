@@ -1,0 +1,25 @@
+@use './../mixins' as *;
+
+.favorite {
+  
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include dosm {
+      gap: 3rem;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+
+    @include dosm {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2rem;
+    }
+  }
+}

@@ -44,6 +44,13 @@
       grid-row: 1/2;
     }
 
+    .blog-page-2 & {
+
+      @include dosm {
+        margin-bottom: 2rem;
+      }
+    }
+
     .guarantee & {
       margin-bottom: 2rem;
     }
@@ -97,6 +104,10 @@
 
     @include sm {
       margin-bottom: 3rem;
+    }
+
+    .blog-page-2 & {
+      margin-bottom: 0;
     }
 
     .guarantee & {
@@ -191,16 +202,59 @@
     }
 
     ul {
-      list-style: disc;
+      --list-dot-color: var(--black);
+
       padding-left: 2.4rem;
       margin-bottom: 4rem;
 
-
       li {
-        list-style: disc;
         margin-bottom: 2rem;
 
         position: relative;
+
+        @include sm {
+          margin-bottom: 1.5rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 0.4rem;
+          height: 0.4rem;
+          border-radius: 0.15rem;
+          background-color: var(--list-dot-color);
+          flex-shrink: 0;
+
+          position: absolute;
+          top: 1rem;
+          left: -1.5rem;
+        }
+      }
+    }
+
+    ol {
+      padding-left: 2.4rem;
+      margin-bottom: 2rem;
+
+      color: var(--navy);
+
+      ul {
+        padding-top: 2rem;
+        padding-left: 0;
+
+        color: var(--black);
+
+        @include sm {
+          padding-top: 1.5rem;
+        }
+      }
+
+      li {
+        margin-bottom: 2rem;
 
         @include sm {
           margin-bottom: 1.5rem;
@@ -241,6 +295,37 @@
 
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    blockquote {
+      padding: 3rem 2rem;
+      margin-bottom: 2rem;
+      border-radius: 0.5rem;
+      background-color: var(--white);
+
+      @include sm {
+        padding: 2rem 1.5rem 3rem 1.5rem;
+      }
+
+      ul {
+        margin-bottom: 0;
+      }
+
+      li:last-child {
+        margin-bottom: 0;
+      }
+
+      .blog-page-2 & {
+        color: var(--navy);
+
+        ul {
+          --list-dot-color: var(--navy);
+        }
+
+        p {
+          color: var(--navy);
+        }
       }
     }
   }

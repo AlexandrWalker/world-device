@@ -41,6 +41,48 @@
         </div>
       </section>
 
+      <section class="favorite">
+        <div class="container">
+          <div class="favorite__inner">
+
+            <div class="catalog__control">
+              <div class="catalog__control-filter">
+                <a class="catalog__control-link" href="/">
+                  <span>
+                    По умолчанию
+                  </span>
+                </a>
+                <a class="catalog__control-link" href="/">
+                  <span>
+                    Цена
+                  </span>
+                  <i class="icon-arrow-up-stroke"></i>
+                </a>
+              </div>
+              <div class="catalog__control-btns">
+                <button
+                  class="catalog__control-btn catalog__control-btn--active catalog__control-btn--items border-opacity"
+                  type="button">
+                  <i class="icon-bento"></i>
+                </button>
+                <button class="catalog__control-btn catalog__control-btn--list border-opacity" type="button">
+                  <i class="icon-kebab"></i>
+                </button>
+                <a class="catalog__control-btn catalog__control-btn--filter border-opacity" type="button" data-fancybox
+                  href="#popup-filter">
+                  <i class="icon-filter"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="favorite__items">
+              @@loop('./elements/card-item-favorite.html', './data/card-items.json')
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       @@include('./blocks/blog.html', {"title": "Блог"})
 
     </main>

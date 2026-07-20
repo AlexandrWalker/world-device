@@ -57,6 +57,17 @@
       }
     }
 
+    &-remove {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+
+      .card__item-control--btn {
+        height: auto;
+      }
+    }
+
     &-cover {
       display: flex;
       justify-content: center;
