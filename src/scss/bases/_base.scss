@@ -124,3 +124,15 @@ img {
 .color-sky {
   color: var(--sky);
 }
+
+.social-telegram {
+  background-color: #00B0F2;
+
+  i {
+    margin-left: -0.1rem;
+  }
+}
+
+.social-max {
+  background: linear-gradient(90deg, #00A3FF 0%, #8500FF 100%), #F3F3F7;
+}
