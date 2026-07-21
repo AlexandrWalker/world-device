@@ -113,6 +113,19 @@ img {
   color: var(--sky);
 }
 
+.social-telegram {
+  background-color: #00B0F2;
+}
+.social-telegram i {
+  margin-left: -0.1rem;
+}
+
+.social-max {
+  background: -webkit-gradient(linear, left top, right top, from(#00A3FF), to(#8500FF)), #F3F3F7;
+  background: -o-linear-gradient(left, #00A3FF 0%, #8500FF 100%), #F3F3F7;
+  background: linear-gradient(90deg, #00A3FF 0%, #8500FF 100%), #F3F3F7;
+}
+
 .container {
   max-width: calc(var(--container-width) + var(--container-padding) * 2);
   width: 100%;
@@ -5112,6 +5125,163 @@ canvas {
   line-height: 120%;
 }
 
+.contacts__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.contacts__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background-color: var(--white);
+}
+.contacts__title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 120%;
+  color: var(--navy);
+}
+.contacts__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.contacts__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contacts__item-suptitle {
+  font-weight: 700;
+}
+.contacts__item-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contacts__item-social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+.contacts__item-social--link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: var(--white);
+}
+.contacts__item-social--link i {
+  --font-size: 2.2rem;
+}
+.contacts__item-mail {
+  color: var(--blue);
+}
+.contacts__gallery {
+  position: relative;
+}
+.contacts__gallery .facts__slider {
+  height: 25.4rem;
+  padding: 0;
+  border-radius: 1.2rem;
+  overflow: hidden;
+}
+.contacts__gallery .general__button {
+  width: 100%;
+  padding: 0 2rem;
+  left: 0;
+}
+.contacts__gallery .swiper-button-prev {
+  left: 2rem;
+}
+.contacts__gallery .swiper-pagination {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 1.2rem;
+}
+.contacts__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 1.2rem;
+}
+.contacts__info-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2rem;
+}
+.contacts__map {
+  width: 100%;
+  height: 64rem;
+  border-radius: 1.2rem;
+  overflow: hidden;
+}
+.contacts__map img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
 .facts__items {
   display: -ms-grid;
   display: grid;
@@ -6842,6 +7012,85 @@ canvas {
   }
   .category__block:hover {
     border-color: var(--cyan);
+  }
+  .contacts__inner {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 2rem 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .contacts__content {
+    padding: 4rem 16rem 4rem 4rem;
+    gap: 3rem;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+    border-radius: 1.8rem;
+  }
+  .contacts__title {
+    font-size: 3rem;
+  }
+  .contacts__items {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 8.7rem 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    -ms-grid-rows: auto 3rem auto 3rem auto;
+    grid-template-rows: auto auto auto;
+    grid-auto-flow: column;
+    gap: 3rem 8.7rem;
+  }
+  .contacts__items > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .contacts__items > *:nth-child(2) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+  .contacts__items > *:nth-child(3) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+  }
+  .contacts__items > *:nth-child(4) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+  }
+  .contacts__items > *:nth-child(5) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
+  }
+  .contacts__items > *:nth-child(6) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 3;
+  }
+  .contacts__item {
+    gap: 2rem;
+  }
+  .contacts__gallery {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2/3;
+  }
+  .contacts__gallery .facts__slider {
+    height: 100%;
+    border-radius: 1.8rem;
+  }
+  .contacts__gallery .swiper-pagination {
+    display: none;
+  }
+  .contacts__info {
+    padding: 4rem 42.5rem 4rem 4rem;
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+    border-radius: 1.8rem;
+  }
+  .contacts__map {
+    height: 75.4rem;
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+    border-radius: 1.8rem;
   }
   .facts__items {
     -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr;
