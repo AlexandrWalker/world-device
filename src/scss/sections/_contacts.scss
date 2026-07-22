@@ -93,6 +93,16 @@
 
         color: var(--white);
 
+        &:hover {
+
+          @include dosm {
+
+            i {
+              transform: scale(1.2);
+            }
+          }
+        }
+
         i {
           --font-size: 2.2rem;
         }
@@ -103,6 +113,13 @@
 
     &-mail {
       color: var(--blue);
+
+      &:hover {
+
+        @include dosm {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -167,7 +184,22 @@
     &-text {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
+
+      @include dosm {
+        gap: 2rem;
+      }
+    }
+
+    a {
+      color: var(--blue);
+
+      &:hover {
+
+        @include dosm {
+          text-decoration: underline;
+        }
+      }
     }
   }
 

@@ -1,0 +1,129 @@
+@use './../mixins' as *;
+
+.proizvod {
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 125.5rem;
+  }
+
+  &__nav {
+    position: sticky;
+    top: 11rem;
+
+    @include dosm {
+      top: 14rem;
+    }
+
+    @include sm {
+      width: calc(100% + (var(--container-padding) * 2));
+      margin-left: calc(var(--container-padding) * -1);
+      margin-right: calc(var(--container-padding) * -1);
+      overflow-x: auto;
+      padding: 0 var(--container-padding);
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 2.4rem;
+      padding: 0.6rem 2rem;
+
+      width: 100%;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background-color: var(--white);
+
+      @include sm {
+        width: fit-content;
+      }
+
+      li {
+
+        a {
+          display: block;
+          padding: 0.7rem 0.6rem 0.6rem 0.5rem;
+          height: 100%;
+          border-radius: 0.3rem;
+
+          font-weight: 700;
+          font-size: 1.6rem;
+          line-height: 125%;
+          color: var(--black);
+          text-align: center;
+          text-transform: uppercase;
+          white-space: nowrap;
+
+          &:hover {
+            color: var(--navy);
+            text-decoration: underline;
+          }
+
+          &.nav-is-active {
+            background-color: var(--cyan);
+          }
+        }
+      }
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid var(--white);
+
+    &-title {
+      font-weight: 700;
+      font-size: 3rem;
+      line-height: 140%;
+      color: var(--black);
+    }
+
+    &-body {
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5rem;
+
+        li {
+
+          a {
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 140%;
+            color: var(--black);
+
+            &:hover {
+
+              @include dosm {
+                color: var(--blue);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -137,12 +137,25 @@ img {
   background: linear-gradient(90deg, #00A3FF 0%, #8500FF 100%), #F3F3F7;
 }
 
+.grid-col-2 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @include dosm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
 .grid-col-3 {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
 
   @include dosm {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }

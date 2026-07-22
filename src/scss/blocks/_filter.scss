@@ -125,11 +125,19 @@
       padding: 0 2rem 0 0.9rem;
       background-color: var(--navy-05);
       border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
 
       font-weight: 700;
       font-size: 1.4rem;
       line-height: 143%;
       color: var(--navy);
+
+      &:hover {
+
+        @include dosm {
+          background-color: var(--navy-10);
+        }
+      }
 
       i {
         --font-size: 3.2rem;
@@ -186,6 +194,16 @@
       flex-direction: row;
       align-items: center;
       gap: 1rem;
+
+      &:hover {
+
+        @include dosm {
+
+          .form-checkbox-text {
+            color: var(--navy);
+          }
+        }
+      }
     }
 
     &-input {
@@ -278,8 +296,7 @@
 
         transform: rotate(90deg);
 
-        .accordion-item--active & {
-        }
+        .accordion-item--active & {}
       }
     }
 

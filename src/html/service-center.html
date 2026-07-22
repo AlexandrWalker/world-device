@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page service-center-page">
+@@include('blocks/head.html', {"title": "World Device"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="/world-device">
+                    <span>
+                      На главную
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <span>
+                    Сервис-центр
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="article">
+        <div class="container">
+          <div class="article__inner">
+
+            <div class="article__cover">
+              <img src="./../images/temp/service-center-cover.jpg" alt="">
+            </div>
+
+            <div class="article__head">
+              <div class="article__title">
+                <h1>
+                  Сервис-центр
+                </h1>
+              </div>
+              <div class="article__desc">
+                <p>
+                  Наш Сервис-Центр осуществляет как гарантийный, так и послегарантийный ремонт. Сервис находится в 3
+                  минутах ходьбы от <a href="/">м. Новочеркасская</a>. Наши квалифицированные специалисты быстро
+                  определят причину
+                  поломки и восстановят Ваш девайс. Для клиентов, купивших девайсы в нашем магазине, имеются скидки на
+                  послегарантийный ремонт техники. Также наши мастера помогут Вам прошить или прокачать Ваш девайс,
+                  чтобы Вы всегда шли в ногу со временем.
+                </p>
+              </div>
+            </div>
+
+            <div class="article__body">
+              <div class="article__block">
+                <div class="article__block-head">
+                  <div class="article__block-title">
+                    Контакты
+                  </div>
+                </div>
+                <div class="article__block-body">
+                  <div class="contacts__item">
+                    <div class="contacts__item-head">
+                      <div class="contacts__item-suptitle">
+                        Адрес
+                      </div>
+                    </div>
+                    <div class="contacts__item-body">
+                      <div class="contacts__item-text">
+                        <p>
+                          «АМТ-Сервис», г. Санкт-Петербург, Заневский пр., д. 20
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contacts__item">
+                    <div class="contacts__item-head">
+                      <div class="contacts__item-suptitle">
+                        Телефон
+                      </div>
+                    </div>
+                    <div class="contacts__item-body">
+                      <a class="contacts__item-link" href="tel:+78125000575">
+                        +7 (812) 500-05-75
+                      </a>
+                      <a class="contacts__item-link" href="tel:+79650060809 ">
+                        7 (965) 006-08-09
+                      </a>
+                    </div>
+                  </div>
+                  <div class="contacts__item">
+                    <div class="contacts__item-head">
+                      <div class="contacts__item-suptitle">
+                        Режим работы
+                      </div>
+                    </div>
+                    <div class="contacts__item-body">
+                      <div class="contacts__item-text">
+                        <p>
+                          пн-пт: 11:00 – 20:00
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contacts__item">
+                    <div class="contacts__item-head">
+                      <div class="contacts__item-suptitle">
+                        Мессенджеры
+                      </div>
+                    </div>
+                    <div class="contacts__item-body">
+                      <div class="contacts__item-social">
+                        <a class="contacts__item-social--link social-telegram" href="/">
+                          <i class="icon-telegram"></i>
+                        </a>
+                        <a class="contacts__item-social--link social-max" href="/">
+                          <i class="icon-max"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="article__block">
+                <div class="article__block-head">
+                  <div class="article__block-title">
+                    Запись онлайн
+                  </div>
+                </div>
+                <div class="article__block-body">
+                  <form action="#">
+                    <div class="form-inner">
+                      <div class="form-body grid-col-2">
+                        <div class="form-group">
+                          <label class="form-label">
+                            Ф.И.О
+                            <input class="form-input" type="text" name="service_center_form_name"
+                              placeholder="Иван Петров">
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">
+                            Номер телефона:
+                            <input class="form-input" type="tel" name="service_center_form_tel"
+                              placeholder="+7 (123) 456-78-90">
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-mid">
+                        <div class="form-group">
+                          <label class="form-checkbox-label">
+                            <input class="form-checkbox-input" type="checkbox" hidden>
+                            <div class="form-checkbox-item">
+                            </div>
+                            <div class="form-checkbox-text">
+                              <p>
+                                Даю согласие на обработку моих персональных данных
+                              </p>
+                            </div>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-checkbox-label">
+                            <input class="form-checkbox-input" type="checkbox" hidden>
+                            <div class="form-checkbox-item">
+                            </div>
+                            <div class="form-checkbox-text">
+                              <p>
+                                Даю согласие на обработку моих персональных данных
+                              </p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-foot">
+                        <div class="form-foot__btns">
+                          <button class="btn btn--blue" type="button">
+                            Подтвердить заказ
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

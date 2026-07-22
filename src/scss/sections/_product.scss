@@ -315,11 +315,17 @@
       line-height: 143%;
       color: var(--navy);
 
-      &.is-active,
-      &:hover {
+      &.is-active {
         background-color: var(--blue);
 
         color: var(--white);
+      }
+
+      &:not(.is-active):hover {
+
+        @include dosm {
+          background-color: var(--navy-10);
+        }
       }
     }
   }
@@ -344,6 +350,7 @@
       flex-shrink: 0;
       background-color: var(--color-bg-color);
       border: 0.2rem solid var(--color-border-color);
+      transition: all 0.3s ease;
 
       &.product-color--gray {
         --color-border-color: var(--black);
@@ -358,6 +365,10 @@
       &.product-color--dark-gray {
         --color-border-color: #555555;
         --color-bg-color: #555555;
+      }
+
+      &.is-active {
+        --color-border-color: var(--cyan);
       }
     }
   }

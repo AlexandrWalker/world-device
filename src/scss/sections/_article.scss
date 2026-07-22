@@ -2,6 +2,10 @@
 
 .article {
 
+  @include dosm {
+    --section-padding-top: 2.5rem;
+  }
+
   &__inner {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -51,12 +55,22 @@
       }
     }
 
+    .service-center-page & {
+
+      @include dosm {
+        margin-bottom: 0;
+      }
+    }
+
     .guarantee & {
       margin-bottom: 2rem;
     }
   }
 
   &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     grid-row: 3/4;
 
     @include dosm {
@@ -87,7 +101,21 @@
       height: 5.4rem;
       flex-shrink: 0;
       background-color: var(--blue-2-05);
+      transition: background-color 0.3s ease;
       border-radius: 50%;
+
+      &:hover {
+
+        @include dosm {
+          // background-color: var(--blue-2);
+
+          i {
+            transform: scale(1.1);
+
+            // color: var(--white);
+          }
+        }
+      }
 
       i {
         --font-size: 3.6rem;
@@ -130,6 +158,14 @@
     }
   }
 
+  &__desc {
+
+    a {
+      color: var(--navy);
+      text-decoration: underline;
+    }
+  }
+
   &__text {
     color: var(--navy);
   }
@@ -137,9 +173,7 @@
   &__content {
 
     .action {
-      background-color: var(--white);
       padding: 1rem 1.4rem 1.3rem 2rem;
-      border-radius: 0.5rem;
       margin-bottom: 4rem;
 
       font-style: italic;
@@ -175,6 +209,7 @@
         margin-bottom: 0;
       }
 
+      .blog-page-2 &,
       .guarantee & {
         color: var(--black);
       }
@@ -275,11 +310,23 @@
 
       position: relative;
 
+      &:hover {
+
+        @include dosm {
+
+          &::after {
+            opacity: 0;
+          }
+        }
+      }
+
       &::after {
         content: "";
         display: block;
         width: 100%;
         border-bottom: 0.2rem dotted var(--navy);
+        opacity: 1;
+        transition: opacity 0.2s ease;
 
         position: absolute;
         bottom: 0;
@@ -302,7 +349,7 @@
       }
     }
 
-    blockquote {
+    div {
       padding: 3rem 2rem;
       margin-bottom: 2rem;
       border-radius: 0.5rem;
@@ -331,6 +378,34 @@
           color: var(--navy);
         }
       }
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    background-color: var(--white);
+
+    @include dosm {
+      gap: 3rem;
+      padding: 4rem;
+      border-radius: 1.8rem;
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 3rem;
+      line-height: 120%;
+      color: var(--navy);
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
     }
   }
 

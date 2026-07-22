@@ -89,8 +89,6 @@
 
     &-head {
       padding: 1.3rem 2rem;
-      border-right: 0.1rem solid var(--black-05);
-      border-bottom: 0.1rem solid var(--black-05);
       transition: background-color 0.3s ease;
 
       position: relative;
@@ -98,6 +96,8 @@
 
       @include dosm {
         padding: 1.8rem 2rem;
+        border-right: 0.1rem solid var(--black-05);
+        border-bottom: 0.1rem solid var(--black-05);
         grid-column: 1/4;
       }
 
@@ -107,7 +107,7 @@
         justify-content: space-between;
         align-items: center;
         border-radius: 4rem;
-        background-color: var(--navy-10);
+        background-color: var(--navy-05);
       }
 
       .menu__block:last-child & {
