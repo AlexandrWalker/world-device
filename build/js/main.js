@@ -835,64 +835,133 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция аккордиона
    */
+  // (function accordionFunc() {
+  //   const accordionContainers = document.querySelectorAll('.accordion-items');
+  //   if (!accordionContainers.length) return;
+
+  //   // Один глобальный обработчик для закрытия при клике вне аккордеона
+  //   document.addEventListener('click', (e) => {
+  //     accordionContainers.forEach(container => {
+  //       const items = container.querySelectorAll('.accordion-item');
+  //       const activeClass = 'accordion-item--active';
+  //       items.forEach(item => {
+  //         if (!e.composedPath().includes(item)) {
+  //           item.classList.remove(activeClass);
+  //           container.classList.remove('activated');
+  //         }
+  //       });
+  //     });
+  //     ScrollTrigger.update();
+  //   });
+
+  //   // Один глобальный обработчик Escape для всех аккордеонов
+  //   window.addEventListener('keydown', (e) => {
+  //     if (e.key !== 'Escape') return;
+  //     accordionContainers.forEach(container => {
+  //       container.querySelectorAll('.accordion-item').forEach(item => {
+  //         item.classList.remove('accordion-item--active');
+  //       });
+  //       container.classList.remove('activated');
+  //     });
+  //     ScrollTrigger.update();
+  //   });
+
+  //   accordionContainers.forEach(accordionContainer => {
+  //     const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+  //     const activeClass = 'accordion-item--active';
+
+  //     // Закрытие при Escape
+  //     accordionItems.forEach(item => {
+  //       item.addEventListener('click', (e) => {
+  //         e.stopPropagation();
+
+  //         // Закрываем другие открытые элементы
+  //         accordionItems.forEach(i => {
+  //           if (i !== item) i.classList.remove(activeClass);
+  //         });
+
+  //         // Переключаем текущий
+  //         item.classList.toggle(activeClass);
+
+  //         // Управляем классом контейнера
+  //         if (item.classList.contains(activeClass)) {
+  //           accordionContainer.classList.add('activated');
+  //         } else {
+  //           accordionContainer.classList.remove('activated');
+  //         }
+
+  //         ScrollTrigger.update();
+  //       });
+  //     });
+  //   });
+
+  // })();
   (function accordionFunc() {
     const accordionContainers = document.querySelectorAll('.accordion-items');
     if (!accordionContainers.length) return;
 
-    // Один глобальный обработчик для закрытия при клике вне аккордеона
+    const activeClass = 'accordion-item--active';
+
+    // 1. Клик на элементы аккордеона
     document.addEventListener('click', (e) => {
-      accordionContainers.forEach(container => {
-        const items = container.querySelectorAll('.accordion-item');
-        const activeClass = 'accordion-item--active';
-        items.forEach(item => {
-          if (!e.composedPath().includes(item)) {
-            item.classList.remove(activeClass);
-            container.classList.remove('activated');
-          }
-        });
+      // Находим ближайшую кнопку/шапку аккордеона, по которой кликнули
+      const head = e.target.closest('.accordion-head');
+      if (!head) return;
+
+      const currentItem = head.closest('.accordion-item');
+      const currentContainer = currentItem.closest('.accordion-items');
+
+      // Находим только элементы этого же уровня (не трогаем вложенные внутрь)
+      const siblingItems = Array.from(currentContainer.children).filter(child =>
+        child.classList.contains('accordion-item')
+      );
+
+      // Закрываем соседей на этом же уровне
+      siblingItems.forEach(i => {
+        if (i !== currentItem) i.classList.remove(activeClass);
       });
-      ScrollTrigger.update();
+
+      // Переключаем текущий элемент
+      currentItem.classList.toggle(activeClass);
+
+      // Управляем классом activated для текущего контейнера
+      const hasActiveChild = siblingItems.some(i => i.classList.contains(activeClass));
+      if (hasActiveChild) {
+        currentContainer.classList.add('activated');
+      } else {
+        currentContainer.classList.remove('activated');
+      }
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
     });
 
-    // Один глобальный обработчик Escape для всех аккордеонов
-    window.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
+    // 2. Глобальный обработчик для закрытия при клике ВНЕ аккордеона
+    document.addEventListener('click', (e) => {
+      // Если кликнули внутрь какого-то аккордеона, эту логику пропускаем
+      if (e.target.closest('.accordion-items')) return;
+
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove(activeClass);
+      });
       accordionContainers.forEach(container => {
-        container.querySelectorAll('.accordion-item').forEach(item => {
-          item.classList.remove('accordion-item--active');
-        });
         container.classList.remove('activated');
       });
-      ScrollTrigger.update();
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
     });
 
-    accordionContainers.forEach(accordionContainer => {
-      const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
-      const activeClass = 'accordion-item--active';
+    // 3. Глобальный обработчик Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
 
-      // Закрытие при Escape
-      accordionItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.stopPropagation();
-
-          // Закрываем другие открытые элементы
-          accordionItems.forEach(i => {
-            if (i !== item) i.classList.remove(activeClass);
-          });
-
-          // Переключаем текущий
-          item.classList.toggle(activeClass);
-
-          // Управляем классом контейнера
-          if (item.classList.contains(activeClass)) {
-            accordionContainer.classList.add('activated');
-          } else {
-            accordionContainer.classList.remove('activated');
-          }
-
-          ScrollTrigger.update();
-        });
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove(activeClass);
       });
+      accordionContainers.forEach(container => {
+        container.classList.remove('activated');
+      });
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
     });
 
   })();
@@ -1326,6 +1395,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mousewheel: false,
             pagination: false,
             navigation: false,
+            noSwipingClass: 'swiper-no-swiping',
           },
         },
         swiperOptions: {

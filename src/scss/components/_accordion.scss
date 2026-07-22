@@ -13,12 +13,12 @@
     &--active {
       gap: 1.7rem;
 
-      .accordion-body {
+      &>.accordion-body {
         grid-template-rows: 1fr;
       }
 
-      .accordion-icon {
-        transform: rotate(180deg);
+      &>.accordion-head>.accordion-icon {
+        transform: scale(1, -1);
       }
     }
   }
@@ -36,5 +36,6 @@
 
   &-content {
     overflow: hidden;
+    min-height: 0;
   }
 }

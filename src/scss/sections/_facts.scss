@@ -207,6 +207,10 @@
         grid-column: span 5;
         grid-row: span 2;
       }
+
+      @include sm {
+        min-height: 23.3rem;
+      }
     }
 
     .general__button {

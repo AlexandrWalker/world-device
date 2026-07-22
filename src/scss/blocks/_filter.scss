@@ -8,6 +8,7 @@
   background-color: var(--white);
 
   @include dosm {
+    grid-column: 1/3;
     padding: 2rem 1rem 3rem 1rem;
 
     position: sticky;
@@ -17,7 +18,11 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
+
+    @include dosm {
+      gap: 3rem;
+    }
   }
 
   &__head {
@@ -72,13 +77,21 @@
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+
+    @include dosm {
+      gap: 2rem;
+    }
   }
 
   &__foot {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 0.8rem;
+
+    @include dosm {
+      gap: 2rem;
+    }
 
     .btn {
       --btn-width: 100%;
@@ -91,7 +104,11 @@
   &__item {
 
     &.accordion-item--active {
-      gap: 2rem;
+      gap: 1.5rem;
+
+      @include dosm {
+        gap: 2rem;
+      }
     }
 
     &-head {
@@ -116,16 +133,16 @@
         width: 1.6rem;
         height: 1.6rem;
 
-        transform: rotate(90deg);
+        transform: rotate(90deg) !important;
 
         .accordion-item--active & {
-          transform: rotate(90deg) scale(-1, 1);
+          transform: rotate(90deg) scale(-1, 1) !important;
         }
       }
     }
 
     &-body {
-      padding: 0 1rem;
+      padding: 0 2rem 0 1rem;
     }
 
     &-content {
@@ -230,6 +247,43 @@
       span {
         color: var(--cyan);
       }
+    }
+  }
+}
+
+.subfilter {
+
+  &__item {
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 120%;
+
+      i {
+        --font-size: 3.2rem;
+
+        width: 1.6rem;
+        height: 1.6rem;
+
+        transform: rotate(90deg) !important;
+
+        .accordion-item--active & {
+          transform: rotate(90deg) scale(-1, 1) !important;
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
   }
 }

@@ -36,13 +36,41 @@
     }
 
     ul {
-      list-style: disc;
+      --list-dot-color: var(--black-50);
+
       padding-left: 2.4rem;
+      margin-bottom: 4rem;
 
       li {
-        list-style: disc;
+        margin-bottom: 2rem;
 
         position: relative;
+
+        @include sm {
+          margin-bottom: 1.5rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 0.4rem;
+          height: 0.4rem;
+          border-radius: 0.15rem;
+          background-color: var(--list-dot-color);
+          flex-shrink: 0;
+
+          position: absolute;
+          top: 1rem;
+          left: -1.5rem;
+
+          @include sm {
+            top: 0.7rem;
+          }
+        }
       }
     }
   }
