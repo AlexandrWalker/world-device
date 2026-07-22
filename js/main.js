@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function scrollToTarget(target) {
       lenis.scrollTo(target, {
         // offset: -60,
-        offset: -150,
+        // offset: -150,
+        offset: -190,
         duration: 1.5,
       });
     }
@@ -311,47 +312,47 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Управляет поведением хэдера.
    */
-(function () {
-  const html = document.documentElement;
-  const header = document.getElementById('header');
-  const footer = document.getElementById('footer');
-  const firstHeight = 10;
+  (function () {
+    const html = document.documentElement;
+    const header = document.getElementById('header');
+    const footer = document.getElementById('footer');
+    const firstHeight = 10;
 
-  let startScrollTop = null; // Первоначальная позиция до начала скролла
-  let fixedClassTimeout = null; // Таймер остановки скролла
+    let startScrollTop = null; // Первоначальная позиция до начала скролла
+    let fixedClassTimeout = null; // Таймер остановки скролла
 
-  const scrollPosition = () => window.pageYOffset || html.scrollTop;
+    const scrollPosition = () => window.pageYOffset || html.scrollTop;
 
-  const footerObserver = new IntersectionObserver(([entry]) => {
-    html.classList.toggle('footer-show', entry.isIntersecting);
-  });
-  footerObserver.observe(footer);
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      html.classList.toggle('footer-show', entry.isIntersecting);
+    });
+    footerObserver.observe(footer);
 
-  if (startScrollTop === null) {
-    startScrollTop = scrollPosition();
-  }
+    if (startScrollTop === null) {
+      startScrollTop = scrollPosition();
+    }
 
-  window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
 
-    clearTimeout(fixedClassTimeout);
+      clearTimeout(fixedClassTimeout);
 
-    fixedClassTimeout = setTimeout(() => {
-      const currentScroll = scrollPosition();
+      fixedClassTimeout = setTimeout(() => {
+        const currentScroll = scrollPosition();
 
-      if (currentScroll > startScrollTop && currentScroll > firstHeight) {
-        if (!html.classList.contains('header-fixed')) {
-          html.classList.add('header-fixed');
+        if (currentScroll > startScrollTop && currentScroll > firstHeight) {
+          if (!html.classList.contains('header-fixed')) {
+            html.classList.add('header-fixed');
+          }
+        } else {
+          if (html.classList.contains('header-fixed')) {
+            html.classList.remove('header-fixed');
+          }
         }
-      } else {
-        if (html.classList.contains('header-fixed')) {
-          html.classList.remove('header-fixed');
-        }
-      }
 
-      startScrollTop = null;
-    }, 0);
-  }, { passive: true });
-})();
+        startScrollTop = null;
+      }, 0);
+    }, { passive: true });
+  })();
 
   /**
    * Функция управления поведением меню-каталога.
@@ -2735,6 +2736,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+  })();
+
+  (function () {
+    const navContainer = document.querySelector('.proizvod__nav');
+    if (!navContainer) return;
+
+    navContainer.addEventListener('click', (event) => {
+      // Находим ближайшую ссылку <a> внутри нашего меню
+      const clickedLink = event.target.closest('a');
+      if (!clickedLink) return;
+
+      // Предотвращаем переход по ссылке, если это необходимо (например, для табов)
+      // event.preventDefault(); 
+
+      const activeClass = 'nav-is-active';
+
+      // Если по ссылке уже кликнули ранее и она активна — ничего не делаем
+      if (clickedLink.classList.contains(activeClass)) return;
+
+      // 1. Находим прошлую активную ссылку СТРОГО внутри этого меню и убираем класс
+      const currentActive = navContainer.querySelector(`.${activeClass}`);
+      if (currentActive) {
+        currentActive.classList.remove(activeClass);
+      }
+
+      // 2. Добавляем активный класс текущей нажатой ссылке
+      clickedLink.classList.add(activeClass);
+    });
+  })();
+
+  (function () {
+    const navContainers = document.querySelectorAll('.product__content-items');
+    if (!navContainers.length) return;
+
+    navContainers.forEach(navContainer => {
+      navContainer.addEventListener('click', (event) => {
+        // Находим ближайшую ссылку <a> внутри нашего меню
+        const clickedLink = event.target.closest('.product__content-item');
+        if (!clickedLink) return;
+
+        // Предотвращаем переход по ссылке, если это необходимо (например, для табов)
+        // event.preventDefault(); 
+
+        const activeClass = 'is-active';
+
+        // Если по ссылке уже кликнули ранее и она активна — ничего не делаем
+        if (clickedLink.classList.contains(activeClass)) return;
+
+        // 1. Находим прошлую активную ссылку СТРОГО внутри этого меню и убираем класс
+        const currentActive = navContainer.querySelector(`.${activeClass}`);
+        if (currentActive) {
+          currentActive.classList.remove(activeClass);
+        }
+
+        // 2. Добавляем активный класс текущей нажатой ссылке
+        clickedLink.classList.add(activeClass);
+      });
+    });
+
+  })();
+
+  (function () {
+    const navContainers = document.querySelectorAll('.product__color-items');
+    if (!navContainers.length) return;
+
+    navContainers.forEach(navContainer => {
+      navContainer.addEventListener('click', (event) => {
+        // Находим ближайшую ссылку <a> внутри нашего меню
+        const clickedLink = event.target.closest('.product__color-item');
+        if (!clickedLink) return;
+
+        // Предотвращаем переход по ссылке, если это необходимо (например, для табов)
+        // event.preventDefault(); 
+
+        const activeClass = 'is-active';
+
+        // Если по ссылке уже кликнули ранее и она активна — ничего не делаем
+        if (clickedLink.classList.contains(activeClass)) return;
+
+        // 1. Находим прошлую активную ссылку СТРОГО внутри этого меню и убираем класс
+        const currentActive = navContainer.querySelector(`.${activeClass}`);
+        if (currentActive) {
+          currentActive.classList.remove(activeClass);
+        }
+
+        // 2. Добавляем активный класс текущей нажатой ссылке
+        clickedLink.classList.add(activeClass);
+      });
+    });
+
   })();
 
   /**
