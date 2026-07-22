@@ -163,6 +163,15 @@
     @include dosm {
       grid-template-columns: repeat(5, 1fr);
       gap: 2rem;
+      transition: grid-template-columns 0.3s ease, gap 0.3s ease;
+    }
+
+    .list-view & {
+
+      @include dosm {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
     }
   }
 }

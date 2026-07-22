@@ -92,9 +92,15 @@
         height: 5.4rem;
       }
 
-      &.is-active,
-      &:hover {
+      &.is-active {
         color: var(--blue);
+      }
+
+      &:hover {
+
+        @include dosm {
+          color: var(--blue);
+        }
       }
 
       i {
@@ -421,7 +427,7 @@
     @include dosm {
       gap: 2rem;
       border-radius: 1.8rem;
-      padding: 3rem 3rem 10rem 3rem;
+      padding: 3rem 3rem 3rem 3rem;
       grid-column: 10/13;
 
       position: sticky;

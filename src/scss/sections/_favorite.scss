@@ -1,7 +1,7 @@
 @use './../mixins' as *;
 
 .favorite {
-  
+
   &__inner {
     display: flex;
     flex-direction: column;
@@ -20,6 +20,14 @@
     @include dosm {
       grid-template-columns: repeat(6, 1fr);
       gap: 2rem;
+    }
+
+    .list-view & {
+
+      @include dosm {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
     }
   }
 }

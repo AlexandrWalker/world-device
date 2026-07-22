@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="./libs/fancybox/fancybox.css">
   <link rel="stylesheet" href="./libs/lenis/lenis.min.css">
   <link rel="stylesheet" href="./libs/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./libs/nouislider/nouislider.min.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -5206,10 +5207,11 @@
               <div class="catalog__control-btns">
                 <button
                   class="catalog__control-btn catalog__control-btn--active catalog__control-btn--items border-opacity"
-                  type="button">
+                  type="button" data-view="grid-view">
                   <i class="icon-bento"></i>
                 </button>
-                <button class="catalog__control-btn catalog__control-btn--list border-opacity" type="button">
+                <button class="catalog__control-btn catalog__control-btn--list border-opacity" type="button"
+                  data-view="list-view">
                   <i class="icon-kebab"></i>
                 </button>
                 <a class="catalog__control-btn catalog__control-btn--filter border-opacity" type="button" data-fancybox
@@ -5219,8 +5221,9 @@
               </div>
             </div>
 
-            <div class="favorite__items">
-              <div class="card__item in-stock" data-gallery>
+            <div class="favorite__body grid-view" data-view-change>
+              <div class="favorite__items">
+                <div class="card__item in-stock" data-gallery>
   <div class="card__item-remove">
     <button class="card__item-control--btn item-btn--js">
       <i class="icon-trash"></i>
@@ -6637,6 +6640,7 @@
     </a>
   </div>
 </div>
+              </div>
             </div>
 
           </div>
@@ -7665,10 +7669,27 @@
               Цена
               <i class="icon-chevron-big accordion-icon"></i>
             </div>
-            <div class="filter__item-body accordion-body">
+            <div class="filter__item-body filter__item-body--price accordion-body">
               <div class="filter__item-content accordion-content">
 
-                
+                <div class="range-filter-block" data-min="0" data-max="200000" data-start-min="20000"
+                  data-start-max="120000" data-step="100">
+                  <div class="range-slider-track"></div>
+
+                  <div class="price-inputs">
+                    <div class="price-input-wrap">
+                      <span class="price-input-prefix">от</span>
+                      <input class="range-input-min" type="text">
+                    </div>
+                    <span class="price-input-separator">
+                      <span></span>
+                    </span>
+                    <div class="price-input-wrap">
+                      <span class="price-input-prefix">до</span>
+                      <input class="range-input-max" type="text">
+                    </div>
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -7703,6 +7724,8 @@
 <script src="./libs/lenis/lenis.min.js"></script>
 <!-- swiper -->
 <script src="./libs/swiper/swiper-bundle.min.js"></script>
+<!-- nouislider -->
+ <script src="./libs/nouislider/nouislider.min.js"></script>
 <!-- scripts -->
 <script src="./js/main.js"></script>
 </body>

@@ -79,7 +79,7 @@ body {
 }
 
 .main {
-  margin-top: calc(var(--header-height) * -1);
+  // margin-top: calc(var(--header-height) * -1);
   flex: 1 0 auto;
   padding-bottom: var(--section-padding-bottom);
 
@@ -135,4 +135,15 @@ img {
 
 .social-max {
   background: linear-gradient(90deg, #00A3FF 0%, #8500FF 100%), #F3F3F7;
+}
+
+.grid-col-3 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @include dosm {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
 }

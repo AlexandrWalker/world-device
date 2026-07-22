@@ -109,6 +109,10 @@
       @include dosm {
         gap: 2rem;
       }
+
+      &>.accordion-head>.accordion-icon {
+        transform: rotate(90deg) scale(-1, 1);
+      }
     }
 
     &-head {
@@ -133,16 +137,16 @@
         width: 1.6rem;
         height: 1.6rem;
 
-        transform: rotate(90deg) !important;
-
-        .accordion-item--active & {
-          transform: rotate(90deg) scale(-1, 1) !important;
-        }
+        transform: rotate(90deg);
       }
     }
 
     &-body {
       padding: 0 2rem 0 1rem;
+
+      &--price {
+        padding: 0;
+      }
     }
 
     &-content {
@@ -272,10 +276,9 @@
         width: 1.6rem;
         height: 1.6rem;
 
-        transform: rotate(90deg) !important;
+        transform: rotate(90deg);
 
         .accordion-item--active & {
-          transform: rotate(90deg) scale(-1, 1) !important;
         }
       }
     }

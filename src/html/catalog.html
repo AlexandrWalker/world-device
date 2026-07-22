@@ -241,10 +241,11 @@
                 <div class="catalog__control-btns">
                   <button
                     class="catalog__control-btn catalog__control-btn--active catalog__control-btn--items border-opacity"
-                    type="button">
+                    type="button" data-view="grid-view">
                     <i class="icon-bento"></i>
                   </button>
-                  <button class="catalog__control-btn catalog__control-btn--list border-opacity" type="button">
+                  <button class="catalog__control-btn catalog__control-btn--list border-opacity" type="button"
+                    data-view="list-view">
                     <i class="icon-kebab"></i>
                   </button>
                   <a class="catalog__control-btn catalog__control-btn--filter border-opacity" type="button"
@@ -257,7 +258,7 @@
 
             <div class="catalog__body">
               @@include('./blocks/filter.html')
-              <div class="catalog__block">
+              <div class="catalog__block grid-view" data-view-change>
                 <div class="catalog__items">
                   @@loop('./elements/card-item.html', './data/card-slide-items.json')
                 </div>
