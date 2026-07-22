@@ -311,47 +311,47 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Управляет поведением хэдера.
    */
-  (function () {
-    const html = document.documentElement;
-    const header = document.getElementById('header');
-    const footer = document.getElementById('footer');
-    const firstHeight = 10;
+(function () {
+  const html = document.documentElement;
+  const header = document.getElementById('header');
+  const footer = document.getElementById('footer');
+  const firstHeight = 10;
 
-    let startScrollTop = null; // Первоначальная позиция до начала скролла
-    let fixedClassTimeout = null; // Таймер остановки скролла
+  let startScrollTop = null; // Первоначальная позиция до начала скролла
+  let fixedClassTimeout = null; // Таймер остановки скролла
 
-    const scrollPosition = () => window.pageYOffset || html.scrollTop;
+  const scrollPosition = () => window.pageYOffset || html.scrollTop;
 
-    const footerObserver = new IntersectionObserver(([entry]) => {
-      html.classList.toggle('footer-show', entry.isIntersecting);
-    });
-    footerObserver.observe(footer);
+  const footerObserver = new IntersectionObserver(([entry]) => {
+    html.classList.toggle('footer-show', entry.isIntersecting);
+  });
+  footerObserver.observe(footer);
 
-    if (startScrollTop === null) {
-      startScrollTop = scrollPosition();
-    }
+  if (startScrollTop === null) {
+    startScrollTop = scrollPosition();
+  }
 
-    window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
 
-      clearTimeout(fixedClassTimeout);
+    clearTimeout(fixedClassTimeout);
 
-      fixedClassTimeout = setTimeout(() => {
-        const currentScroll = scrollPosition();
+    fixedClassTimeout = setTimeout(() => {
+      const currentScroll = scrollPosition();
 
-        if (currentScroll > startScrollTop && currentScroll > firstHeight) {
-          if (!html.classList.contains('header-fixed')) {
-            html.classList.add('header-fixed');
-          }
-        } else {
-          if (html.classList.contains('header-fixed')) {
-            html.classList.remove('header-fixed');
-          }
+      if (currentScroll > startScrollTop && currentScroll > firstHeight) {
+        if (!html.classList.contains('header-fixed')) {
+          html.classList.add('header-fixed');
         }
+      } else {
+        if (html.classList.contains('header-fixed')) {
+          html.classList.remove('header-fixed');
+        }
+      }
 
-        startScrollTop = null;
-      }, 0);
-    });
-  })();
+      startScrollTop = null;
+    }, 0);
+  }, { passive: true });
+})();
 
   /**
    * Функция управления поведением меню-каталога.
@@ -2621,6 +2621,121 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.facts__slider')) {
     initClipSlider('.facts__slider');
   }
+
+  (function () {
+    // Находим абсолютно все блоки фильтров на странице
+    const filterBlocks = document.querySelectorAll('.range-filter-block');
+
+    // Функции для форматирования чисел с пробелами
+    const formatNumber = (num) => new Intl.NumberFormat('ru-RU').format(num);
+    const parseNumber = (str) => Number(str.replace(/\s/g, ''));
+
+    filterBlocks.forEach(block => {
+      // Ищем элементы СТРОГО внутри текущего блока, чтобы они не перемешались
+      const sliderTrack = block.querySelector('.range-slider-track');
+      const inputMin = block.querySelector('.range-input-min');
+      const inputMax = block.querySelector('.range-input-max');
+
+      if (!sliderTrack || !inputMin || !inputMax) return;
+
+      // Читаем индивидуальные настройки фильтра из data-атрибутов HTML
+      const minLimit = Number(block.dataset.min) || 0;
+      const maxLimit = Number(block.dataset.max) || 100000;
+      const startMin = Number(block.dataset.startMin) || minLimit;
+      const startMax = Number(block.dataset.startMax) || maxLimit;
+      const stepVal = Number(block.dataset.step) || 1;
+
+      // Инициализируем noUiSlider для текущего трека
+      noUiSlider.create(sliderTrack, {
+        start: [startMin, startMax],
+        connect: true,
+        step: stepVal,
+        range: {
+          'min': minLimit,
+          'max': maxLimit
+        }
+      });
+
+      // 1. Обновление инпутов и их ширины при движении текущего ползунка
+      sliderTrack.noUiSlider.on('update', (values, handle) => {
+        const value = Math.round(values[handle]);
+
+        if (handle === 0) {
+          inputMin.value = formatNumber(value);
+          inputMin.size = Math.max(inputMin.value.length, 1);
+        } else {
+          inputMax.value = formatNumber(value);
+          inputMax.size = Math.max(inputMax.value.length, 1);
+        }
+      });
+
+      // 2. Логика ручного ввода для минимального инпута текущего блока
+      inputMin.addEventListener('change', function () {
+        const cleanValue = parseNumber(this.value);
+        sliderTrack.noUiSlider.set([cleanValue, null]);
+      });
+
+      // 3. Логика ручного ввода для максимального инпута текущего блока
+      inputMax.addEventListener('change', function () {
+        const cleanValue = parseNumber(this.value);
+        sliderTrack.noUiSlider.set([null, cleanValue]);
+      });
+
+      // 4. Подгонка размера инпута под текст прямо во время печати
+      [inputMin, inputMax].forEach(input => {
+        input.addEventListener('input', function () {
+          const cleanValue = parseNumber(this.value);
+          if (!isNaN(cleanValue) && cleanValue !== 0) {
+            this.value = formatNumber(cleanValue);
+          }
+          this.size = Math.max(this.value.length, 1);
+        });
+      });
+    });
+
+  })();
+
+  (function () {
+    // Список всех возможных видов отображения для очистки старых классов
+    const viewClasses = ['grid-view', 'list-view'];
+
+    document.addEventListener('click', (event) => {
+      // Находим ближайшую кнопку переключения вида
+      const btn = event.target.closest('.catalog__control-btns .catalog__control-btn');
+      if (!btn) return;
+
+      // Получаем целевой вид из data-view (например, "grid" или "list")
+      const newView = btn.getAttribute('data-view');
+      if (!newView) return;
+
+      // Находим все блоки на странице, которые должны менять свой вид
+      const targets = document.querySelectorAll('[data-view-change]');
+      if (!targets.length) return;
+
+      // Проверяем, активен ли уже этот вид (смотрим по первому элементу для защиты от повторного клика)
+      if (targets[0].classList.contains(newView)) return;
+
+      // Проходимся циклом по всем целевым блокам на странице
+      targets.forEach(target => {
+        // 1. Удаляем у каждого блока старые классы отображения
+        viewClasses.forEach(viewClass => {
+          target.classList.remove(viewClass);
+        });
+
+        // 2. Добавляем новый класс отображения текущему блоку
+        target.classList.add(newView);
+      });
+
+      // 3. Синхронизируем активный класс на кнопках во всех блоках управления
+      document.querySelectorAll('.catalog__control-btn').forEach(button => {
+        if (button.getAttribute('data-view') === newView) {
+          button.classList.add('catalog__control-btn--active');
+        } else {
+          button.classList.remove('catalog__control-btn--active');
+        }
+      });
+    });
+  })();
 
   /**
    * Инициализация Fancybox
