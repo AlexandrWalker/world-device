@@ -35,7 +35,7 @@
     background-color: var(--navy-05);
     border: 0.1rem solid var(--navy-05);
     border-radius: 0.9rem;
-    padding: 0 2rem 0 2rem;
+    padding: 1.2rem 2rem 1.2rem 2rem;
     transition: all 0.3s ease;
 
     font-weight: 400;
@@ -90,6 +90,17 @@
     font-size: 1.2rem;
     line-height: 120%;
     color: var(--black-50);
+
+    &:has(input:required) {
+
+      span::before {
+        content: "*";
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 120%;
+        color: var(--red);
+      }
+    }
   }
 
   &-search {
@@ -216,6 +227,39 @@
       font-size: 1.2rem;
       line-height: 120%;
       color: var(--black-50);
+    }
+  }
+
+  &-textarea {
+    width: 100%;
+    height: auto;
+    background-color: var(--navy-05);
+    border: 0.1rem solid var(--navy-05);
+    border-radius: 0.9rem;
+    padding: 1.2rem 2rem 1.2rem 2rem;
+    transition: all 0.3s ease;
+    resize: none;
+
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 143%;
+    color: var(--black-50);
+
+    &.filled,
+    &:focus,
+    &:active,
+    &:checked {
+      border-color: var(--navy-10);
+
+      color: var(--black);
+    }
+
+    &::placeholder {
+      color: var(--black-50);
+    }
+
+    &:hover {
+      border-color: var(--navy-10);
     }
   }
 

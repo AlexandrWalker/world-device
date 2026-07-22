@@ -2828,6 +2828,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  (function () {
+    const counters = document.querySelectorAll('.quantity-counter');
+
+    const formatQuantity = (num) => {
+      const formattedNumber = new Intl.NumberFormat('ru-RU').format(num);
+      return `${formattedNumber} шт`;
+    };
+
+    const parseQuantity = (str) => {
+      // Удаляем всё, кроме цифр
+      const cleanStr = str.replace(/\D/g, '');
+      return parseInt(cleanStr, 10) || 0;
+    };
+
+    counters.forEach(counter => {
+      const btnMinus = counter.querySelector('.quantity-btn--minus');
+      const btnPlus = counter.querySelector('.quantity-btn--plus');
+      const input = counter.querySelector('.quantity-input');
+
+      if (!input) return;
+
+      // Главная функция обновления
+      const updateCounter = (newValue, isTyping = false) => {
+        // Если пользователь в процессе ввода, не форматируем жестко, чтобы не мешать писать
+        if (isTyping) {
+          input.size = Math.max(input.value.length, 1);
+          return;
+        }
+
+        // Если ввод окончен, проверяем жесткие лимиты
+        if (newValue < 1) newValue = 1;
+        if (newValue > 1000) newValue = 1000;
+
+        input.value = formatQuantity(newValue);
+        input.size = Math.max(input.value.length, 1);
+      };
+
+      // 1. Клик по минусу
+      btnMinus.addEventListener('click', () => {
+        const currentVal = parseQuantity(input.value);
+        updateCounter(currentVal - 1);
+      });
+
+      // 2. Клик по плюсу
+      btnPlus.addEventListener('click', () => {
+        const currentVal = parseQuantity(input.value);
+        updateCounter(currentVal + 1);
+      });
+
+      // 3. Событие ФОКУСА: когда пользователь кликает на инпут, убираем "шт", чтобы было удобно стирать цифры
+      input.addEventListener('focus', function () {
+        const currentVal = parseQuantity(this.value);
+        if (currentVal > 0) {
+          this.value = currentVal; // Оставляем только чистые цифры
+        }
+      });
+
+      // 4. Событие ВВОДА: подгоняем ширину на лету, пока пользователь пишет цифры
+      input.addEventListener('input', function () {
+        // Разрешаем вводить только цифры (автоматом стираем буквы, если их вставили)
+        this.value = this.value.replace(/\D/g, '');
+        updateCounter(null, true);
+      });
+
+      // 5. Событие ПОТЕРИ ФОКУСА / ENTER: когда пользователь закончил ввод
+      input.addEventListener('change', function () {
+        const finalValue = parseQuantity(this.value);
+        updateCounter(finalValue);
+      });
+
+      // Первоначальный расчет при загрузке страницы
+      updateCounter(parseQuantity(input.value));
+    });
+  })();
+
   /**
    * Инициализация Fancybox
    */
