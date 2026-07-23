@@ -271,7 +271,7 @@
           color: var(--white);
         }
 
-        .cart__block-check {
+        .check {
           border-color: var(--white);
         }
       }
@@ -309,39 +309,6 @@
 
       @include dosm {
         font-size: 1.2rem;
-      }
-    }
-
-    &-check {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 1.7rem;
-      height: 1.7rem;
-      border-radius: 50%;
-      border: 0.1rem solid var(--navy);
-      transition: border-color 0.3s ease;
-
-      position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      z-index: 1;
-
-      input:checked {
-
-        &+span {
-          background-color: var(--cyan);
-        }
-      }
-
-      span {
-        content: "";
-        display: block;
-        width: 1.1rem;
-        height: 1.1rem;
-        border-radius: 50%;
-        background-color: transparent;
-        transition: background-color 0.3s ease;
       }
     }
 

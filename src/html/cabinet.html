@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page cabinet-page ajax-page">
+@@include('blocks/head.html', {"title": "World Device"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="/world-device">
+                    <span>
+                      На главную
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <span>
+                    Личный кабинет
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__wrapper">
+              <div class="template__title" data-split="lines">
+                <h1>
+                  Личный кабинет
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="cabinet">
+        <div class="container">
+          <div class="cabinet__inner">
+
+            <div class="cabinet__nav">
+              <div class="cabinet__nav-items ajax-btns">
+                <div class="cabinet__nav-item ajax-btn ajax-btn-active" data-cabinet="cabinet-profile">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-person"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Профиль
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-favorite">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-favorite"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Избранное
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-sravnenie">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-sravnenie"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Сравнение
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-orders">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-list"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Мои заказы
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-trade">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-trade-in"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Trade-in
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-notifications">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-telegram"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Уведомления
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cabinet__body">
+              <div class="cabinet__content">
+                @@include('ajax/cabinet-profile.html')
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

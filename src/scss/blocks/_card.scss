@@ -58,6 +58,9 @@
     }
 
     &-head {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 6.4rem 2.6rem 3.8rem 2.6rem;
       background-color: var(--gray-light);
 

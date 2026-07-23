@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="inner-page">
+<html lang="ru" class="inner-page cabinet-page ajax-page">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -5168,7 +5168,7 @@
                 </li>
                 <li>
                   <span>
-                    Алфавитный указатель
+                    Личный кабинет
                   </span>
                 </li>
               </ul>
@@ -5177,7 +5177,7 @@
             <div class="template__wrapper">
               <div class="template__title" data-split="lines">
                 <h1>
-                  Производители
+                  Личный кабинет
                 </h1>
               </div>
             </div>
@@ -5186,526 +5186,238 @@
         </div>
       </section>
 
-      <section class="proizvod">
+      <section class="cabinet">
         <div class="container">
-          <div class="proizvod__inner">
+          <div class="cabinet__inner">
 
-            <div class="proizvod__nav">
-              <ul>
-                <li>
-                  <a href="#nav-0-9">
-                    0-9
-                  </a>
-                </li>
-                <li>
-                  <a class="nav-is-active" href="#nav-a">
-                    a
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-b">
-                    B
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-c">
-                    C
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-d">
-                    D
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-e">
-                    E
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-f">
-                    F
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-g">
-                    G
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-h">
-                    H
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-i">
-                    I
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-j">
-                    J
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-k">
-                    K
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-l">
-                    L
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-m">
-                    M
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-n">
-                    N
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-o">
-                    O
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-p">
-                    P
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-r">
-                    R
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-s">
-                    S
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-t">
-                    T
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-v">
-                    V
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-w">
-                    W
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-x">
-                    X
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-y">
-                    Y
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-z">
-                    Z
-                  </a>
-                </li>
-                <li>
-                  <a href="#nav-ya">
-                    Я
-                  </a>
-                </li>
-              </ul>
+            <div class="cabinet__nav">
+              <div class="cabinet__nav-items ajax-btns">
+                <div class="cabinet__nav-item ajax-btn ajax-btn-active" data-cabinet="cabinet-profile">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-person"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Профиль
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-favorite">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-favorite"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Избранное
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-sravnenie">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-sravnenie"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Сравнение
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-orders">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-list"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Мои заказы
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-trade">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-trade-in"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Trade-in
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-notifications">
+                  <div class="cabinet__nav-icon">
+                    <i class="icon-telegram"></i>
+                  </div>
+                  <div class="cabinet__nav-title">
+                    Уведомления
+                  </div>
+                  <div class="cabinet__nav-link">
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="proizvod__body">
-              <div class="proizvod__items">
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-0-9" class="proizvod__item-title">
-                      0-9
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          360
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+            <div class="cabinet__body">
+              <div class="cabinet__content">
+                <div class="profile">
+  <div class="profile__items">
+    <div class="profile__item">
+      <div class="profile__item-suptitle">
+        Личные данные
+      </div>
+      <div class="profile__item-wrap">
+        <div class="profile__item-text">
+          Иван Петров
+        </div>
+        <a class="profile__item-text profile__item-text--link" href="tel:+71234567890">
+          +7 (123) 456-78-90
+        </a>
+        <a class="profile__item-text profile__item-text--link" href="mailto:ivan@pochta.ru">
+          ivan@pochta.ru
+        </a>
+      </div>
+    </div>
+    <div class="profile__item">
+      <div class="profile__item-suptitle">
+        Приоритетный адрес доставки
+      </div>
+      <div class="profile__item-wrapper">
+        <div class="profile__item-text">
+          Александровской Фермы пр., 1
+        </div>
+        <a class="profile__item-link" href="/">
+          Изменить адрес
+        </a>
+      </div>
+    </div>
+    <div class="profile__item">
+      <div class="profile__item-head">
+        <div class="profile__item-title">
+          Личные данные
+        </div>
+      </div>
+      <div class="profile__item-body">
+        <div class="form-inner">
+          <div class="form-body grid-col-3">
+            <div class="form-group">
+              <label class="form-label">
+                <span>
+                  Номер телефона:
+                </span>
+                <input class="form-input" type="tel" name="prfile_form_tel" placeholder="+7 (123) 456-78-90">
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="form-label">
+                <span>
+                  Эл.почта:
+                </span>
+                <input class="form-input" type="mail" name="prfile_form_mail" placeholder="Введите почту">
+              </label>
+            </div>
+            <div class="form-group has-error">
+              <label class="form-label">
+                <span>
+                  Ф.И.О
+                </span>
+                <input class="form-input" type="text" name="prfile_form_name" placeholder="Иван Петров"
+                  value="сячысыссыс">
+              </label>
+            </div>
+          </div>
+          <div class="form-foot">
+            <div class="form-foot__btns">
+              <button class="btn btn--blue" type="button">
+                Редактировать
+              </button>
+              <button class="btn btn--white" type="button">
+                Сохранить
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="profile__item">
+      <div class="profile__item-head">
+        <div class="profile__item-title">
+          Сохраненные адреса
+        </div>
+      </div>
+      <div class="profile__item-body">
+        <div class="form-inner">
+          <div class="form-body">
+            <div class="profile__blocks">
+              <label class="profile__block">
+                <div class="check">
+                  <input type="radio" name="profile_address" hidden>
+                  <span></span>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-a" class="proizvod__item-title">
-                      A
-                    </div>
+                <div class="profile__block-wrap">
+                  <div class="profile__block-title">
+                    Александровской Фермы пр., 1
                   </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Alcatel
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Amazon
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Apple
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          ASUS
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <a class="profile__block-link" href="/">
+                    Изменить адрес
+                  </a>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-b" class="proizvod__item-title">
-                      B
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Babycare
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          BanQ
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Barnes & Noble
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          BlackVue
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Bosch
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Bowers and Wilkins
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Braun
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="profile__block-btn">
+                  <i class="icon-trash"></i>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-c" class="proizvod__item-title">
-                      C
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Canon
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Carcam
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Casio
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+              </label>
+              <label class="profile__block">
+                <div class="check">
+                  <input type="radio" name="profile_address" hidden>
+                  <span></span>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-d" class="proizvod__item-title">
-                      D
-                    </div>
+                <div class="profile__block-wrap">
+                  <div class="profile__block-title">
+                    Александровский парк, 1
                   </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          De’Longhi
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          DJI
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Dyson
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <a class="profile__block-link" href="/">
+                    Изменить адрес
+                  </a>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-e" class="proizvod__item-title">
-                      E
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Epson
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="profile__block-btn">
+                  <i class="icon-trash"></i>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-f" class="proizvod__item-title">
-                      F
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Fujifilm
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+              </label>
+              <label class="profile__block">
+                <div class="check">
+                  <input type="radio" name="profile_address" hidden>
+                  <span></span>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-g" class="proizvod__item-title">
-                      G
-                    </div>
+                <div class="profile__block-wrap">
+                  <div class="profile__block-title">
+                    Александровский парк, 1
                   </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Garmin
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          GIGABYTE
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Google
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          GoPro
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <a class="profile__block-link" href="/">
+                    Изменить адрес
+                  </a>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-h" class="proizvod__item-title">
-                      H
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Harman
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Helwlett-Packard
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Honor
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          HTC
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Huawei
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Hyperice
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          HyperX
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="profile__block-btn">
+                  <i class="icon-trash"></i>
                 </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-i" class="proizvod__item-title">
-                      I
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          iLife
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Infinix
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Insta360
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-j" class="proizvod__item-title">
-                      J
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Jabra
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          JBL
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Jura
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-k" class="proizvod__item-title">
-                      K
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Karcher
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          KUULAA
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-l" class="proizvod__item-title">
-                      L
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Leff
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Lego
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Lenovo
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Lg Electronics
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/world-device/">
-                          Logitech
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="proizvod__item">
-                  <div class="proizvod__item-head">
-                    <div id="nav-ya" class="proizvod__item-title">
-                      Я
-                    </div>
-                  </div>
-                  <div class="proizvod__item-body">
-                    <ul>
-                      <li>
-                        <a href="/world-device/">
-                          Яндекс
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+              </label>
+            </div>
+          </div>
+          <div class="form-foot">
+            <div class="form-foot__btns">
+              <button class="btn btn--blue" type="button">
+                Добавить адрес
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
               </div>
             </div>
 

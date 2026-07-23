@@ -790,48 +790,48 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция для присвоения класса filled для заполненных форм
    */
-  (function () {
+  // (function () {
 
-    const form = document.querySelector('form');
+  //   const form = document.querySelector('form');
 
-    if (form) {
-      const inputElements = document.querySelectorAll('.form-input');
-      const searchElements = document.querySelectorAll('.form-search');
-      const textareaElements = document.querySelectorAll('.form-textarea');
-      const className = 'filled';
+  //   if (form) {
+  //     const inputElements = document.querySelectorAll('.form-input');
+  //     const searchElements = document.querySelectorAll('.form-search');
+  //     const textareaElements = document.querySelectorAll('.form-textarea');
+  //     const className = 'filled';
 
-      inputElements.forEach(element => {
-        element.addEventListener('input', function () {
-          if (this.value.trim() !== '') {
-            element.classList.add(className);
-          } else {
-            element.classList.remove(className);
-          }
-        });
-      });
+  //     inputElements.forEach(element => {
+  //       element.addEventListener('input', function () {
+  //         if (this.value.trim() !== '') {
+  //           element.classList.add(className);
+  //         } else {
+  //           element.classList.remove(className);
+  //         }
+  //       });
+  //     });
 
-      searchElements.forEach(element => {
-        element.addEventListener('input', function () {
-          if (this.value.trim() !== '') {
-            element.classList.add(className);
-          } else {
-            element.classList.remove(className);
-          }
-        });
-      });
+  //     searchElements.forEach(element => {
+  //       element.addEventListener('input', function () {
+  //         if (this.value.trim() !== '') {
+  //           element.classList.add(className);
+  //         } else {
+  //           element.classList.remove(className);
+  //         }
+  //       });
+  //     });
 
-      textareaElements.forEach(element => {
-        element.addEventListener('input', function () {
-          if (this.value.trim() !== '') {
-            element.classList.add(className);
-          } else {
-            element.classList.remove(className);
-          }
-        });
-      });
-    }
+  //     textareaElements.forEach(element => {
+  //       element.addEventListener('input', function () {
+  //         if (this.value.trim() !== '') {
+  //           element.classList.add(className);
+  //         } else {
+  //           element.classList.remove(className);
+  //         }
+  //       });
+  //     });
+  //   }
 
-  })();
+  // })();
 
   /**
    * Функция аккордиона
@@ -1079,21 +1079,121 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция для смены картинки для карточек товаров
    */
-  (function () {
-    const cards = document.querySelectorAll('[data-gallery]');
-    if (!cards.length) return;
+  // (function () {
+  //   const cards = document.querySelectorAll('[data-gallery]');
+  //   if (!cards.length) return;
 
-    cards.forEach((card) => {
+  //   cards.forEach((card) => {
+  //     const cover = card.querySelector('.card__item-cover');
+  //     const imgs = card.querySelectorAll('.card__item-img');
+  //     const dotsEl = card.querySelector('.card__item-dots');
+
+  //     if (!cover || imgs.length <= 1) return; // нечего листать
+
+  //     const total = imgs.length;
+  //     let current = 0;
+
+  //     // Генерируем полоски-индикаторы (даже если скрыты)
+  //     if (dotsEl) {
+  //       imgs.forEach((_, i) => {
+  //         const dot = document.createElement('span');
+  //         dot.className = 'card__item-dot' + (i === 0 ? ' is-active' : '');
+  //         dotsEl.appendChild(dot);
+  //       });
+  //     }
+  //     const dots = dotsEl ? dotsEl.querySelectorAll('.card__item-dot') : [];
+
+  //     // Показать картинку по индексу (с зацикливанием по кругу)
+  //     function show(index) {
+  //       // Безопасный modulo: -1 -> последняя, total -> первая
+  //       index = ((index % total) + total) % total;
+
+  //       if (index === current) return;
+
+  //       imgs[current].classList.remove('is-active');
+  //       imgs[index].classList.add('is-active');
+
+  //       if (dots.length) {
+  //         dots[current]?.classList.remove('is-active');
+  //         dots[index]?.classList.add('is-active');
+  //       }
+
+  //       current = index;
+  //     }
+
+  //     // ДЕСКТОП: переключение по зонам наведения
+  //     const isTouch = window.matchMedia('(hover: none)').matches;
+
+  //     if (!isTouch) {
+  //       cover.addEventListener('mousemove', (e) => {
+  //         const rect = cover.getBoundingClientRect();
+  //         const x = e.clientX - rect.left;
+  //         const zone = Math.floor((x / rect.width) * total);
+  //         // на десктопе зоны НЕ зацикливаем — ограничиваем краями
+  //         show(Math.min(Math.max(zone, 0), total - 1));
+  //       });
+
+  //       let leaveTimer;
+  //       cover.addEventListener('mouseleave', () => {
+  //         leaveTimer = setTimeout(() => show(0), 1000);
+  //       });
+  //       cover.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
+  //     }
+
+  //     // МОБИЛА: бесконечный свайп по картинке
+  //     // Слушаем горизонтальный жест и не отдаём его внешнему Swiper.
+  //     let startX = 0;
+  //     let startY = 0;
+  //     let tracking = false;
+
+  //     cover.addEventListener('touchstart', (e) => {
+  //       startX = e.touches[0].clientX;
+  //       startY = e.touches[0].clientY;
+  //       tracking = true;
+  //     }, { passive: true });
+
+  //     // Глушим ГОРИЗОНТАЛЬНЫЙ жест для внешнего Swiper, вертикаль пропускаем (скролл страницы)
+  //     cover.addEventListener('touchmove', (e) => {
+  //       if (!tracking) return;
+  //       const dx = Math.abs(e.touches[0].clientX - startX);
+  //       const dy = Math.abs(e.touches[0].clientY - startY);
+  //       if (dx > dy) e.stopPropagation();
+  //     }, { passive: true });
+
+  //     cover.addEventListener('touchend', (e) => {
+  //       if (!tracking) return;
+  //       tracking = false;
+
+  //       const diffX = e.changedTouches[0].clientX - startX;
+  //       const diffY = e.changedTouches[0].clientY - startY;
+
+  //       // Игнорируем вертикальные и мелкие движения
+  //       if (Math.abs(diffX) < 30 || Math.abs(diffX) < Math.abs(diffY)) return;
+
+  //       // Бесконечность: show() сам завернёт по кругу
+  //       if (diffX < 0) show(current + 1); // влево → вперёд (с последней на первую)
+  //       else show(current - 1);           // вправо → назад (с первой на последнюю)
+  //     }, { passive: true });
+  //   });
+  // })();
+
+  (function () {
+    // Флаг-метка, чтобы не инициализировать одну и ту же карточку дважды
+    const INIT_ATTR = 'data-gallery-init';
+
+    function initCard(card) {
+      if (card.hasAttribute(INIT_ATTR)) return;
+      card.setAttribute(INIT_ATTR, 'true');
+
       const cover = card.querySelector('.card__item-cover');
       const imgs = card.querySelectorAll('.card__item-img');
       const dotsEl = card.querySelector('.card__item-dots');
 
-      if (!cover || imgs.length <= 1) return; // нечего листать
+      if (!cover || imgs.length <= 1) return;
 
       const total = imgs.length;
       let current = 0;
 
-      // Генерируем полоски-индикаторы (даже если скрыты)
       if (dotsEl) {
         imgs.forEach((_, i) => {
           const dot = document.createElement('span');
@@ -1103,11 +1203,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const dots = dotsEl ? dotsEl.querySelectorAll('.card__item-dot') : [];
 
-      // Показать картинку по индексу (с зацикливанием по кругу)
       function show(index) {
-        // Безопасный modulo: -1 -> последняя, total -> первая
         index = ((index % total) + total) % total;
-
         if (index === current) return;
 
         imgs[current].classList.remove('is-active');
@@ -1121,7 +1218,6 @@ document.addEventListener('DOMContentLoaded', () => {
         current = index;
       }
 
-      // ДЕСКТОП: переключение по зонам наведения
       const isTouch = window.matchMedia('(hover: none)').matches;
 
       if (!isTouch) {
@@ -1129,7 +1225,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const rect = cover.getBoundingClientRect();
           const x = e.clientX - rect.left;
           const zone = Math.floor((x / rect.width) * total);
-          // на десктопе зоны НЕ зацикливаем — ограничиваем краями
           show(Math.min(Math.max(zone, 0), total - 1));
         });
 
@@ -1140,8 +1235,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cover.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
       }
 
-      // МОБИЛА: бесконечный свайп по картинке
-      // Слушаем горизонтальный жест и не отдаём его внешнему Swiper.
       let startX = 0;
       let startY = 0;
       let tracking = false;
@@ -1152,7 +1245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tracking = true;
       }, { passive: true });
 
-      // Глушим ГОРИЗОНТАЛЬНЫЙ жест для внешнего Swiper, вертикаль пропускаем (скролл страницы)
       cover.addEventListener('touchmove', (e) => {
         if (!tracking) return;
         const dx = Math.abs(e.touches[0].clientX - startX);
@@ -1167,13 +1259,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const diffX = e.changedTouches[0].clientX - startX;
         const diffY = e.changedTouches[0].clientY - startY;
 
-        // Игнорируем вертикальные и мелкие движения
         if (Math.abs(diffX) < 30 || Math.abs(diffX) < Math.abs(diffY)) return;
 
-        // Бесконечность: show() сам завернёт по кругу
-        if (diffX < 0) show(current + 1); // влево → вперёд (с последней на первую)
-        else show(current - 1);           // вправо → назад (с первой на последнюю)
+        if (diffX < 0) show(current + 1);
+        else show(current - 1);
       }, { passive: true });
+    }
+
+    // 1. Инициализируем карточки, которые уже есть в DOM
+    document.querySelectorAll('[data-gallery]').forEach(initCard);
+
+    // 2. Следим за появлением новых карточек в DOM
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          // Проверяем только элементы (пропускаем текстовые узлы)
+          if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+          // Если сам добавленный элемент является карточкой
+          if (node.matches('[data-gallery]')) {
+            initCard(node);
+          }
+
+          // Ищем карточки внутри добавленного элемента (например, если вставили контейнер с карточками)
+          node.querySelectorAll('[data-gallery]').forEach(initCard);
+        });
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
   })();
 
@@ -2902,6 +3018,83 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCounter(parseQuantity(input.value));
     });
   })();
+
+  /**
+   * Инициализация filled-класса для полей формы
+   */
+  function initFormInputs() {
+    const elements = document.querySelectorAll('.form-input, .form-search, .form-textarea');
+
+    elements.forEach(element => {
+      if (!element._filledInit) {
+        element._filledInit = true;
+
+        element.addEventListener('input', function () {
+          this.classList.toggle('filled', this.value.trim() !== '');
+        });
+      }
+
+      element.classList.toggle('filled', element.value.trim() !== '');
+    });
+  }
+
+  /**
+   * Конфиги для каждого типа ajax-page
+   */
+  const ajaxConfigs = [
+    {
+      containerSelector: '.cabinet-page',
+      btnSelector: '.ajax-btn',
+      dataAttr: 'cabinet',
+      targetSelector: '.cabinet__content'
+    },
+  ];
+
+  /**
+   * Инициализация Ajax вкладок для конкретного контейнера
+   */
+  function initAjaxTabs(container, config) {
+    // Пропускаем уже инициализированные
+    if (container._ajaxInit) return;
+    container._ajaxInit = true;
+
+    const $container = $(container);
+    const ajaxBtns = $container.find(config.btnSelector);
+
+    ajaxBtns.on('click', function () {
+      $container.find(config.btnSelector).removeClass('ajax-btn-active');
+      $(this).addClass('ajax-btn-active');
+      $('html').addClass('ajax--active');
+
+      const attr = $(this).data(config.dataAttr);
+      console.log(attr);
+      if (!attr) return;
+
+      $.get('./ajax/' + attr + '.html', function (data) {
+        $container.find(config.targetSelector).html(data);
+        initFormInputs();
+        initAllAjaxPages();
+      }).fail(function () {
+        console.warn('Не удалось загрузить: ./ajax/' + attr + '.html');
+      });
+    });
+  }
+
+  /**
+   * Инициализация всех ajax-page на странице (включая вложенные)
+   */
+  function initAllAjaxPages() {
+    ajaxConfigs.forEach(config => {
+      const containers = document.querySelectorAll(config.containerSelector);
+
+      containers.forEach(container => {
+        initAjaxTabs(container, config);
+      });
+    });
+  }
+
+  initFormInputs();
+  initAllAjaxPages();
 
   /**
    * Инициализация Fancybox
