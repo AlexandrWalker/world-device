@@ -8116,6 +8116,9 @@
     </main>
     <!-- Подвал -->
     <footer id="footer" class="footer">
+  <div class="footer__bg">
+    <video src="./video/footer_bg.mp4" autoplay loop muted playsinline preload="auto"></video>
+  </div>
   <div class="container">
     <div class="footer__inner">
 
@@ -8897,6 +8900,66 @@
     </div>
   </div>
 </div>
+
+<div id="popup-order" class="popup">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Как забрать и оплатить
+        </div>
+        <div class="popup__head-text popup__head-text--accent">
+          Не забудьте наличные. При оплате картой в офисе — комиссия 5%
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="popup__items">
+          <div class="popup__item">
+            <div class="popup__item-text">
+              При расчете наличными
+            </div>
+            <div class="popup__item-price">
+              62 480 ₽
+            </div>
+          </div>
+          <div class="popup__item">
+            <div class="popup__item-text">
+              При расчете картой
+            </div>
+            <div class="popup__item-price">
+              62 480 ₽
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue">
+          Я выезжаю
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-item">
+          <div class="popup__foot-text">
+            Построить маршрут в магазин
+          </div>
+          <div class="popup__foot-btns">
+            <button class="popup__foot-btn">
+              <img src="./images/icon/2gis-icon.svg" alt="">
+            </button>
+            <button class="popup__foot-btn">
+              <img src="./images/icon/yandex-icon.svg" alt="">
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="popup__map">
+        <img src="./images/temp/contacts-map.jpg" alt="">
+      </div>
+
+    </div>
+  </div>
+</div>
 </div>
 <!-- libs -->
 <!-- jquery -->
@@ -8912,7 +8975,7 @@
 <!-- swiper -->
 <script src="./libs/swiper/swiper-bundle.min.js"></script>
 <!-- nouislider -->
- <script src="./libs/nouislider/nouislider.min.js"></script>
+<script src="./libs/nouislider/nouislider.min.js"></script>
 <!-- scripts -->
 <script src="./js/main.js"></script>
 </body>
