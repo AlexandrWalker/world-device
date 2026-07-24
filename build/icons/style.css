@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'WDIconFonts';
-  src:  url('fonts/WDIconFonts.eot?cxv584');
-  src:  url('fonts/WDIconFonts.eot?cxv584#iefix') format('embedded-opentype'),
-    url('fonts/WDIconFonts.ttf?cxv584') format('truetype'),
-    url('fonts/WDIconFonts.woff?cxv584') format('woff'),
-    url('fonts/WDIconFonts.svg?cxv584#WDIconFonts') format('svg');
+  font-family: 'WDIconFont';
+  src:  url('fonts/WDIconFont.eot?mfpcbv');
+  src:  url('fonts/WDIconFont.eot?mfpcbv#iefix') format('embedded-opentype'),
+    url('fonts/WDIconFont.ttf?mfpcbv') format('truetype'),
+    url('fonts/WDIconFont.woff?mfpcbv') format('woff'),
+    url('fonts/WDIconFont.svg?mfpcbv#WDIconFont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -12,7 +12,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'WDIconFonts' !important;
+  font-family: 'WDIconFont' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -40,72 +40,87 @@
 .icon-chevron-big:before {
   content: "\e904";
 }
-.icon-close:before {
+.icon-chevron-stroke:before {
   content: "\e905";
 }
-.icon-favorite:before {
+.icon-close:before {
   content: "\e906";
 }
-.icon-filter:before {
+.icon-download:before {
   content: "\e907";
 }
-.icon-glass-max:before {
+.icon-favorite:before {
   content: "\e908";
 }
-.icon-glass-telegram:before {
+.icon-filter:before {
   content: "\e909";
 }
-.icon-headphones:before {
+.icon-galochka:before {
   content: "\e90a";
 }
-.icon-kebab:before {
+.icon-galochka-circle-inside:before {
   content: "\e90b";
 }
-.icon-list:before {
+.icon-glass-max:before {
   content: "\e90c";
 }
-.icon-login:before {
+.icon-glass-telegram:before {
   content: "\e90d";
 }
-.icon-max:before {
+.icon-headphones:before {
   content: "\e90e";
 }
-.icon-nav-chevron-down:before {
+.icon-kebab:before {
   content: "\e90f";
 }
-.icon-nav-max:before {
+.icon-list:before {
   content: "\e910";
 }
-.icon-nav-phone:before {
+.icon-login:before {
   content: "\e911";
 }
-.icon-nav-telegram:before {
+.icon-max:before {
   content: "\e912";
 }
-.icon-neuron:before {
+.icon-nav-chevron-down:before {
   content: "\e913";
 }
-.icon-person:before {
+.icon-nav-max:before {
   content: "\e914";
 }
-.icon-rating-star:before {
+.icon-nav-phone:before {
   content: "\e915";
 }
-.icon-search:before {
+.icon-nav-telegram:before {
   content: "\e916";
 }
-.icon-share:before {
+.icon-neuron:before {
   content: "\e917";
 }
-.icon-sravnenie:before {
+.icon-oformlenie:before {
   content: "\e918";
 }
-.icon-telegram:before {
+.icon-person:before {
   content: "\e919";
 }
-.icon-trade-in:before {
+.icon-rating-star:before {
   content: "\e91a";
 }
-.icon-trash:before {
+.icon-search:before {
   content: "\e91b";
+}
+.icon-share:before {
+  content: "\e91c";
+}
+.icon-sravnenie:before {
+  content: "\e91d";
+}
+.icon-telegram:before {
+  content: "\e91e";
+}
+.icon-trade-in:before {
+  content: "\e91f";
+}
+.icon-trash:before {
+  content: "\e920";
 }

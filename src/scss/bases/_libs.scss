@@ -188,8 +188,8 @@
 }
 
 .f-button.is-close-button {
-  --f-close-button-width: 1.2rem;
-  --f-close-button-height: 1.2rem;
+  --f-close-button-width: 3rem;
+  --f-close-button-height: 3rem;
   --f-close-border-radius: 50%;
   --f-close-button-color: var(--white);
   --f-close-button-hover-color: var(--white);
@@ -205,8 +205,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 3rem;
+  height: 3rem;
   background-color: transparent;
   flex-shrink: 0;
 
@@ -215,8 +215,8 @@
   background-size: 100% 100%;
   transition: all 0.3s ease;
 
-  top: 1.4rem;
-  right: 1.4rem;
+  top: 2rem;
+  right: 2rem;
 
   @include sm {
     --f-close-button-width: 1.2rem;

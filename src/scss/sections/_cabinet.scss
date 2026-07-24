@@ -13,9 +13,13 @@
   }
 
   &__nav {
+    height: fit-content;
 
     @include dosm {
       grid-column: 1/4;
+
+      position: sticky;
+      top: 13.6rem;
     }
 
     &-items {
