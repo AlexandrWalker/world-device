@@ -34,6 +34,15 @@
     }
   }
 
+  .header-fixed & {
+
+    @include dosm {
+      padding-top: calc(var(--header-height) - 5.4rem);
+    }
+
+    @include sm {}
+  }
+
   .container {
 
     @include sm {

@@ -1,0 +1,34 @@
+@use './../mixins' as *;
+
+.privacy__contetnt {
+  gap: 3.5rem;
+}
+
+.privacy__content h2 {
+  margin-bottom: 3rem;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 140%;
+  color: var(--black);
+}
+
+.privacy__content p {
+  margin-bottom: 1.6rem;
+  color: var(--black);
+}
+
+.privacy__content ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.6rem;
+}
+
+.privacy__content ul li::before {
+  content: "●";
+  margin-right: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--black);
+  display: inline-block;
+  vertical-align: middle;
+}
