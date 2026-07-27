@@ -2738,7 +2738,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.facts__slider')) {
     initClipSlider('.facts__slider');
   }
-
+  
   (function () {
     // Находим абсолютно все блоки фильтров на странице
     const filterBlocks = document.querySelectorAll('.range-filter-block');
