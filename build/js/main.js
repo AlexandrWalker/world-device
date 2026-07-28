@@ -355,38 +355,33 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция управления поведением меню-каталога.
+   * Функция управления поведением мобильного меню, меню-каталога и поиска.
    */
   (function () {
-    const catalogBtns = document.querySelectorAll('.js-catalog-btn');
     const catalogMenu = document.getElementById('catalog-menu');
+    const burgerBtn = document.getElementById('burger-btn');
+    const burgerMenu = document.getElementById('burger-menu');
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    const mobileSearchMenu = document.getElementById('mobile-search-menu');
 
-    // Если на странице нет меню или кнопок — мягко выходим
-    if (catalogBtns.length === 0 || !catalogMenu) return;
-
-    const menuBlocks = catalogMenu.querySelectorAll('[data-target]');
-    const menuItems = catalogMenu.querySelectorAll('[data-panel]');
-
-    // Находим все обёртки строго внутри нашего меню каталога
-    const blockWrappers = catalogMenu.querySelectorAll('.menu__block-wrapper');
-    const correspondingInner = catalogMenu.querySelector('.menu__inner');
+    const catalogBtns = document.querySelectorAll('.js-catalog-btn');
+    const menuBlocks = catalogMenu ? catalogMenu.querySelectorAll('[data-target]') : [];
+    const menuItems = catalogMenu ? catalogMenu.querySelectorAll('[data-panel]') : [];
+    const blockWrappers = catalogMenu ? catalogMenu.querySelectorAll('.menu__block-wrapper') : [];
+    const correspondingInner = catalogMenu ? catalogMenu.querySelector('.menu__inner') : null;
 
     const isMobileQuery = window.matchMedia('(max-width: 600px)');
     const observersList = [];
 
     const updateAllWrappersHeight = () => {
       if (blockWrappers.length === 0 || !correspondingInner) return;
-
       blockWrappers.forEach(wrapper => {
         if (isMobileQuery.matches) {
           wrapper.removeAttribute('style');
           return;
         }
-
-        // Вычисляем высоту для десктопа
         const innerHeight = correspondingInner.offsetHeight;
         const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
-
         if (finalHeight > 0) {
           wrapper.style.maxHeight = `${finalHeight}px`;
         }
@@ -395,14 +390,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initHeightTracking = () => {
       if (blockWrappers.length === 0 || !correspondingInner) return;
-
       if (typeof ResizeObserver === 'undefined') {
         window.addEventListener('resize', updateAllWrappersHeight);
         window.addEventListener('orientationchange', updateAllWrappersHeight);
         updateAllWrappersHeight();
         return;
       }
-
       blockWrappers.forEach(wrapper => {
         const observer = new ResizeObserver(() => {
           window.requestAnimationFrame(() => {
@@ -417,70 +410,111 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         });
-
         observer.observe(correspondingInner);
         observersList.push(observer);
       });
-
-      // Делаем первый стартовый расчет высоты
       updateAllWrappersHeight();
     };
 
-    const openMenu = () => {
-      catalogBtns.forEach(btn => btn.classList.add('catalog-btn--open'));
-      document.documentElement.classList.add('catalog-menu--open');
-      if (typeof lenis !== 'undefined') lenis.stop();
+    const syncBurgerBtnState = () => {
+      if (!burgerBtn) return;
+      const isAnyMenuOpen =
+        document.documentElement.classList.contains('catalog-menu--open') ||
+        document.documentElement.classList.contains('burger-menu--open') ||
+        document.documentElement.classList.contains('mobile-search-menu--open');
 
-      // Пересчитываем высоту всех обёрток сразу в момент открытия
-      updateAllWrappersHeight();
-
-      if (!isMobileQuery.matches && menuBlocks.length > 0) {
-        const firstTarget = menuBlocks[0].getAttribute('data-target');
-        switchTab(firstTarget);
+      if (isAnyMenuOpen) {
+        burgerBtn.classList.add('burger-btn--open');
+      } else {
+        burgerBtn.classList.remove('burger-btn--open');
       }
     };
 
-    const closeMenu = () => {
+    const openCatalog = () => {
+      closeBurger();
+      closeSearch();
+      catalogBtns.forEach(btn => btn.classList.add('catalog-btn--open'));
+      document.documentElement.classList.add('catalog-menu--open');
+      if (typeof lenis !== 'undefined') lenis.stop();
+      updateAllWrappersHeight();
+      if (!isMobileQuery.matches && menuBlocks.length > 0) {
+        switchTab(menuBlocks[0].getAttribute('data-target'));
+      }
+      syncBurgerBtnState();
+    };
+
+    const closeCatalog = () => {
       catalogBtns.forEach(btn => btn.classList.remove('catalog-btn--open'));
       document.documentElement.classList.remove('catalog-menu--open');
       if (typeof lenis !== 'undefined') lenis.start();
       document.dispatchEvent(new CustomEvent('menu:close'));
-
       resetTabs();
+      syncBurgerBtnState();
     };
 
-    const toggleMenu = (e) => {
+    const toggleCatalog = (e) => {
       e.preventDefault();
-      const isMenuOpen = document.documentElement.classList.contains('catalog-menu--open');
-
-      if (isMenuOpen) {
-        closeMenu();
+      if (document.documentElement.classList.contains('catalog-menu--open')) {
+        closeCatalog();
       } else {
-        openMenu();
+        openCatalog();
+      }
+    };
+
+    const openBurger = () => {
+      closeCatalog();
+      closeSearch();
+      document.documentElement.classList.add('burger-menu--open');
+      if (typeof lenis !== 'undefined') lenis.stop();
+      syncBurgerBtnState();
+    };
+
+    const closeBurger = () => {
+      document.documentElement.classList.remove('burger-menu--open');
+      if (typeof lenis !== 'undefined') lenis.start();
+      document.dispatchEvent(new CustomEvent('menu:close'));
+      syncBurgerBtnState();
+    };
+
+    const openSearch = () => {
+      closeCatalog();
+      closeBurger();
+      if (mobileSearchBtn) mobileSearchBtn.classList.add('mobile-search-btn--open');
+      document.documentElement.classList.add('mobile-search-menu--open');
+      if (typeof lenis !== 'undefined') lenis.stop();
+      syncBurgerBtnState();
+    };
+
+    const closeSearch = () => {
+      if (mobileSearchBtn) mobileSearchBtn.classList.remove('mobile-search-btn--open');
+      document.documentElement.classList.remove('mobile-search-menu--open');
+      if (typeof lenis !== 'undefined') lenis.start();
+      syncBurgerBtnState();
+    };
+
+    const toggleSearch = (e) => {
+      e.preventDefault();
+      if (document.documentElement.classList.contains('mobile-search-menu--open')) {
+        closeSearch();
+      } else {
+        openSearch();
       }
     };
 
     const switchTab = (targetId) => {
       menuBlocks.forEach(block => {
-        const isCurrent = block.getAttribute('data-target') === targetId;
-        block.classList.toggle('menu__block--active', isCurrent);
+        block.classList.toggle('menu__block--active', block.getAttribute('data-target') === targetId);
       });
-
       menuItems.forEach(item => {
-        const isCurrent = item.getAttribute('data-panel') === targetId;
-        item.classList.toggle('menu__items--active', isCurrent);
+        item.classList.toggle('menu__items--active', item.getAttribute('data-panel') === targetId);
       });
-
       updateAllWrappersHeight();
     };
 
     const toggleMobileAccordion = (block, targetId) => {
-      const correspondingPanel = catalogMenu.querySelector(`[data-panel="${targetId}"]`);
+      const correspondingPanel = catalogMenu ? catalogMenu.querySelector(`[data-panel="${targetId}"]`) : null;
       if (!correspondingPanel) return;
-
-      const isActive = block.classList.contains('menu__block--active');
-
-      if (isActive) {
+      if (block.classList.contains('menu__block--active')) {
         block.classList.remove('menu__block--active');
         correspondingPanel.classList.remove('menu__items--active');
         correspondingPanel.style.maxHeight = null;
@@ -498,24 +532,39 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.remove('menu__items--active');
         item.style.maxHeight = null;
       });
-      blockWrappers.forEach(wrapper => {
-        wrapper.removeAttribute('style');
-      });
+      blockWrappers.forEach(wrapper => wrapper.removeAttribute('style'));
     };
 
     const handleBlockInteraction = (e, block, interactionType) => {
       const targetId = block.getAttribute('data-target');
       if (!targetId) return;
-
-      const isMobile = isMobileQuery.matches;
-
-      if (isMobile && interactionType === 'click') {
+      if (isMobileQuery.matches && interactionType === 'click') {
         e.preventDefault();
         toggleMobileAccordion(block, targetId);
-      } else if (!isMobile && interactionType === 'mouseenter') {
+      } else if (!isMobileQuery.matches && interactionType === 'mouseenter') {
         switchTab(targetId);
       }
     };
+
+    if (burgerBtn) {
+      burgerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isCatalogOpen = document.documentElement.classList.contains('catalog-menu--open');
+        const isBurgerOpen = document.documentElement.classList.contains('burger-menu--open');
+        const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
+
+        if (isCatalogOpen || isBurgerOpen || isSearchOpen) {
+          closeCatalog();
+          closeBurger();
+          closeSearch();
+        } else {
+          openBurger();
+        }
+      });
+    }
+
+    catalogBtns.forEach(btn => btn.addEventListener('click', toggleCatalog));
+    if (mobileSearchBtn && mobileSearchMenu) mobileSearchBtn.addEventListener('click', toggleSearch);
 
     menuBlocks.forEach(block => {
       block.addEventListener('mouseenter', (e) => handleBlockInteraction(e, block, 'mouseenter'));
@@ -525,10 +574,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleBreakpointChange = (e) => {
       resetTabs();
       updateAllWrappersHeight();
-
       if (!e.matches && document.documentElement.classList.contains('catalog-menu--open') && menuBlocks.length > 0) {
-        const firstTarget = menuBlocks[0].getAttribute('data-target');
-        switchTab(firstTarget);
+        switchTab(menuBlocks[0].getAttribute('data-target'));
       }
     };
 
@@ -544,229 +591,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    catalogBtns.forEach(btn => {
-      btn.addEventListener('click', toggleMenu);
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && document.documentElement.classList.contains('catalog-menu--open')) {
-        closeMenu();
-      }
-    });
-
-    document.addEventListener('click', (event) => {
-      const isMenuOpen = document.documentElement.classList.contains('catalog-menu--open');
-
-      let clickOnButton = false;
-      catalogBtns.forEach(btn => {
-        if (btn.contains(event.target)) {
-          clickOnButton = true;
-        }
-      });
-
-      const clickInsideMenu = catalogMenu.contains(event.target);
-      const clickOnMenuLink = catalogMenu.contains(event.target) && event.target.tagName === 'A';
-
-      if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
-        closeMenu();
-      }
-
-      if (isMenuOpen && clickOnMenuLink) {
-        closeMenu();
-      }
-    });
-
-    initHeightTracking();
-  })();
-
-  /**
-   * Функция управления поведением мобильного меню и поиска.
-   */
-  (function () {
-    const burgerBtn = document.getElementById('burger-btn');
-    const burgerMenu = document.getElementById('burger-menu');
-
-    // ДОБАВЛЕНО: новые элементы для мобильного поиска
-    const mobileSearchBtn = document.getElementById('mobile-search-btn');
-    const mobileSearchMenu = document.getElementById('mobile-search-menu');
-
-    if (!burgerBtn || !burgerMenu) return;
-
-    // === ЛОГИКА БУРГЕР-МЕНЮ ===
-    const openMenu = () => {
-      // Безопасность: перед открытием бургера принудительно закрываем поиск, если он открыт
-      if (mobileSearchMenu) closeSearch();
-
-      burgerBtn.classList.add('burger-btn--open');
-      document.documentElement.classList.add('burger-menu--open');
-      if (typeof lenis !== 'undefined') lenis.stop();
-    };
-
-    const closeMenu = () => {
-      burgerBtn.classList.remove('burger-btn--open');
-      document.documentElement.classList.remove('burger-menu--open');
-      if (typeof lenis !== 'undefined') lenis.start();
-      document.dispatchEvent(new CustomEvent('menu:close'));
-    };
-
-    const toggleMenu = (e) => {
-      e.preventDefault();
-      const isMenuOpen = document.documentElement.classList.contains('burger-menu--open');
-      if (isMenuOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    };
-
-    // === ЛОГИКА МОБИЛЬНОГО ПОИСКА ===
-    const openSearch = () => {
-      // Безопасность: перед открытием поиска закрываем бургер-меню
-      closeMenu();
-
-      if (mobileSearchBtn) mobileSearchBtn.classList.add('mobile-search-btn--open');
-      document.documentElement.classList.add('mobile-search-menu--open');
-      if (typeof lenis !== 'undefined') lenis.stop();
-    };
-
-    const closeSearch = () => {
-      if (mobileSearchBtn) mobileSearchBtn.classList.remove('mobile-search-btn--open');
-      document.documentElement.classList.remove('mobile-search-menu--open');
-      if (typeof lenis !== 'undefined') lenis.start();
-    };
-
-    const toggleSearch = (e) => {
-      e.preventDefault();
-      const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
-      if (isSearchOpen) {
-        closeSearch();
-      } else {
-        openSearch();
-      }
-    };
-
-    // Слушатель для кнопки бургера (открывает/закрывает бургер И закрывает поиск)
-    // Улучшенный слушатель для кнопки бургера с приоритетом закрытия поиска
-    burgerBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
-
-      // ТРЕБОВАНИЕ: если поиск открыт, клик по бургеру ТОЛЬКО закрывает его и больше ничего не делает
-      if (isSearchOpen) {
-        closeSearch();
-        return; // Прерываем функцию, чтобы toggleMenu(e) не сработал и бургер-меню не открылось
-      }
-
-      // Если поиск закрыт — бургер работает в своем штатном режиме
-      toggleMenu(e);
-    });
-
-    // ДОБАВЛЕНО: Слушатель для кнопки поиска
-    if (mobileSearchBtn && mobileSearchMenu) {
-      mobileSearchBtn.addEventListener('click', toggleSearch);
-    }
-
-    // ОБРАБОТКА ИСКАЙПА (Закрывает оба меню)
     window.addEventListener('keydown', (e) => {
       if (e.key === "Escape") {
-        if (document.documentElement.classList.contains('burger-menu--open')) closeMenu();
-        if (document.documentElement.classList.contains('mobile-search-menu--open')) closeSearch();
+        closeCatalog();
+        closeBurger();
+        closeSearch();
       }
     });
 
-    // ОБРАБОТКА КЛИКОВ ПО СТРАНИЦЕ С ИСКЛЮЧЕНИЕМ ДЛЯ HEADER__SEARCH
     document.addEventListener('click', (event) => {
-      const isMenuOpen = document.documentElement.classList.contains('burger-menu--open');
+      const isCatalogOpen = document.documentElement.classList.contains('catalog-menu--open');
+      const isBurgerOpen = document.documentElement.classList.contains('burger-menu--open');
       const isSearchOpen = document.documentElement.classList.contains('mobile-search-menu--open');
 
-      // Находим блок-исключение header__search
       const headerSearch = document.querySelector('.header__search');
-      // Проверяем, был ли клик совершен внутри этого блока
       const clickInsideHeaderSearch = headerSearch ? headerSearch.contains(event.target) : false;
 
-      const clickInsideMenu = burgerMenu.contains(event.target);
-      const clickOnButton = burgerBtn.contains(event.target);
-      const clickOnMenuLink = burgerMenu.contains(event.target) && event.target.tagName === 'A';
+      let clickOnCatalogBtn = false;
+      catalogBtns.forEach(btn => { if (btn.contains(event.target)) clickOnCatalogBtn = true; });
 
-      // 1. Логика закрытия бургер-меню
-      // ДОБАВЛЕНО ИСКЛЮЧЕНИЕ: меню НЕ закроется, если клик был внутри .header__search
-      if (isMenuOpen && !clickInsideMenu && !clickOnButton && !clickInsideHeaderSearch) {
-        closeMenu();
+      const clickOnBurgerBtn = burgerBtn && burgerBtn.contains(event.target);
+      const clickOnSearchBtn = mobileSearchBtn && mobileSearchBtn.contains(event.target);
+
+      if (isCatalogOpen) {
+        const clickInsideCatalog = catalogMenu && catalogMenu.contains(event.target);
+        const clickOnCatalogLink = catalogMenu && catalogMenu.contains(event.target) && event.target.tagName === 'A';
+        if ((!clickInsideCatalog && !clickOnCatalogBtn) || clickOnCatalogLink) {
+          closeCatalog();
+        }
       }
-      if (isMenuOpen && clickOnMenuLink) {
-        closeMenu();
+
+      if (isBurgerOpen) {
+        const clickInsideBurger = burgerMenu && burgerMenu.contains(event.target);
+        const clickOnBurgerLink = burgerMenu && burgerMenu.contains(event.target) && event.target.tagName === 'A';
+        if ((!clickInsideBurger && !clickOnBurgerBtn && !clickInsideHeaderSearch) || clickOnBurgerLink) {
+          closeBurger();
+        }
       }
 
-      // 2. Логика закрытия меню поиска
-      if (isSearchOpen && mobileSearchMenu && mobileSearchBtn) {
-        const clickInsideSearch = mobileSearchMenu.contains(event.target);
-        const clickOnSearchButton = mobileSearchBtn.contains(event.target);
-
-        // ДОБАВЛЕНО ИСКЛЮЧЕНИЕ: поиск НЕ закроется, если клик был внутри .header__search
-        if (!clickInsideSearch && !clickOnSearchButton && !clickOnButton && !clickInsideHeaderSearch) {
+      if (isSearchOpen) {
+        const clickInsideSearch = mobileSearchMenu && mobileSearchMenu.contains(event.target);
+        if (!clickInsideSearch && !clickOnSearchBtn && !clickOnBurgerBtn && !clickInsideHeaderSearch) {
           closeSearch();
         }
       }
     });
+    initHeightTracking();
   })();
-
-  /**
-   * Функция управления поведением меню-поиска
-   */
-  // (function () {
-  //   const mobileSearchBtn = document.getElementById('mobile-search-btn');
-  //   const mobileSearchMenu = document.getElementById('mobile-search-menu');
-
-  //   const openMenu = () => {
-  //     mobileSearchBtn.classList.add('mobile-search-btn--open');
-  //     document.documentElement.classList.add('mobile-search-menu--open');
-  //     lenis.stop();
-  //   };
-
-  //   const closeMenu = () => {
-  //     mobileSearchBtn.classList.remove('mobile-search-btn--open');
-  //     document.documentElement.classList.remove('mobile-search-menu--open');
-  //     lenis.start();
-  //     document.dispatchEvent(new CustomEvent('menu:close'));
-  //   };
-
-  //   const toggleMenu = (e) => {
-  //     e.preventDefault();
-  //     const isMenuOpen = document.documentElement.classList.contains('mobile-search-menu--open');
-
-  //     if (isMenuOpen) {
-  //       closeMenu();
-  //     } else {
-  //       openMenu();
-  //     }
-  //   };
-
-  //   mobileSearchBtn.addEventListener('click', toggleMenu);
-
-  //   window.addEventListener('keydown', (e) => {
-  //     if (e.key === "Escape" && document.documentElement.classList.contains('mobile-search-menu--open')) {
-  //       closeMenu();
-  //     }
-  //   });
-
-  //   document.addEventListener('click', (event) => {
-  //     const isMenuOpen = document.documentElement.classList.contains('mobile-search-menu--open');
-  //     const clickInsideMenu = mobileSearchMenu.contains(event.target);
-  //     const clickOnButton = mobileSearchBtn.contains(event.target);
-
-  //     // Проверяем, кликнули ли по ссылке внутри menu__list
-  //     const clickOnMenuLink = mobileSearchMenu.contains(event.target) && event.target.tagName === 'A';
-
-  //     if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
-  //       closeMenu();
-  //     }
-
-  //     // Дополнительно: закрываем меню при клике по ссылке внутри меню
-  //     if (isMenuOpen && clickOnMenuLink) {
-  //       closeMenu();
-  //     }
-  //   });
-  // })();
 
   /**
    * Функция для фикс. кнопки связи
@@ -788,115 +659,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для присвоения класса filled для заполненных форм
-   */
-  // (function () {
-
-  //   const form = document.querySelector('form');
-
-  //   if (form) {
-  //     const inputElements = document.querySelectorAll('.form-input');
-  //     const searchElements = document.querySelectorAll('.form-search');
-  //     const textareaElements = document.querySelectorAll('.form-textarea');
-  //     const className = 'filled';
-
-  //     inputElements.forEach(element => {
-  //       element.addEventListener('input', function () {
-  //         if (this.value.trim() !== '') {
-  //           element.classList.add(className);
-  //         } else {
-  //           element.classList.remove(className);
-  //         }
-  //       });
-  //     });
-
-  //     searchElements.forEach(element => {
-  //       element.addEventListener('input', function () {
-  //         if (this.value.trim() !== '') {
-  //           element.classList.add(className);
-  //         } else {
-  //           element.classList.remove(className);
-  //         }
-  //       });
-  //     });
-
-  //     textareaElements.forEach(element => {
-  //       element.addEventListener('input', function () {
-  //         if (this.value.trim() !== '') {
-  //           element.classList.add(className);
-  //         } else {
-  //           element.classList.remove(className);
-  //         }
-  //       });
-  //     });
-  //   }
-
-  // })();
-
-  /**
    * Функция аккордиона
    */
-  // (function accordionFunc() {
-  //   const accordionContainers = document.querySelectorAll('.accordion-items');
-  //   if (!accordionContainers.length) return;
-
-  //   // Один глобальный обработчик для закрытия при клике вне аккордеона
-  //   document.addEventListener('click', (e) => {
-  //     accordionContainers.forEach(container => {
-  //       const items = container.querySelectorAll('.accordion-item');
-  //       const activeClass = 'accordion-item--active';
-  //       items.forEach(item => {
-  //         if (!e.composedPath().includes(item)) {
-  //           item.classList.remove(activeClass);
-  //           container.classList.remove('activated');
-  //         }
-  //       });
-  //     });
-  //     ScrollTrigger.update();
-  //   });
-
-  //   // Один глобальный обработчик Escape для всех аккордеонов
-  //   window.addEventListener('keydown', (e) => {
-  //     if (e.key !== 'Escape') return;
-  //     accordionContainers.forEach(container => {
-  //       container.querySelectorAll('.accordion-item').forEach(item => {
-  //         item.classList.remove('accordion-item--active');
-  //       });
-  //       container.classList.remove('activated');
-  //     });
-  //     ScrollTrigger.update();
-  //   });
-
-  //   accordionContainers.forEach(accordionContainer => {
-  //     const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
-  //     const activeClass = 'accordion-item--active';
-
-  //     // Закрытие при Escape
-  //     accordionItems.forEach(item => {
-  //       item.addEventListener('click', (e) => {
-  //         e.stopPropagation();
-
-  //         // Закрываем другие открытые элементы
-  //         accordionItems.forEach(i => {
-  //           if (i !== item) i.classList.remove(activeClass);
-  //         });
-
-  //         // Переключаем текущий
-  //         item.classList.toggle(activeClass);
-
-  //         // Управляем классом контейнера
-  //         if (item.classList.contains(activeClass)) {
-  //           accordionContainer.classList.add('activated');
-  //         } else {
-  //           accordionContainer.classList.remove('activated');
-  //         }
-
-  //         ScrollTrigger.update();
-  //       });
-  //     });
-  //   });
-
-  // })();
   (function accordionFunc() {
     const accordionContainers = document.querySelectorAll('.accordion-items');
     if (!accordionContainers.length) return;
@@ -1000,7 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allThemes = ['class-blue', 'class-purple'];
 
     // ЯВНОЕ СООТВЕТСТВИЕ: индекс = номер слайда (realIndex)
-    // Слайд 0 → blue, слайд 1 → purple, слайд 2 → blue, слайд 3 → purple, слайд 4 → blue
+    // Слайд 0 -> blue, слайд 1 -> purple, слайд 2 -> blue, слайд 3 -> purple, слайд 4 -> blue
     const slideThemes = ['class-blue', 'class-purple', 'class-blue', 'class-purple', 'class-blue'];
 
     // Тема по умолчанию, если для слайда не задана
@@ -1171,8 +935,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //       if (Math.abs(diffX) < 30 || Math.abs(diffX) < Math.abs(diffY)) return;
 
   //       // Бесконечность: show() сам завернёт по кругу
-  //       if (diffX < 0) show(current + 1); // влево → вперёд (с последней на первую)
-  //       else show(current - 1);           // вправо → назад (с первой на последнюю)
+  //       if (diffX < 0) show(current + 1); // влево -> вперёд (с последней на первую)
+  //       else show(current - 1);           // вправо -> назад (с первой на последнюю)
   //     }, { passive: true });
   //   });
   // })();
@@ -2515,8 +2279,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // disabled как свойство а не атрибут - клик всё равно доходит
         // до нашего обработчика даже когда кнопка визуально заблокирована
-        if (prevEl) { prevEl.classList.toggle('swiper-button-disabled', isStart); prevEl.disabled = isStart; }
-        if (nextEl) { nextEl.classList.toggle('swiper-button-disabled', nextBlocked); nextEl.disabled = nextBlocked; }
+        // if (prevEl) { prevEl.classList.toggle('swiper-button-disabled', isStart); prevEl.disabled = isStart; }
+        // if (nextEl) { nextEl.classList.toggle('swiper-button-disabled', nextBlocked); nextEl.disabled = nextBlocked; }
+
+        prevEl.classList.toggle('swiper-button-disabled', isStart);
+        nextEl.classList.toggle('swiper-button-disabled', nextBlocked);
+
+        prevEl.disabled = isStart;
+        nextEl.disabled = nextBlocked;
       }
 
       function handle(direction) {
@@ -2570,18 +2340,39 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisabled();
       }
 
-      if (nextEl) nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
-      if (prevEl) prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
+      // Привязываем обработчики кликов
+      nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
+      prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
 
+      // Сброс импульса при таче
       swiper.on('touchStart', resetImpulse);
-      swiper.on('slideChange', updateDisabled);
-      swiper.on('resize', updateDisabled);
-      swiper.on('touchEnd', () => {
-        const dir = swiper.swipeDirection;
-        if (dir === 'next') edgeTracker.handleEdgeNext();
-        else if (dir === 'prev') edgeTracker.handleEdgePrev();
-        updateDisabled();
+
+      // Массив событий для мгновенного обновления состояния кнопок
+      const updateEvents = [
+        'slideChange',
+        'resize',
+        'setTranslate',   // Важно для тачпадов и скролла мыши в реальном времени
+        'transitionEnd',  // Важно для фиксации состояния после инерции (momentum)
+        'reachBeginning', // Гарантия срабатывания на левом краю
+        'reachEnd'        // Гарантия срабатывания на правом краю
+      ];
+
+      // Подписываемся на все события сразу
+      updateEvents.forEach(event => {
+        swiper.on(event, updateDisabled);
       });
+
+      // Очистка при уничтожении слайдера
+      swiper.on('destroy', () => {
+        if (decayTimer) clearInterval(decayTimer);
+        updateEvents.forEach(event => {
+          swiper.off(event, updateDisabled);
+        });
+      });
+
+      // Первоначальный вызов при инициализации
+      updateDisabled();
+
 
       swiper.on('destroy', () => {
         if (decayTimer) clearInterval(decayTimer);
@@ -2590,6 +2381,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       updateDisabled();
     }
+
+    //   if (nextEl) nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
+    //   if (prevEl) prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
+
+    //   swiper.on('touchStart', resetImpulse);
+    //   swiper.on('slideChange', updateDisabled);
+    //   swiper.on('resize', updateDisabled);
+    //   swiper.on('touchEnd', () => {
+    //     const dir = swiper.swipeDirection;
+    //     if (dir === 'next') edgeTracker.handleEdgeNext();
+    //     else if (dir === 'prev') edgeTracker.handleEdgePrev();
+    //     updateDisabled();
+    //   });
+
+    //   swiper.on('destroy', () => {
+    //     if (decayTimer) clearInterval(decayTimer);
+    //     decayTimer = null;
+    //   });
+
+    //   updateDisabled();
+    // }
 
     // Можно добавить этот код один раз, чтобы он следил за изменением высоты BODY и обновлял GSAP
     // const ro = new ResizeObserver(() => {
@@ -3045,48 +2857,69 @@ document.addEventListener('DOMContentLoaded', () => {
    * Открывается кликом, закрывается кликом вне или выбором опции.
    */
   (function () {
-    const html = document.documentElement;
+    document.addEventListener('click', (e) => {
+      const selectedBtn = e.target.closest('.dropdown__selected--js');
+      const currentDropdown = e.target.closest('.dropdown--js');
+      const allDropdowns = document.querySelectorAll('.dropdown--js');
 
-    const dropdowns = document.querySelectorAll('.dropdown--js');
-    if (!dropdowns.length) return;
-
-    dropdowns.forEach(dropdown => {
-      const selectedJs = dropdown.querySelector('.dropdown__selected--js');
-      const selectedInputJs = dropdown.querySelector('.dropdown__selected-input--js');
-      const selectedLabelJs = dropdown.querySelector('.dropdown__selected-label--js');
-      const dropdownRadios = dropdown.querySelectorAll('.dropdown__radio');
-      const dropdownValue = dropdown.querySelector('.dropdown__value');
-
-      if (!selectedJs) return;
-
-      selectedJs.addEventListener('click', e => {
+      if (selectedBtn && currentDropdown) {
         e.stopPropagation();
-        dropdowns.forEach(dropdown => dropdown.classList.remove('is-active'));
-        dropdown.classList.toggle('is-active');
-      });
 
-      document.addEventListener('click', e => {
+        allDropdowns.forEach(dropdown => {
+          if (dropdown !== currentDropdown) {
+            dropdown.classList.remove('is-active');
+          }
+        });
+
+        currentDropdown.classList.toggle('is-active');
+        return;
+      }
+
+      allDropdowns.forEach(dropdown => {
         if (!dropdown.contains(e.target)) {
           dropdown.classList.remove('is-active');
         }
       });
+    });
 
-      dropdownRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-          if (!radio.checked) return;
+    document.addEventListener('change', (e) => {
+      if (!e.target.classList.contains('dropdown__radio')) return;
 
-          const dataValue = radio.dataset.city;
-          const value = radio.value;
+      const radio = e.target;
+      if (!radio.checked) return;
 
-          // Обновляем UI в текущем dropdown
-          if (selectedLabelJs) selectedLabelJs.textContent = value;
-          if (selectedInputJs) selectedInputJs.value = value;
-          if (dropdownValue) dropdownValue.value = value;
+      const dropdown = radio.closest('.dropdown--js');
+      if (!dropdown) return;
 
-          dropdown.classList.remove('is-active');
-          dropdown.classList.add('filled');
-        });
-      });
+      const selectedInputJs = dropdown.querySelector('.dropdown__selected-input--js');
+      const selectedLabelJs = dropdown.querySelector('.dropdown__selected-label--js');
+      const dropdownValue = dropdown.querySelector('.dropdown__value');
+
+      const value = radio.value;
+
+      if (selectedLabelJs) selectedLabelJs.textContent = value;
+      if (selectedInputJs) selectedInputJs.value = value;
+      if (dropdownValue) dropdownValue.value = value;
+
+      dropdown.classList.remove('is-active');
+      dropdown.classList.add('filled');
+    });
+  })();
+
+  (function () {
+    document.addEventListener('click', (e) => {
+      const clickedTab = e.target.closest('.general__tab');
+      if (!clickedTab) return;
+
+      const parentTabsContainer = clickedTab.closest('.general__tabs');
+      if (!parentTabsContainer) return;
+
+      if (clickedTab.classList.contains('is-active')) return;
+
+      const allTabsInContainer = parentTabsContainer.querySelectorAll('.general__tab');
+      allTabsInContainer.forEach(tab => tab.classList.remove('is-active'));
+
+      clickedTab.classList.add('is-active');
     });
   })();
 
@@ -3147,6 +2980,129 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initFormInputs();
   initAllAjaxPages();
+
+  (function () {
+    const htmlTag = document.documentElement;
+
+    const modalBlock = document.getElementById('modal');
+    const dragZone = modalBlock ? modalBlock.querySelector('.cabinet__wrap') : null;
+    const contentZone = modalBlock ? modalBlock.querySelector('.cabinet__content') : null;
+
+    const bezierTransition = 'transform 0.5s cubic-bezier(0.32, 0.94, 0.6, 1)';
+    const defaultTransform = 'translateY(0)';
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+
+    const isMobile = () => window.innerWidth <= 600;
+
+    const openModalMenu = () => {
+      htmlTag.classList.add('modal--open');
+      if (typeof lenis !== 'undefined') lenis.stop();
+
+      modalBlock.style.transition = bezierTransition;
+      modalBlock.style.transform = defaultTransform;
+    };
+
+    const closeModalMenu = () => {
+      htmlTag.classList.remove('modal--open');
+      if (typeof lenis !== 'undefined') lenis.start();
+
+      modalBlock.style.transition = bezierTransition;
+      modalBlock.style.transform = 'translateY(100%)';
+
+      setTimeout(() => {
+        modalBlock.style.transform = '';
+        modalBlock.style.transition = '';
+      }, 500);
+    };
+
+    document.addEventListener('click', (event) => {
+      if (!isMobile()) return;
+
+      if (event.target.closest('.cabinet__nav-item')) {
+        event.stopPropagation();
+        openModalMenu();
+        return;
+      }
+
+      if (!htmlTag.classList.contains('modal--open')) return;
+
+      const isClickInsideWrap = dragZone && dragZone.contains(event.target);
+      const isClickInsideContent = contentZone && contentZone.contains(event.target);
+
+      if (!isClickInsideWrap && !isClickInsideContent) {
+        closeModalMenu();
+      }
+    });
+
+    if (modalBlock) {
+
+      const handleTouchStart = (event) => {
+        if (!isMobile() || !htmlTag.classList.contains('modal--open')) return;
+
+        if (contentZone && contentZone.contains(event.target) && contentZone.scrollTop > 0) {
+          isDragging = false;
+          return;
+        }
+
+        startY = event.touches[0].clientY;
+        isDragging = true;
+        modalBlock.style.transition = 'transform 0s linear';
+      };
+
+      const handleTouchMove = (event) => {
+        if (!isDragging) return;
+
+        const moveY = event.touches[0].clientY;
+        currentY = moveY - startY;
+
+        if (currentY > 0) {
+          if (contentZone && contentZone.contains(event.target)) {
+            if (contentZone.scrollTop > 0) {
+              currentY = 0;
+              isDragging = false;
+              return;
+            }
+          }
+
+          if (event.cancelable) event.preventDefault();
+          modalBlock.style.transform = `translateY(${currentY}px)`;
+        } else {
+          currentY = 0;
+        }
+      };
+
+      const handleTouchEnd = () => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        if (currentY > 100) {
+          setTimeout(() => {
+            closeModalMenu();
+          }, 10);
+        } else {
+          modalBlock.style.transition = bezierTransition;
+          modalBlock.style.transform = defaultTransform;
+        }
+
+        currentY = 0;
+      };
+
+      if (dragZone) {
+        dragZone.addEventListener('touchstart', handleTouchStart, { passive: false });
+        dragZone.addEventListener('touchmove', handleTouchMove, { passive: false });
+        dragZone.addEventListener('touchend', handleTouchEnd);
+      }
+
+      if (contentZone) {
+        contentZone.addEventListener('touchstart', handleTouchStart, { passive: false });
+        contentZone.addEventListener('touchmove', handleTouchMove, { passive: false });
+        contentZone.addEventListener('touchend', handleTouchEnd);
+      }
+    }
+  })();
 
   /**
    * Инициализация Fancybox

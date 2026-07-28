@@ -1,5 +1,17 @@
 @use './../mixins' as *;
 
+html.modal--open {
+  main {
+    position: relative;
+    z-index: 950;
+  }
+
+  footer {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 .cabinet {
 
   &__inner {
@@ -106,39 +118,102 @@
     @include dosm {
       grid-column: 4/13;
     }
+
+    @include sm {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      // height: calc(100vh - var(--header-height) - 7rem);
+      // height: calc(100dvh - var(--header-height) - 7rem);
+      height: 100vh;
+      height: 100dvh;
+      transition: top 0.4s cubic-bezier(0.32, 0.94, 0.6, 1), opacity 0.3s ease, visibility 0.3s ease, transform 0.5s cubic-bezier(0.32, 0.94, 0.6, 1);
+      will-change: transform, opacity;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      // background-color: var(--navy-20);
+      padding-top: 15.1rem;
+
+      transform: translateY(100%);
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    .modal--open & {
+
+      @include sm {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+
+        // top: -4.7rem;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__wrap {
+    width: 100%;
+    height: 3.2rem;
+    flex-shrink: 0;
+    background-color: var(--white);
+    border-radius: 2rem 2rem 0 0;
+    overflow: hidden;
+
+    position: relative;
+
+    @include dosm {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 10.3rem;
+      height: 0.4rem;
+      border-radius: 0.2rem;
+      background-color: var(--blue-20);
+
+      position: absolute;
+      top: 0.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
   }
 
   &__content {
 
-    // @include sm {
-    //   width: 100%;
-    //   height: 100vh;
-    //   height: 100dvh;
-    //   transition: top 0.4s ease, opacity 0.3s ease;
-    //   will-change: top, opacity;
-    //   opacity: 0;
-    //   visibility: hidden;
-    //   pointer-events: none;
-    //   background-color: var(--white);
-    //   padding: 3.2rem 1.5rem;
+    @include sm {
+      overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior: contain;
+      -ms-scroll-chaining: none;
 
-    //   position: fixed;
-    //   top: 100%;
-    //   left: 0;
-    //   right: 0;
-    //   z-index: 600;
-    // }
+      -webkit-overflow-scrolling: touch;
+      max-height: 100%;
+      height: 100%;
+      padding: 2rem var(--container-padding);
+      background-color: var(--white);
+    }
 
-    // .ajax--active & {
+    &>div {
+      height: fit-content;
+    }
 
-    //   @include sm {
-    //     opacity: 1;
-    //     visibility: visible;
-    //     pointer-events: none;
-
-    //     top: -4.7rem;
-    //   }
-    // }
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
 
     .favorite__items {
 

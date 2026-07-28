@@ -21,7 +21,7 @@
     background-color: var(--body-bg);
     backdrop-filter: blur(6px);
     transition: transform 0.3s ease;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     overflow-y: auto;
 
     position: fixed;

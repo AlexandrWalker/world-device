@@ -6,6 +6,7 @@
   min-height: 84.8rem;
 
   position: relative;
+  z-index: 1;
 
   @include sm {
     min-height: 68.6rem;
@@ -92,7 +93,7 @@
       max-width: 69.6rem;
       margin-bottom: 2.5rem;
 
-      @include sm {
+      @include dosm {
         margin-bottom: 4rem;
       }
 
