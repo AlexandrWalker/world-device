@@ -1,5 +1,43 @@
 <div class="trade">
 
+  <div class="trade__block trade__block-request">
+    <div class="trade__block-wrap">
+      <div class="trade__block-head">
+        <div class="trade__block-title">
+          Ваши заявки по Trade-in
+        </div>
+      </div>
+      <div class="trade__block-body">
+        <div class="trade__block-items">
+          <label class="trade__block-item">
+            <input type="radio" name="trade_request" hidden checked>
+            <div class="trade__block-item--title">
+              Apple iPhone 17 Pro Max, 512 ГБ, «Оранжевый»
+            </div>
+            <div class="trade__block-item--price">
+              62 480 ₽
+            </div>
+            <div class="trade__block-item--status status--off">
+              На рассмотрении
+            </div>
+          </label>
+          <label class="trade__block-item">
+            <input type="radio" name="trade_request" hidden>
+            <div class="trade__block-item--title">
+              Apple iPhone 17 Pro Max, 512 ГБ
+            </div>
+            <div class="trade__block-item--text">
+              Обратитесь в магазин до 03.12.2025
+            </div>
+            <div class="trade__block-item--status status--on">
+              Одобрено
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="trade__block">
     <div class="trade__block-head">
       <div class="trade__block-title">
@@ -25,7 +63,186 @@
           Xiaomi
         </button>
       </div>
+      <div class="trade__block-form">
+        <form action="#">
+          <div class="form-inner">
+            <div class="form-body grid-col-3">
+              <div class="form-group">
+                <div class="form-label">
+                  <span>
+                    Выбрать модель:
+                  </span>
+                  <div class="dropdown dropdown--js">
+                    <div class="dropdown__selected dropdown__selected--js">
+                      <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
+                      <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
+                      <i class="icon-chevron-stroke"></i>
+                    </div>
+                    <div class="dropdown__container">
+                      <div class="dropdown__content">
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 17 Pro"
+                              data-city="iPhone17Pro">
+                            iPhone 17 Pro
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 17 Pro Max"
+                              data-city="iPhone17ProMax">
+                            iPhone 17 Pro Max
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 16 Pro"
+                              data-city="iPhone16Pro">
+                            iPhone 16 Pro
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 16 Pro Max"
+                              data-city="iPhone16ProMax">
+                            iPhone 16 Pro Max
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <input class="dropdown__value" type="hidden">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">
+                  <span>
+                    Объем памяти:
+                  </span>
+                  <div class="dropdown dropdown--js">
+                    <div class="dropdown__selected dropdown__selected--js">
+                      <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
+                      <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
+                      <i class="icon-chevron-stroke"></i>
+                    </div>
+                    <div class="dropdown__container">
+                      <div class="dropdown__content">
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="memory_model" type="radio" value="256 Гб"
+                              data-city="256">
+                            256 Гб
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="memory_model" type="radio" value="512 Гб"
+                              data-city="512">
+                            512 Гб
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="memory_model" type="radio" value="1 Тб"
+                              data-city="1024">
+                            1 Тб
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="memory_model" type="radio" value="2 Тб"
+                              data-city="2048">
+                            2 Тб
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <input class="dropdown__value" type="hidden">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">
+                  <span>
+                    Состояние:
+                  </span>
+                  <div class="dropdown dropdown--js">
+                    <div class="dropdown__selected dropdown__selected--js">
+                      <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
+                      <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
+                      <i class="icon-chevron-stroke"></i>
+                    </div>
+                    <div class="dropdown__container">
+                      <div class="dropdown__content">
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="state_model" type="radio" value="Есть царапины"
+                              data-city="Есть царапины">
+                            Есть царапины
+                          </label>
+                        </div>
+                        <div class="dropdown__option">
+                          <label class="dropdown__label">
+                            <input class="dropdown__radio" name="state_model" type="radio" value="Есть скол"
+                              data-city="Есть скол">
+                            Есть скол
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <input class="dropdown__value" type="hidden">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+    <div class="trade__block-wrap">
+      <div class="trade__block-head">
+        <div class="trade__block-title">
+          Укажите цель Trade-in
+        </div>
+      </div>
+      <div class="trade__block-body">
+        <div class="trade__block-items">
+          <label class="trade__block-item">
+            <div class="check">
+              <input type="radio" name="trade_goal" hidden>
+              <span></span>
+            </div>
+            <div class="trade__block-item--title">
+              Получение скидки на новое устройство
+            </div>
+          </label>
+          <label class="trade__block-item">
+            <div class="check">
+              <input type="radio" name="trade_goal" hidden>
+              <span></span>
+            </div>
+            <div class="trade__block-item--title">
+              Продать устройство
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="trade__block-wrap">
+      <div class="trade__block-head">
+        <div class="trade__block-title">
+          Примерная стоимость по Trade-in
+        </div>
+      </div>
+      <div class="trade__block-body">
+        <div class="trade__block-price">
+          100 480 ₽
+        </div>
+      </div>
+    </div>
+    <button class="trade__block-btn btn btn--cyan" type="button">
+      Отправить заявку
+    </button>
   </div>
 
 </div>

@@ -10,215 +10,95 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 7rem;
-    background-color: transparent;
+    height: 5.4rem;
+    padding: 0 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--navy-05);
     transition: all 0.3s ease;
-
-    cursor: pointer;
 
     position: relative;
 
-    @include sm {
-      height: 3.7rem;
-    }
-
     i {
-      --font-size: 1.5rem;
+      --font-size: 1.6rem;
 
-      transform: rotate(90deg) translateY(-50%);
-      margin-top: -1.5rem;
+      transform: scale(1, -1);
+      border-radius: 50%;
 
-      color: var(--red);
-
-      position: absolute;
-      top: 50%;
-      right: 1rem;
+      color: var(--navy);
 
       .dropdown.is-active & {
-        transform: rotate(-90deg);
+        transform: scale(-1, 1);
       }
     }
 
     &-label--js {
 
-      &::before {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 0.2rem;
-        background-color: var(--white-50);
-
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        z-index: 1;
-
-        @include sm {
-          height: 0.3rem;
-        }
-      }
-
-      &::after {
-        content: "";
-        display: block;
-        width: 0%;
-        height: 0.2rem;
-        background-color: var(--white);
-        transition: all 0.3s ease;
-
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        z-index: 1;
-
-        @include sm {
-          height: 0.3rem;
-        }
-      }
-    }
-  }
-
-  &__input {
-    cursor: text;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-
-    @include sm {
-      font-size: 1.6rem;
+      .filled & {}
     }
 
-    .filled &,
-    &:focus,
-    &:active,
-    &:checked {
+    &--js {
 
-      &+.form-label {
-        height: calc(100% + 2rem);
-
-        font-size: 2rem;
-
-        top: -2rem;
-
-        @include sm {
-          height: calc(100% + 1.4rem);
-
-          font-size: 1.4rem;
-
-          top: -1.4rem;
-        }
-
-        &::after {
-          width: 100%;
-        }
-      }
-    }
-
-    &:hover {
-
-      &+.dropdown__label {
-
-        &::after {
-          width: 100%;
-        }
-      }
-    }
-
-    &:required {
-
-      &+.form-label {
-
-        .typewriter {
-
-          &__word {
-
-            &::after {
-              content: "";
-              width: 1.6rem;
-              height: 1.6rem;
-              background-repeat: no-repeat;
-              background-size: 100%;
-
-              position: absolute;
-              top: 0;
-              right: -2rem;
-
-              @include sm {
-                width: 1rem;
-                height: 1rem;
-
-                right: -1.2rem;
-              }
-            }
-          }
-        }
-      }
+      .filled & {}
     }
   }
 
   &__label {
     display: block;
     width: 100%;
-    background-color: transparent;
-    overflow: hidden;
 
-    font-weight: 400;
-    font-size: 3rem;
-    line-height: 120%;
-    color: var(--white);
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 143%;
+    color: var(--navy);
     white-space: nowrap;
-    text-transform: uppercase;
     cursor: pointer;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
 
-    @include sm {
-      font-size: 1.6rem;
+    .filled & {
+      color: var(--black);
     }
   }
 
   &__container {
+    max-height: 30rem;
     overflow: hidden;
     pointer-events: none;
 
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    scrollbar-gutter: stable;
+
     position: absolute;
-    top: calc(100% - 0.2rem);
+    top: calc(100% + 0.2rem);
     left: 0;
     right: 0;
     z-index: 10;
 
     .dropdown.is-active & {
       pointer-events: all;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    padding: 4rem 3rem;
-    background-color: var(--red);
-    transform: translateY(-110%);
+    gap: 1.5rem;
+    padding: 1.6rem 2rem;
+    background-color: var(--gray-light);
+    border-radius: 0.5rem;
+    // border: 0.1rem solid var(--dropdown-content-border-color);
+    transform: translateY(-101%);
     will-change: transform;
     transition: transform 0.3s ease;
-
-    @include sm {
-      gap: 2rem;
-      padding: 2rem 1.5rem;
-    }
 
     .dropdown.is-active & {
       transform: translateY(0);
     }
 
-    .dropdown__label {
-      font-size: 2rem;
-      color: var(--white);
-
-      @include sm {
-        font-size: 1.6rem;
-      }
-    }
+    .dropdown__label {}
   }
 
   &__radio {

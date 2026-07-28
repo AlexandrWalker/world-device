@@ -2738,7 +2738,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.facts__slider')) {
     initClipSlider('.facts__slider');
   }
-  
+
   (function () {
     // Находим абсолютно все блоки фильтров на странице
     const filterBlocks = document.querySelectorAll('.range-filter-block');
@@ -3037,6 +3037,58 @@ document.addEventListener('DOMContentLoaded', () => {
       element.classList.toggle('filled', element.value.trim() !== '');
     });
   }
+
+  /**
+   * ВЫПАДАЮЩИЙ СПИСОК (dropdown--js)
+   *    
+   * Кастомный select на основе radio-инпутов.
+   * Открывается кликом, закрывается кликом вне или выбором опции.
+   */
+  (function () {
+    const html = document.documentElement;
+
+    const dropdowns = document.querySelectorAll('.dropdown--js');
+    if (!dropdowns.length) return;
+
+    dropdowns.forEach(dropdown => {
+      const selectedJs = dropdown.querySelector('.dropdown__selected--js');
+      const selectedInputJs = dropdown.querySelector('.dropdown__selected-input--js');
+      const selectedLabelJs = dropdown.querySelector('.dropdown__selected-label--js');
+      const dropdownRadios = dropdown.querySelectorAll('.dropdown__radio');
+      const dropdownValue = dropdown.querySelector('.dropdown__value');
+
+      if (!selectedJs) return;
+
+      selectedJs.addEventListener('click', e => {
+        e.stopPropagation();
+        dropdowns.forEach(dropdown => dropdown.classList.remove('is-active'));
+        dropdown.classList.toggle('is-active');
+      });
+
+      document.addEventListener('click', e => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('is-active');
+        }
+      });
+
+      dropdownRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          if (!radio.checked) return;
+
+          const dataValue = radio.dataset.city;
+          const value = radio.value;
+
+          // Обновляем UI в текущем dropdown
+          if (selectedLabelJs) selectedLabelJs.textContent = value;
+          if (selectedInputJs) selectedInputJs.value = value;
+          if (dropdownValue) dropdownValue.value = value;
+
+          dropdown.classList.remove('is-active');
+          dropdown.classList.add('filled');
+        });
+      });
+    });
+  })();
 
   /**
    * Конфиги для каждого типа ajax-page

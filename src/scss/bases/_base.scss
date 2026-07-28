@@ -170,6 +170,7 @@ img {
   border-radius: 50%;
   border: 0.1rem solid var(--navy);
   transition: border-color 0.3s ease;
+  flex-shrink: 0;
 
   position: absolute;
   top: 1.5rem;

@@ -1,0 +1,135 @@
+@use './../mixins' as *;
+
+[data-modal-head] {
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+[data-modal-scroll] {
+  flex: 1 1 auto;
+  padding-bottom: 11rem;
+
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior: contain;
+  -ms-scroll-chaining: none;
+
+  -webkit-overflow-scrolling: touch;
+  will-change: padding-bottom;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  padding-top: var(--modal-padding);
+  transition: top 0.4s ease, opacity 0.3s ease;
+  will-change: top, opacity;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  position: fixed;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 600;
+
+  &-inner {
+    display: flex;
+    align-items: flex-end;
+
+    .modal {
+
+      &__wrap {
+        width: 100%;
+        height: fit-content;
+      }
+    }
+
+    .btn {
+      font-weight: 700;
+    }
+
+    .layout__inner {
+      gap: 2rem;
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    pointer-events: all;
+    overflow: hidden;
+    background-color: var(--modal-wrap-bg);
+    border-radius: 1.6rem 1.6rem 0 0;
+
+    .is-under & {
+      pointer-events: none;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 100%;
+    height: 3.6rem;
+    cursor: grab;
+
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 5.6rem;
+      height: 0.6rem;
+      border-radius: 0.5rem;
+      background-color: var(--modal-area-before-color);
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .modal__close {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background-color: var(--black-20);
+
+      font-size: 2.4rem;
+      color: var(--white);
+
+      position: absolute;
+      top: 50%;
+      right: var(--container-padding);
+      transform: translateY(-50%);
+
+      .html-not-touched & {
+        display: flex;
+      }
+    }
+  }
+}

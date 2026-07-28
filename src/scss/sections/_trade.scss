@@ -1,6 +1,9 @@
 @use './../mixins' as *;
 
 .trade {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
   &__block {
     display: flex;
@@ -24,6 +27,20 @@
       }
     }
 
+    &-request {
+
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      @include sm {
+        gap: 1.5rem;
+      }
+    }
+
     &-head {
       display: flex;
       flex-direction: column;
@@ -44,5 +61,148 @@
     }
 
     &-text {}
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      @include sm {
+        gap: 1.5rem;
+      }
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      @include sm {
+        gap: 0.8rem;
+      }
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      min-height: 8.2rem;
+      padding: 1.5rem;
+      border-radius: 0.9rem;
+      background-color: var(--navy-05);
+      transition: all 0.3s ease;
+
+      .trade__block-request & {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1.5rem;
+
+        @include sm {
+          gap: 0.8rem;
+          padding: 1.5rem;
+        }
+      }
+
+      .check {
+        position: static;
+      }
+
+      &:has(input:checked) {
+        background-color: var(--blue);
+        color: var(--white);
+
+        .trade__block-request & {
+          background-color: var(--navy);
+        }
+
+        .check {
+          border-color: var(--white);
+        }
+
+        .trade__block-item--title {
+          color: var(--white);
+        }
+      }
+
+      &--title {
+        transition: all 0.3s ease;
+
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: 143%;
+        color: var(--navy);
+      }
+
+      &--price {
+        transition: all 0.3s ease;
+
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 100%;
+
+        @include dosm {
+          font-size: 1.6rem;
+        }
+      }
+
+      &--status {
+        transition: all 0.3s ease;
+
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 143%;
+
+        @include dosm {
+          font-size: 1.4rem;
+        }
+      }
+
+      &--text {
+        transition: all 0.3s ease;
+
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 143%;
+
+        @include dosm {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    &-price {
+      font-weight: 700;
+      font-size: 3rem;
+      line-height: 100%;
+      color: var(--navy);
+
+      @include sm {
+        font-size: 2.5rem;
+      }
+    }
+
+    &-btn {
+      --btn-width: 100%;
+    }
+
+    &-form {
+
+      .form-body {
+
+        @include sm {
+          gap: 1.5rem;
+          margin-bottom: 0;
+        }
+      }
+
+      .form-label {
+
+        @include sm {
+          gap: 1.5rem;
+        }
+      }
+    }
   }
 }

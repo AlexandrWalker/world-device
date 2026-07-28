@@ -69,7 +69,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn ajax-btn-active" data-cabinet="cabinet-compare">
+                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-compare">
                   <div class="cabinet__nav-icon">
                     <i class="icon-sravnenie"></i>
                   </div>
@@ -91,7 +91,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-trade">
+                <div class="cabinet__nav-item ajax-btn ajax-btn-active" data-cabinet="cabinet-trade">
                   <div class="cabinet__nav-icon">
                     <i class="icon-trade-in"></i>
                   </div>
@@ -118,9 +118,32 @@
 
             <div class="cabinet__body">
               <div class="cabinet__content">
-                @@include('ajax/cabinet-compare.html')
+                @@include('ajax/cabinet-trade.html')
               </div>
             </div>
+
+            <!-- <div id="cabinet-modal" class="modal" data-lenis-prevent>
+              <div class="modal__wrap">
+                <div class="modal__area" data-modal-head>
+                  <div class="modal__close">
+                    <i class="icon-close"></i>
+                  </div>
+                </div>
+                <div class="modal__inner">
+
+                  <div class="cabinet__body" data-modal-scroll>
+                    <div class="container">
+                      <div class="cabinet__content">
+
+                        @@include('ajax/cabinet-trade.html')
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div> -->
 
           </div>
         </div>
