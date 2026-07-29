@@ -2959,6 +2959,7 @@ body {
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 120%;
+  cursor: pointer;
 }
 .filter__head-tag:hover {
   color: var(--navy);
@@ -4081,9 +4082,9 @@ body {
   font-size: 1.4rem;
   line-height: 130%;
   color: var(--navy);
-  -webkit-transition: color 0.3s ease;
-  -o-transition: color 0.3s ease;
-  transition: color 0.3s ease;
+  -webkit-transition: color 0.3s ease, font-weight 0.3s ease;
+  -o-transition: color 0.3s ease, font-weight 0.3s ease;
+  transition: color 0.3s ease, font-weight 0.3s ease;
 }
 .menu__block-icon {
   width: 2rem;
@@ -9079,6 +9080,10 @@ canvas {
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
     grid-column: 1/4;
+    cursor: pointer;
+  }
+  .menu__block-head:hover .menu__block-text {
+    font-weight: 700;
   }
   .menu-head--active .menu__block-text {
     font-weight: 700;
@@ -9138,6 +9143,9 @@ canvas {
     gap: 4rem 2rem;
     padding: 7.2rem 0 7.6rem 0;
   }
+  .menu__item-head {
+    cursor: default;
+  }
   .menu__item-title {
     font-weight: 700;
     color: var(--navy);
@@ -9148,6 +9156,9 @@ canvas {
   .menu__item-body {
     -ms-grid-rows: auto;
     grid-template-rows: auto;
+  }
+  .menu__item-content li a:hover {
+    text-decoration: underline;
   }
   .menu__banner {
     display: block;
