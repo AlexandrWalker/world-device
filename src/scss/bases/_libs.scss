@@ -219,12 +219,12 @@
   right: 2rem;
 
   @include sm {
-    --f-close-button-width: 1.2rem;
-    --f-close-button-height: 1.2rem;
+    --f-close-button-width: 2rem;
+    --f-close-button-height: 2rem;
     --f-button-svg-stroke-width: 0.2rem;
 
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 2rem;
+    height: 2rem;
 
     top: 1.4rem;
     right: 1.4rem;

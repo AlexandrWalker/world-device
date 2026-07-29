@@ -1,34 +1,75 @@
 @use './../mixins' as *;
 
-.privacy__contetnt {
-  gap: 3.5rem;
+.privacy__content {
+
+  @include dosm {
+    padding-right: 20rem;
+  }
 }
 
 .privacy__content h2 {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 2.5rem;
   line-height: 140%;
-  color: var(--black);
+
+  @include dosm {
+    margin-bottom: 3rem;
+    font-size: 3rem;
+  }
 }
 
 .privacy__content p {
-  margin-bottom: 1.6rem;
-  color: var(--black);
+  margin-bottom: 1.4rem;
+  line-height: 140%;
+
+  @include dosm {
+    margin-bottom: 1.6rem;
+  }
 }
 
 .privacy__content ul {
   list-style: none;
-  padding-left: 0;
-  margin-bottom: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 0;
+  margin-bottom: 1.4rem;
+
+  @include dosm {
+    padding-left: 3rem;
+    margin-bottom: 1.6rem;
+  }
 }
 
 .privacy__content ul li::before {
   content: "●";
-  margin-right: 1rem;
+  margin-left: -1rem;
+  margin-right: 0.5rem;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: var(--black);
+  font-size: 1rem;
   display: inline-block;
   vertical-align: middle;
+
+  @include dosm {
+    margin-left: -2rem;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+  }
+}
+
+.privacy__content {
+
+  a:hover {
+
+    @include dosm {
+      text-decoration: underline;
+    }
+  }
+}
+
+.privacy__content p+h2 {
+  margin-top: 2rem;
+
+  @include dosm {
+    margin-top: 4rem;
+  }
 }

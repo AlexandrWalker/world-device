@@ -17,6 +17,7 @@
       gap: 2rem;
       padding: 2rem 1.5rem;
       border-radius: 1.2rem;
+      background-color: var(--body-bg);
     }
 
     .general__tabs {
@@ -27,9 +28,7 @@
       }
     }
 
-    &-request {
-
-    }
+    &-request {}
 
     &-wrap {
       display: flex;
@@ -93,6 +92,13 @@
       border-radius: 0.9rem;
       background-color: var(--navy-05);
       transition: all 0.3s ease;
+
+      &:hover {
+
+        @include dosm {
+          background-color: var(--blue-2-05);
+        }
+      }
 
       .trade__block-request & {
         flex-direction: column;

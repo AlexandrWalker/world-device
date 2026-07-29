@@ -48,6 +48,27 @@
     height: 6rem;
     flex-shrink: 0;
 
+    &--marker {
+
+      .toolbar__item-icon {
+
+        &::before {
+          content: "";
+          display: block;
+          width: 1.6rem;
+          height: 1.6rem;
+          border-radius: 50%;
+          background-color: var(--green);
+          flex-shrink: 0;
+
+          position: absolute;
+          top: -0.4rem;
+          right: -0.35rem;
+          z-index: 2;
+        }
+      }
+    }
+
     &-icon {
       color: var(--navy);
 
@@ -63,6 +84,8 @@
       font-size: 1rem;
       line-height: 130%;
       color: var(--black);
+
+      span {}
     }
   }
 }

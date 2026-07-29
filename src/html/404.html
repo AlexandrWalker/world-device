@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page notfound-page">
+@@include('blocks/head.html', {"title": "World Device"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <main class="main">
+
+      <section class="notfound">
+        <div class="container">
+          <div class="notfound__inner">
+
+            <div class="notfound__content">
+              <div class="notfound__title">
+                <h1>
+                  Ошибка 404
+                </h1>
+              </div>
+              <div class="notfound__text">
+                <p>
+                  Боль, печаль, и грусть...
+                </p>
+              </div>
+            </div>
+
+            <a class="notfound__btn btn" href="/world-device">
+              Перейти на главную
+            </a>
+
+            <div class="notfound__bg">
+              <picture>
+                <source media="(min-width: 601px)" srcset="./../images/temp/not_found_bg-2.jpg">
+                <source media="(max-width: 600px)" srcset="./../images/temp/notfound_mob_bg.png">
+                <img src="./../images/temp/not_found_bg-2.jpg" alt="">
+              </picture>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+<div class="modal__overlay"></div>
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

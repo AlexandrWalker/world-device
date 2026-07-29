@@ -1,0 +1,117 @@
+@use './../mixins' as *;
+
+.notfound {
+  position: relative;
+
+  @include dosm {
+    min-height: 83.8rem;
+  }
+
+  &-page {
+
+    body {
+
+      @include sm {
+        background-image: url(./../../images/temp/notfound__cover.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    .main {
+      padding-bottom: 0;
+    }
+
+    .footer {
+
+      @include sm {
+        background-image: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: 1rem;
+
+    @include dosm {
+      gap: 4rem;
+      padding-top: 4.5rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    color: var(--white);
+
+    z-index: 2;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 15rem;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 4rem;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    @include dosm {
+      font-weight: 400;
+      font-size: 6rem;
+    }
+  }
+
+  &__btn {
+    --btn-padding-x: 4rem;
+
+    z-index: 2;
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &__bg {
+    width: 100%;
+
+    @include dosm {
+      margin-top: -4.7rem;
+      height: calc(100% + 4.7rem);
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+
+      @include dosm {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

@@ -86,7 +86,7 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.6rem 2rem;
-    background-color: var(--gray-light);
+    background-color: var(--blue);
     border-radius: 0.5rem;
     // border: 0.1rem solid var(--dropdown-content-border-color);
     transform: translateY(-101%);
@@ -97,7 +97,9 @@
       transform: translateY(0);
     }
 
-    .dropdown__label {}
+    .dropdown__label {
+      color: var(--white);
+    }
   }
 
   &__radio {

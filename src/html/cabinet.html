@@ -47,7 +47,8 @@
 
             <div class="cabinet__nav">
               <div class="cabinet__nav-items ajax-btns">
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-profile">
+                <div class="cabinet__nav-item modal__btn ajax-btn ajax-btn-active" data-cabinet="cabinet-profile"
+                  data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-person"></i>
                   </div>
@@ -58,7 +59,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-favorite">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-favorite" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-favorite"></i>
                   </div>
@@ -69,7 +70,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-compare">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-compare" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-sravnenie"></i>
                   </div>
@@ -80,7 +81,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-orders">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-orders" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-list"></i>
                   </div>
@@ -91,7 +92,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn ajax-btn-active" data-cabinet="cabinet-trade">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-trade" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-trade-in"></i>
                   </div>
@@ -102,7 +103,8 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-notifications">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-notifications"
+                  data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-telegram"></i>
                   </div>
@@ -116,12 +118,10 @@
               </div>
             </div>
 
-            <div class="modal__overlay"></div>
-
-            <div id="modal" class="cabinet__body" data-lenis-prevent>
-              <div class="cabinet__wrap"></div>
-              <div class="cabinet__content">
-                @@include('ajax/cabinet-trade.html')
+            <div class="cabinet__body modal" data-lenis-prevent data-modal="modal-2">
+              <div class="modal__wrap"></div>
+              <div class="cabinet__content modal__content">
+                @@include('ajax/cabinet-profile.html')
               </div>
             </div>
 
@@ -129,6 +129,7 @@
         </div>
       </section>
 
+<div class="modal__overlay"></div>
     </main>
     <!-- Подвал -->
     @@include('blocks/footer.html')

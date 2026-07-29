@@ -18,6 +18,12 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
     rel="stylesheet">
   <!-- favicon -->
+  <link rel="icon" type="image/png" href="./images/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="./images/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="World Device" />
+  <link rel="manifest" href="./images/favicon/site.webmanifest" />
   <!-- title -->
   <title>World Device</title>
   <!-- icons -->
@@ -270,7 +276,7 @@
                 Корзина
               </span>
             </a>
-            <a class="header__bar-item" href="/world-device/cabinet.html">
+            <a class="header__bar-item" data-fancybox href="#popup-auth">
               <div class="header__bar-icon">
                 <i class="icon-login"></i>
               </div>
@@ -5146,7 +5152,7 @@
     <a class="social__item social__item--tg" href="/">
       <i class="icon-telegram"></i>
     </a>
-    <button class="social__item social__item-btn">
+    <button class="social__item social__item-btn btn--pulse">
       <i class="icon-headphones"></i>
     </button>
   </div>
@@ -5192,7 +5198,8 @@
 
             <div class="cabinet__nav">
               <div class="cabinet__nav-items ajax-btns">
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-profile">
+                <div class="cabinet__nav-item modal__btn ajax-btn ajax-btn-active" data-cabinet="cabinet-profile"
+                  data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-person"></i>
                   </div>
@@ -5203,7 +5210,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-favorite">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-favorite" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-favorite"></i>
                   </div>
@@ -5214,7 +5221,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-compare">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-compare" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-sravnenie"></i>
                   </div>
@@ -5225,7 +5232,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-orders">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-orders" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-list"></i>
                   </div>
@@ -5236,7 +5243,7 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn ajax-btn-active" data-cabinet="cabinet-trade">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-trade" data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-trade-in"></i>
                   </div>
@@ -5247,7 +5254,8 @@
                     <i class="icon-nav-chevron-down"></i>
                   </div>
                 </div>
-                <div class="cabinet__nav-item ajax-btn" data-cabinet="cabinet-notifications">
+                <div class="cabinet__nav-item modal__btn ajax-btn" data-cabinet="cabinet-notifications"
+                  data-modal="modal-2">
                   <div class="cabinet__nav-icon">
                     <i class="icon-telegram"></i>
                   </div>
@@ -5261,258 +5269,165 @@
               </div>
             </div>
 
-            <div class="modal__overlay"></div>
-
-            <div id="modal" class="cabinet__body" data-lenis-prevent>
-              <div class="cabinet__wrap"></div>
-              <div class="cabinet__content">
-                <div class="trade">
-
-  <div class="trade__block trade__block-request">
-    <div class="trade__block-wrap">
-      <div class="trade__block-head">
-        <div class="trade__block-title">
-          Ваши заявки по Trade-in
-        </div>
-      </div>
-      <div class="trade__block-body">
-        <div class="trade__block-items">
-          <label class="trade__block-item">
-            <input type="radio" name="trade_request" hidden checked>
-            <div class="trade__block-item--title">
-              Apple iPhone 17 Pro Max, 512 ГБ, «Оранжевый»
-            </div>
-            <div class="trade__block-item--price">
-              62 480 ₽
-            </div>
-            <div class="trade__block-item--status status--off">
-              На рассмотрении
-            </div>
-          </label>
-          <label class="trade__block-item">
-            <input type="radio" name="trade_request" hidden>
-            <div class="trade__block-item--title">
-              Apple iPhone 17 Pro Max, 512 ГБ
-            </div>
-            <div class="trade__block-item--text">
-              Обратитесь в магазин до 03.12.2025
-            </div>
-            <div class="trade__block-item--status status--on">
-              Одобрено
-            </div>
-          </label>
-        </div>
-      </div>
-    </div>
+            <div class="cabinet__body modal" data-lenis-prevent data-modal="modal-2">
+              <div class="modal__wrap"></div>
+              <div class="cabinet__content modal__content">
+                <div class="profile">
+  <div class="cabinet__title">
+    Профиль
   </div>
-
-  <div class="trade__block">
-    <div class="trade__block-head">
-      <div class="trade__block-title">
-        Калькулятор стоимости
+  <div class="profile__items">
+    <div class="profile__item">
+      <div class="profile__item-suptitle">
+        Личные данные
       </div>
-      <div class="trade__block-text">
-        Рассчитайте ориентировочную стоимость Вашей техники. Точная стоимость будет известна после диагностики в
-        магазине.
+      <div class="profile__item-wrap">
+        <div class="profile__item-text">
+          Иван Петров
+        </div>
+        <a class="profile__item-text profile__item-text--link" href="tel:+71234567890">
+          +7 (123) 456-78-90
+        </a>
+        <a class="profile__item-text profile__item-text--link" href="mailto:ivan@pochta.ru">
+          ivan@pochta.ru
+        </a>
       </div>
     </div>
-    <div class="trade__block-body">
-      <div class="general__tabs">
-        <button class="general__tab is-active" type="button">
-          Apple
-        </button>
-        <button class="general__tab" type="button">
-          Samsung
-        </button>
-        <button class="general__tab" type="button">
-          Google
-        </button>
-        <button class="general__tab" type="button">
-          Xiaomi
-        </button>
+    <div class="profile__item">
+      <div class="profile__item-suptitle">
+        Приоритетный адрес доставки
       </div>
-      <div class="trade__block-form">
-        <form action="#">
-          <div class="form-inner">
-            <div class="form-body grid-col-3">
-              <div class="form-group">
-                <div class="form-label">
-                  <span>
-                    Выбрать модель:
-                  </span>
-                  <div class="dropdown dropdown--js">
-                    <div class="dropdown__selected dropdown__selected--js">
-                      <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
-                      <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
-                      <i class="icon-chevron-stroke"></i>
-                    </div>
-                    <div class="dropdown__container">
-                      <div class="dropdown__content">
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 17 Pro"
-                              data-city="iPhone17Pro">
-                            iPhone 17 Pro
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 17 Pro Max"
-                              data-city="iPhone17ProMax">
-                            iPhone 17 Pro Max
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 16 Pro"
-                              data-city="iPhone16Pro">
-                            iPhone 16 Pro
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="trade_model" type="radio" value="iPhone 16 Pro Max"
-                              data-city="iPhone16ProMax">
-                            iPhone 16 Pro Max
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <input class="dropdown__value" type="hidden">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label">
-                  <span>
-                    Объем памяти:
-                  </span>
-                  <div class="dropdown dropdown--js">
-                    <div class="dropdown__selected dropdown__selected--js">
-                      <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
-                      <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
-                      <i class="icon-chevron-stroke"></i>
-                    </div>
-                    <div class="dropdown__container">
-                      <div class="dropdown__content">
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="memory_model" type="radio" value="256 Гб"
-                              data-city="256">
-                            256 Гб
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="memory_model" type="radio" value="512 Гб"
-                              data-city="512">
-                            512 Гб
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="memory_model" type="radio" value="1 Тб"
-                              data-city="1024">
-                            1 Тб
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="memory_model" type="radio" value="2 Тб"
-                              data-city="2048">
-                            2 Тб
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <input class="dropdown__value" type="hidden">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label">
-                  <span>
-                    Состояние:
-                  </span>
-                  <div class="dropdown dropdown--js">
-                    <div class="dropdown__selected dropdown__selected--js">
-                      <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
-                      <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
-                      <i class="icon-chevron-stroke"></i>
-                    </div>
-                    <div class="dropdown__container">
-                      <div class="dropdown__content">
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="state_model" type="radio" value="Есть царапины"
-                              data-city="Есть царапины">
-                            Есть царапины
-                          </label>
-                        </div>
-                        <div class="dropdown__option">
-                          <label class="dropdown__label">
-                            <input class="dropdown__radio" name="state_model" type="radio" value="Есть скол"
-                              data-city="Есть скол">
-                            Есть скол
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <input class="dropdown__value" type="hidden">
-                  </div>
-                </div>
-              </div>
+      <div class="profile__item-wrapper">
+        <div class="profile__item-text">
+          Александровской Фермы пр., 1
+        </div>
+        <a class="profile__item-link" data-fancybox href="#popup-address-change">
+          Изменить адрес
+        </a>
+      </div>
+    </div>
+    <div class="profile__item">
+      <div class="profile__item-head">
+        <div class="profile__item-title">
+          Личные данные
+        </div>
+      </div>
+      <div class="profile__item-body">
+        <div class="form-inner">
+          <div class="form-body grid-col-3">
+            <div class="form-group">
+              <label class="form-label">
+                <span>
+                  Номер телефона:
+                </span>
+                <input class="form-input" type="tel" name="prfile_form_tel" placeholder="+7 (123) 456-78-90">
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="form-label">
+                <span>
+                  Эл.почта:
+                </span>
+                <input class="form-input" type="mail" name="prfile_form_mail" placeholder="Введите почту">
+              </label>
+            </div>
+            <div class="form-group has-error">
+              <label class="form-label">
+                <span>
+                  Ф.И.О
+                </span>
+                <input class="form-input" type="text" name="prfile_form_name" placeholder="Иван Петров"
+                  value="сячысыссыс">
+              </label>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-    <div class="trade__block-wrap">
-      <div class="trade__block-head">
-        <div class="trade__block-title">
-          Укажите цель Trade-in
-        </div>
-      </div>
-      <div class="trade__block-body">
-        <div class="trade__block-items">
-          <label class="trade__block-item">
-            <div class="check">
-              <input type="radio" name="trade_goal" hidden>
-              <span></span>
+          <div class="form-foot">
+            <div class="form-foot__btns">
+              <button class="btn btn--blue" type="button" data-fancybox href="#popup-edit">
+                Редактировать
+              </button>
+              <button class="btn btn--white" type="button">
+                Сохранить
+              </button>
             </div>
-            <div class="trade__block-item--title">
-              Получение скидки на новое устройство
-            </div>
-          </label>
-          <label class="trade__block-item">
-            <div class="check">
-              <input type="radio" name="trade_goal" hidden>
-              <span></span>
-            </div>
-            <div class="trade__block-item--title">
-              Продать устройство
-            </div>
-          </label>
+          </div>
         </div>
       </div>
     </div>
-    <div class="trade__block-wrap">
-      <div class="trade__block-head">
-        <div class="trade__block-title">
-          Примерная стоимость по Trade-in
+    <div class="profile__item">
+      <div class="profile__item-head">
+        <div class="profile__item-title">
+          Сохраненные адреса
         </div>
       </div>
-      <div class="trade__block-body">
-        <div class="trade__block-price">
-          100 480 ₽
+      <div class="profile__item-body">
+        <div class="form-inner">
+          <div class="form-body">
+            <div class="profile__blocks">
+              <label class="profile__block">
+                <div class="check">
+                  <input type="radio" name="profile_address" hidden>
+                  <span></span>
+                </div>
+                <div class="profile__block-wrap">
+                  <div class="profile__block-title">
+                    Александровской Фермы пр., 1
+                  </div>
+                  <a class="profile__block-link" href="/">
+                    Изменить адрес
+                  </a>
+                </div>
+                <div class="profile__block-btn">
+                  <i class="icon-trash"></i>
+                </div>
+              </label>
+              <label class="profile__block">
+                <div class="check">
+                  <input type="radio" name="profile_address" hidden>
+                  <span></span>
+                </div>
+                <div class="profile__block-wrap">
+                  <div class="profile__block-title">
+                    Александровский парк, 1
+                  </div>
+                  <a class="profile__block-link" href="/">
+                    Изменить адрес
+                  </a>
+                </div>
+                <div class="profile__block-btn">
+                  <i class="icon-trash"></i>
+                </div>
+              </label>
+              <label class="profile__block">
+                <div class="check">
+                  <input type="radio" name="profile_address" hidden>
+                  <span></span>
+                </div>
+                <div class="profile__block-wrap">
+                  <div class="profile__block-title">
+                    Александровский парк, 1
+                  </div>
+                  <a class="profile__block-link" href="/">
+                    Изменить адрес
+                  </a>
+                </div>
+                <div class="profile__block-btn">
+                  <i class="icon-trash"></i>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="form-foot">
+            <div class="form-foot__btns">
+              <button class="btn btn--blue" type="button" data-fancybox href="#popup-address-add">
+                Добавить адрес
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <button class="trade__block-btn btn btn--cyan" type="button">
-      Отправить заявку
-    </button>
   </div>
-
 </div>
               </div>
             </div>
@@ -5521,6 +5436,7 @@
         </div>
       </section>
 
+<div class="modal__overlay"></div>
     </main>
     <!-- Подвал -->
     <footer id="footer" class="footer">
@@ -5764,7 +5680,76 @@
     </div>
   </div>
 </footer>
-<!-- Подвал -->
+<!-- Модальное окно -->
+<div class="modal popup--auth" data-modal="modal-1" data-lenis-prevent>
+  <div class="modal__wrap"></div>
+  <div class="modal__content">
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="+ 7 (___) ___-__-__">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox-close>
+          <i class="icon-telegram"></i>
+          Войти через Телеграм
+        </button>
+        <button class="btn btn--gray" data-fancybox-close>
+          <i class="icon-max social-max-gradient"></i>
+          Отправить код в Макс
+        </button>
+        <button class="btn btn--stroke modal__btn" data-modal="modal-3">
+          Войти через почту
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Авторизация через почту доступна только для старых пользователей
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal popup--auth" data-modal="modal-3" data-lenis-prevent>
+  <div class="modal__wrap"></div>
+  <div class="modal__content">
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="Введите почту">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--stroke" data-fancybox href="#popup-code">
+          Получить код
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Тулбар -->
 <div class="toolbar">
   <div class="toolbar__inner">
     <div class="toolbar__items">
@@ -5806,18 +5791,20 @@
           Корзина
         </div>
       </a>
-      <a class="toolbar__item" href="javascript:void(0)">
+      <a class="toolbar__item toolbar__item--marker modal__btn" data-modal="modal-1">
         <div class="toolbar__item-icon">
           <i class="icon-person"></i>
         </div>
         <div class="toolbar__item-text">
-          Кабинет
+          <span>
+            Кабинет
+          </span>
         </div>
       </a>
     </div>
   </div>
 </div>
-<!-- Подвал -->
+<!-- Попапы -->
 <div id="popup-filter" class="popup">
   <div class="popup__wrap" data-lenis-prevent>
     <div class="popup__content">
@@ -6374,6 +6361,354 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<div id="popup-edit" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Введите актуальный номер
+        </div>
+        <div class="popup__head-text">
+          Необходимо подтвердить номер телефона для сохранения изменений
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_edit_act_tel" placeholder="+7 (123) 456-78-90">
+        </div>
+      </div>
+      <div class="popup__btns grid-col-2">
+        <button class="btn btn--red" data-fancybox-close>
+          Отмена
+        </button>
+        <button class="btn btn--blue" data-fancybox href="#popup-edit-code">
+          Далее
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-edit-code" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content form-code-body">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Подтвердите номер телефона
+        </div>
+        <div class="popup__head-text">
+          На ваш номер +7 (123) 456-78-90 было отправлено СМС с кодом. Введите код с СМС чтобы подтвердить номер
+          телефона.
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <div class="form-code-wrap">
+            <input class="form-code" type="text" name="profile_edit_code_1" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_2" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_3" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_4" maxlength="1" inputmode="numeric"
+              placeholder="-">
+          </div>
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox href="#popup-edit-success" disabled>
+          Далее
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Если SMS не приходит, обратитесь в службу поддержки по адресу: <a
+            href="mailto:info@world-devices.ru">info@world-devices.ru</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-edit-success" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Ваш номер успешно изменен!
+        </div>
+      </div>
+      <div class="popup__btn">
+        <button class="btn btn--blue" data-fancybox-close>
+          Вернуться в личный кабинет
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-address-add" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Добавить адрес
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="popup__form">
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Город">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Улица">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Дом">
+          </div>
+        </div>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-item">
+          <button class="btn btn--blue" data-fancybox-close>
+            Добавить
+          </button>
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input class="form-checkbox-input" type="checkbox" hidden checked>
+              <div class="form-checkbox-item">
+              </div>
+              <div class="form-checkbox-text">
+                <p>
+                  Сделать приоритетным
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-address-change" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Изменить адрес
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="popup__form">
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Санкт-Петербург">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Пушкина">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="20">
+          </div>
+        </div>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-item">
+          <button class="btn btn--blue" data-fancybox-close>
+            Сохранить
+          </button>
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input class="form-checkbox-input" type="checkbox" hidden checked>
+              <div class="form-checkbox-item">
+              </div>
+              <div class="form-checkbox-text">
+                <p>
+                  Сделать приоритетным
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-auth" class="popup popup--auth">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="+ 7 (___) ___-__-__">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox-close>
+          <i class="icon-telegram"></i>
+          Войти через Телеграм
+        </button>
+        <button class="btn btn--gray" data-fancybox-close>
+          <i class="icon-max social-max-gradient"></i>
+          Отправить код в Макс
+        </button>
+        <button class="btn btn--stroke" data-fancybox href="#popup-auth-mail">
+          Войти через почту
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Авторизация через почту доступна только для старых пользователей
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-auth-mail" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="Введите почту">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--stroke" data-fancybox href="#popup-code">
+          Получить код
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-auth-success" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Вы успешно авторизованы на сайте
+        </div>
+      </div>
+      <div class="popup__btn">
+        <button class="btn btn--blue" data-fancybox-close>
+          Начать покупки
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-code" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content form-code-body">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Введите код
+        </div>
+        <div class="popup__head-text">
+          На ваш номер +7 (123) 456-78-90 было отправлено сообщение с кодом. Введите код даннуй чтобы авторизоваться на
+          сайте
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <div class="form-code-wrap">
+            <input class="form-code" type="text" name="profile_edit_code_1" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_2" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_3" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_4" maxlength="1" inputmode="numeric"
+              placeholder="-">
+          </div>
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox href="#popup-auth-success" disabled>
+          Далее
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Если SMS не приходит, обратитесь в службу поддержки по адресу: <a
+            href="mailto:info@world-devices.ru">info@world-devices.ru</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-trade" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Вы хотите создать заявку в разделе Trade-in?
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox-close>
+          Отправить заявку
+        </button>
+        <button class="btn btn--gray" data-fancybox-close>
+          Отменить
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Плашка -->
+<div id="plate_cookie" class="plate">
+  <div class="plate__inner">
+    <div class="plate__text">
+      <p>
+        Мы используем файлы cookie
+      </p>
+    </div>
+    <button class="plate__btn btn btn--cyan" onclick="checkCookies()">
+      Ок
+    </button>
   </div>
 </div>
 </div>

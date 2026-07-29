@@ -57,6 +57,11 @@
     --btn-color: var(--white);
   }
 
+  &--blue-2 {
+    --btn-background: var(--blue);
+    --btn-color: var(--white);
+  }
+
   &--gray {
     --btn-background: var(--black-05);
     --btn-color: var(--black);
@@ -86,5 +91,101 @@
         --btn-color: var(--black);
       }
     }
+  }
+
+  &--stroke {
+    --btn-color: var(--black);
+
+    border: 0.1rem solid var(--blue-10);
+
+    &:hover {
+
+      @include dosm {
+        --btn-background: var(--blue-10);
+        --btn-color: var(--black);
+      }
+    }
+  }
+
+  &--red {
+    --btn-color: var(--red);
+
+    border: 0.1rem solid var(--blue-10);
+
+    &:hover {
+
+      @include dosm {
+        --btn-background: var(--red-10);
+        --btn-color: var(--red);
+
+        border-color: var(--red-10);
+      }
+    }
+  }
+
+  &--pulse {
+    z-index: 2;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      z-index: 1;
+      opacity: 1;
+      transition: all 0.3s ease;
+
+      -webkit-animation: pulse-wave 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      animation: pulse-wave 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+
+      .social.active & {
+        opacity: 0;
+      }
+    }
+
+    &::after {
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s;
+    }
+  }
+}
+
+@-webkit-keyframes pulse-wave {
+  0% {
+    box-shadow: 0 0 0 0.1rem rgba(255, 91, 91, 1);
+  }
+
+  33% {
+    box-shadow: 0 0 0 0.4rem rgba(255, 91, 91, 0.5);
+  }
+
+  66% {
+    box-shadow: 0 0 0 0.8rem rgba(255, 91, 91, 0.3);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0.8rem rgba(255, 91, 91, 0);
+  }
+}
+
+@keyframes pulse-wave {
+  0% {
+    box-shadow: 0 0 0 0.1rem rgba(255, 91, 91, 1);
+  }
+
+  33% {
+    box-shadow: 0 0 0 0.4rem rgba(255, 91, 91, 0.5);
+  }
+
+  66% {
+    box-shadow: 0 0 0 0.8rem rgba(255, 91, 91, 0.3);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0.8rem rgba(255, 91, 91, 0);
   }
 }

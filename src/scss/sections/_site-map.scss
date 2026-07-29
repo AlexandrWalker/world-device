@@ -1,0 +1,46 @@
+@use './../mixins' as *;
+
+.site-map {
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+
+    @include dosm {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__item {
+
+    li {
+      margin-bottom: 2rem;
+
+      @include dosm {
+        margin-bottom: 3rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 120%;
+
+      @include dosm {
+        font-size: 1.6rem;
+      }
+
+      &:hover {
+
+        @include dosm {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

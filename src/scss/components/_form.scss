@@ -157,6 +157,13 @@
       color: var(--black);
     }
 
+    .header__search:hover & {
+
+      @include dosm {
+        background-color: var(--white-80);
+      }
+    }
+
     &::placeholder {
       font-weight: 400;
       font-size: 1.4rem;
@@ -166,6 +173,13 @@
 
       @include sm {
         color: var(--black);
+      }
+
+      .header__search:hover & {
+
+        @include dosm {
+          color: var(--black);
+        }
       }
     }
 
@@ -305,6 +319,41 @@
 
           font-size: 1.2rem;
         }
+      }
+    }
+  }
+
+  &-code {
+    display: block;
+    width: 100%;
+    height: 7rem;
+    background-color: var(--navy-05);
+    border-radius: 0.9rem;
+
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 100%;
+    color: var(--blue);
+    text-align: center;
+
+    @include dosm {
+      height: 10rem;
+
+      font-size: 6rem;
+    }
+
+    &::placeholder {
+      color: var(--blue);
+    }
+
+    &-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+
+      @include dosm {
+        gap: 2rem;
       }
     }
   }
