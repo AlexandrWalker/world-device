@@ -2981,33 +2981,163 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormInputs();
   initAllAjaxPages();
 
+  // (function () {
+  //   const htmlTag = document.documentElement;
+
+  //   const modalBlock = document.querySelector('.modal');
+  //   const dragZone = modalBlock ? modalBlock.querySelector('.modal__wrap') : null;
+  //   const contentZone = modalBlock ? modalBlock.querySelector('.modal__content') : null;
+
+  //   const bezierTransition = 'transform 0.5s cubic-bezier(0.32, 0.94, 0.6, 1)';
+  //   const defaultTransform = 'translateY(0)';
+
+  //   let startY = 0;
+  //   let currentY = 0;
+  //   let isDragging = false;
+
+  //   const isMobile = () => window.matchMedia('(max-width: 600px)').matches;
+
+  //   const openModalMenu = () => {
+  //     htmlTag.classList.add('modal--open');
+  //     if (typeof lenis !== 'undefined') lenis.stop();
+
+  //     modalBlock.style.transition = bezierTransition;
+  //     modalBlock.style.transform = defaultTransform;
+  //   };
+
+  //   const closeModalMenu = () => {
+  //     htmlTag.classList.remove('modal--open');
+  //     if (typeof lenis !== 'undefined') lenis.start();
+
+  //     modalBlock.style.transition = bezierTransition;
+  //     modalBlock.style.transform = 'translateY(100%)';
+
+  //     setTimeout(() => {
+  //       modalBlock.style.transform = '';
+  //       modalBlock.style.transition = '';
+  //     }, 500);
+  //   };
+
+  //   document.addEventListener('click', (event) => {
+  //     if (!isMobile()) return;
+
+  //     if (event.target.closest('.modal__btn')) {
+  //       event.stopPropagation();
+  //       openModalMenu();
+  //       return;
+  //     }
+
+  //     if (!htmlTag.classList.contains('modal--open')) return;
+
+  //     const isClickInsideWrap = dragZone && dragZone.contains(event.target);
+  //     const isClickInsideContent = contentZone && contentZone.contains(event.target);
+
+  //     if (!isClickInsideWrap && !isClickInsideContent) {
+  //       closeModalMenu();
+  //     }
+  //   });
+
+  //   if (modalBlock) {
+
+  //     const handleTouchStart = (event) => {
+  //       if (!isMobile() || !htmlTag.classList.contains('modal--open')) return;
+
+  //       if (contentZone && contentZone.contains(event.target) && contentZone.scrollTop > 0) {
+  //         isDragging = false;
+  //         return;
+  //       }
+
+  //       startY = event.touches[0].clientY;
+  //       isDragging = true;
+  //       modalBlock.style.transition = 'transform 0s linear';
+  //     };
+
+  //     const handleTouchMove = (event) => {
+  //       if (!isDragging) return;
+
+  //       const moveY = event.touches[0].clientY;
+  //       currentY = moveY - startY;
+
+  //       if (currentY > 0) {
+  //         if (contentZone && contentZone.contains(event.target)) {
+  //           if (contentZone.scrollTop > 0) {
+  //             currentY = 0;
+  //             isDragging = false;
+  //             return;
+  //           }
+  //         }
+
+  //         if (event.cancelable) event.preventDefault();
+  //         modalBlock.style.transform = `translateY(${currentY}px)`;
+  //       } else {
+  //         currentY = 0;
+  //       }
+  //     };
+
+  //     const handleTouchEnd = () => {
+  //       if (!isDragging) return;
+  //       isDragging = false;
+
+  //       if (currentY > 100) {
+  //         setTimeout(() => {
+  //           closeModalMenu();
+  //         }, 10);
+  //       } else {
+  //         modalBlock.style.transition = bezierTransition;
+  //         modalBlock.style.transform = defaultTransform;
+  //       }
+
+  //       currentY = 0;
+  //     };
+
+  //     if (dragZone) {
+  //       dragZone.addEventListener('touchstart', handleTouchStart, { passive: false });
+  //       dragZone.addEventListener('touchmove', handleTouchMove, { passive: false });
+  //       dragZone.addEventListener('touchend', handleTouchEnd);
+  //     }
+
+  //     if (contentZone) {
+  //       contentZone.addEventListener('touchstart', handleTouchStart, { passive: false });
+  //       contentZone.addEventListener('touchmove', handleTouchMove, { passive: false });
+  //       contentZone.addEventListener('touchend', handleTouchEnd);
+  //     }
+  //   }
+  // })();
+
   (function () {
     const htmlTag = document.documentElement;
-
-    const modalBlock = document.getElementById('modal');
-    const dragZone = modalBlock ? modalBlock.querySelector('.cabinet__wrap') : null;
-    const contentZone = modalBlock ? modalBlock.querySelector('.cabinet__content') : null;
+    const isMobile = () => window.matchMedia('(max-width: 600px)').matches;
 
     const bezierTransition = 'transform 0.5s cubic-bezier(0.32, 0.94, 0.6, 1)';
     const defaultTransform = 'translateY(0)';
 
-    let startY = 0;
-    let currentY = 0;
-    let isDragging = false;
+    let isTransitioning = false;
 
-    const isMobile = () => window.innerWidth <= 600;
+    // Функция открытия конкретной модалки
+    const openModalMenu = (modalBlock) => {
+      isTransitioning = true;
 
-    const openModalMenu = () => {
       htmlTag.classList.add('modal--open');
       if (typeof lenis !== 'undefined') lenis.stop();
 
+      modalBlock.classList.add('is-active');
       modalBlock.style.transition = bezierTransition;
       modalBlock.style.transform = defaultTransform;
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 500);
     };
 
-    const closeModalMenu = () => {
-      htmlTag.classList.remove('modal--open');
-      if (typeof lenis !== 'undefined') lenis.start();
+    // Функция закрытия конкретной модалки (с флагом skipReset для цепочек открытия)
+    const closeModalMenu = (modalBlock, skipReset = false) => {
+      isTransitioning = true;
+
+      // Если мы открываем другое окно СРАЗУ, класс modal--open с html убирать НЕ НАДО
+      if (!skipReset) {
+        htmlTag.classList.remove('modal--open');
+        if (typeof lenis !== 'undefined') lenis.start();
+      }
 
       modalBlock.style.transition = bezierTransition;
       modalBlock.style.transform = 'translateY(100%)';
@@ -3015,36 +3145,95 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         modalBlock.style.transform = '';
         modalBlock.style.transition = '';
+        modalBlock.classList.remove('is-active');
+
+        // Сбрасываем флаг анимации только если это было обычное финальное закрытие
+        if (!skipReset) {
+          isTransitioning = false;
+        }
       }, 500);
     };
 
+    // 1. Единый глобальный слушатель кликов
     document.addEventListener('click', (event) => {
       if (!isMobile()) return;
 
-      if (event.target.closest('.cabinet__nav-item')) {
+      // Ищем кнопку открытия модалки
+      const btn = event.target.closest('.modal__btn');
+      if (btn) {
         event.stopPropagation();
-        openModalMenu();
+        const modalId = btn.getAttribute('data-modal');
+
+        // Находим текущую уже открытую модалку
+        const activeModal = document.querySelector('.modal.is-active');
+        const targetModal = document.querySelector(`.modal[data-modal="${modalId}"]`);
+
+        if (!targetModal) return;
+
+        // КЕЙС 1: Если кликнули на кнопку открытия ДРУГОЙ модалки, пока открыта первая
+        if (activeModal && activeModal !== targetModal) {
+          // Гарантированно временно снимаем блок transition, чтобы обработать сквозной клик
+          isTransitioning = false;
+
+          // Закрываем старую, но передаем true, чтобы HTML-фон (overlay) не моргал и не закрывался
+          closeModalMenu(activeModal, true);
+
+          // Сразу же открываем новую модалку
+          openModalMenu(targetModal);
+          return;
+        }
+
+        // КЕЙС 2: Обычное открытие с нуля
+        if (!isTransitioning) {
+          openModalMenu(targetModal);
+        }
         return;
       }
 
-      if (!htmlTag.classList.contains('modal--open')) return;
+      // Проверяем клик вне контента для обычного закрытия
+      if (isTransitioning || !htmlTag.classList.contains('modal--open')) return;
+
+      const activeModal = document.querySelector('.modal.is-active');
+      if (!activeModal) return;
+
+      const dragZone = activeModal.querySelector('.modal__wrap');
+      const contentZone = activeModal.querySelector('.modal__content');
 
       const isClickInsideWrap = dragZone && dragZone.contains(event.target);
       const isClickInsideContent = contentZone && contentZone.contains(event.target);
 
       if (!isClickInsideWrap && !isClickInsideContent) {
-        closeModalMenu();
+        closeModalMenu(activeModal);
       }
     });
 
-    if (modalBlock) {
+    // 2. Инициализация Touch-логики индивидуально для КАЖДОЙ модалки
+    const allModals = document.querySelectorAll('.modal');
 
-      const handleTouchStart = (event) => {
-        if (!isMobile() || !htmlTag.classList.contains('modal--open')) return;
+    allModals.forEach((modalBlock) => {
+      const dragZone = modalBlock.querySelector('.modal__wrap');
+      const contentZone = modalBlock.querySelector('.modal__content');
 
-        if (contentZone && contentZone.contains(event.target) && contentZone.scrollTop > 0) {
-          isDragging = false;
-          return;
+      let startY = 0;
+      let currentY = 0;
+      let isDragging = false;
+      let isFromHandle = false;
+      let allowContentDrag = false;
+
+      const handleTouchStart = (event, fromHandle = false) => {
+        if (!isMobile() || !htmlTag.classList.contains('modal--open') || isTransitioning) return;
+
+        isFromHandle = fromHandle;
+
+        if (!isFromHandle) {
+          if (contentZone && contentZone.scrollTop > 0) {
+            allowContentDrag = false;
+            isDragging = false;
+            return;
+          }
+          allowContentDrag = true;
+        } else {
+          allowContentDrag = false;
         }
 
         startY = event.touches[0].clientY;
@@ -3053,18 +3242,19 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const handleTouchMove = (event) => {
-        if (!isDragging) return;
+        if (!isDragging || isTransitioning) return;
+        if (!isFromHandle && !allowContentDrag) return;
 
         const moveY = event.touches[0].clientY;
         currentY = moveY - startY;
 
         if (currentY > 0) {
-          if (contentZone && contentZone.contains(event.target)) {
-            if (contentZone.scrollTop > 0) {
-              currentY = 0;
-              isDragging = false;
-              return;
-            }
+          if (!isFromHandle && contentZone && contentZone.scrollTop > 0) {
+            currentY = 0;
+            isDragging = false;
+            modalBlock.style.transition = bezierTransition;
+            modalBlock.style.transform = defaultTransform;
+            return;
           }
 
           if (event.cancelable) event.preventDefault();
@@ -3075,13 +3265,18 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const handleTouchEnd = () => {
-        if (!isDragging) return;
+        if (!isDragging) {
+          isFromHandle = false;
+          allowContentDrag = false;
+          return;
+        }
         isDragging = false;
+        isFromHandle = false;
+        allowContentDrag = false;
 
         if (currentY > 100) {
-          setTimeout(() => {
-            closeModalMenu();
-          }, 10);
+          isDragging = false;
+          closeModalMenu(modalBlock);
         } else {
           modalBlock.style.transition = bezierTransition;
           modalBlock.style.transform = defaultTransform;
@@ -3091,17 +3286,97 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       if (dragZone) {
-        dragZone.addEventListener('touchstart', handleTouchStart, { passive: false });
+        dragZone.addEventListener('touchstart', (e) => handleTouchStart(e, true), { passive: false });
         dragZone.addEventListener('touchmove', handleTouchMove, { passive: false });
         dragZone.addEventListener('touchend', handleTouchEnd);
       }
 
       if (contentZone) {
-        contentZone.addEventListener('touchstart', handleTouchStart, { passive: false });
+        contentZone.addEventListener('touchstart', (e) => handleTouchStart(e, false), { passive: false });
         contentZone.addEventListener('touchmove', handleTouchMove, { passive: false });
         contentZone.addEventListener('touchend', handleTouchEnd);
       }
-    }
+    });
+  })();
+
+  /**
+   * РЕГИСТРАЦИОННЫЙ КОД - ПОШАГОВЫЙ ВВОД
+   */
+  (function () {
+    const formCodeBodys = document.querySelectorAll('.form-code-body');
+    console.log(formCodeBodys);
+    if (!formCodeBodys.length) return;
+
+    formCodeBodys.forEach(formCodeBody => {
+      const inputs = formCodeBody.querySelectorAll('.form-code');
+      const btn = formCodeBody.querySelector('.btn');
+      if (!inputs.length || !btn) return;
+
+      /**
+       * Блокирует/разблокирует кнопку подтверждения.
+       * Кнопка активна только если все ячейки заполнены.
+       */
+      const checkInputs = () => {
+        btn.disabled = !Array.from(inputs).every(i => i.value.length > 0);
+      };
+
+      inputs.forEach((input, idx) => {
+
+        /**
+         * При вводе символа:
+         * - Оставляем только последний введённый символ (защита от вставки нескольких)
+         * - Автоматически переходим к следующей ячейке
+         * - После заполнения последней ячейки фокус на кнопку
+         */
+        input.addEventListener('input', e => {
+          // Если вставили несколько символов - оставляем только последний
+          if (e.target.value.length > 1) e.target.value = e.target.value.slice(-1);
+
+          if (e.target.value && idx < inputs.length - 1) {
+            inputs[idx + 1].focus();       // следующая ячейка
+          } else if (idx === inputs.length - 1) {
+            btn.focus();                   // последняя ячейка -- кнопка
+          }
+
+          checkInputs();
+        });
+
+        /**
+         * Backspace на пустой ячейке - возврат к предыдущей ячейке.
+         * setTimeout(0) нужен чтобы checkInputs видел уже обновлённое состояние input.
+         */
+        input.addEventListener('keydown', e => {
+          if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+            inputs[idx - 1].focus();
+          }
+          setTimeout(checkInputs, 0);
+        });
+
+        /**
+         * Обработка вставки кода целиком (Ctrl+V / автозаполнение SMS).
+         * Распределяет символы по ячейкам и устанавливает фокус.
+         */
+        input.addEventListener('paste', e => {
+          e.preventDefault();
+          const data = e.clipboardData.getData('text').trim().slice(0, inputs.length);
+
+          data.split('').forEach((char, i) => {
+            if (inputs[i]) inputs[i].value = char;
+          });
+
+          // Фокус: либо на кнопку (код введён полностью), либо на следующую пустую ячейку
+          if (data.length >= inputs.length) {
+            btn.focus();
+          } else {
+            inputs[data.length].focus();
+          }
+
+          checkInputs();
+        });
+      });
+
+      checkInputs(); // Начальное состояние кнопки
+    });
   })();
 
   /**
@@ -3140,11 +3415,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!cookieAccepted) {
     const cookiesNotify = document.getElementById('plate_cookie');
     if (cookiesNotify) {
-      cookiesNotify.classList.add('plate--active');
-
-      // cookiesNotify.style.opacity = '1';
-      // cookiesNotify.style.visibility = 'visible';
-      // cookiesNotify.style.pointerEvents = 'all';
+      setTimeout(() => {
+        cookiesNotify.classList.add('plate--active');
+      }, 500);
     }
   }
 
@@ -3162,10 +3435,6 @@ function checkCookies() {
   const plate = document.getElementById('plate_cookie');
   if (!plate) return;
   plate.classList.remove('plate--active');
-
-  // plate.style.opacity = '0';
-  // plate.style.visibility = 'hidden';
-  // plate.style.pointerEvents = 'none';
 
   setTimeout(() => plate.remove(), 5000);
 }

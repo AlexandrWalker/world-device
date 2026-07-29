@@ -18,6 +18,12 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
     rel="stylesheet">
   <!-- favicon -->
+  <link rel="icon" type="image/png" href="./images/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="./images/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="World Device" />
+  <link rel="manifest" href="./images/favicon/site.webmanifest" />
   <!-- title -->
   <title>World Device</title>
   <!-- icons -->
@@ -270,7 +276,7 @@
                 Корзина
               </span>
             </a>
-            <a class="header__bar-item" href="/world-device/cabinet.html">
+            <a class="header__bar-item" data-fancybox href="#popup-auth">
               <div class="header__bar-icon">
                 <i class="icon-login"></i>
               </div>
@@ -5146,7 +5152,7 @@
     <a class="social__item social__item--tg" href="/">
       <i class="icon-telegram"></i>
     </a>
-    <button class="social__item social__item-btn">
+    <button class="social__item social__item-btn btn--pulse">
       <i class="icon-headphones"></i>
     </button>
   </div>
@@ -5339,6 +5345,7 @@
         </div>
       </section>
 
+<div class="modal__overlay"></div>
     </main>
     <!-- Подвал -->
     <footer id="footer" class="footer">
@@ -5582,7 +5589,76 @@
     </div>
   </div>
 </footer>
-<!-- Подвал -->
+<!-- Модальное окно -->
+<div class="modal popup--auth" data-modal="modal-1" data-lenis-prevent>
+  <div class="modal__wrap"></div>
+  <div class="modal__content">
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="+ 7 (___) ___-__-__">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox-close>
+          <i class="icon-telegram"></i>
+          Войти через Телеграм
+        </button>
+        <button class="btn btn--gray" data-fancybox-close>
+          <i class="icon-max social-max-gradient"></i>
+          Отправить код в Макс
+        </button>
+        <button class="btn btn--stroke modal__btn" data-modal="modal-3">
+          Войти через почту
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Авторизация через почту доступна только для старых пользователей
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal popup--auth" data-modal="modal-3" data-lenis-prevent>
+  <div class="modal__wrap"></div>
+  <div class="modal__content">
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="Введите почту">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--stroke" data-fancybox href="#popup-code">
+          Получить код
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Тулбар -->
 <div class="toolbar">
   <div class="toolbar__inner">
     <div class="toolbar__items">
@@ -5624,18 +5700,20 @@
           Корзина
         </div>
       </a>
-      <a class="toolbar__item" href="javascript:void(0)">
+      <a class="toolbar__item toolbar__item--marker modal__btn" data-modal="modal-1">
         <div class="toolbar__item-icon">
           <i class="icon-person"></i>
         </div>
         <div class="toolbar__item-text">
-          Кабинет
+          <span>
+            Кабинет
+          </span>
         </div>
       </a>
     </div>
   </div>
 </div>
-<!-- Подвал -->
+<!-- Попапы -->
 <div id="popup-filter" class="popup">
   <div class="popup__wrap" data-lenis-prevent>
     <div class="popup__content">
@@ -6192,6 +6270,354 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<div id="popup-edit" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Введите актуальный номер
+        </div>
+        <div class="popup__head-text">
+          Необходимо подтвердить номер телефона для сохранения изменений
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_edit_act_tel" placeholder="+7 (123) 456-78-90">
+        </div>
+      </div>
+      <div class="popup__btns grid-col-2">
+        <button class="btn btn--red" data-fancybox-close>
+          Отмена
+        </button>
+        <button class="btn btn--blue" data-fancybox href="#popup-edit-code">
+          Далее
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-edit-code" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content form-code-body">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Подтвердите номер телефона
+        </div>
+        <div class="popup__head-text">
+          На ваш номер +7 (123) 456-78-90 было отправлено СМС с кодом. Введите код с СМС чтобы подтвердить номер
+          телефона.
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <div class="form-code-wrap">
+            <input class="form-code" type="text" name="profile_edit_code_1" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_2" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_3" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_4" maxlength="1" inputmode="numeric"
+              placeholder="-">
+          </div>
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox href="#popup-edit-success" disabled>
+          Далее
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Если SMS не приходит, обратитесь в службу поддержки по адресу: <a
+            href="mailto:info@world-devices.ru">info@world-devices.ru</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-edit-success" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Ваш номер успешно изменен!
+        </div>
+      </div>
+      <div class="popup__btn">
+        <button class="btn btn--blue" data-fancybox-close>
+          Вернуться в личный кабинет
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-address-add" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Добавить адрес
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="popup__form">
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Город">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Улица">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Дом">
+          </div>
+        </div>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-item">
+          <button class="btn btn--blue" data-fancybox-close>
+            Добавить
+          </button>
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input class="form-checkbox-input" type="checkbox" hidden checked>
+              <div class="form-checkbox-item">
+              </div>
+              <div class="form-checkbox-text">
+                <p>
+                  Сделать приоритетным
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-address-change" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Изменить адрес
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="popup__form">
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Санкт-Петербург">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="Пушкина">
+          </div>
+          <div class="form-group">
+            <input class="form-input" type="text" name="popup_address_add" placeholder="20">
+          </div>
+        </div>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-item">
+          <button class="btn btn--blue" data-fancybox-close>
+            Сохранить
+          </button>
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input class="form-checkbox-input" type="checkbox" hidden checked>
+              <div class="form-checkbox-item">
+              </div>
+              <div class="form-checkbox-text">
+                <p>
+                  Сделать приоритетным
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-auth" class="popup popup--auth">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="+ 7 (___) ___-__-__">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox-close>
+          <i class="icon-telegram"></i>
+          Войти через Телеграм
+        </button>
+        <button class="btn btn--gray" data-fancybox-close>
+          <i class="icon-max social-max-gradient"></i>
+          Отправить код в Макс
+        </button>
+        <button class="btn btn--stroke" data-fancybox href="#popup-auth-mail">
+          Войти через почту
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Авторизация через почту доступна только для старых пользователей
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-auth-mail" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Авторизация на сайте
+        </div>
+        <div class="popup__head-text">
+          Введите свой номер для получения кода или войдите с помощью Телеграм
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <input class="form-input" type="tel" name="popup_auth_tel" placeholder="Введите почту">
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--stroke" data-fancybox href="#popup-code">
+          Получить код
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-auth-success" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Вы успешно авторизованы на сайте
+        </div>
+      </div>
+      <div class="popup__btn">
+        <button class="btn btn--blue" data-fancybox-close>
+          Начать покупки
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-code" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content form-code-body">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Введите код
+        </div>
+        <div class="popup__head-text">
+          На ваш номер +7 (123) 456-78-90 было отправлено сообщение с кодом. Введите код даннуй чтобы авторизоваться на
+          сайте
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="form-group">
+          <div class="form-code-wrap">
+            <input class="form-code" type="text" name="profile_edit_code_1" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_2" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_3" maxlength="1" inputmode="numeric"
+              placeholder="-">
+            <input class="form-code" type="text" name="profile_edit_code_4" maxlength="1" inputmode="numeric"
+              placeholder="-">
+          </div>
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox href="#popup-auth-success" disabled>
+          Далее
+        </button>
+      </div>
+      <div class="popup__foot">
+        <div class="popup__foot-text">
+          Если SMS не приходит, обратитесь в службу поддержки по адресу: <a
+            href="mailto:info@world-devices.ru">info@world-devices.ru</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="popup-trade" class="popup popup--form">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+
+      <div class="popup__head">
+        <div class="popup__head-title">
+          Вы хотите создать заявку в разделе Trade-in?
+        </div>
+      </div>
+      <div class="popup__btns">
+        <button class="btn btn--blue" data-fancybox-close>
+          Отправить заявку
+        </button>
+        <button class="btn btn--gray" data-fancybox-close>
+          Отменить
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Плашка -->
+<div id="plate_cookie" class="plate">
+  <div class="plate__inner">
+    <div class="plate__text">
+      <p>
+        Мы используем файлы cookie
+      </p>
+    </div>
+    <button class="plate__btn btn btn--cyan" onclick="checkCookies()">
+      Ок
+    </button>
   </div>
 </div>
 </div>
