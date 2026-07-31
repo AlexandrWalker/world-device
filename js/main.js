@@ -3113,9 +3113,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isTransitioning = false;
 
+    // Вспомогательная функция для управления атрибутом data-lenis-prevent
+    const handleLenisAttr = (modalBlock) => {
+      if (!modalBlock) return;
+      if (isMobile()) {
+        modalBlock.setAttribute('data-lenis-prevent', '');
+      } else {
+        modalBlock.removeAttribute('data-lenis-prevent');
+      }
+    };
+
+    // Функция проверки всех модалок на странице
+    const checkAllModalsLenis = () => {
+      const allModals = document.querySelectorAll('.modal');
+      allModals.forEach(modal => handleLenisAttr(modal));
+    };
+
     // Функция открытия конкретной модалки
     const openModalMenu = (modalBlock) => {
       isTransitioning = true;
+
+      // Добавляем атрибут при открытии, если это мобильная версия
+      handleLenisAttr(modalBlock);
 
       htmlTag.classList.add('modal--open');
       if (typeof lenis !== 'undefined') lenis.stop();
@@ -3297,6 +3316,10 @@ document.addEventListener('DOMContentLoaded', () => {
         contentZone.addEventListener('touchend', handleTouchEnd);
       }
     });
+
+    // Отслеживаем изменение размеров экрана для переключения атрибута на существующих модалках
+    window.addEventListener('resize', checkAllModalsLenis);
+    checkAllModalsLenis();
   })();
 
   /**
