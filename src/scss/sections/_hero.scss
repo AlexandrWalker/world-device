@@ -221,11 +221,16 @@
       // transform-style: preserve-3d;
     }
 
-    img {
-      max-width: 100%;
-      width: auto;
+    &-item {
+      width: 100%;
       height: 100%;
-      object-fit: contain;
+
+      img {
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
 

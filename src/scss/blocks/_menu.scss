@@ -448,6 +448,8 @@
   &__banner {
     display: none;
 
+    position: relative;
+
     @include dosm {
       display: block;
       padding: 1.8rem 2rem 1.8rem 2rem;
@@ -461,6 +463,26 @@
       line-height: 130%;
       text-transform: uppercase;
       color: var(--white);
+
+      position: relative;
+      z-index: 2;
+    }
+
+    &-img {
+      width: auto;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
 }
