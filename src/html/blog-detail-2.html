@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru" class="inner-page blog-page blog-page-2">
-@@include('blocks/head.html', {"title": "World Device"})
+@@include('blocks/head.html', {"title": "World Devices"})
 
 <body>
   <div class="wrapper">
@@ -44,8 +44,10 @@
         <div class="container">
           <div class="article__inner">
 
-            <div class="article__cover">
-              <img src="./../images/temp/credit-i-rassrochka.jpg" alt="">
+            <div class="article__wrapper">
+              <div class="article__cover">
+                <img src="./../images/temp/credit-i-rassrochka.jpg" alt="">
+              </div>
             </div>
 
             <div class="article__head">
@@ -156,7 +158,7 @@
 
       @@include('./blocks/topsellers.html', {"title": "Связанные товары"})
 
-<div class="modal__overlay"></div>
+      <div class="modal__overlay"></div>
     </main>
     <!-- Подвал -->
     @@include('blocks/footer.html')

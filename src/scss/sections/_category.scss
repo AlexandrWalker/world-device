@@ -111,17 +111,26 @@
       }
 
       img {
+        display: block;
         width: auto;
         height: 100%;
         object-fit: contain;
+
+        @include dosm {
+          display: none;
+        }
       }
 
       video {
-        display: block;
+        display: none;
         max-width: 100%;
         width: auto;
         height: 100%;
         object-fit: contain;
+
+        @include dosm {
+          display: block;
+        }
       }
     }
 
@@ -186,12 +195,28 @@
         height: 4rem;
       }
 
-      video {
+      img {
         display: block;
         max-width: 100%;
         width: auto;
         height: 100%;
         object-fit: contain;
+
+        @include dosm {
+          display: none;
+        }
+      }
+
+      video {
+        display: none;
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+
+        @include dosm {
+          display: block;
+        }
       }
     }
 

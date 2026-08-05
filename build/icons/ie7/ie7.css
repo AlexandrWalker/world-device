@@ -1,100 +1,109 @@
-.icon-arrow-circle-inside {
-  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe900;');
-}
-.icon-arrow-up-stroke {
+.icon-view {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe901;');
 }
-.icon-bento {
+.icon-date {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe902;');
 }
-.icon-cart {
-  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe903;');
+.icon-lightning {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe900;');
 }
-.icon-chevron-big {
+.icon-galochka-circle-inside {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe904;');
 }
-.icon-chevron-stroke {
+.icon-galochka {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe905;');
 }
-.icon-close {
+.icon-chevron-stroke {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe906;');
 }
 .icon-download {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe907;');
 }
-.icon-favorite {
+.icon-oformlenie {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe908;');
 }
-.icon-filter {
+.icon-arrow-circle-inside {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe909;');
 }
-.icon-galochka {
+.icon-arrow-up-stroke {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90a;');
 }
-.icon-galochka-circle-inside {
+.icon-bento {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90b;');
 }
-.icon-glass-max {
+.icon-cart {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90c;');
 }
-.icon-glass-telegram {
+.icon-chevron-big {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90d;');
 }
-.icon-headphones {
+.icon-close {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90e;');
 }
-.icon-kebab {
+.icon-favorite {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90f;');
 }
-.icon-list {
+.icon-filter {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe910;');
 }
-.icon-login {
+.icon-glass-max {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe911;');
 }
-.icon-max {
+.icon-glass-telegram {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe912;');
 }
-.icon-nav-chevron-down {
+.icon-headphones {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe913;');
 }
-.icon-nav-max {
+.icon-kebab {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe914;');
 }
-.icon-nav-phone {
+.icon-list {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe915;');
 }
-.icon-nav-telegram {
+.icon-login {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe916;');
 }
-.icon-neuron {
+.icon-max {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe917;');
 }
-.icon-oformlenie {
+.icon-nav-chevron-down {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe918;');
 }
-.icon-person {
+.icon-nav-max {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe919;');
 }
-.icon-rating-star {
+.icon-nav-phone {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91a;');
 }
-.icon-search {
+.icon-nav-telegram {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91b;');
 }
-.icon-share {
+.icon-neuron {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91c;');
 }
-.icon-sravnenie {
+.icon-person {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91d;');
 }
-.icon-telegram {
+.icon-rating-star {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91e;');
 }
-.icon-trade-in {
+.icon-search {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91f;');
 }
-.icon-trash {
+.icon-share {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe920;');
+}
+.icon-sravnenie {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe921;');
+}
+.icon-telegram {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe922;');
+}
+.icon-trade-in {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe923;');
+}
+.icon-trash {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe924;');
 }
 
