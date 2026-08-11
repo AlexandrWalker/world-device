@@ -2862,6 +2862,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentDropdown = e.target.closest('.dropdown--js');
       const allDropdowns = document.querySelectorAll('.dropdown--js');
 
+      const radioClick = e.target.closest('.dropdown__radio');
+
+      if (radioClick && radioClick.checked && currentDropdown) {
+        currentDropdown.classList.remove('is-active');
+        return;
+      }
+
       if (selectedBtn && currentDropdown) {
         e.stopPropagation();
 
@@ -2902,7 +2909,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dropdownValue) dropdownValue.value = value;
 
       dropdown.classList.remove('is-active');
-      dropdown.classList.add('filled');
+
+      // Проверяем, находится ли инпут внутри .dropdown__label--first или связан ли с ним
+      const isFirst = radio.closest('.dropdown__label--first') || dropdown.querySelector(`label[for="${radio.id}"].dropdown__label--first`);
+
+      if (isFirst) {
+        dropdown.classList.remove('filled');
+      } else {
+        dropdown.classList.add('filled');
+      }
     });
   })();
 

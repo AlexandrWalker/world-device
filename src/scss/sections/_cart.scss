@@ -331,7 +331,7 @@
         .cart__block-item {
 
           @include sm {
-            padding: 1.5rem 1.5rem 1.5rem 5rem;
+            padding: 1.5rem 1.5rem 1.5rem 4.2rem;
           }
         }
       }
@@ -538,6 +538,10 @@
 
       .btn {
         width: 100%;
+
+        @include sm {
+          --btn-background: var(--navy);
+        }
       }
     }
   }

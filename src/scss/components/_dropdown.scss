@@ -16,6 +16,7 @@
     transition: all 0.3s ease;
 
     position: relative;
+    // z-index: 11;
 
     i {
       --font-size: 1.6rem;
@@ -28,6 +29,10 @@
       .dropdown.is-active & {
         transform: scale(-1, 1);
       }
+    }
+
+    .dropdown.is-active & {
+      background-color: transparent;
     }
 
     &-label--js {
@@ -44,18 +49,26 @@
   &__label {
     display: block;
     width: 100%;
+    transition: color 0.3s ease;
 
     font-weight: 700;
     font-size: 1.4rem;
     line-height: 143%;
-    color: var(--navy);
     white-space: nowrap;
     cursor: pointer;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
+    color: var(--navy);
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     .filled & {
       color: var(--black);
+    }
+
+    &:hover {
+
+      @include dosm {
+        color: var(--black);
+      }
     }
   }
 
@@ -69,7 +82,8 @@
     scrollbar-gutter: stable;
 
     position: absolute;
-    top: calc(100% + 0.2rem);
+    // top: calc(100% + 0.2rem);
+    top: 0;
     left: 0;
     right: 0;
     z-index: 10;
@@ -86,19 +100,35 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.6rem 2rem;
-    background-color: var(--blue);
-    border-radius: 0.5rem;
+    // background-color: var(--blue);
+    border-radius: 0.9rem;
     // border: 0.1rem solid var(--dropdown-content-border-color);
     transform: translateY(-101%);
     will-change: transform;
     transition: transform 0.3s ease;
+
+    background: rgba(10, 60, 135, 0.1);
+    border: 0.1rem solid rgba(10, 60, 135, 0.1);
+    backdrop-filter: blur(11.5px);
 
     .dropdown.is-active & {
       transform: translateY(0);
     }
 
     .dropdown__label {
-      color: var(--white);
+      color: var(--black);
+      font-weight: 400;
+
+      &:hover {
+
+        @include dosm {
+          color: var(--navy);
+        }
+      }
+
+      &--first {
+        font-weight: 700;
+      }
     }
   }
 
