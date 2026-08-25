@@ -130,6 +130,8 @@
 
         @include dosm {
           display: block;
+          transform: translateZ(0);
+          will-change: transform;
         }
       }
     }
@@ -216,6 +218,8 @@
 
         @include dosm {
           display: block;
+          transform: translateZ(0);
+          will-change: transform;
         }
       }
     }

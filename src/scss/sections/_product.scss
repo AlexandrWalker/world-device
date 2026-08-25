@@ -235,6 +235,15 @@
         @include dosm {
           margin-bottom: 2rem;
         }
+
+        &-item {
+
+          @include dosm {
+            height: 3rem;
+
+            font-size: 1.2rem;
+          }
+        }
       }
     }
 
@@ -253,7 +262,7 @@
 
     &-status {
       font-weight: 500;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       line-height: 120%;
     }
 

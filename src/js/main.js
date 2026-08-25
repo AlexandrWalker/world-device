@@ -821,21 +821,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       iconVideoItem.addEventListener('mouseenter', () => {
         if (isPlaying) return;
-
         isPlaying = true;
 
         const playPromise = jsVideo.play();
-
         if (playPromise !== undefined) {
-          playPromise.catch(error => {
+          playPromise.catch(() => {
             isPlaying = false;
           });
         }
       });
 
       jsVideo.addEventListener('ended', () => {
-        isPlaying = false;
         jsVideo.currentTime = 0;
+        isPlaying = false;
       });
     });
   })();
