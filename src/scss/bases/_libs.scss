@@ -240,6 +240,12 @@
   padding: 1.5rem;
 }
 
+.fancybox__container {
+  @include sm {
+    --f-arrow-pos: 20px;
+  }
+}
+
 .fancybox__container,
 .fancybox__viewport,
 .fancybox__slide {

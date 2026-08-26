@@ -30,7 +30,7 @@
     left: 0;
     z-index: 1;
 
-    .inner-page:not(.inner-page.mobile-search-menu--open) &,
+    .inner-page:not(.inner-page.mobile-search-menu--open, .inner-page.trade-in-page) &,
     .header-fixed:not(.header-fixed.mobile-search-menu--open) & {
       opacity: 1;
       visibility: visible;

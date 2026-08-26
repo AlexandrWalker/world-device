@@ -126,30 +126,33 @@
   &--pulse {
     z-index: 2;
 
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 50%;
-      z-index: 1;
-      opacity: 1;
-      transition: all 0.3s ease;
+    @include dosm {
 
-      -webkit-animation: pulse-wave 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-      animation: pulse-wave 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        z-index: 1;
+        opacity: 1;
+        transition: all 0.3s ease;
 
-      .social.active & {
-        opacity: 0;
+        -webkit-animation: pulse-wave 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        animation: pulse-wave 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+
+        .social.active & {
+          opacity: 0;
+        }
       }
-    }
 
-    &::after {
-      -webkit-animation-delay: 1s;
-      animation-delay: 1s;
+      &::after {
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+      }
     }
   }
 }

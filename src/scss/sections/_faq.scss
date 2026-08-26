@@ -24,6 +24,10 @@
     @include sm {
       gap: 0.8rem;
     }
+
+    .trade-in-page & {
+      max-width: 100%;
+    }
   }
 
   &__item {
@@ -83,7 +87,7 @@
       font-weight: 500;
       font-size: 1.4rem;
       line-height: 130%;
-      
+
       @include dosm {
         font-size: 2rem;
       }
@@ -178,6 +182,69 @@
       gap: 2rem;
       overflow: hidden;
 
+      &--title {
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 130%;
+        color: var(--navy);
+
+        @include dosm {
+          font-size: 2rem;
+          line-height: 120%;
+        }
+
+        b {
+          color: var(--black);
+        }
+      }
+
+      &--items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        @include sm {
+          gap: 1rem;
+          margin-top: -1rem;
+        }
+      }
+
+      &--item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0 0.5rem;
+
+        p {
+          order: 1;
+          opacity: 0.5;
+
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 130%;
+          white-space: nowrap;
+        }
+
+        span {
+          order: 3;
+
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 120%;
+          white-space: nowrap;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1.2rem;
+          border-bottom: 0.1rem dotted var(--black-50);
+
+          order: 2;
+        }
+      }
+
       img {
         width: 100%;
         height: auto;
@@ -214,6 +281,43 @@
             }
           }
         }
+      }
+
+      ol {
+        list-style-type: none;
+        list-style-position: inside;
+        counter-reset: item;
+
+        li {
+          counter-increment: item;
+
+          &::marker {
+            content: counter(item) ") ";
+          }
+
+          // position: relative;
+
+          // &::before {
+          //   content: counter(item) ") ";
+          //   padding-right: 0.5rem;
+
+          //   text-align: left;
+
+          //   position: absolute;
+          //   right: 100%;
+          // }
+        }
+      }
+
+      p {
+
+        i {
+          color: var(--navy);
+        }
+      }
+
+      span:not(.faq__item-content--item span) {
+        opacity: 0.5;
       }
     }
   }

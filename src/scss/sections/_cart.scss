@@ -179,11 +179,6 @@
     }
 
     &-foot {
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: space-between;
-      // align-items: flex-end;
-
       // @include sm {
       //   display: flex;
       //   flex-direction: row;
@@ -196,6 +191,13 @@
       display: grid;
       grid-template-columns: auto 1fr;
       grid-template-rows: 1fr auto;
+
+      @include dosm {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
     }
 
     &-price {

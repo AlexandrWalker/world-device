@@ -164,7 +164,12 @@
     transform: translateY(-50%);
 
     top: 50%;
+    bottom: unset;
     right: 6rem;
+  }
+
+  &.active {
+    pointer-events: all;
   }
 
   &__items {
@@ -179,6 +184,7 @@
       background-color: var(--white);
       opacity: 0;
       transition: opacity 0.3s ease;
+      box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
 
       .social.active & {
         opacity: 1;

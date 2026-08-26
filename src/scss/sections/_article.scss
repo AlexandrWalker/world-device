@@ -32,6 +32,22 @@
       position: sticky;
       top: 13.6rem;
     }
+
+    .header-fixed & {
+
+      @include dosm {
+        overflow-y: auto;
+        max-height: calc(100vh - 13.6rem);
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   &__cover {
@@ -78,7 +94,7 @@
       margin-bottom: 2rem;
 
       &:last-child {
-        margin-bottom: 0;
+        // margin-bottom: 0;
       }
 
       span {

@@ -12,6 +12,13 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
     }
+
+    .trade-in-page & {
+
+      @include dosm {
+        gap: 6rem 2rem;
+      }
+    }
   }
 
   &__content {
@@ -145,7 +152,7 @@
     .general__button {
       width: 100%;
       padding: 0 2rem;
-      
+
       left: 0;
     }
 

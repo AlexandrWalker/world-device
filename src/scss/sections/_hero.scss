@@ -12,6 +12,12 @@
     min-height: 68.6rem;
   }
 
+  .trade-in-page & {
+    --section-padding-top: 7rem;
+
+    overflow: hidden;
+  }
+
   .container {
     position: relative;
     z-index: 3;
@@ -46,12 +52,20 @@
       padding: 2rem 0 35.2rem 0;
     }
 
+    .trade-in-page & {
+      padding: 0;
+    }
+
     &-content {
       display: flex;
       flex-direction: column;
       max-width: 87.5rem;
 
       color: var(--white);
+
+      .trade-in-page & {
+        max-width: 44.1rem;
+      }
 
       // opacity: 0;
       // visibility: hidden;
@@ -107,6 +121,10 @@
         @include dosm {
           font-size: 2rem;
         }
+
+        .trade-in-page & {
+          line-height: 140%;
+        }
       }
     }
 
@@ -125,6 +143,25 @@
         bottom: 3.1rem;
         left: 50%;
         transform: translateX(-50%);
+      }
+
+      .trade-in-page & {
+
+        @include dosm {
+          height: 70.8rem;
+
+          top: 2rem;
+          bottom: unset;
+        }
+
+        @include sm {
+          height: 36.5rem;
+
+          position: static;
+          transform: none;
+          margin-bottom: -4.45rem;
+          margin-left: calc(var(--container-padding) * -1);
+        }
       }
 
       img {

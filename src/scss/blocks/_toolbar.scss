@@ -17,10 +17,20 @@
     display: none;
   }
 
+  &--hidden {
+
+    .toolbar__inner {
+      transform: translateY(100%);
+    }
+  }
+
   &__inner {
     width: 100%;
     padding: 2rem 1rem;
     padding: 2rem 1rem 0.5rem 1rem;
+    transform: translateY(0);
+    will-change: transform;
+    transition: transform 0.3s ease-in-out;
   }
 
   &__items {
@@ -35,6 +45,7 @@
     border-radius: 1.2rem;
     backdrop-filter: blur(6px);
     border: 0.1rem solid var(--white-90);
+    padding: 0.1rem 0;
     filter: drop-shadow(0px 16px 38.2px rgba(48, 99, 180, 0.1));
   }
 

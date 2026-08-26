@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="inner-page">
+<html lang="ru" class="inner-page product-page">
 @@include('blocks/head.html', {"title": "World Devices"})
 
 <body>
@@ -104,6 +104,9 @@
                     <i class="icon-share"></i>
                   </button>
                 </div>
+                <div class="product__cover-loop js-zoom-btn">
+                  <i class="icon-zoom"></i>
+                </div>
               </div>
               <div class="swiper product__slider-min">
                 <div class="swiper-wrapper">
@@ -143,7 +146,7 @@
                   <div class="tags-item tag-special">Спецпредложение</div>
                 </div>
                 <div class="product__content-title">
-                  iPhone 17 Pro Max dual-SIM 256 ГБ Серебро
+                  iPhone 17&nbsp;Pro Max dual-SIM 256&nbsp;ГБ Серебро
                 </div>
                 <div class="product__content-status status--on">
                   В наличии
@@ -156,13 +159,21 @@
                   </div>
                   <div class="product__content-block">
                     <div class="product__color-items">
-                      <button class="product__color-item product-color--gray is-active" type="button"></button>
-                      <button class="product__color-item product-color--black" type="button"></button>
-                      <button class="product__color-item product-color--dark-gray" type="button"></button>
+                      <button class="product__color-item product-color--gray is-active" type="button"
+                        data-preview="./../images/temp/product-preview-cover-white.png"></button>
+                      <button class="product__color-item product-color--orange" type="button"
+                        data-preview="./../images/temp/product-preview-cover-orange.png"></button>
+                      <button class="product__color-item product-color--blue" type="button"
+                        data-preview="./../images/temp/product-preview-cover-blue.png"></button>
+                    </div>
+                    <div id="colorTooltip" class="product__color-tooltip">
+                      <div class="product__color-block">
+                        <img class="product__color-block--img" src="" alt="Превью">
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="product__content-wrapper">
+                <!-- <div class="product__content-wrapper">
                   <div class="product__content-suptitle">
                     Процессор
                   </div>
@@ -194,8 +205,8 @@
                       </button>
                     </div>
                   </div>
-                </div>
-                <div class="product__content-wrapper">
+                </div> -->
+                <!-- <div class="product__content-wrapper">
                   <div class="product__content-suptitle">
                     Оперативная память
                   </div>
@@ -218,7 +229,7 @@
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="product__content-wrapper">
                   <div class="product__content-suptitle">
                     Память
@@ -226,6 +237,9 @@
                   <div class="product__content-block">
                     <div class="product__content-items">
                       <button class="product__content-item is-active" type="button">
+                        256 Гб
+                      </button>
+                      <button class="product__content-item" type="button">
                         512 Гб
                       </button>
                       <button class="product__content-item" type="button">
@@ -237,52 +251,344 @@
                     </div>
                   </div>
                 </div>
+                <div class="product__content-wrapper">
+                  <div class="product__content-suptitle">
+                    Связь
+                  </div>
+                  <div class="product__content-block">
+                    <div class="product__content-items">
+                      <button class="product__content-item is-active" type="button">
+                        dual eSim
+                      </button>
+                      <button class="product__content-item" type="button">
+                        Sim+eSim
+                      </button>
+                      <button class="product__content-item" type="button">
+                        dual Sim
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="product__content-foot">
                 <div class="product__desc">
                   <div class="product__desc-suptitle">
-                    Описание
+                    Характеристики
                   </div>
-                  <div class="product__desc-content">
+                  <div class="product__desc-list">
+                    <div class="product__desc-items">
+                      <div class="product__desc-item">
+                        <p>
+                          Серия:
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                      <div class="product__desc-item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="product__desc-item">
+                        <p>
+                          Память
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                      <div class="product__desc-item">
+                        <p>
+                          Память
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                      <div class="product__desc-item">
+                        <p>
+                          Память
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="product__desc-content">
                     <p>
                       Apple iPhone 17 Pro 256GB Orange (без RuStore) — смартфон с 6,3-дюймовым экраном и обновленным
                       дизайном блока основных камер.
                     </p>
-                  </div>
-                  <button class="product__desc-link" type="button">
+                  </div> -->
+                  <!-- <button class="product__desc-link" type="button">
                     Читать даллее
-                  </button>
+                  </button> -->
                 </div>
               </div>
             </div>
 
-            <div class="product__block">
-              <div class="product__block-wrap">
-                <div class="product__block-suptitle">
-                  Стоимость
+            <div class="product__side">
+              <div class="product__block">
+                <div class="product__block-wrap">
+                  <div class="product__block-suptitle">
+                    Стоимость
+                  </div>
+                  <div class="product__block-price">
+                    62 480 ₽
+                  </div>
+                  <div class="product__block-subtitle">
+                    <span>*</span> Стоимость указана при расчете наличными
+                  </div>
                 </div>
-                <div class="product__block-price">
-                  62 480 ₽
+                <div class="product__block-btns">
+                  <button class="product__block-btn btn btn--blue" data-fancybox href="#popup-product">
+                    В корзину
+                  </button>
+                  <div class="product__block-quantity">
+                    <div class="quantity quantity-counter">
+                      <button class="quantity-btn quantity-btn--minus" type="button"></button>
+                      <div class="quantity-input-wrap">
+                        <input type="text" class="quantity-input" value="1">
+                      </div>
+                      <button class="quantity-btn quantity-btn--plus" type="button"></button>
+                    </div>
+                  </div>
+                  <button class="btn btn--blue-light">
+                    Купить в один клик
+                  </button>
+                  <button class="btn btn--cyan">
+                    Купить в кредит
+                  </button>
                 </div>
-                <div class="product__block-subtitle">
-                  <span>*</span> Стоимость указана при расчете наличными
+                <div class="product__block-foot">
+                  <div class="product__block-text">
+                    <i class="icon-lightning"></i>
+                    <p>
+                      Доставка по городу от 2 часов
+                    </p>
+                  </div>
+                  <div class="product__block-text">
+                    <i class="icon-car"></i>
+                    <p>
+                      Самовывоз
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div class="product__block-btns">
-                <button class="btn btn--blue">
-                  В корзину
-                </button>
-                <button class="btn btn--blue-light">
-                  Купить в один клик
-                </button>
-                <button class="btn btn--cyan">
-                  Купить в кредит
-                </button>
+              <a class="product__trade" href="/world-device/trade-in.html">
+                <div class="product__trade-icon">
+                  <i class="icon-trade-in"></i>
+                </div>
+                <div class="product__trade-wrap">
+                  <div class="product__trade-title">
+                    Trade-in
+                  </div>
+                  <div class="product__trade-text">
+                    Сдайте старое — получите скидку
+                  </div>
+                </div>
+              </a>
+              <div class="product__scheme">
+                <div class="product__scheme-title">
+                  Как получить товар
+                </div>
+                <div class="product__scheme-content">
+                  <div class="product__scheme-items">
+                    <div class="product__scheme-item">
+                      <div class="product__scheme-icon">
+                        <div class="product__scheme-icon--wrap">
+                          <i class="icon-car"></i>
+                        </div>
+                      </div>
+                      <div class="product__scheme-wrap">
+                        <div class="product__scheme-item--title">
+                          Самовывоз из магазина
+                        </div>
+                        <div class="product__scheme-item--text">
+                          Санкт-Петербург, переулок Ульяны <br> Громовой д. 8Б
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product__scheme-item">
+                      <div class="product__scheme-icon">
+                        <div class="product__scheme-icon--wrap">
+                          <i class="icon-lightning"></i>
+                        </div>
+                      </div>
+                      <div class="product__scheme-wrap">
+                        <div class="product__scheme-item--title">
+                          Доставка по Санкт-Петербургу
+                        </div>
+                        <div class="product__scheme-item--text">
+                          Заказы до 16:00 доставляются сегодня, <br> после 16:00 — на следующий день.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product__scheme-item">
+                      <div class="product__scheme-icon">
+                        <div class="product__scheme-icon--wrap">
+                          <i class="icon-lightning"></i>
+                        </div>
+                      </div>
+                      <div class="product__scheme-wrap">
+                        <div class="product__scheme-item--title">
+                          Доставка по области
+                        </div>
+                        <div class="product__scheme-item--text">
+                          100 ₽/км от центра, точную <br> сумму согласует менеджер
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product__scheme-item">
+                      <div class="product__scheme-icon">
+                        <div class="product__scheme-icon--wrap">
+                          <i class="icon-pay"></i>
+                        </div>
+                      </div>
+                      <div class="product__scheme-wrap">
+                        <div class="product__scheme-item--title">
+                          Оплата при получении
+                        </div>
+                        <div class="product__scheme-item--text">
+                          Наличными или картой
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="faq__items accordion-items anim-items">
               <div class="faq__item accordion-item anim-item">
+                <div class="faq__item-head accordion-head">
+                  <div class="faq__item-title">
+                    Характеристики
+                  </div>
+                  <div class="faq__item-icon"></div>
+                </div>
+                <div class="faq__item-body accordion-body">
+                  <div class="faq__item-content accordion-content">
+                    <div class="faq__item-content--title">
+                      Общие
+                    </div>
+                    <div class="faq__item-content--items">
+                      <div class="faq__item-content--item">
+                        <p>
+                          Серия:
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Память
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                    </div>
+                    <div class="faq__item-content--title">
+                      Процессор и производительность
+                    </div>
+                    <div class="faq__item-content--items">
+                      <div class="faq__item-content--item">
+                        <p>
+                          Серия:
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                    </div>
+                    <div class="faq__item-content--title">
+                      Экран
+                    </div>
+                    <div class="faq__item-content--items">
+                      <div class="faq__item-content--item">
+                        <p>
+                          Серия:
+                        </p>
+                        <span>
+                          iPhone 17
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                      <div class="faq__item-content--item">
+                        <p>
+                          Бренд:
+                        </p>
+                        <span>
+                          Apple
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item faq__item--desc accordion-item anim-item">
                 <div class="faq__item-head accordion-head">
                   <div class="faq__item-title">
                     Описание товара
@@ -351,74 +657,143 @@
               <div class="faq__item accordion-item anim-item">
                 <div class="faq__item-head accordion-head">
                   <div class="faq__item-title">
-                    Характеристики
-                  </div>
-                  <div class="faq__item-icon"></div>
-                </div>
-                <div class="faq__item-body accordion-body">
-                  <div class="faq__item-content accordion-content">
-                    <p>
-                      Магазин электроники и бытовой техники world-devices предлагает большой выбор девайсов — от
-                      мобильных телефонов и ноутбуков до кофемашин и самокатов. За годы работы мы хорошо изучили рынок
-                      и наладили отношения с надежными поставщиками, поэтому сегодня можем гарантировать, что все наши
-                      товары — это оригинальная продукция высокого качества.
-                    </p>
-                    <p>
-                      У нас есть как интернет-магазин, так и розничный магазин в Санкт-Петербурге, где можно
-                      посмотреть и купить новые модели смартфонов, а также другую технику. С 2021 года наша компания
-                      также представлена на маркетплейсах Озон, Яндекс-маркет и Авито. Все товары реализуем быстрой
-                      курьерской доставкой по СПб, а клиентам из других регионов доставляем покупки транспортными
-                      компаниями.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="faq__item accordion-item anim-item">
-                <div class="faq__item-head accordion-head">
-                  <div class="faq__item-title">
-                    Рекомендуемые аксессуары
-                  </div>
-                  <div class="faq__item-icon"></div>
-                </div>
-                <div class="faq__item-body accordion-body">
-                  <div class="faq__item-content accordion-content">
-                    <p>
-                      Магазин электроники и бытовой техники world-devices предлагает большой выбор девайсов — от
-                      мобильных телефонов и ноутбуков до кофемашин и самокатов. За годы работы мы хорошо изучили рынок
-                      и наладили отношения с надежными поставщиками, поэтому сегодня можем гарантировать, что все наши
-                      товары — это оригинальная продукция высокого качества.
-                    </p>
-                    <p>
-                      У нас есть как интернет-магазин, так и розничный магазин в Санкт-Петербурге, где можно
-                      посмотреть и купить новые модели смартфонов, а также другую технику. С 2021 года наша компания
-                      также представлена на маркетплейсах Озон, Яндекс-маркет и Авито. Все товары реализуем быстрой
-                      курьерской доставкой по СПб, а клиентам из других регионов доставляем покупки транспортными
-                      компаниями.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="faq__item accordion-item anim-item">
-                <div class="faq__item-head accordion-head">
-                  <div class="faq__item-title">
                     Доставка
                   </div>
                   <div class="faq__item-icon"></div>
                 </div>
                 <div class="faq__item-body accordion-body">
                   <div class="faq__item-content accordion-content">
+                    <div class="faq__item-content--title">
+                      <b>
+                        Неоспоримым преимуществом совершения покупок в Интернете является доставка товаров адресату!
+                      </b>
+                    </div>
                     <p>
-                      Магазин электроники и бытовой техники world-devices предлагает большой выбор девайсов — от
-                      мобильных телефонов и ноутбуков до кофемашин и самокатов. За годы работы мы хорошо изучили рынок
-                      и наладили отношения с надежными поставщиками, поэтому сегодня можем гарантировать, что все наши
-                      товары — это оригинальная продукция высокого качества.
+                      Компания World-Devices предлагает не только самовывоз из нашего офиса, но и доставку по городу.
+                    </p>
+                    <ul>
+                      <li>
+                        Стоимость доставки составляет 490 руб. по Санкт-Петербургу в пределах КАД. *( за исключением
+                        указанных ниже улиц, районов) и производится в течение текущего дня при заказе до 15-00.
+                        Доставка осуществляется с 15:00 до 23:00.
+                      </li>
+                      <li>
+                        Срочная доставка при заказе с 15-00 до 18-00 на текущий день: 790 руб. (при наличии свободного
+                        курьера)
+                      </li>
+                      <li>
+                        Экспресс-доставка за 2 часа при заказе до 18-00 на текущий день: 990 руб. (при наличии
+                        свободного курьера)
+                      </li>
+                      <li>
+                        Доставка крупногабаритного товара ( телевизоры 32, Ps5 ) свыше 5кг 790 рублей.
+                      </li>
+                      <li>
+                        Доставка крупногабаритного товара ( телевизоры 43, 50, 55, Jbl 310, 710 и т.д. ) свыше 15кг 990
+                        рублей.
+                      </li>
+                      <li>
+                        Доставка крупногабаритного товара ( телевизоры 65, Jbl 1100, 1000 и т.д. ) свыше 18кг 1990
+                        рублей.
+                      </li>
+                      <li>
+                        Доставка телевизоров диагональю от 75" - от 4000рублей, в зависимости от адреса высчитывается
+                        индивидуально.
+                      </li>
+                      <li>
+                        Подъем на этаж крупногабаритного товара и товара свыше 10кг если нету лифта, каждый этаж 50
+                        рублей.
+                      </li>
+                      <li>
+                        Доставка товара, оформленного в кредит, 790 рублей.
+                      </li>
+                      <li>
+                        Стоимость доставки в ближайшие пригороды
+                      </li>
+                    </ul>
+                    <p>
+                      <b>
+                        690 рублей
+                      </b>
                     </p>
                     <p>
-                      У нас есть как интернет-магазин, так и розничный магазин в Санкт-Петербурге, где можно
-                      посмотреть и купить новые модели смартфонов, а также другую технику. С 2021 года наша компания
-                      также представлена на маркетплейсах Озон, Яндекс-маркет и Авито. Все товары реализуем быстрой
-                      курьерской доставкой по СПб, а клиентам из других регионов доставляем покупки транспортными
-                      компаниями.
+                      Кудрово.
+                      <br>
+                      В Красносельском р-не - район от ул. Доблести, пр Героев, Адмирала Трибуца, Пограничника
+                      Гарькавого, Жемчужная Плаза, Адмирала Черокова, последние дома Ленинского пр. и пр. Ветеранов,
+                      Петергофское шоссе от ул. Доблести до пр. Буденного.
+                    </p>
+                    <p>
+                      В Красногвардейском районе – район от Лесопарковой и Андреевкой улиц и до КАД.
+                    </p>
+                    <p>
+                      Приморский р-н, Выборгский р-н : Лахта, Ольгино,, Парашютная ул., начиная от Шуваловского в
+                      сторону Каменки (Жк Каменка, Жк Юбилейный квартал, Жк Чистое Небо), ул. Летчика Паршина, Ул.
+                      Плесецкая, ул. Академика Харитона, Дорога в Каменку, Заневка (от ЖД путей до КАДа), Уткина Заводь,
+                      Русановская.
+                    </p>
+                    <p>
+                      <b>
+                        790 рублей
+                      </b>
+                    </p>
+                    <p>
+                      Мурино, Ново-Рабочий поселок до КАД, пос. Заневка, Авиагородок, и ж/д ст. Володарская,
+                      Старо-Паново, Сергиевка, Горелово, Шушары. Нижнее Парголово, Завод Ниссан. Бугры.
+                    </p>
+                    <p>
+                      <b>
+                        1190 рублей
+                      </b>
+                    </p>
+                    <p>
+                      Верхнее Парголово, Колпино, Порошкино, Кузьмоловский, Ковалево, Воейково, Разметелево,
+                      Металлострой, Колпино, Стрельна, Осиновая Роща, ЖК Юнтолово (Юнтоловский пр.)
+                    </p>
+                    <p>
+                      <b>
+                        1490 рублей
+                      </b>
+                    </p>
+                    <p>
+                      Пушкин, Красное село, пос.Можайский, пос.Хвойный, Усть-Ижора, Романовка, Янино, Всеволожск,
+                      Новосаратовка, Невский лесопарк, Сертолово, Левашово, Юкки, Колтуши, Новоселье, Понтонный
+                    </p>
+                    <p>
+                      <b>
+                        1690 рублей
+                      </b>
+                    </p>
+                    <p>
+                      Петергоф, Павловск, Солнечное, Репино, Сестрорецк, Лисий Нос, Белоостров, Вартемяги, Агалатово,
+                      пос. Осельки, Токсово, Нов. Токсово, Углово, Рахья, Отрадное, пос.им. Свердлова, Никольское,
+                      Ульяновка ,Форносово, Коммунар, Кипень, Ропша, а также другие населенные пункты Ленобласти,
+                      удаленностью не более 30 км от города (фактически в пути)
+                    </p>
+                    <p>
+                      <b>
+                        От 1990 рублей
+                      </b>
+                    </p>
+                    <p>
+                      Тосно, Гатчина, Ломоносов, Кронштадт, Зеленогорск, Шлиссельбург, Кировск, Комарово. и др.
+                      населенные пункты Ленобласти удаленностью 31-40 км от города (фактически в пути)
+                    </p>
+                    <p>
+                      Если требования к доставке вышли за рамки стандартных, сообщите об этом в комментарии заказа или
+                      по телефону. Мы обязательно предложим оптимальное решение.
+                    </p>
+                    <p>
+                      Также мы осуществляем доставку в регионы. Курьерская служба World-Devices сотрудничает
+                      транспортной компанией "СДЭК". Мы поможем подобрать Вам наиболее выгодный вариант доставки Вашего
+                      заказа.
+                    </p>
+                    <p>
+                      <br>
+                      <i>
+                        Уважаемые клиенты в случае отказа от покупки в момент получения, Вам необходимо будет оплатить
+                        стоимость доставки (на основании п.3 ст. 497 ГК РФ).
+                      </i>
                     </p>
                   </div>
                 </div>
@@ -433,17 +808,73 @@
                 <div class="faq__item-body accordion-body">
                   <div class="faq__item-content accordion-content">
                     <p>
-                      Магазин электроники и бытовой техники world-devices предлагает большой выбор девайсов — от
-                      мобильных телефонов и ноутбуков до кофемашин и самокатов. За годы работы мы хорошо изучили рынок
-                      и наладили отношения с надежными поставщиками, поэтому сегодня можем гарантировать, что все наши
-                      товары — это оригинальная продукция высокого качества.
+                      <i>
+                        Вся представленная на сайте информация, касающаяся технических характеристик, наличия на складе,
+                        стоимости товаров, носит информационный характер и ни при каких условиях не является публичной
+                        офертой, определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
+                      </i>
                     </p>
                     <p>
-                      У нас есть как интернет-магазин, так и розничный магазин в Санкт-Петербурге, где можно
-                      посмотреть и купить новые модели смартфонов, а также другую технику. С 2021 года наша компания
-                      также представлена на маркетплейсах Озон, Яндекс-маркет и Авито. Все товары реализуем быстрой
-                      курьерской доставкой по СПб, а клиентам из других регионов доставляем покупки транспортными
-                      компаниями.
+                      Весь товар, представленный в Интернет-магазине World-Devices, можно приобрести за наличный и
+                      безналичный расчет, либо оплатив курьеру при получении заказа. Договором купли-продажи является
+                      товарный чек. В отдельных случаях он может служить гарантийным сертификатом. 
+                    </p>
+                    <p>
+                      <i>
+                        Уважаемые клиенты, если Вы планируете забрать товар самостоятельно, убедительно просим Вас
+                        заблаговременно связаться с нашим оператором и поставить интересующий вас товар в РЕЗЕРВ. Резерв
+                        осуществляется только на текущий день.
+                      </i>
+                    </p>
+                    <p>
+                      <b>
+                        Для г. Санкт-Петербург:
+                      </b>
+                    </p>
+                    <ol>
+                      <li>
+                        Оплата при самовывозе наличными в офисе.
+                      </li>
+                      <li>
+                        Оплата по терминалу или через QR код. (+14% к цене товара по QR коду, +15% к цене товара по
+                        терминалу)
+                      </li>
+                      <li>
+                        Оплата курьеру наличными.
+                      </li>
+                      <li>
+                        Оплата курьеру по терминалу или через QR код. (+14% к цене товара по QR коду, +15% к цене товара
+                        по терминалу)
+                      </li>
+                      <li>
+                        Оплата по безналичному расчету для Юр. лиц (+10% к цене товара, +5% НДС)
+                      </li>
+                      <li>
+                        Покупка в рассрочку или кредит через системы «Т-Банк», «Яндекс Сплит» + 15% к цене товара
+                      </li>
+                    </ol>
+                    <p>
+                      <b>
+                        Для России: 
+                      </b>
+                    </p>
+                    <ol>
+                      <li>
+                        Оплата на Карту Сбербанка.(физ. лицам) +5% к цене
+                      </li>
+                      <li>
+                        Оплата по ссылке или Qr код через сайт (+14% к цене товара по QR коду)
+                      </li>
+                      <li>
+                        Оплата по безналичному расчету для Юр. лиц (+10% к цене товара, +5% НДС)
+                      </li>
+                      <li>
+                        Покупка в рассрочку или кредит через системы «Т-Банк» , «Яндекс Сплит» + 15% к цене товара
+                      </li>
+                    </ol>
+                    <p>
+                      Уважаемые клиенты, просим Вас обратить внимание, что к цене товара при оформлении кредита
+                      прибавляется от 10%.
                     </p>
                   </div>
                 </div>
@@ -467,9 +898,11 @@
                       гарантийном талоне.
                     </p>
                     <p>
-                      Обращаем Ваше внимание на то, что мы предлагаем только новые мобильные телефоны, коммуникаторы,
-                      планшеты и др. электронную технику, которые собираются на официальных заводах производителей,
-                      обеспечивающих высочайшее качество и надежность своей продукции.
+                      <i>
+                        Обращаем Ваше внимание на то, что мы предлагаем только новые мобильные телефоны, коммуникаторы,
+                        планшеты и др. электронную технику, которые собираются на официальных заводах производителей,
+                        обеспечивающих высочайшее качество и надежность своей продукции.
+                      </i>
                     </p>
                     <p>
                       В течение 14 дней осуществляется обмен или возврат полной стоимости товара при обнаружении
@@ -477,9 +910,9 @@
                       В последующий срок осуществляется бесплатный гарантийный ремонт.
                       Ремонт осуществляется в срок до 45 дней с момента передачи устройства в сервис-центр.
                     </p>
-                    <p>
+                    <span>
                       (Закон о правах потребителя, ст.20, п.1.)
-                    </p>
+                    </span>
                     <p>
                       Гарантия не распространяется на комплектующие, имеющие ограниченный срок использования, а также на
                       информацию, записанную в память телефона или SIM-карты.
@@ -491,9 +924,9 @@
                       характеристикам и т.д. Ознакомьтесь с оборудованием, перед тем, как заказать товар! Полную
                       консультацию о характеристиках товара Вы можете получить, связавшись с нашими менеджерами.
                     </p>
-                    <p>
+                    <span>
                       (Пост. Правительства РФ № 55 от 19.01.1998)
-                    </p>
+                    </span>
                   </div>
                 </div>
               </div>

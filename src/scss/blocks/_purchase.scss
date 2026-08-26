@@ -1,7 +1,7 @@
 @use './../mixins' as *;
 
 .purchase {
-  display: flex;
+  display: none;
   align-items: flex-end;
   width: 100%;
   height: 0;
@@ -10,16 +10,19 @@
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 900;
+  z-index: 899;
 
-  @include dosm {
-    display: none;
+  .product-page & {
+    display: flex;
+
+    @include dosm {
+      display: none;
+    }
   }
 
   &__inner {
     width: 100%;
-    padding: 2rem 1rem;
-    padding: 2rem 1rem 6.8rem 1rem;
+    padding: 2rem 1rem 0.5rem 1rem;
   }
 
   &__body {

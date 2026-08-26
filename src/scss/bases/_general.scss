@@ -71,7 +71,10 @@
       }
 
       .inner-page & {
-        font-size: 3rem;
+
+        @include dosm {
+          font-size: 3rem;
+        }
       }
     }
 
