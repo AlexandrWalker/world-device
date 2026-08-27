@@ -45,6 +45,7 @@
       justify-content: flex-start;
       width: 5.6rem;
       height: 5.6rem;
+      flex-shrink: 0;
 
       @include sm {
         width: 3.4rem;
