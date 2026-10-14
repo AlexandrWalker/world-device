@@ -142,26 +142,26 @@
         }
       }
 
-      a {
-        padding-bottom: 0.2rem;
-        background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
-        background-size: 0;
-        transition: .3s;
-        background-position: left;
-        background-repeat: no-repeat;
+a {
+  padding-bottom: 0.2rem;
+  background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+  background-size: 0;
+  transition: .3s;
+  background-position: left;
+  background-repeat: no-repeat;
 
-        font-weight: 400;
-        font-size: 1.6rem;
-        line-height: 120%;
-        color: var(--cyan);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 120%;
+  color: var(--cyan);
 
-        &:hover {
+  &:hover {
 
-          @include dosm {
-            background-size: 100%;
-          }
-        }
-      }
+    @include dosm {
+      background-size: 100%;
+    }
+  }
+}
     }
   }
 

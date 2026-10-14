@@ -151,6 +151,11 @@
   &__block {
 
     @include dosm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4rem;
+
       grid-column: 3/13;
     }
   }
