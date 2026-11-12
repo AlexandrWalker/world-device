@@ -1,0 +1,28 @@
+@use './../mixins' as *;
+
+.author-page {
+
+  .article {
+
+    &__wrapper {
+      gap: 2rem;
+    }
+  }
+
+  .blog {
+
+    &__inner {
+
+      @include dosm {
+        gap: 4rem;
+      }
+    }
+
+    &__items {
+
+      @include dosm {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+}

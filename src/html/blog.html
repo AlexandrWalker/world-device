@@ -45,27 +45,249 @@
         <div class="container">
           <div class="blog__inner">
 
-            <div class="general__tabs">
-              <button class="general__tab is-active" type="button">
-                Обзоры
-              </button>
-              <button class="general__tab" type="button">
-                Статьи
-              </button>
-              <button class="general__tab" type="button">
-                Все вместе
-              </button>
+            <div class="blog__head">
+              <div class="general__tabs">
+                <button class="general__tab is-active" type="button">
+                  Обзоры
+                </button>
+                <button class="general__tab" type="button">
+                  Статьи
+                </button>
+                <button class="general__tab" type="button">
+                  Все вместе
+                </button>
+              </div>
+              <div class="general__dropdown">
+                <div class="dropdown dropdown--js">
+                  <div class="dropdown__selected dropdown__selected--js">
+                    <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
+                    <p>Выбрать:</p>
+                    <label class="dropdown__label dropdown__selected-label--js">2026</label>
+                    <i class="icon-nav-chevron-down"></i>
+                  </div>
+                  <div class="dropdown__container">
+                    <div class="dropdown__content">
+                      <div class="dropdown__option">
+                        <label class="dropdown__label">
+                          <input class="dropdown__radio" name="trade_model" type="radio" value="2025"
+                            data-city="iPhone17Pro">
+                          2025
+                        </label>
+                      </div>
+                      <div class="dropdown__option">
+                        <label class="dropdown__label">
+                          <input class="dropdown__radio" name="trade_model" type="radio" value="2024"
+                            data-city="iPhone17ProMax">
+                          2024
+                        </label>
+                      </div>
+                      <div class="dropdown__option">
+                        <label class="dropdown__label">
+                          <input class="dropdown__radio" name="trade_model" type="radio" value="2023"
+                            data-city="iPhone16Pro">
+                          2023
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <input class="dropdown__value" type="hidden">
+                </div>
+              </div>
             </div>
 
-            <div class="blog__items anim-items">
-              @@loop('./elements/blog-item.html', './data/blog-slide-items.json')
+            <div class="blog__body">
+              <div class="blog__wrapper">
+                <div class="blog__items anim-items">
+                  @@loop('./elements/blog-item.html', './data/blog-slide-items.json')
+                </div>
+                <div class="pagination">
+                  <div class="pagination__items">
+                    <button class="pagination__item pagination__item--active">
+                      1
+                    </button>
+                    <button class="pagination__item">
+                      2
+                    </button>
+                    <button class="pagination__item">
+                      3
+                    </button>
+                    <button class="pagination__item">
+                      4
+                    </button>
+                    <div class="pagination__ellipsis">
+                      ...
+                    </div>
+                    <button class="pagination__item">
+                      10
+                    </button>
+                    <button class="pagination__item">
+                      11
+                    </button>
+                  </div>
+                  <button class="pagination__btn">
+                    <i class="icon-arrow"></i>
+                  </button>
+                </div>
+                <button class="btn btn--more">
+                  Показать еще
+                  <i class="icon-arrow-circle-inside"></i>
+                </button>
+              </div>
+              <div class="article__side">
+                <p>
+                  В тренде
+                </p>
+                <ul>
+                  <li>
+                    <span>
+                      18 июля 2023
+                    </span>
+                    <a href="/">
+                      Проблема заключалась в необходимости перевозки оборудования
+                    </a>
+                  </li>
+                  <li>
+                    <span>
+                      18 июля 2023
+                    </span>
+                    <a href="/">
+                      Проблема заключалась в необходимости перевозки оборудования
+                    </a>
+                  </li>
+                  <li>
+                    <span>
+                      18 июля 2023
+                    </span>
+                    <a href="/">
+                      Проблема заключалась в необходимости перевозки оборудования
+                    </a>
+                  </li>
+                  <li>
+                    <span>
+                      18 июля 2023
+                    </span>
+                    <a href="/">
+                      Проблема заключалась в необходимости перевозки оборудования
+                    </a>
+                  </li>
+                  <li>
+                    <span>
+                      18 июля 2023
+                    </span>
+                    <a href="/">
+                      Проблема заключалась в необходимости перевозки оборудования
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
           </div>
         </div>
       </section>
 
-<div class="modal__overlay"></div>
+      <section class="sample">
+        <div class="container">
+          <div class="sample__inner general__content">
+
+            <div class="general__body">
+
+              <div class="sample__content">
+                <div class="sample__tags">
+                  <a href="/">
+                    тег 1
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                  <a href="/">
+                    текст в теге
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <div class="modal__overlay"></div>
     </main>
     <!-- Подвал -->
     @@include('blocks/footer.html')

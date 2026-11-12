@@ -155,6 +155,31 @@
       }
     }
   }
+
+  &--more {
+    --btn-padding-x: 6.8rem;
+    --btn-color: var(--navy-2);
+
+    gap: 1rem;
+
+    @include sm {
+      --btn-width: 100%;
+    }
+  }
+
+  &--prev {
+
+    i {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &--next {
+
+    i {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 @-webkit-keyframes pulse-wave {

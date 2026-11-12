@@ -73,4 +73,37 @@
       }
     }
   }
+
+  &__tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1.5rem;
+      min-width: 11.2rem;
+      height: 3.4rem;
+      background-color: var(--black-05);
+
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 167%;
+      text-align: center;
+      color: var(--black);
+
+      &:hover {
+
+      @include dosm {
+        background-color: var(--blue);
+
+        color: var(--white);
+      }
+      }
+    }
+  }
 }

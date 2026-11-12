@@ -513,8 +513,8 @@
 
     &-suptitle {
       width: fit-content;
-      text-decoration: dotted;
-      text-decoration-line: underline;
+      text-decoration: dotted !important;
+      text-decoration-line: underline !important;
       text-decoration-skip-ink: none;
 
       font-weight: 700;
