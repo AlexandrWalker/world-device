@@ -1841,6 +1841,68 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
       {
+        sliderSelector: '.similar__slider',
+        prevSelector: '.similar-button-prev',
+        nextSelector: '.similar-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 2,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          noSwipingClass: 'swiper-no-swiping',
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+              return `<span class="${className}" data-index="${index}"></span>`;
+            }
+          },
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            601: {
+              slidesPerGroup: 1,
+              slidesPerView: 6,
+              spaceBetween: 20,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                renderBullet: function (index, className) {
+                  return `<span class="${className}" data-index="${index}"></span>`;
+                }
+              },
+            },
+          },
+        },
+      },
+      {
         sliderSelector: '.reviews__slider',
         prevSelector: '.reviews-button-prev',
         nextSelector: '.reviews-button-next',
