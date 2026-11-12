@@ -540,8 +540,6 @@
       }
     }
 
-    &-list {}
-
     &-items {
       display: flex;
       flex-direction: column;
@@ -555,8 +553,12 @@
     &-item {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: flex-start;
       gap: 0 0.5rem;
+
+      @include dosm {
+        align-items: center;
+      }
 
       p {
         order: 1;
@@ -565,7 +567,11 @@
         font-weight: 400;
         font-size: 1.4rem;
         line-height: 130%;
-        white-space: nowrap;
+        word-break: keep-all;
+
+        @include dosm {
+          white-space: nowrap;
+        }
       }
 
       span {
@@ -574,7 +580,8 @@
         font-weight: 400;
         font-size: 1.4rem;
         line-height: 120%;
-        white-space: nowrap;
+        word-break: keep-all;
+        text-align: right;
       }
 
       &::before {
