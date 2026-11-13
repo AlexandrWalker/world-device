@@ -189,9 +189,12 @@
       .product__slide {
 
         &-img {
+          // width: 43.6rem;
           height: 34.9rem;
+          // margin: 0 auto;
 
           @include sm {
+            // width: 22.8rem;
             height: 18.2rem;
           }
         }

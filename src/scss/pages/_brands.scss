@@ -1,0 +1,38 @@
+@use './../mixins' as *;
+
+.brands-page {
+
+  .article {
+
+    &__inner {
+      grid-template-columns: 1fr;
+    }
+
+    &__content {
+
+      p {
+
+        @include dosm {
+          max-width: 93.2rem;
+        }
+      }
+    }
+  }
+
+  .facts {
+
+    &__items {
+
+      @include dosm {
+        grid-template-rows: 27.8rem;
+      }
+    }
+  }
+
+  .faq {
+
+    &__items {
+      max-width: 100%;
+    }
+  }
+}

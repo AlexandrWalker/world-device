@@ -562,7 +562,7 @@
         display: none;
 
         @include dosm {
-          display: block;
+          display: flex;
         }
       }
     }

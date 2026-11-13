@@ -76,6 +76,14 @@
     @include sm {
       width: 100%;
     }
+
+    &:hover {
+
+      @include dosm {
+        --btn-background: var(--blue);
+        --btn-color: var(--white);
+      }
+    }
   }
 
   &__inner {

@@ -495,6 +495,17 @@
       }
     }
 
+    .article__item {
+      color: var(--black);
+
+      &:hover {
+
+        @include dosm {
+          color: var(--navy);
+        }
+      }
+    }
+
     span:not(.blog__item-title span, h2 span) {
       display: block;
       margin-bottom: 4rem;
@@ -510,7 +521,7 @@
       }
     }
 
-    div:not(.article__table, .quote, .quote *, .sample__tags, .blog__items, .blog__item, .blog__item *) {
+    div:not(.article__table, .quote, .quote *, .sample__tags, .blog__items, .blog__item, .blog__item *, .article__items, .article__item, .article__item *) {
       padding: 3rem 2rem;
       margin-bottom: 2rem;
       border-radius: 0.5rem;
@@ -846,6 +857,82 @@
 
       i {
         --font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 3rem;
+
+    @include dosm {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      @include dosm {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--white);
+    border-radius: 1.2rem;
+    padding: 1rem 1rem 2.5rem 1rem;
+
+    &::after {
+      display: none !important;
+    }
+
+    @include dosm {
+      gap: 2rem;
+      border-radius: 1.8rem;
+      padding: 3rem;
+    }
+
+    &-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 9.7rem;
+      height: 9.7rem;
+
+      @include dosm {
+        width: 14rem;
+        height: 14rem;
+      }
+
+      img {
+        height: 6.6rem;
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+
+        @include dosm {
+          height: 10rem;
+        }
+      }
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 120%;
+      text-align: center;
+
+      @include dosm {
+        font-size: 1.6rem;
       }
     }
   }

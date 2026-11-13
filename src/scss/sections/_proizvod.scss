@@ -5,8 +5,7 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    max-width: 125.5rem;
+    gap: 2rem;
   }
 
   &__nav {
@@ -36,10 +35,10 @@
     ul {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       gap: 2.4rem;
-      padding: 0.6rem 2rem;
+      padding: 0.6rem 4rem 0.6rem 2rem;
 
       width: 100%;
       border-radius: 0.5rem;
@@ -74,7 +73,99 @@
           &.nav-is-active {
             background-color: var(--cyan);
           }
+
+          &.nav-all {
+            text-transform: capitalize;
+          }
         }
+      }
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+
+    @include dosm {
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2rem;
+    }
+
+    .filter {
+
+      @include sm {
+        display: none;
+      }
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include dosm {
+      align-items: center;
+      gap: 4rem;
+
+      grid-column: 3/13;
+    }
+
+    .sample__tags {
+
+      a {
+        min-width: unset;
+      }
+    }
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+
+      @include sm {
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__text {
+    width: 100%;
+
+    @include dosm {
+      margin-bottom: -1rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include dosm {
+      gap: 3rem;
+    }
+
+    &-head {
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 140%;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+    }
+
+    &-body {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.8rem;
+
+      @include dosm {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
       }
     }
   }
@@ -83,47 +174,139 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 100%;
+
+    @include dosm {
+      gap: 4rem;
+    }
   }
 
   &__item {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 0.1rem solid var(--white);
+    padding: 1.5rem;
+    box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
+    border-radius: 1.2rem;
+    background-color: var(--white);
 
-    &-title {
+    @include dosm {
+      gap: 3rem;
+      border-radius: 1.8rem;
+    }
+
+    .tags {
+
+      &-item {
+        height: auto;
+
+        font-weight: 700;
+        font-size: 1.2rem;
+
+        @include sm {
+          height: auto;
+          padding: 0.5rem 1rem;
+        }
+      }
+    }
+
+    &-head {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &-name {
+      width: fit-content;
+
       font-weight: 700;
-      font-size: 3rem;
+      font-size: 1.6rem;
       line-height: 140%;
-      color: var(--black);
+      color: var(--navy);
+
+      span {
+        padding-bottom: 0.2rem;
+        background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+        background-size: 0;
+        transition: .3s;
+        background-position: left;
+        background-repeat: no-repeat;
+      }
+
+      &:hover {
+
+        span {
+
+          @include dosm {
+            background-size: 100%;
+          }
+        }
+      }
+    }
+
+    &-country {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 140%;
+      color: var(--black-50);
+    }
+
+    &-count {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 140%;
+
+      span {
+        font-weight: 700;
+      }
     }
 
     &-body {
 
-      ul {
+      @include dosm {
+        margin-top: -1rem;
+      }
+    }
+
+    &-tags {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      a {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5rem;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--black-05);
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
 
-        li {
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 120%;
+        text-align: center;
 
-          a {
-            font-weight: 400;
-            font-size: 1.6rem;
-            line-height: 140%;
-            color: var(--black);
+        &:hover {
 
-            &:hover {
+          @include dosm {
+            background-color: var(--blue);
 
-              @include dosm {
-                color: var(--blue);
-              }
-            }
+            color: var(--white);
           }
         }
       }
+    }
+  }
+
+  &__more {
+
+    @include dosm {
+      display: none;
     }
   }
 }
