@@ -369,52 +369,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuItems = catalogMenu ? catalogMenu.querySelectorAll('[data-panel]') : [];
     const blockWrappers = catalogMenu ? catalogMenu.querySelectorAll('.menu__block-wrapper') : [];
     const correspondingInner = catalogMenu ? catalogMenu.querySelector('.menu__inner') : null;
+    const menuScroll = catalogMenu ? catalogMenu.querySelector('.menu__scroll') : null;
 
     const isMobileQuery = window.matchMedia('(max-width: 600px)');
     const observersList = [];
 
-    const updateAllWrappersHeight = () => {
-      if (blockWrappers.length === 0 || !correspondingInner) return;
-      blockWrappers.forEach(wrapper => {
-        if (isMobileQuery.matches) {
-          wrapper.removeAttribute('style');
-          return;
-        }
-        const innerHeight = correspondingInner.offsetHeight;
-        const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
-        if (finalHeight > 0) {
-          wrapper.style.maxHeight = `${finalHeight}px`;
-        }
-      });
-    };
+    // const updateAllWrappersHeight = () => {
+    //   if (blockWrappers.length === 0 || !correspondingInner) return;
+    //   blockWrappers.forEach(wrapper => {
+    //     if (isMobileQuery.matches) {
+    //       wrapper.removeAttribute('style');
+    //       return;
+    //     }
+    //     const innerHeight = correspondingInner.offsetHeight;
+    //     const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
+    //     if (finalHeight > 0) {
+    //       wrapper.style.maxHeight = `${finalHeight}px`;
+    //     }
+    //   });
+    // };
 
-    const initHeightTracking = () => {
-      if (blockWrappers.length === 0 || !correspondingInner) return;
-      if (typeof ResizeObserver === 'undefined') {
-        window.addEventListener('resize', updateAllWrappersHeight);
-        window.addEventListener('orientationchange', updateAllWrappersHeight);
-        updateAllWrappersHeight();
-        return;
-      }
-      blockWrappers.forEach(wrapper => {
-        const observer = new ResizeObserver(() => {
-          window.requestAnimationFrame(() => {
-            if (isMobileQuery.matches) {
-              wrapper.removeAttribute('style');
-              return;
-            }
-            const innerHeight = correspondingInner.offsetHeight;
-            const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
-            if (finalHeight > 0) {
-              wrapper.style.maxHeight = `${finalHeight}px`;
-            }
-          });
-        });
-        observer.observe(correspondingInner);
-        observersList.push(observer);
-      });
-      updateAllWrappersHeight();
-    };
+    // const initHeightTracking = () => {
+    //   if (blockWrappers.length === 0 || !correspondingInner) return;
+    //   if (typeof ResizeObserver === 'undefined') {
+    //     window.addEventListener('resize', updateAllWrappersHeight);
+    //     window.addEventListener('orientationchange', updateAllWrappersHeight);
+    //     updateAllWrappersHeight();
+    //     return;
+    //   }
+    //   blockWrappers.forEach(wrapper => {
+    //     const observer = new ResizeObserver(() => {
+    //       window.requestAnimationFrame(() => {
+    //         if (isMobileQuery.matches) {
+    //           wrapper.removeAttribute('style');
+    //           return;
+    //         }
+    //         const innerHeight = correspondingInner.offsetHeight;
+    //         const finalHeight = innerHeight > 0 ? innerHeight : correspondingInner.scrollHeight;
+    //         if (finalHeight > 0) {
+    //           wrapper.style.maxHeight = `${finalHeight}px`;
+    //         }
+    //       });
+    //     });
+    //     observer.observe(correspondingInner);
+    //     observersList.push(observer);
+    //   });
+    //   updateAllWrappersHeight();
+    // };
 
     const syncBurgerBtnState = () => {
       if (!burgerBtn) return;
@@ -436,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
       catalogBtns.forEach(btn => btn.classList.add('catalog-btn--open'));
       document.documentElement.classList.add('catalog-menu--open');
       if (typeof lenis !== 'undefined') lenis.stop();
-      updateAllWrappersHeight();
+      // updateAllWrappersHeight();
       if (!isMobileQuery.matches && menuBlocks.length > 0) {
         switchTab(menuBlocks[0].getAttribute('data-target'));
       }
@@ -508,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
       menuItems.forEach(item => {
         item.classList.toggle('menu__items--active', item.getAttribute('data-panel') === targetId);
       });
-      updateAllWrappersHeight();
+      // updateAllWrappersHeight();
     };
 
     const toggleMobileAccordion = (block, targetId) => {
@@ -526,13 +527,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    // const resetTabs = () => {
+    //   menuBlocks.forEach(block => block.classList.remove('menu__block--active'));
+    //   menuItems.forEach(item => {
+    //     item.classList.remove('menu__items--active');
+    //     item.style.maxHeight = null;
+    //   });
+    //   blockWrappers.forEach(wrapper => wrapper.removeAttribute('style'));
+    // };
+
     const resetTabs = () => {
       menuBlocks.forEach(block => block.classList.remove('menu__block--active'));
       menuItems.forEach(item => {
         item.classList.remove('menu__items--active');
         item.style.maxHeight = null;
+        item.scrollTop = 0;
       });
       blockWrappers.forEach(wrapper => wrapper.removeAttribute('style'));
+      if (menuScroll) {
+        menuScroll.scrollTop = 0;
+      }
     };
 
     const handleBlockInteraction = (e, block, interactionType) => {
@@ -573,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleBreakpointChange = (e) => {
       resetTabs();
-      updateAllWrappersHeight();
+      // updateAllWrappersHeight();
       if (!e.matches && document.documentElement.classList.contains('catalog-menu--open') && menuBlocks.length > 0) {
         switchTab(menuBlocks[0].getAttribute('data-target'));
       }
@@ -636,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
-    initHeightTracking();
+    // initHeightTracking();
   })();
 
   /**
@@ -1753,7 +1767,7 @@ document.addEventListener('DOMContentLoaded', () => {
           slidesPerGroup: 1,
           slidesPerView: 'auto',
           spaceBetween: 8,
-          speed: 5000,
+          speed: 8000,
           loop: true,
           direction: 'horizontal',
           watchOverflow: true,
@@ -2176,41 +2190,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const swiper = new Swiper(sliderSelector, swiperOptions);
 
+      // if (swiperOptions.pagination && swiperOptions.pagination.el) {
+      //   swiper.on('slideChange', () => {
+      //     const paginationEl = swiper.pagination?.el;
+      //     if (!paginationEl) return;
+
+      //     const realIndex = swiper.realIndex;
+      //     const step = 2.9; // 2.7rem ширина + 0.2rem отступы
+      //     const bullets = paginationEl.querySelectorAll('.swiper-pagination-bullet');
+      //     const totalBullets = bullets.length;
+
+      //     let translateValue = 0;
+
+      //     // Начинаем двигать карусель только с 3-го буллета (индекс 2)
+      //     if (realIndex >= 2) {
+      //       // Защита правого края: если мы уперлись в последние 2 слайда, 
+      //       // останавливаем карусель, чтобы не показывать пустоту справа
+      //       if (realIndex >= totalBullets - 2) {
+      //         translateValue = (totalBullets - 5) * -step;
+      //       } else {
+      //         // Центрируем активный буллет на 3-й позиции (индекс 2)
+      //         translateValue = (realIndex - 2) * -step;
+      //       }
+      //     }
+
+      //     // Защитный фолбек: если слайдов всего меньше 5, карусель вообще не должна двигаться
+      //     if (totalBullets <= 5) {
+      //       translateValue = 0;
+      //     }
+
+      //     // Применяем плавное смещение к каждому буллету
+      //     bullets.forEach(bullet => {
+      //       bullet.style.transform = `translateX(${translateValue}rem)`;
+      //       bullet.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+      //     });
+      //   });
+      // }
+
       if (swiperOptions.pagination && swiperOptions.pagination.el) {
-        swiper.on('slideChange', () => {
+        const VISIBLE_BULLETS = 7; // В ширину 20.3rem помещается 7 буллетов по 2.9rem
+        const CENTER_INDEX = Math.floor(VISIBLE_BULLETS / 2); // Центр на 4-м буллете (индекс 3)
+
+        const updateBulletsPosition = () => {
           const paginationEl = swiper.pagination?.el;
           if (!paginationEl) return;
 
-          const realIndex = swiper.realIndex;
-          const step = 2.9; // 2.7rem ширина + 0.2rem отступы
-          const bullets = paginationEl.querySelectorAll('.swiper-pagination-bullet');
+          const bullets = Array.from(
+            paginationEl.querySelectorAll('.swiper-pagination-bullet')
+          );
           const totalBullets = bullets.length;
 
-          let translateValue = 0;
+          // Если буллетов 7 или меньше — центрируем их и не двигаем
+          if (totalBullets <= VISIBLE_BULLETS) {
+            paginationEl.classList.add('is-short');
+            bullets.forEach((bullet) => {
+              bullet.style.transform = 'translateX(0px)';
+            });
+            return;
+          }
 
-          // Начинаем двигать карусель только с 3-го буллета (индекс 2)
-          if (realIndex >= 2) {
-            // Защита правого края: если мы уперлись в последние 2 слайда, 
-            // останавливаем карусель, чтобы не показывать пустоту справа
-            if (realIndex >= totalBullets - 2) {
-              translateValue = (totalBullets - 5) * -step;
+          paginationEl.classList.remove('is-short');
+
+          const activeBullet = paginationEl.querySelector('.swiper-pagination-bullet-active');
+          if (!activeBullet) return;
+
+          const activeIndex = bullets.indexOf(activeBullet);
+          // Точный шаг между соседними буллетами в пикселях
+          const stepPx = bullets[1].offsetLeft - bullets[0].offsetLeft;
+
+          let shiftIndex = 0;
+
+          // Начинаем сдвигать ленту, когда активный буллет проходит центр (индекс 3)
+          if (activeIndex > CENTER_INDEX) {
+            // Останавливаем ленту в конце, чтобы последний буллет прижался ровно к правому краю
+            if (activeIndex >= totalBullets - CENTER_INDEX) {
+              shiftIndex = totalBullets - VISIBLE_BULLETS;
             } else {
-              // Центрируем активный буллет на 3-й позиции (индекс 2)
-              translateValue = (realIndex - 2) * -step;
+              shiftIndex = activeIndex - CENTER_INDEX;
             }
           }
 
-          // Защитный фолбек: если слайдов всего меньше 5, карусель вообще не должна двигаться
-          if (totalBullets <= 5) {
-            translateValue = 0;
-          }
+          const translatePx = shiftIndex * -stepPx;
 
-          // Применяем плавное смещение к каждому буллету
-          bullets.forEach(bullet => {
-            bullet.style.transform = `translateX(${translateValue}rem)`;
-            bullet.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+          bullets.forEach((bullet) => {
+            bullet.style.transform = `translateX(${translatePx}px)`;
           });
-        });
+        };
+
+        swiper.on('init', updateBulletsPosition);
+        swiper.on('slideChange', updateBulletsPosition);
+        swiper.on('transitionEnd', updateBulletsPosition);
+        swiper.on('resize', updateBulletsPosition);
+
+        // Вызываем сразу после инициализации слайдера
+        updateBulletsPosition();
       }
 
       // Управление пагинацией через кастомный флаг hidePagination в брейкпоинтах

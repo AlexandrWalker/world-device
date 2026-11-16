@@ -1,6 +1,7 @@
 @use './../mixins' as *;
 
 /* Кнопки */
+input[type=submit].btn,
 .btn {
   --btn-width: fit-content;
   --btn-height: 5.4rem;

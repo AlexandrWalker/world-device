@@ -44,9 +44,10 @@
   }
 
   .container {
+    height: fit-content;
 
-    @include sm {
-      height: fit-content;
+    @include dosm {
+      height: 100%;
     }
   }
 
@@ -54,7 +55,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    max-height: 98%;
+    // max-height: 98%;
     height: fit-content;
     max-width: 100%;
     padding-top: calc(var(--header-height) + 0.4rem);
@@ -64,6 +65,9 @@
 
     @include dosm {
       display: block;
+      // height: 100%;
+      max-height: calc(100dvh - var(--header-height));
+      height: auto;
       transition: opacity 0.3s linear, visibility 0.3s linear, clip-path 0.15s linear;
       clip-path: inset(0 0 100% 0);
       will-change: opacity, visibility, clip-path;
@@ -86,14 +90,27 @@
     }
   }
 
+  &__content {
+
+    @include dosm {
+      max-height: calc(100dvh - var(--header-height));
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+
   &__block {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 0.3rem;
 
     @include dosm {
-      grid-template-columns: repeat(12, 1fr);
-      gap: 2rem;
+      // grid-template-columns: repeat(12, 1fr);
+      // gap: 2rem;
+
+      display: block;
+      width: 25%;
     }
 
     &-head {
@@ -244,15 +261,19 @@
       height: 100%;
 
       @include dosm {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 2rem;
+        // display: grid;
+        // grid-template-columns: repeat(12, 1fr);
+        // gap: 2rem;
+
+        width: 75%;
+        height: 100%;
         pointer-events: none;
 
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
+        z-index: 3;
       }
 
       @include sm {
@@ -266,7 +287,8 @@
       @include dosm {
         height: 100%;
         grid-column: 5/13;
-        pointer-events: all;
+        // pointer-events: all;
+        pointer-events: none;
         overflow-x: hidden;
         overflow-y: auto;
 
@@ -284,6 +306,7 @@
 
         @include dosm {
           opacity: 1;
+          pointer-events: auto;
           clip-path: inset(0 0 0 0);
           transition: clip-path 0.3s ease, opacity 0.3s ease;
         }
@@ -304,7 +327,7 @@
     @include dosm {
       grid-template-columns: repeat(8, 1fr);
       gap: 4rem 2rem;
-      padding: 7.2rem 0 7.6rem 0;
+      padding: 7.2rem 0 7.6rem 16.2rem;
     }
 
     @include sm {
@@ -354,6 +377,9 @@
         justify-content: space-between;
         align-items: center;
         border-radius: 4rem;
+
+        padding: 1.3rem 2rem 1.3rem 2rem;
+        margin: -1.3rem -2rem -1.3rem -2rem;
       }
 
       @include dosm {

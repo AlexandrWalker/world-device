@@ -206,6 +206,13 @@
       grid-column: 6/13;
       grid-row: 2/4;
     }
+
+    .blog-page-2 & {
+
+      @include sm {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__social {
@@ -385,7 +392,8 @@
       margin-bottom: 2rem;
       width: 100%;
       height: auto;
-      object-fit: contain;
+      // object-fit: contain;
+      object-fit: cover;
 
       @include sm {
         padding-top: 1rem;
@@ -521,7 +529,7 @@
       }
     }
 
-    div:not(.article__table, .quote, .quote *, .sample__tags, .blog__items, .blog__item, .blog__item *, .article__items, .article__item, .article__item *) {
+    div:not(.article__table, .quote, .quote *, .sample__tags, .blog__items, .blog__item, .blog__item *, .article__items, .article__item, .article__item *, .table-responsive) {
       padding: 3rem 2rem;
       margin-bottom: 2rem;
       border-radius: 0.5rem;

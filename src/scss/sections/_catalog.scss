@@ -19,6 +19,13 @@
           display: none;
         }
 
+        &:hover {
+
+          @include dosm {
+            color: var(--cyan);
+          }
+        }
+
         i {
           --font-size: 1.6rem;
 
@@ -129,6 +136,17 @@
         font-size: 1.6rem;
       }
 
+      &:hover {
+
+        @include dosm {
+          color: var(--cyan);
+
+          span::after {
+            border-color: var(--cyan);
+          }
+        }
+      }
+
       i {
         --font-size: 1.6rem;
 
@@ -188,6 +206,10 @@
       @include dosm {
         margin-bottom: -1rem;
       }
+    }
+
+    &.wd-catalog-items {
+      width: 100%;
     }
   }
 

@@ -58,7 +58,7 @@
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto auto auto;
       grid-auto-flow: column;
-      gap: 3rem 8.7rem;
+      gap: 2rem 8.7rem;
     }
   }
 
@@ -68,7 +68,7 @@
     gap: 1rem;
 
     @include dosm {
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     &-suptitle {

@@ -72,19 +72,24 @@
   &-pagination {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     margin: 2rem auto 0 auto;
     font-size: 0.5rem;
     line-height: 0.5rem;
     position: static;
-    max-width: 20.2rem;
+    max-width: 20.3rem;
     width: 20.2rem;
     overflow: hidden;
     white-space: nowrap;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     @include domd {
-      justify-content: center;
+      // justify-content: center;
       margin: 4rem auto 0 auto;
+    }
+
+    &.is-short {
+      justify-content: center;
     }
 
     &-inner {
