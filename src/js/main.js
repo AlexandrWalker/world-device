@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const link = e.target.closest('a[href]');
       if (!link) return;
 
-      // Не мешаем Fancybox — пропускаем ссылки с data-fancybox
+      // Не мешаем Fancybox - пропускаем ссылки с data-fancybox
       if (link.hasAttribute('data-fancybox')) return;
 
       const href = link.getAttribute('href');
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!hash) return;
 
       // Ищем элемент на текущей странице
-      // Если его нет — браузер сам перейдёт на нужную страницу
+      // Если его нет - браузер сам перейдёт на нужную страницу
       // После загрузки сработает обработчик load ниже
       const target = document.getElementById(hash);
       if (!target) return;
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Режим overlay — два логотипа с анимацией заливки снизу вверх
+    // Режим overlay - два логотипа с анимацией заливки снизу вверх
     function startOverlayPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       let fillHeight = 0;
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Режим singleLogo — одно лого без заливки, скрывается после загрузки
+    // Режим singleLogo - одно лого без заливки, скрывается после загрузки
     function startSingleLogoPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       const logo = new Image();
@@ -968,6 +968,94 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
+   * Функция уведомления
+   */
+  (function initStackedNotice() {
+    const ACTIVE_CLASS = 'notice-active';
+    const DISPLAY_DURATION = 5000; // 5 секунд
+    const ANIMATION_DURATION = 300; // Длительность transition в CSS (мс)
+    const MAX_NOTICES = 1; // Защита от спама: максимум 5 плашек одновременно
+
+    const timers = new WeakMap();
+
+    // Плавное скрытие и удаление конкретного клона из DOM
+    const removeNoticeBlock = (blockEl) => {
+      if (!blockEl || blockEl.dataset.closing) return;
+      blockEl.dataset.closing = 'true';
+
+      // Очищаем таймер, если закрыли досрочно кнопкой
+      const existingTimer = timers.get(blockEl);
+      if (existingTimer) {
+        clearTimeout(existingTimer);
+        timers.delete(blockEl);
+      }
+
+      // Запускаем анимацию ухода вправо
+      blockEl.classList.remove(ACTIVE_CLASS);
+
+      // После завершения CSS-анимации удаляем элемент из разметки
+      setTimeout(() => {
+        blockEl.remove();
+      }, ANIMATION_DURATION);
+    };
+
+    // Создание и показ нового уведомления в стопке
+    const spawnNotice = (noticeContainer) => {
+      const inner = noticeContainer.querySelector('.notice__inner');
+      const templateBlock = noticeContainer.querySelector('.notice__block');
+      if (!inner || !templateBlock) return;
+
+      // Если уведомлений накопилось больше лимита - убираем самое старое
+      const activeBlocks = inner.querySelectorAll(`.notice__block.${ACTIVE_CLASS}`);
+      if (activeBlocks.length >= MAX_NOTICES) {
+        removeNoticeBlock(activeBlocks[0]);
+      }
+
+      // Клонируем шаблон
+      const clone = templateBlock.cloneNode(true);
+      inner.appendChild(clone);
+
+      // Двойной requestAnimationFrame гарантирует, что браузер отрисует начальный сдвиг
+      // перед добавлением класса .notice-active и плавно запустит transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          clone.classList.add(ACTIVE_CLASS);
+        });
+      });
+
+      // Индивидуальный таймер на 5 секунд для этого конкретного уведомления
+      const timer = setTimeout(() => {
+        removeNoticeBlock(clone);
+      }, DISPLAY_DURATION);
+
+      timers.set(clone, timer);
+    };
+
+    // Глобальный обработчик кликов
+    document.addEventListener('click', (e) => {
+      // 1. Клик по кнопке [data-notice]
+      const triggerBtn = e.target.closest('[data-notice]');
+      if (triggerBtn) {
+        const targetId = triggerBtn.getAttribute('data-notice')?.trim();
+        if (!targetId) return;
+
+        const noticeContainer = document.getElementById(targetId);
+        if (noticeContainer) {
+          spawnNotice(noticeContainer);
+        }
+        return;
+      }
+
+      // 2. Клик по кнопке .btn внутри конкретного уведомления
+      const closeBtn = e.target.closest('.notice__block .btn');
+      if (closeBtn) {
+        const blockEl = closeBtn.closest('.notice__block');
+        removeNoticeBlock(blockEl);
+      }
+    });
+  })();
+
+  /**
    * Функция смены класса для hero
    */
   (function () {
@@ -975,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const svgEls = document.querySelectorAll('.hero__svg');
     if (!svgEls.length) return;
 
-    // Все возможные темы — нужны чтобы корректно очищать классы
+    // Все возможные темы - нужны чтобы корректно очищать классы
     const allThemes = ['class-blue', 'class-purple'];
 
     // ЯВНОЕ СООТВЕТСТВИЕ: индекс = номер слайда (realIndex)
@@ -1106,7 +1194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //         const rect = cover.getBoundingClientRect();
   //         const x = e.clientX - rect.left;
   //         const zone = Math.floor((x / rect.width) * total);
-  //         // на десктопе зоны НЕ зацикливаем — ограничиваем краями
+  //         // на десктопе зоны НЕ зацикливаем - ограничиваем краями
   //         show(Math.min(Math.max(zone, 0), total - 1));
   //       });
 
@@ -1275,7 +1363,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
     document.addEventListener('click', (e) => {
-      // Ищем кнопку — сработает даже при клике по вложенным элементам (иконка, span)
+      // Ищем кнопку - сработает даже при клике по вложенным элементам (иконка, span)
       const btn = e.target.closest('.item-btn--js');
       if (!btn) return;
 
@@ -2240,7 +2328,7 @@ document.addEventListener('DOMContentLoaded', () => {
           );
           const totalBullets = bullets.length;
 
-          // Если буллетов 7 или меньше — центрируем их и не двигаем
+          // Если буллетов 7 или меньше - центрируем их и не двигаем
           if (totalBullets <= VISIBLE_BULLETS) {
             paginationEl.classList.add('is-short');
             bullets.forEach((bullet) => {
@@ -3076,7 +3164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const activeClass = 'nav-is-active';
 
-      // Если по ссылке уже кликнули ранее и она активна — ничего не делаем
+      // Если по ссылке уже кликнули ранее и она активна - ничего не делаем
       if (clickedLink.classList.contains(activeClass)) return;
 
       // 1. Находим прошлую активную ссылку СТРОГО внутри этого меню и убираем класс
@@ -3105,7 +3193,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const activeClass = 'is-active';
 
-        // Если по ссылке уже кликнули ранее и она активна — ничего не делаем
+        // Если по ссылке уже кликнули ранее и она активна - ничего не делаем
         if (clickedLink.classList.contains(activeClass)) return;
 
         // 1. Находим прошлую активную ссылку СТРОГО внутри этого меню и убираем класс
@@ -3136,7 +3224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const activeClass = 'is-active';
 
-        // Если по ссылке уже кликнули ранее и она активна — ничего не делаем
+        // Если по ссылке уже кликнули ранее и она активна - ничего не делаем
         if (clickedLink.classList.contains(activeClass)) return;
 
         // 1. Находим прошлую активную ссылку СТРОГО внутри этого меню и убираем класс

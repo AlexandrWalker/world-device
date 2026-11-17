@@ -30,6 +30,10 @@
     transform: translateY(0);
     will-change: transform;
     transition: transform 0.3s ease-in-out;
+
+    @include sm {
+      padding: 0.5rem 1rem 0.5rem 1rem;;
+    }
   }
 
   &__items {
