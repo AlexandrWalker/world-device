@@ -2783,8 +2783,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-
-
         accumulateImpulse(direction);
         const steps = 1 + Math.round(extraImpulse);
 
