@@ -39,7 +39,7 @@
   &__inner {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    padding: 3rem 0 0 0;
+    padding: 2rem 0 0 0;
 
     position: relative;
     z-index: 2;
@@ -52,9 +52,10 @@
   }
 
   &__menu {
-    padding: 0 0 4rem 0;
+    padding: 0 0 3rem 0;
 
     @include dosm {
+      padding: 0 0 4rem 0;
       border-right: 0.1rem solid var(--cyan-10);
       grid-column: 1/2;
       grid-row: 1/2;
@@ -142,26 +143,26 @@
         }
       }
 
-a {
-  padding-bottom: 0.2rem;
-  background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
-  background-size: 0;
-  transition: .3s;
-  background-position: left;
-  background-repeat: no-repeat;
+      a {
+        padding-bottom: 0.2rem;
+        background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+        background-size: 0;
+        transition: .3s;
+        background-position: left;
+        background-repeat: no-repeat;
 
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 120%;
-  color: var(--cyan);
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 120%;
+        color: var(--cyan);
 
-  &:hover {
+        &:hover {
 
-    @include dosm {
-      background-size: 100%;
-    }
-  }
-}
+          @include dosm {
+            background-size: 100%;
+          }
+        }
+      }
     }
   }
 
@@ -175,7 +176,11 @@ a {
     &-items {
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      gap: 2rem;
+
+      @include dosm {
+        gap: 4rem;
+      }
     }
 
     &-item {

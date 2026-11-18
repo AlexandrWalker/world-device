@@ -50,7 +50,7 @@
                 <i class="icon-galochka"></i>
                 Выбрать все
               </button>
-              <a class="cart__head-link" href="javascript:void(0)">
+              <a class="cart__head-link" data-fancybox href="#popup-delete">
                 Удалить выбранные
               </a>
             </div>
@@ -64,7 +64,10 @@
                       <img src="./../images/temp/cart-cover-1.png" alt="">
                     </div>
                     <div class="cart__item-select">
-                      <i class="icon-galochka"></i>
+                      <label class="cart__item-label">
+                        <input class="cart__item-input" type="checkbox">
+                        <i class="icon-galochka"></i>
+                      </label>
                     </div>
                   </div>
                   <div class="cart__item-body">
@@ -101,7 +104,10 @@
                       <img src="./../images/temp/cart-cover-2.png" alt="">
                     </div>
                     <div class="cart__item-select">
-                      <i class="icon-galochka"></i>
+                      <label class="cart__item-label">
+                        <input class="cart__item-input" type="checkbox">
+                        <i class="icon-galochka"></i>
+                      </label>
                     </div>
                   </div>
                   <div class="cart__item-body">
@@ -138,7 +144,10 @@
                       <img src="./../images/temp/cart-cover-3.png" alt="">
                     </div>
                     <div class="cart__item-select">
-                      <i class="icon-galochka"></i>
+                      <label class="cart__item-label">
+                        <input class="cart__item-input" type="checkbox">
+                        <i class="icon-galochka"></i>
+                      </label>
                     </div>
                   </div>
                   <div class="cart__item-body">
@@ -175,7 +184,10 @@
                       <img src="./../images/temp/cart-cover-4.png" alt="">
                     </div>
                     <div class="cart__item-select">
-                      <i class="icon-galochka"></i>
+                      <label class="cart__item-label">
+                        <input class="cart__item-input" type="checkbox">
+                        <i class="icon-galochka"></i>
+                      </label>
                     </div>
                   </div>
                   <div class="cart__item-body">
@@ -504,7 +516,7 @@
                 </div>
               </div>
               <div class="cart__side-foot">
-                <button class="btn btn--blue" type="button">
+                <button class="btn btn--blue" type="button" disabled>
                   Подтвердить заказ
                 </button>
               </div>
@@ -514,7 +526,7 @@
         </div>
       </section>
 
-<div class="modal__overlay"></div>
+      <div class="modal__overlay"></div>
     </main>
     <!-- Подвал -->
     @@include('blocks/footer.html')
