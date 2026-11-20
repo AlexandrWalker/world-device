@@ -277,12 +277,27 @@
 
       color: var(--black-20);
 
+      &:hover {
+
+        @include dosm {
+          color: var(--blue);
+
+          &:has(.icon-favorite) {
+            color: var(--red);
+          }
+        }
+      }
+
       i {
         --font-size: 2rem;
       }
 
       &.is-active {
         color: var(--blue);
+
+        &:has(.icon-favorite) {
+          color: var(--red);
+        }
       }
     }
 

@@ -481,6 +481,10 @@
             @include dosm {
               color: var(--black-30);
             }
+
+            &:has(.icon-favorite) {
+              color: var(--red);
+            }
           }
         }
 
@@ -505,6 +509,10 @@
 
         &.is-active {
           color: var(--blue);
+
+          &:has(.icon-favorite) {
+            color: var(--red);
+          }
         }
 
         i {

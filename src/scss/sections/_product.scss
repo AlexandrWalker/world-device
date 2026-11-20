@@ -94,12 +94,20 @@
 
       &.is-active {
         color: var(--blue);
+
+        &:has(.icon-favorite) {
+          color: var(--red);
+        }
       }
 
       &:hover {
 
         @include dosm {
           color: var(--blue);
+
+          &:has(.icon-favorite) {
+            color: var(--red);
+          }
         }
       }
 
@@ -136,6 +144,13 @@
 
         right: 2rem;
         bottom: 2rem;
+      }
+
+      &:hover {
+
+        @include dosm {
+          color: var(--cyan);
+        }
       }
 
       i {

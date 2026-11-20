@@ -326,7 +326,7 @@
 
     @include dosm {
       grid-template-columns: repeat(8, 1fr);
-      gap: 4rem 2rem;
+      gap: 3rem 2rem;
       padding: 7.2rem 0 7.6rem 16.2rem;
     }
 
@@ -348,7 +348,7 @@
   &__item {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
 
     grid-column: span 2;
 
@@ -448,7 +448,7 @@
       ul {}
 
       li {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
 
         &:last-child {
           margin-bottom: 0;
