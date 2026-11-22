@@ -3420,6 +3420,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  (function initCartIconState() {
+    document.addEventListener('click', (e) => {
+      const icon = e.target.closest('.cart__item-list--icon');
+      if (!icon) return;
+
+      icon.classList.add('no-hover');
+
+      if (icon.classList.contains('is-check')) {
+        icon.classList.remove('is-check', 'is-minus');
+      } else {
+        icon.classList.remove('is-minus');
+        icon.classList.add('is-check');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const icon = e.target.closest('.cart__item-list--icon');
+      if (!icon) return;
+
+      if (!icon.contains(e.relatedTarget)) {
+        icon.classList.remove('no-hover');
+      }
+    });
+  })();
+
+  (function initCartItemAdd() {
+    document.addEventListener('click', (e) => {
+      const addBtn = e.target.closest('.cart__item-add');
+      if (!addBtn) return;
+
+      const cartItem = addBtn.closest('.cart__item');
+      if (!cartItem) return;
+
+      cartItem.classList.add('is-add');
+    });
+  })();
+
   /**
    * Конфиги для каждого типа ajax-page
    */

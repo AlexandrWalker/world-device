@@ -1,0 +1,64 @@
+@use './../mixins' as *;
+
+.result {
+  display: none;
+  align-items: flex-end;
+  width: 100%;
+  height: 0;
+
+  position: sticky;
+  left: 0;
+  bottom: 7.1rem;
+  z-index: 800;
+
+  .cart-page & {
+    display: flex;
+
+    @include dosm {
+      display: none;
+    }
+  }
+
+  &__inner {
+    width: 100%;
+    padding: 2rem 1rem 0.1rem 1rem;
+
+    @include sm {
+      padding: 0.5rem 1rem 0 1rem;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background-color: var(--white-70);
+    border-radius: 1.2rem;
+    backdrop-filter: blur(6px);
+    padding: 0.9rem 0.8rem 0.9rem 1.2rem;
+    border: 0.1rem solid var(--white-90);
+    filter: drop-shadow(0px 16px 38.2px rgba(48, 99, 180, 0.1));
+
+    .btn {
+      --btn-padding-x: 1.5rem;
+      --btn-height: 4.4rem;
+
+      font-size: 1.2rem;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 100%;
+
+    span {
+      font-weight: 700;
+      color: var(--navy);
+    }
+  }
+}

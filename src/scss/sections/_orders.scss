@@ -20,6 +20,7 @@
     }
 
     &__item {
+      padding: 2rem;
 
       @include sm {
         background-color: var(--body-bg);
