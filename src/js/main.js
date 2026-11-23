@@ -3591,7 +3591,7 @@ document.addEventListener('DOMContentLoaded', () => {
       input.addEventListener('focus', () => {
         isPaused = true;
         clearTimeout(timer);
-        input.setAttribute('placeholder', phrases);
+        input.setAttribute('placeholder', phrases[0]);
       });
 
       input.addEventListener('blur', () => {
