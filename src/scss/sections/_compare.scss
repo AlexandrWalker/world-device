@@ -21,7 +21,7 @@
 
     text-align: center;
 
-    min-height: 55.3rem;
+    min-height: 53.2rem;
 
     @include sm {
       gap: 1.5rem;
@@ -66,12 +66,36 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 
+    transform: rotateX(180deg);
+
+    padding-top: 1rem;
+
     &::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      height: 0;
-      padding: 0;
-      margin: 0;
+      // display: none;
+      // width: 0;
+      // height: 0;
+      // padding: 0;
+      // margin: 0;
+    }
+
+    &::-webkit-scrollbar {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #0A3C871A;
+      border-radius: 0.8rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--navy);
+      border-radius: 0.8rem;
+    }
+
+    @supports not selector(::-webkit-scrollbar) {
+      scrollbar-width: thin;
+      scrollbar-color: #0A3C87 #0A3C871A;
     }
 
     @include sm {
@@ -88,6 +112,8 @@
     border-collapse: collapse;
     margin-right: -1rem;
     margin-left: -1rem;
+
+    transform: rotateX(180deg);
 
     @include sm {
       margin-right: -0.4rem;

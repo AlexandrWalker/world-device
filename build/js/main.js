@@ -3457,6 +3457,155 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  (function initTruncatedTitleTooltip() {
+    const TARGET_SELECTOR = '.card__item-name';
+    const SHOW_DELAY = 350;
+    const OFFSET_Y = 10;
+
+    const tooltip = document.createElement('div');
+    tooltip.className = 'title-tooltip';
+    document.body.appendChild(tooltip);
+
+    let showTimer = null;
+    let currentTarget = null;
+
+    const hideTooltip = () => {
+      clearTimeout(showTimer);
+      showTimer = null;
+      currentTarget = null;
+      tooltip.classList.remove('is-visible');
+    };
+
+    const positionTooltip = (targetEl) => {
+      tooltip.style.left = '0px';
+      tooltip.style.top = '0px';
+
+      const rect = targetEl.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      let left = rect.left + 12;
+      let top = rect.bottom + OFFSET_Y;
+
+      if (left + tooltipRect.width > viewportWidth - 16) {
+        left = Math.max(16, viewportWidth - tooltipRect.width - 16);
+      }
+
+      if (top + tooltipRect.height > viewportHeight - 16) {
+        top = rect.top - tooltipRect.height - OFFSET_Y;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      if (window.matchMedia('(hover: none)').matches) return;
+
+      const titleEl = e.target.closest(TARGET_SELECTOR);
+      if (!titleEl || titleEl === currentTarget) return;
+
+      hideTooltip();
+
+      const isTruncated =
+        titleEl.scrollHeight > titleEl.clientHeight + 2 ||
+        titleEl.scrollWidth > titleEl.clientWidth + 1;
+
+      if (!isTruncated) return;
+
+      currentTarget = titleEl;
+
+      showTimer = setTimeout(() => {
+        const rawText = titleEl.getAttribute('data-full-title') || titleEl.textContent;
+        const fullText = rawText.replace(/\s+/g, ' ').trim();
+        if (!fullText) return;
+
+        tooltip.textContent = fullText;
+        positionTooltip(titleEl);
+        tooltip.classList.add('is-visible');
+      }, SHOW_DELAY);
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (!currentTarget) return;
+      const titleEl = e.target.closest(TARGET_SELECTOR);
+      if (titleEl === currentTarget && (!e.relatedTarget || !titleEl.contains(e.relatedTarget))) {
+        hideTooltip();
+      }
+    });
+
+    window.addEventListener('scroll', hideTooltip, { passive: true, capture: true });
+  })();
+
+  (function initAnimatedPlaceholder() {
+    const inputs = document.querySelectorAll('.form-search');
+    if (!inputs.length) return;
+
+    const phrases = [
+      'ИИ поиск по сайту',
+      'Смартфоны',
+      'Ноутбуки',
+      'Беспроводные наушники'
+    ];
+
+    const TYPE_SPEED = 70;
+    const DELETE_SPEED = 35;
+    const PAUSE_DELAY = 2000;
+
+    inputs.forEach((input) => {
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let timer = null;
+      let isPaused = false;
+
+      const tick = () => {
+        if (isPaused) return;
+
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+          charIndex--;
+          input.setAttribute('placeholder', currentPhrase.substring(0, charIndex));
+        } else {
+          charIndex++;
+          input.setAttribute('placeholder', currentPhrase.substring(0, charIndex));
+        }
+
+        let nextDelay = isDeleting ? DELETE_SPEED : TYPE_SPEED;
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          nextDelay = PAUSE_DELAY;
+        }
+        else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          nextDelay = 400;
+        }
+
+        timer = setTimeout(tick, nextDelay);
+      };
+
+      input.addEventListener('focus', () => {
+        isPaused = true;
+        clearTimeout(timer);
+        input.setAttribute('placeholder', phrases);
+      });
+
+      input.addEventListener('blur', () => {
+        if (input.value.trim() !== '') return;
+        isPaused = false;
+        charIndex = 0;
+        isDeleting = false;
+        tick();
+      });
+
+      tick();
+    });
+  })();
+
   /**
    * Конфиги для каждого типа ajax-page
    */
