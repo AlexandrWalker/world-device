@@ -566,6 +566,13 @@
         font-size: 1.4rem;
         line-height: 140%;
         color: var(--navy);
+
+        &:hover {
+
+          @include dosm {
+            text-decoration: underline;
+          }
+        }
       }
 
       &--price {

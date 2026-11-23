@@ -352,7 +352,7 @@
       }
     }
 
-    .product__block-quantity {
+    &-quantity {
       grid-template-columns: 1fr;
       flex-shrink: 0;
 
@@ -362,7 +362,7 @@
       }
 
       .quantity {
-        height: 5.4rem;
+        height: fit-content;
 
         @include sm {
           width: fit-content;
@@ -624,7 +624,8 @@
 
       @include sm {
         gap: 3rem;
-        padding-bottom: 1.5rem;
+        padding-bottom: 0;
+        border-bottom: 0;
       }
     }
 
@@ -648,7 +649,7 @@
       @include sm {
         grid-template-columns: 1fr;
         gap: 0.8rem;
-        margin-top: -0.5rem;
+        margin-top: 0;
         padding-bottom: 1.5rem;
       }
     }
