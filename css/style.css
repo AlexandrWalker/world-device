@@ -3693,12 +3693,14 @@ html.modal--open footer {
   font-size: 1.4rem;
   line-height: 100%;
 }
-.popup__product .product__block-quantity {
+.popup__product-quantity {
   grid-template-columns: 1fr;
   flex-shrink: 0;
 }
-.popup__product .product__block-quantity .quantity {
-  height: 5.4rem;
+.popup__product-quantity .quantity {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 #popup-filter-brands {
@@ -9024,6 +9026,9 @@ canvas {
   .cart__item-list--icon:hover::before, .cart__item-list--icon:hover::after {
     background-color: var(--cyan);
   }
+  .cart__item-list--name:hover {
+    text-decoration: underline;
+  }
   .cart__item-wrapper {
     padding-top: 3rem;
     border-top: 0.1rem solid var(--black-10);
@@ -10200,11 +10205,11 @@ canvas {
     grid-column: 2/3;
     grid-row: 1/2;
   }
-  .popup__product .product__block-quantity {
+  .popup__product-quantity {
     grid-column: 2/3;
     grid-row: 2/3;
   }
-  .popup__product .product__block-quantity .quantity {
+  .popup__product-quantity .quantity {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
@@ -10231,7 +10236,8 @@ canvas {
   }
   #popup-product .popup__head {
     gap: 3rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0;
+    border-bottom: 0;
   }
   #popup-product .popup__body {
     padding-bottom: 1.5rem;
@@ -10239,7 +10245,7 @@ canvas {
   #popup-product .popup__btns {
     grid-template-columns: 1fr;
     gap: 0.8rem;
-    margin-top: -0.5rem;
+    margin-top: 0;
     padding-bottom: 1.5rem;
   }
   #popup-product .popup__foot {
