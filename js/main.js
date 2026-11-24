@@ -725,9 +725,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        toolbar.classList.add('toolbar--hidden');
+        document.documentElement.classList.add('toolbar--hidden');
       } else {
-        toolbar.classList.remove('toolbar--hidden');
+        document.documentElement.classList.remove('toolbar--hidden');
       }
 
       lastScrollY = currentScrollY;
@@ -3604,6 +3604,167 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tick();
     });
+  })();
+
+  (function initDesktopFooterVideo() {
+    const video = document.querySelector('.footer__bg video');
+    if (!video) return;
+
+    const desktopMedia = window.matchMedia('(min-width: 600px)');
+
+    const loadAndPlay = () => {
+      if (!desktopMedia.matches) return;
+
+      if (!video.src && video.dataset.src) {
+        video.src = video.dataset.src;
+      }
+
+      video.muted = true;
+      video.play().catch(() => {
+        const unlock = () => {
+          video.play().catch(() => { });
+          document.removeEventListener('click', unlock);
+          document.removeEventListener('mousemove', unlock);
+        };
+        document.addEventListener('click', unlock, { once: true });
+        document.addEventListener('mousemove', unlock, { once: true });
+      });
+    };
+
+    loadAndPlay();
+    desktopMedia.addEventListener('change', loadAndPlay);
+  })();
+
+  (function initMenuMoreLinks() {
+    const MAX_VISIBLE_ITEMS = 5;
+    const menuLists = document.querySelectorAll('.menu__item-content ul');
+
+    if (!menuLists.length) return;
+
+    menuLists.forEach((ul) => {
+      if (ul.dataset.moreInit) return;
+      ul.dataset.moreInit = 'true';
+
+      const items = Array.from(ul.children).filter(
+        (el) => el.tagName === 'LI' && !el.classList.contains('menu__item-more')
+      );
+
+      if (items.length <= MAX_VISIBLE_ITEMS) return;
+
+      const parentItem = ul.closest('.menu__item');
+      const headLink = parentItem?.querySelector('.menu__item-head a, a.menu__item-title');
+      const targetHref = ul.dataset.allHref || headLink?.getAttribute('href') || '#';
+
+      const moreLi = document.createElement('li');
+      moreLi.className = 'menu__item-more';
+
+      const moreLink = document.createElement('a');
+      moreLink.href = targetHref;
+      moreLink.textContent = 'Все категории';
+
+      moreLi.appendChild(moreLink);
+      ul.appendChild(moreLi);
+    });
+  })();
+
+  (function () {
+    const htmlTag = document.documentElement;
+    const activeClass = 'trade-form-check';
+
+    const isVisible = (el) => {
+      const parent = el.parentElement;
+      return parent && !parent.closest('[style*="display: none"], [hidden], .is-hidden');
+    };
+
+    const isBlockFilled = (block) => {
+      const dropdowns = Array.from(block.querySelectorAll('.dropdown')).filter(isVisible);
+      const areDropdownsFilled = dropdowns.every((dropdown) => dropdown.classList.contains('filled'));
+      if (!areDropdownsFilled) return false;
+
+      const externalRadios = Array.from(block.querySelectorAll('input[type="radio"]'))
+        .filter((radio) => !radio.closest('.dropdown') && isVisible(radio));
+
+      const radioGroups = new Set(externalRadios.map((radio) => radio.name).filter(Boolean));
+      for (const name of radioGroups) {
+        const isChecked = externalRadios.some((radio) => radio.name === name && radio.checked);
+        if (!isChecked) return false;
+      }
+
+      const externalInputs = Array.from(
+        block.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"])')
+      ).filter((input) => !input.closest('.dropdown') && isVisible(input));
+
+      const areInputsFilled = externalInputs.every((input) => input.value.trim() !== '');
+      if (!areInputsFilled) return false;
+
+      return dropdowns.length > 0 || radioGroups.size > 0 || externalInputs.length > 0;
+    };
+
+    const checkAllBlocks = () => {
+      const tradeBlocks = Array.from(document.querySelectorAll('.trade__block'));
+
+      if (!tradeBlocks.length) return;
+
+      const areAllFilled = tradeBlocks.every(isBlockFilled);
+      htmlTag.classList.toggle(activeClass, areAllFilled);
+    };
+
+    const handleEvent = (e) => {
+      if (!e.target.closest('.trade__block')) return;
+      setTimeout(checkAllBlocks, 50);
+    };
+
+    document.addEventListener('input', handleEvent);
+    document.addEventListener('change', handleEvent);
+    document.addEventListener('click', handleEvent);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkAllBlocks);
+    } else {
+      checkAllBlocks();
+    }
+    window.addEventListener('load', checkAllBlocks);
+  })();
+
+  (function () {
+    const cartSide = document.querySelector('.cart__side');
+
+    if (!cartSide) return;
+
+    const htmlTag = document.documentElement;
+    const hiddenClass = 'result--hidden';
+    const mobileQuery = window.matchMedia('(max-width: 600px)');
+
+    let observer = null;
+
+    const initObserver = () => {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+
+      if (!mobileQuery.matches) {
+        htmlTag.classList.remove(hiddenClass);
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const isReachedOrPassed = entry.isIntersecting || entry.boundingClientRect.top < 0;
+            htmlTag.classList.toggle(hiddenClass, isReachedOrPassed);
+          });
+        },
+        {
+          threshold: 0,
+        }
+      );
+
+      observer.observe(cartSide);
+    };
+
+    initObserver();
+    mobileQuery.addEventListener('change', initObserver);
   })();
 
   /**
