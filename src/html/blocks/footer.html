@@ -1,6 +1,7 @@
 <footer id="footer" class="footer">
   <div class="footer__bg">
-    <video src="./video/footer_bg.mp4" autoplay loop muted playsinline preload="auto"></video>
+    <video data-src="./video/footer_bg.mp4" poster="./../images/temp/footer-bg.jpg" autoplay loop muted playsinline
+      preload="metadata" disablePictureInPicture></video>
   </div>
   <div class="container">
     <div class="footer__inner">
@@ -28,6 +29,11 @@
                     </a>
                   </li>
                   <li>
+                    <a href="/world-device/reviews.html">
+                      Отзывы
+                    </a>
+                  </li>
+                  <li>
                     <a href="/world-device/404.html">
                       Доставка
                     </a>
@@ -40,6 +46,11 @@
                   <li>
                     <a href="/world-device/service-center.html">
                       Сервис-центр
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/world-device/trade-in.html">
+                      Трейд-ин
                     </a>
                   </li>
                   <li>
@@ -179,8 +190,8 @@
               <a class="footer__info-phone" href="tel:+78129426246">
                 +7 (812) 942-62-46
               </a>
-              <a class="footer__info-phone" href="tel:+78129426246">
-                +7 (812) 942-62-46
+              <a class="footer__info-phone" href="tel:+79219426246">
+                +7 (921) 942-62-46
               </a>
               <a class="footer__info-mail" href="mailto:info@world-devices.ru">
                 info@world-devices.ru
@@ -218,7 +229,9 @@
       <div class="footer__foot">
         <div class="footer__foot-left">
           <p>
-            © World Devices 2026
+            Вся представленная на сайте информация, касающаяся технических характеристик, наличия на складе, стоимости
+            товаров, носит информационный характер и ни при каких условиях не является публичной офертой, определяемой
+            положениями Статьи 437(2) Гражданского кодекса РФ.
           </p>
         </div>
         <div class="footer__foot-center">
@@ -230,6 +243,9 @@
           </a>
         </div>
         <div class="footer__foot-right">
+          <p>
+            © World Devices 2026
+          </p>
           <p>
             Разработка сайта — <a href="https://so-vok.ru">СОВОК</a>
           </p>
@@ -243,10 +259,10 @@
 @@include('./modal.html')
 <!-- Плашка кнопок -->
 @@include('./purchase.html')
-<!-- Плашка корзины -->
-@@include('./result.html')
 <!-- Тулбар -->
 @@include('./toolbar.html')
+<!-- Плашка корзины -->
+@@include('./result.html')
 <!-- Попапы -->
 @@include('./popups.html')
 <!-- Плашка -->

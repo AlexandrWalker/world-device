@@ -664,7 +664,7 @@
 
   .product__block-suptitle {
     margin-bottom: 1rem;
-    
+
     @include dosm {
       margin-bottom: 2rem;
 
@@ -676,6 +676,40 @@
 
     @include sm {
       margin-bottom: 0.5rem;
+    }
+  }
+}
+
+#popup-admission {
+  max-width: 57.4rem;
+  padding: 2rem 1.5rem;
+
+  @include dosm {
+    padding: 4rem;
+  }
+
+  .popup {
+
+    &__content {
+      gap: 2rem;
+    }
+
+    &__form {
+
+      .form-input {
+        text-align: center;
+      }
+    }
+
+    &__foot {
+
+      .btn {
+        margin-bottom: 0.5rem;
+      }
+
+      &-item {
+        gap: 1rem;
+      }
     }
   }
 }

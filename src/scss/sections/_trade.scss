@@ -144,7 +144,13 @@
       }
     }
 
-    &-request {}
+    &--hidden {
+      display: none !important;
+
+      .trade-form-check & {
+        display: flex !important;
+      }
+    }
 
     &-wrap {
       display: flex;
@@ -315,6 +321,10 @@
 
     &-btn {
       --btn-width: 100%;
+
+      .trade-in-page & {
+        max-width: 122.4rem;
+      }
     }
 
     &-form {

@@ -126,9 +126,6 @@
     gap: 0.3rem;
 
     @include dosm {
-      // grid-template-columns: repeat(12, 1fr);
-      // gap: 2rem;
-
       display: block;
       width: 25%;
     }
@@ -158,12 +155,17 @@
         background-color: var(--navy-05);
       }
 
+      &.menu__block--active,
       &:hover {
 
         @include dosm {
 
           .menu__block-text {
             font-weight: 700;
+          }
+
+          &::after {
+            opacity: 1;
           }
         }
       }
@@ -178,13 +180,32 @@
           background-color: var(--navy);
         }
       }
+
+      &::after {
+        content: "";
+        display: none;
+        width: 0.5rem;
+        height: 100%;
+        background-color: var(--navy);
+        transition: opacity 0.3s ease;
+        opacity: 0;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+
+        @include dosm {
+          display: block;
+        }
+      }
     }
 
     &-text {
-      font-weight: 400;
+      font-weight: 500;
       font-size: 1.4rem;
       line-height: 130%;
-      color: var(--navy);
 
       transition: color 0.3s ease, font-weight 0.3s ease;
 
@@ -200,6 +221,11 @@
       }
 
       .menu__block--active & {
+
+        @include dosm {
+          font-weight: 700;
+          color: var(--navy);
+        }
 
         @include sm {
           color: var(--white);
@@ -313,7 +339,7 @@
         overflow-y: auto;
 
         opacity: 0;
-        clip-path: inset(0 100% 0 0);
+        // clip-path: inset(0 100% 0 0);
         transition: clip-path 0s ease, opacity 0s ease;
       }
 
@@ -335,7 +361,7 @@
         @include dosm {
           opacity: 1;
           pointer-events: auto;
-          clip-path: inset(0 0 0 0);
+          // clip-path: inset(0 0 0 0);
           transition: clip-path 0.3s ease, opacity 0.3s ease;
         }
 
@@ -492,6 +518,22 @@
 
             @include dosm {
               text-decoration: underline;
+            }
+          }
+        }
+
+        &:nth-child(n + 6):not(.menu__item-more) {
+          display: none;
+        }
+
+        &.menu__item-more {
+
+          a {
+            color: var(--navy);
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: none;
             }
           }
         }

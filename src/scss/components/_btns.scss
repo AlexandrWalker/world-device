@@ -97,7 +97,7 @@ input[type=submit].btn,
   &--stroke {
     --btn-color: var(--black);
 
-    border: 0.1rem solid var(--blue-10);
+    border: 0.1rem solid var(--blue-10) !important;
 
     &:hover {
 

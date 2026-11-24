@@ -8,7 +8,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 100;
+  z-index: 901;
 
   @include sm {
     --container-padding: 1rem;
@@ -20,7 +20,7 @@
     align-items: flex-end;
     flex-direction: column;
     gap: 1.2rem;
-    padding: 1rem 0 8.4rem 0;
+    padding: 1rem 0 calc(6.7rem + env(safe-area-inset-bottom)) 0;
 
     @include dosm {
       padding: 3rem 0;

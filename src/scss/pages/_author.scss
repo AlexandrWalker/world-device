@@ -4,6 +4,10 @@
 
   .article {
 
+    &__head {
+      margin-bottom: 0;
+    }
+
     &__wrapper {
       gap: 2rem;
     }

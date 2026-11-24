@@ -171,6 +171,29 @@
 
   &__logo {
     flex-shrink: 0;
+
+    &-title {
+      display: none;
+
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 120%;
+      color: var(--navy);
+    }
+
+    .catalog-menu--open & {
+
+      @include sm {
+
+        .logo {
+          display: none;
+        }
+
+        .header__logo-title {
+          display: block;
+        }
+      }
+    }
   }
 
   &__wrap {
@@ -312,7 +335,7 @@
       color: var(--black);
 
       @include sm {
-        right: 2rem;
+        right: 6rem;
       }
 
       &:hover {
@@ -343,6 +366,10 @@
 
       @include sm {
         display: none;
+      }
+
+      .mobile-search-menu--open & {
+        display: flex;
       }
 
       &:hover {
@@ -467,7 +494,8 @@
         display: none;
       }
 
-      .catalog-menu--open &,
+      .mobile-search-menu--open &,
+      // .catalog-menu--open &,
       .burger-menu--open & {
 
         @include sm {
@@ -512,7 +540,7 @@
       cursor: pointer;
 
       &:hover {
-        
+
         @include dosm {
           text-decoration: underline;
         }
@@ -531,7 +559,8 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
-      height: 4.5rem;
+      min-height: 4.5rem;
+      height: auto;
       padding: 1rem 1.5rem;
       border-radius: 0.5rem;
       background-color: var(--white);

@@ -21,6 +21,7 @@
     box-shadow: 0px 16px 38.2px rgba(60, 120, 205, 0.34);
     border-radius: 1.2rem;
     overflow: hidden;
+    transition: 0s;
 
     color: var(--white);
 
@@ -217,8 +218,8 @@
       width: 100%;
       padding: 0 2rem;
 
+      top: 50%;
       left: 0;
-
     }
   }
 
