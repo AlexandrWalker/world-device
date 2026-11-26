@@ -678,10 +678,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleClick = (e) => {
-      if (mediaQuery.matches) {
-        e.preventDefault();
-        social.classList.toggle('active');
-      }
+      e.preventDefault();
+      social.classList.toggle('active');
     };
 
     social.addEventListener('mouseenter', handleMouseEnter);
@@ -689,13 +687,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', handleClick);
 
     social.addEventListener('click', (e) => {
-      if (mediaQuery.matches && e.target.closest('a:not(.social__item-btn)')) {
+      if (e.target.closest('a:not(.social__item-btn)')) {
         social.classList.remove('active');
       }
     });
 
     document.addEventListener('click', (e) => {
-      if (mediaQuery.matches && social.classList.contains('active') && !social.contains(e.target)) {
+      if (social.classList.contains('active') && !social.contains(e.target)) {
         social.classList.remove('active');
       }
     });
@@ -1373,43 +1371,216 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   (function () {
-    // Находим инпут на странице
-    const searchInput = document.querySelector('.form-search');
-    if (!searchInput) return;
+    const searchInputs = Array.from(document.querySelectorAll('.form-search'));
+    if (!searchInputs.length) return;
 
     const htmlEl = document.documentElement;
+    const desktopQuery = window.matchMedia('(min-width: 601px)');
 
-    // Функция, которая проверяет все условия и управляет оверлеем
     const checkSearchState = () => {
-      // Проверяем, есть ли в инпуте текст
-      if (searchInput.value.trim() !== '') {
-        searchInput.classList.add('filled');
-      } else {
-        searchInput.classList.remove('filled');
-      }
+      let isAnyFocused = false;
 
-      // Условия для включения оверлея: инпут в фокусе ИЛИ имеет текст (класс filled)
-      const isFocused = document.activeElement === searchInput;
-      const isFilled = searchInput.classList.contains('filled');
+      searchInputs.forEach((input) => {
+        const isFilled = input.value.trim() !== '';
+        input.classList.toggle('filled', isFilled);
 
-      if (isFocused || isFilled) {
-        htmlEl.classList.add('overlay--active');
-      } else {
-        htmlEl.classList.remove('overlay--active');
-      }
+        if (document.activeElement === input) {
+          isAnyFocused = true;
+        }
+      });
+
+      const shouldActivateOverlay = desktopQuery.matches && isAnyFocused;
+      htmlEl.classList.toggle('overlay--active', shouldActivateOverlay);
     };
 
-    // 1. Слушаем фокус (когда пользователь кликнул в инпут)
-    searchInput.addEventListener('focus', checkSearchState);
+    searchInputs.forEach((input) => {
+      input.addEventListener('focus', checkSearchState);
+      input.addEventListener('blur', checkSearchState);
+      input.addEventListener('input', checkSearchState);
+    });
 
-    // 2. Слушаем потерю фокуса (когда пользователь кликнул в другое место)
-    searchInput.addEventListener('blur', checkSearchState);
+    desktopQuery.addEventListener('change', checkSearchState);
 
-    // 3. Слушаем ввод текста (чтобы мгновенно реагировать на появление/удаление букв и класс filled)
-    searchInput.addEventListener('input', checkSearchState);
-
-    // Подстраховка: проверяем состояние при первой загрузке страницы (если там что-то уже вписано автозаполнением)
     checkSearchState();
+  })();
+
+  (function () {
+    const sliders = document.querySelectorAll('.compare__scroll');
+    if (!sliders.length) return;
+
+    sliders.forEach((slider) => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let isDragging = false;
+
+      slider.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        isDown = true;
+        isDragging = false;
+        slider.classList.add('is-grabbing');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('is-grabbing');
+      });
+
+      slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('is-grabbing');
+      });
+
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5;
+
+        if (Math.abs(x - startX) > 5) {
+          isDragging = true;
+        }
+
+        slider.scrollLeft = scrollLeft - walk;
+      });
+
+      slider.addEventListener('click', (e) => {
+        if (isDragging) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    });
+  })();
+
+  /**
+   * Функция лупы для карточки товара
+   */
+  (function () {
+    const coverBody = document.querySelector('.product__cover-body');
+    if (!coverBody) return;
+
+    const zoomBtn = coverBody.querySelector('.zoom-btn');
+    if (!zoomBtn) return;
+
+    const SCALE = 2; // Коэффициент увеличения
+    let rect = null;
+    let activeImg = null;
+    let ticking = false;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
+    const resetAllImages = () => {
+      coverBody.querySelectorAll('.product__slide-img img').forEach((img) => {
+        img.style.transform = '';
+      });
+      activeImg = null;
+      rect = null;
+    };
+
+    const updateTransform = () => {
+      ticking = false;
+      if (!rect || !activeImg || !coverBody.classList.contains('is-zoom-enabled')) return;
+
+      // Вычисляем долю положения курсора от 0 до 1
+      const ratioX = Math.max(0, Math.min(1, (lastMouseX - rect.left) / rect.width));
+      const ratioY = Math.max(0, Math.min(1, (lastMouseY - rect.top) / rect.height));
+
+      // Считаем смещение через GPU (translate3d)
+      const moveX = -ratioX * activeImg.offsetWidth * (SCALE - 1);
+      const moveY = -ratioY * activeImg.offsetHeight * (SCALE - 1);
+
+      activeImg.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${SCALE})`;
+    };
+
+    zoomBtn.addEventListener('click', () => {
+      const isEnabled = coverBody.classList.toggle('is-zoom-enabled');
+      zoomBtn.classList.toggle('is-active', isEnabled);
+
+      if (!isEnabled) {
+        resetAllImages();
+      }
+    });
+
+    // Запоминаем размеры контейнера один раз при входе курсора
+    coverBody.addEventListener('mouseenter', () => {
+      if (!coverBody.classList.contains('is-zoom-enabled')) return;
+      rect = coverBody.getBoundingClientRect();
+    });
+
+    coverBody.addEventListener('mousemove', (e) => {
+      if (!coverBody.classList.contains('is-zoom-enabled')) return;
+
+      // Обновляем ссылку на активную картинку и размеры, если их еще нет (например, сразу после клика на лупу)
+      const activeSlide = coverBody.querySelector('.swiper-slide-active') || coverBody;
+      const currentImg = activeSlide.querySelector('.product__slide-img img');
+      if (!currentImg) return;
+
+      if (currentImg !== activeImg || !rect) {
+        if (activeImg && activeImg !== currentImg) {
+          activeImg.style.transform = '';
+        }
+        activeImg = currentImg;
+        rect = coverBody.getBoundingClientRect();
+      }
+
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+
+      // Синхронизируем отрисовку с частотой кадров монитора
+      if (!ticking) {
+        requestAnimationFrame(updateTransform);
+        ticking = true;
+      }
+    });
+
+    coverBody.addEventListener('mouseleave', resetAllImages);
+  })();
+
+  /**
+   * Функция для скролла в самый верх
+   */
+  (function () {
+    const scrollTopBtn = document.getElementById('scrollTop');
+    if (!scrollTopBtn) return;
+
+    let isVisible = false;
+    let ticking = false;
+    let viewportHeight = window.innerHeight;
+
+    const update = () => {
+      const shouldBeVisible = window.scrollY >= viewportHeight;
+
+      // Трогаем DOM только в момент реального изменения состояния
+      if (shouldBeVisible !== isVisible) {
+        isVisible = shouldBeVisible;
+        scrollTopBtn.classList.toggle('scroll-top--visible', isVisible);
+      }
+      ticking = false;
+    };
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'resize',
+      () => {
+        viewportHeight = window.innerHeight;
+      },
+      { passive: true }
+    );
+
+    update();
   })();
 
   /**
