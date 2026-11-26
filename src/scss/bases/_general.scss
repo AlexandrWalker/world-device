@@ -167,7 +167,7 @@
 
     position: absolute;
     // top: 50%;
-    top: calc(50% - 6.7rem);
+    top: calc(50% - 2.7rem);
     left: -2.7rem;
     z-index: 3;
     transform: translateY(-50%);
@@ -212,6 +212,10 @@
       background-color: var(--blue);
 
       color: var(--white);
+    }
+
+    &--all {
+      background-color: var(--white);
     }
 
     &:hover {

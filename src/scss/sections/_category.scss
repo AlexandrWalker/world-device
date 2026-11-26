@@ -231,6 +231,10 @@
 
       @include sm {
         font-size: 1.4rem;
+
+        .inner-page & {
+          font-size: 1.2rem;
+        }
       }
     }
   }

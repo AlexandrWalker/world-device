@@ -1,0 +1,53 @@
+@use './../mixins' as *;
+
+.scroll-top {
+  transition: all 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  right: 1.2rem;
+  bottom: 15rem;
+  z-index: 30;
+
+  @include dosm {
+    top: calc(75% + 20rem);
+    right: 3.3rem;
+    bottom: unset;
+    transform: translateY(-50%);
+  }
+
+  &--visible {
+    pointer-events: all;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    background-color: var(--navy);
+
+    font-weight: 900;
+    color: var(--white);
+    text-align: center;
+
+    @include dosm {
+      width: 5.4rem;
+      height: 5.4rem;
+    }
+
+    i {
+      --font-size: 2.2rem;
+
+      @include dosm {
+        --font-size: 3.6rem;
+      }
+    }
+  }
+}

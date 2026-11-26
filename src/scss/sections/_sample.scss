@@ -96,13 +96,11 @@
       text-align: center;
       color: var(--black);
 
+      &.tags-active,
       &:hover {
-
-      @include dosm {
         background-color: var(--blue);
 
         color: var(--white);
-      }
       }
     }
   }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page">
+@@include('blocks/head.html', {"title": "World Devices"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <main id="main" class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="/world-device">
+                    <span>
+                      На главную
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <span>
+                    Отзывы
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__wrapper">
+              <div class="template__title" data-split="lines">
+                <h1>
+                  Отзывы
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <div class="container">
+          <div class="reviews__inner">
+
+            <div class="reviews__head">
+              <div class="general__tabs">
+                <button class="general__tab is-active" type="button">
+                  Авито
+                </button>
+                <button class="general__tab" type="button">
+                  2Гис
+                </button>
+                <button class="general__tab" type="button">
+                  Яндекс
+                </button>
+                <button class="general__tab general__tab--all" type="button">
+                  Все
+                </button>
+              </div>
+            </div>
+
+            <div class="reviews__body">
+              <div class="reviews__wrapper">
+                <div class="reviews__items anim-items">
+                  @@loop('./elements/reviews-item.html', './data/reviews-slide-items.json')
+                </div>
+                <div class="pagination">
+                  <div class="pagination__items">
+                    <button class="pagination__item pagination__item--active">
+                      1
+                    </button>
+                    <button class="pagination__item">
+                      2
+                    </button>
+                    <button class="pagination__item">
+                      3
+                    </button>
+                    <button class="pagination__item">
+                      4
+                    </button>
+                    <div class="pagination__ellipsis">
+                      ...
+                    </div>
+                    <button class="pagination__item">
+                      10
+                    </button>
+                    <button class="pagination__item">
+                      11
+                    </button>
+                  </div>
+                  <button class="pagination__btn">
+                    <i class="icon-arrow"></i>
+                  </button>
+                </div>
+                <button class="btn btn--more">
+                  Показать еще
+                  <i class="icon-arrow-circle-inside"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <div class="modal__overlay"></div>
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

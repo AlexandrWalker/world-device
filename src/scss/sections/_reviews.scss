@@ -9,6 +9,17 @@
     }
   }
 
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+
+    @include dosm {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
   &__item {
     display: flex;
     flex-direction: column;

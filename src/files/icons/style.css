@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'WDIconFont';
-  src:  url('fonts/WDIconFont.eot?fur9of');
-  src:  url('fonts/WDIconFont.eot?fur9of#iefix') format('embedded-opentype'),
-    url('fonts/WDIconFont.ttf?fur9of') format('truetype'),
-    url('fonts/WDIconFont.woff?fur9of') format('woff'),
-    url('fonts/WDIconFont.svg?fur9of#WDIconFont') format('svg');
+  src:  url('fonts/WDIconFont.eot?pgils');
+  src:  url('fonts/WDIconFont.eot?pgils#iefix') format('embedded-opentype'),
+    url('fonts/WDIconFont.ttf?pgils') format('truetype'),
+    url('fonts/WDIconFont.woff?pgils') format('woff'),
+    url('fonts/WDIconFont.svg?pgils#WDIconFont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,167 +25,179 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow:before {
-  content: "\e900";
+.icon-nav-whatsapp:before {
+  content: "\e937";
 }
-.icon-pay:before {
+.icon-whatsapp:before {
+  content: "\e936";
+}
+.icon-gis-icon:before {
+  content: "\e900";
+  color: #29b24a;
+}
+.icon-arrow:before {
   content: "\e901";
 }
-.icon-cash:before {
+.icon-arrow-circle-inside:before {
   content: "\e902";
 }
-.icon-avito-icon .path1:before {
+.icon-arrow-up-stroke:before {
   content: "\e903";
+}
+.icon-avito-icon .path1:before {
+  content: "\e904";
   color: rgb(4, 224, 97);
 }
 .icon-avito-icon .path2:before {
-  content: "\e904";
+  content: "\e905";
   margin-left: -1em;
   color: rgb(255, 64, 83);
 }
 .icon-avito-icon .path3:before {
-  content: "\e905";
+  content: "\e906";
   margin-left: -1em;
   color: rgb(150, 94, 235);
 }
 .icon-avito-icon .path4:before {
-  content: "\e906";
+  content: "\e907";
   margin-left: -1em;
   color: rgb(0, 170, 255);
 }
-.icon-choice:before {
-  content: "\e907";
-}
-.icon-security:before {
+.icon-bento:before {
   content: "\e908";
 }
-.icon-economy:before {
+.icon-car:before {
   content: "\e909";
 }
-.icon-zoom:before {
+.icon-cart:before {
   content: "\e90a";
 }
-.icon-car:before {
+.icon-cash:before {
   content: "\e90b";
 }
-.icon-view:before {
+.icon-chevron-big:before {
   content: "\e90c";
 }
-.icon-date:before {
+.icon-chevron-stroke:before {
   content: "\e90d";
 }
-.icon-lightning:before {
+.icon-choice:before {
   content: "\e90e";
 }
-.icon-gis-icon:before {
+.icon-close:before {
   content: "\e90f";
-  color: #29b24a;
+}
+.icon-date:before {
+  content: "\e910";
+}
+.icon-download:before {
+  content: "\e911";
+}
+.icon-economy:before {
+  content: "\e912";
+}
+.icon-favorite:before {
+  content: "\e913";
+}
+.icon-filter:before {
+  content: "\e914";
+}
+.icon-galochka:before {
+  content: "\e915";
+}
+.icon-galochka-circle-inside:before {
+  content: "\e916";
+}
+.icon-glass-max:before {
+  content: "\e917";
+}
+.icon-glass-telegram:before {
+  content: "\e918";
+}
+.icon-headphones:before {
+  content: "\e919";
+}
+.icon-kebab:before {
+  content: "\e91a";
+}
+.icon-lightning:before {
+  content: "\e91b";
+}
+.icon-list:before {
+  content: "\e91c";
+}
+.icon-login:before {
+  content: "\e91d";
+}
+.icon-max:before {
+  content: "\e91e";
+}
+.icon-nav-chevron-down:before {
+  content: "\e91f";
+}
+.icon-nav-max:before {
+  content: "\e920";
+}
+.icon-nav-phone:before {
+  content: "\e921";
+}
+.icon-nav-telegram:before {
+  content: "\e922";
+}
+.icon-neuron:before {
+  content: "\e923";
+}
+.icon-oformlenie:before {
+  content: "\e924";
+}
+.icon-pay:before {
+  content: "\e925";
+}
+.icon-person:before {
+  content: "\e926";
+}
+.icon-rating-star:before {
+  content: "\e927";
+}
+.icon-scroll-top:before {
+  content: "\e928";
+}
+.icon-search:before {
+  content: "\e929";
+}
+.icon-security:before {
+  content: "\e92a";
+}
+.icon-share:before {
+  content: "\e92b";
+}
+.icon-sravnenie:before {
+  content: "\e92d";
+}
+.icon-t-bank:before {
+  content: "\e92e";
+}
+.icon-telegram:before {
+  content: "\e92f";
+}
+.icon-trade-in:before {
+  content: "\e930";
+}
+.icon-trash:before {
+  content: "\e931";
+}
+.icon-view:before {
+  content: "\e932";
 }
 .icon-yandex-icon .path1:before {
-  content: "\e910";
+  content: "\e933";
   color: rgb(255, 68, 51);
 }
 .icon-yandex-icon .path2:before {
-  content: "\e911";
+  content: "\e934";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-galochka-circle-inside:before {
-  content: "\e912";
-}
-.icon-galochka:before {
-  content: "\e913";
-}
-.icon-chevron-stroke:before {
-  content: "\e914";
-}
-.icon-download:before {
-  content: "\e915";
-}
-.icon-oformlenie:before {
-  content: "\e916";
-}
-.icon-arrow-circle-inside:before {
-  content: "\e917";
-}
-.icon-arrow-up-stroke:before {
-  content: "\e918";
-}
-.icon-bento:before {
-  content: "\e919";
-}
-.icon-cart:before {
-  content: "\e91a";
-}
-.icon-chevron-big:before {
-  content: "\e91b";
-}
-.icon-close:before {
-  content: "\e91c";
-}
-.icon-favorite:before {
-  content: "\e91d";
-}
-.icon-filter:before {
-  content: "\e91e";
-}
-.icon-glass-max:before {
-  content: "\e91f";
-}
-.icon-glass-telegram:before {
-  content: "\e920";
-}
-.icon-headphones:before {
-  content: "\e921";
-}
-.icon-kebab:before {
-  content: "\e922";
-}
-.icon-list:before {
-  content: "\e923";
-}
-.icon-login:before {
-  content: "\e924";
-}
-.icon-max:before {
-  content: "\e925";
-}
-.icon-nav-chevron-down:before {
-  content: "\e926";
-}
-.icon-nav-max:before {
-  content: "\e927";
-}
-.icon-nav-phone:before {
-  content: "\e928";
-}
-.icon-nav-telegram:before {
-  content: "\e929";
-}
-.icon-neuron:before {
-  content: "\e92a";
-}
-.icon-person:before {
-  content: "\e92b";
-}
-.icon-rating-star:before {
-  content: "\e92c";
-}
-.icon-search:before {
-  content: "\e92d";
-}
-.icon-share:before {
-  content: "\e92e";
-}
-.icon-sravnenie:before {
-  content: "\e92f";
-}
-.icon-telegram:before {
-  content: "\e930";
-}
-.icon-trade-in:before {
-  content: "\e931";
-}
-.icon-trash:before {
-  content: "\e932";
+.icon-zoom:before {
+  content: "\e935";
 }

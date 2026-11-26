@@ -2,24 +2,66 @@
 
 .site-map {
 
-  &__items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  @include dosm {
+    --section-padding-top: 4.5rem;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
     gap: 3rem;
 
     @include dosm {
+      gap: 4rem;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 140%;
+
+    @include dosm {
+      font-size: 3rem;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+
+    @include dosm {
       grid-template-columns: repeat(4, 1fr);
+      gap: 3rem 16rem;
     }
   }
 
   &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
-    li {
-      margin-bottom: 2rem;
+    &-title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--navy);
 
       @include dosm {
-        margin-bottom: 3rem;
+        font-size: 1.6rem;
       }
+    }
+
+    li {
+      margin-bottom: 1.5rem;
 
       &:last-child {
         margin-bottom: 0;
@@ -33,7 +75,7 @@
     a {
       font-weight: 400;
       font-size: 1.4rem;
-      line-height: 120%;
+      line-height: 140%;
 
       @include dosm {
         font-size: 1.6rem;

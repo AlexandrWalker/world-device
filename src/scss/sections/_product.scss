@@ -34,6 +34,18 @@
       @include dosm {
         border-radius: 1.8rem;
       }
+
+      &.is-zoom-enabled {
+        cursor: zoom-in;
+
+        &:hover {
+
+          .swiper-slide-active .product__slide-img img {
+            transition: none;
+            cursor: zoom-in;
+          }
+        }
+      }
     }
 
     &-code {
@@ -208,10 +220,18 @@
           width: 43.6rem;
           height: 34.9rem;
           margin: 0 auto;
+          
+          position: relative;
 
           @include sm {
             width: 22.8rem;
             height: 18.2rem;
+          }
+
+          img {
+            transform-origin: 0 0;
+            transition: transform 0.2s ease-out;
+            will-change: transform;
           }
         }
       }
