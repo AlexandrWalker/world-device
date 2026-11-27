@@ -124,6 +124,32 @@ input[type=submit].btn,
     }
   }
 
+  &--yellow {
+    --btn-background: #FFDD2D;
+    --btn-padding-x: 1rem;
+
+    &:hover {
+
+      @include dosm {
+        --btn-background: var(--black);
+        --btn-color: var(--white);
+
+        svg .svg-shield {
+          fill: #FFDD2D;
+        }
+      }
+    }
+
+    svg {
+      height: 2.4rem;
+      flex-shrink: 0;
+
+      path {
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
   &--pulse {
     z-index: 2;
 
