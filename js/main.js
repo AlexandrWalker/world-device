@@ -1462,81 +1462,143 @@ document.addEventListener('DOMContentLoaded', () => {
     const coverBody = document.querySelector('.product__cover-body');
     if (!coverBody) return;
 
-    const zoomBtn = coverBody.querySelector('.zoom-btn');
-    if (!zoomBtn) return;
+    const desktopQuery = window.matchMedia('(min-width: 601px) and (hover: hover)');
 
-    const SCALE = 2; // Коэффициент увеличения
+    const SCALE = 2;
+    const ignoreSelector =
+      '.product__cover-btns, .product__cover-loop, .zoom-btn, .swiper-button-prev, .swiper-button-next, button';
+    const smoothTransition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
     let rect = null;
     let activeImg = null;
-    let ticking = false;
-    let lastMouseX = 0;
-    let lastMouseY = 0;
+    let imgWidth = 0;
+    let imgHeight = 0;
+
+    let isZooming = false;
+    let rafId = null;
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let currentScale = 1;
+
+    const stopAnimation = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
 
     const resetAllImages = () => {
+      stopAnimation();
+      if (!isZooming && !activeImg) return;
+
+      isZooming = false;
+      coverBody.classList.remove('is-zooming');
+
       coverBody.querySelectorAll('.product__slide-img img').forEach((img) => {
-        img.style.transform = '';
+        img.style.transition = smoothTransition;
+        img.style.transform = 'translate3d(0px, 0px, 0) scale(1)';
       });
+
       activeImg = null;
       rect = null;
+      currentScale = 1;
     };
 
-    const updateTransform = () => {
-      ticking = false;
-      if (!rect || !activeImg || !coverBody.classList.contains('is-zoom-enabled')) return;
-
-      // Вычисляем долю положения курсора от 0 до 1
-      const ratioX = Math.max(0, Math.min(1, (lastMouseX - rect.left) / rect.width));
-      const ratioY = Math.max(0, Math.min(1, (lastMouseY - rect.top) / rect.height));
-
-      // Считаем смещение через GPU (translate3d)
-      const moveX = -ratioX * activeImg.offsetWidth * (SCALE - 1);
-      const moveY = -ratioY * activeImg.offsetHeight * (SCALE - 1);
-
-      activeImg.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${SCALE})`;
-    };
-
-    zoomBtn.addEventListener('click', () => {
-      const isEnabled = coverBody.classList.toggle('is-zoom-enabled');
-      zoomBtn.classList.toggle('is-active', isEnabled);
-
-      if (!isEnabled) {
-        resetAllImages();
+    const render = () => {
+      if (!isZooming || !activeImg) {
+        rafId = null;
+        return;
       }
-    });
 
-    // Запоминаем размеры контейнера один раз при входе курсора
-    coverBody.addEventListener('mouseenter', () => {
-      if (!coverBody.classList.contains('is-zoom-enabled')) return;
-      rect = coverBody.getBoundingClientRect();
-    });
+      currentX += (targetX - currentX) * 0.22;
+      currentY += (targetY - currentY) * 0.22;
+      currentScale += (SCALE - currentScale) * 0.22;
 
-    coverBody.addEventListener('mousemove', (e) => {
-      if (!coverBody.classList.contains('is-zoom-enabled')) return;
+      const roundedX = Math.round(currentX * 10) / 10;
+      const roundedY = Math.round(currentY * 10) / 10;
+      const roundedScale = Math.round(currentScale * 1000) / 1000;
 
-      // Обновляем ссылку на активную картинку и размеры, если их еще нет (например, сразу после клика на лупу)
+      activeImg.style.transform = `translate3d(${roundedX}px, ${roundedY}px, 0) scale(${roundedScale})`;
+
+      const isMoving =
+        Math.abs(targetX - currentX) > 0.1 ||
+        Math.abs(targetY - currentY) > 0.1 ||
+        Math.abs(SCALE - currentScale) > 0.002;
+
+      if (isMoving) {
+        rafId = requestAnimationFrame(render);
+      } else {
+        activeImg.style.transform = `translate3d(${Math.round(targetX)}px, ${Math.round(targetY)}px, 0) scale(${SCALE})`;
+        currentScale = SCALE;
+        rafId = null;
+      }
+    };
+
+    const handleMouseMove = (e) => {
+      if (!desktopQuery.matches) return;
+
+      if (e.target.closest(ignoreSelector)) {
+        if (isZooming) resetAllImages();
+        return;
+      }
+
       const activeSlide = coverBody.querySelector('.swiper-slide-active') || coverBody;
       const currentImg = activeSlide.querySelector('.product__slide-img img');
       if (!currentImg) return;
 
-      if (currentImg !== activeImg || !rect) {
+      if (!isZooming || currentImg !== activeImg || !rect) {
         if (activeImg && activeImg !== currentImg) {
-          activeImg.style.transform = '';
+          activeImg.style.transition = smoothTransition;
+          activeImg.style.transform = 'translate3d(0px, 0px, 0) scale(1)';
         }
+
+        isZooming = true;
+        coverBody.classList.add('is-zooming');
         activeImg = currentImg;
+
         rect = coverBody.getBoundingClientRect();
+        imgWidth = activeImg.offsetWidth;
+        imgHeight = activeImg.offsetHeight;
+
+        activeImg.style.transition = 'none';
+        currentX = 0;
+        currentY = 0;
+        currentScale = 1;
       }
 
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
+      const ratioX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const ratioY = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
 
-      // Синхронизируем отрисовку с частотой кадров монитора
-      if (!ticking) {
-        requestAnimationFrame(updateTransform);
-        ticking = true;
+      targetX = -ratioX * imgWidth * (SCALE - 1);
+      targetY = -ratioY * imgHeight * (SCALE - 1);
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(render);
       }
-    });
+    };
 
-    coverBody.addEventListener('mouseleave', resetAllImages);
+    coverBody.addEventListener('mousemove', handleMouseMove, { passive: true });
+    coverBody.addEventListener('mouseleave', resetAllImages, { passive: true });
+
+    window.addEventListener(
+      'resize',
+      () => {
+        rect = null;
+        if (!desktopQuery.matches) resetAllImages();
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (isZooming) rect = coverBody.getBoundingClientRect();
+      },
+      { passive: true }
+    );
   })();
 
   /**
