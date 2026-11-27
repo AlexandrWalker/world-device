@@ -2796,6 +2796,16 @@ input[type=submit].btn--next i,
   padding: 0 0 0 2.9rem;
   transition: all 0.3s ease;
 }
+.header__contacts-content--wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.header__contacts-content p {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 140%;
+}
 .header__contacts-content a {
   font-weight: 400;
   font-size: 1.4rem;
@@ -6756,7 +6766,6 @@ canvas {
   font-weight: 600;
   font-size: 4rem;
   line-height: 120%;
-  text-transform: uppercase;
 }
 .hero__item-title span {
   color: var(--cyan);
@@ -6774,8 +6783,14 @@ canvas {
 .trade-in-page .hero__item-text p {
   line-height: 140%;
 }
+.hero__item-btn {
+  pointer-events: none;
+}
+.swiper-slide-active .hero__item-btn {
+  pointer-events: all;
+}
 .hero__item-cover {
-  width: auto;
+  width: 74.3rem;
   height: 67.2rem;
   position: absolute;
   bottom: -4.4rem;
@@ -6903,7 +6918,6 @@ canvas {
     width: 100%;
   }
 }
-/* Регистрируем переменные как цвета — включает плавную анимацию */
 @property --gradient-color-1 {
   syntax: "<color>";
   inherits: true;
@@ -6924,7 +6938,7 @@ canvas {
   inherits: true;
   initial-value: #013294;
 }
-/* Твои темы — меняешь цвета здесь как обычно */
+/* Темы - меняешь цвета здесь как обычно */
 .class-blue {
   --gradient-color-1: #003194;
   --gradient-color-2: #0EDDC9;
@@ -6938,6 +6952,46 @@ canvas {
   --gradient-color-3: #C1CBE3;
   --gradient-color-4: #363668;
 }
+
+.class-burgundy {
+  --gradient-color-1: #4A1721;
+  --gradient-color-2: #D4A9B0;
+  --gradient-color-3: #944759;
+  --gradient-color-4: #4A1721;
+}
+
+.class-graffit {
+  --gradient-color-1: #403E3B;
+  --gradient-color-2: #1A1A18;
+  --gradient-color-3: #1A1A18;
+  --gradient-color-4: #403E3B;
+}
+
+.class-darkblue {
+  --gradient-color-1: #0A3C87;
+  --gradient-color-2: #010101;
+  --gradient-color-3: #0A3C87;
+  --gradient-color-4: #010101;
+  --gradient-color-5: #061325;
+}
+
+.class-gta {
+  --gradient-color-1: #E176BA;
+  --gradient-color-2: #1B193A;
+  --gradient-color-3: #E176BA;
+  --gradient-color-4: #1B193A;
+  --gradient-color-5: #1B193A;
+}
+.hero__svg.class-darkblue #paint1_linear_2053_1213 stop:first-child,
+.hero__svg.class-gta #paint1_linear_2053_1213 stop:first-child {
+  stop-color: var(--gradient-color-3);
+}
+
+.hero__svg.class-darkblue #paint1_linear_2053_1213 stop:last-child,
+.hero__svg.class-gta #paint1_linear_2053_1213 stop:last-child {
+  stop-color: var(--gradient-color-4);
+}
+
 .notfound {
   position: relative;
 }
@@ -7270,7 +7324,7 @@ canvas {
   padding: 2rem 1.5rem 2rem 1.5rem;
   box-shadow: 0px 16px 38.2px rgba(48, 99, 180, 0.1);
 }
-.product__content-head .tags {
+.product__content-head .tags:has(.tags-item) {
   margin-bottom: 1.5rem;
 }
 .product__content-head .tags-item {
@@ -8085,10 +8139,17 @@ canvas {
   line-height: 120%;
   text-align: center;
 }
+.reviews__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 .reviews__items {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.8rem;
+  width: 100%;
 }
 .reviews__item {
   display: flex;
@@ -8105,6 +8166,7 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  height: 100%;
 }
 .reviews__item-icon {
   display: flex;
@@ -8123,6 +8185,7 @@ canvas {
 .reviews__item-body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 2rem;
 }
 .reviews__item-content {
@@ -8184,6 +8247,7 @@ canvas {
   height: 6rem;
   border-radius: 0.5rem;
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 .reviews__item-img img {
   width: 100%;
@@ -9838,6 +9902,30 @@ canvas {
   .hero__item-text p {
     font-size: 2rem;
   }
+  .hero__item-cover {
+    -webkit-clip-path: inset(0 0 10% 0);
+    clip-path: inset(0 0 10% 0);
+  }
+  .hero__item--iphone18 .hero__item-cover {
+    top: 3.8rem;
+    bottom: unset;
+    left: 54.5rem;
+  }
+  .hero__item--duo .hero__item-cover {
+    top: -1.2rem;
+    bottom: unset;
+    left: 50.7rem;
+  }
+  .hero__item--airpods .hero__item-cover {
+    top: -6rem;
+    bottom: unset;
+    left: 50.7rem;
+  }
+  .hero__item--gta .hero__item-cover {
+    top: 2.1rem;
+    bottom: unset;
+    left: 50.6rem;
+  }
   .trade-in-page .hero__item-cover {
     height: 70.8rem;
     top: 2rem;
@@ -9982,7 +10070,7 @@ canvas {
     padding: 3rem 3rem 3rem 3rem;
     grid-column: 6/10;
   }
-  .product__content-head .tags {
+  .product__content-head .tags:has(.tags-item) {
     margin-bottom: 2rem;
   }
   .product__content-head .tags-item {
@@ -10141,6 +10229,12 @@ canvas {
   }
   .proizvod__more {
     display: none;
+  }
+  .reviews .btn--more {
+    display: none;
+  }
+  .reviews__wrapper {
+    gap: 4rem;
   }
   .reviews__items {
     grid-template-columns: repeat(4, 1fr);
@@ -11173,6 +11267,8 @@ canvas {
     display: none;
   }
   .hero__item-cover {
+    display: flex;
+    justify-content: center;
     width: 100vw;
     height: 28.2rem;
     bottom: 3.1rem;
@@ -11360,6 +11456,7 @@ canvas {
   .reviews__item-img {
     width: 6.3rem;
     height: 4.2rem;
+    margin-bottom: 1.5rem;
   }
   .reviews__item-btn {
     font-size: 1rem;

@@ -1057,51 +1057,206 @@ document.addEventListener('DOMContentLoaded', () => {
    * Функция смены класса для hero
    */
   (function () {
-    // Все элементы hero__svg (может быть несколько)
-    const svgEls = document.querySelectorAll('.hero__svg');
-    if (!svgEls.length) return;
-
-    // Все возможные темы - нужны чтобы корректно очищать классы
-    const allThemes = ['class-blue', 'class-purple'];
-
-    // ЯВНОЕ СООТВЕТСТВИЕ: индекс = номер слайда (realIndex)
-    // Слайд 0 -> blue, слайд 1 -> purple, слайд 2 -> blue, слайд 3 -> purple, слайд 4 -> blue
-    const slideThemes = ['class-blue', 'class-purple', 'class-blue', 'class-purple', 'class-blue'];
-
-    // Тема по умолчанию, если для слайда не задана
-    const FALLBACK = 'class-blue';
-
-    // Применяем тему ко ВСЕМ svg по индексу слайда
-    function applyTheme(realIndex) {
-      const theme = slideThemes[realIndex] ?? FALLBACK;
-
-      svgEls.forEach((svgEl) => {
-        svgEl.classList.remove(...allThemes);
-        svgEl.classList.add(theme);
-      });
-    }
-
-    // Ждём инициализации Swiper
-    function initSync() {
+    const init = () => {
+      const svgEls = document.querySelectorAll('.hero__svg');
       const swiperEl = document.querySelector('.hero__slider');
 
-      if (!swiperEl || !swiperEl.swiper) {
-        setTimeout(initSync, 50);
-        return;
-      }
+      if (!svgEls.length || !swiperEl) return;
 
-      const swiper = swiperEl.swiper;
+      const THEMES = [
+        'class-blue',
+        'class-purple',
+        'class-burgundy',
+        'class-graffit',
+        'class-darkblue',
+        'class-gta',
+      ];
+      const FALLBACK = THEMES[0];
 
-      // Ставим тему для стартового слайда на всех svg
-      applyTheme(swiper.realIndex);
+      let activeTheme = null;
+      let attempts = 0;
+      const MAX_ATTEMPTS = 60;
 
-      // Меняем тему при каждой смене слайда (автоплей + свайп)
-      swiper.on('slideChange', () => {
-        applyTheme(swiper.realIndex);
-      });
+      const applyTheme = (realIndex) => {
+        const nextTheme = THEMES[realIndex] ?? FALLBACK;
+
+        if (nextTheme === activeTheme) return;
+
+        svgEls.forEach((svgEl) => {
+          if (activeTheme) {
+            svgEl.classList.remove(activeTheme);
+          } else {
+            svgEl.classList.remove(...THEMES);
+          }
+          svgEl.classList.add(nextTheme);
+        });
+
+        activeTheme = nextTheme;
+      };
+
+      const waitForSwiper = () => {
+        if (swiperEl.swiper) {
+          const swiper = swiperEl.swiper;
+          applyTheme(swiper.realIndex);
+          swiper.on('slideChange', () => applyTheme(swiper.realIndex));
+          return;
+        }
+
+        if (++attempts < MAX_ATTEMPTS) {
+          setTimeout(waitForSwiper, 50);
+        }
+      };
+
+      waitForSwiper();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
     }
+  })();
 
-    initSync();
+  (function () {
+    const initSvgGradients = () => {
+      const svgs = document.querySelectorAll('.hero__svg');
+      if (!svgs.length) return;
+
+      const DURATION = 500;
+
+      const presets = {
+        default: {
+          '#paint0_linear_2053_1213': { x1: -728, y1: -1191.63, x2: -1494.18, y2: -300.773, offsets: [0.29, 1] },
+          '#paint1_linear_2053_1213': { x1: 2283.71, y1: 231.927, x2: 1975.76, y2: -377.776, offsets: [0.29, 1] },
+          '#paint2_linear_2053_1213': { x1: 2277.6, y1: 31.8589, x2: 2183.3, y2: -644.66, offsets: [0.29, 1] },
+          '#paint3_linear_2053_1213': { x1: 0.874827, y1: 515.077, x2: 308.824, y2: 1124.78, offsets: [0.29, 1] },
+        },
+        modified: {
+          '#paint0_linear_2053_1213': { x1: -728, y1: -1191.63, x2: -1295.85, y2: -113.382, offsets: [0, 0.609667] },
+          '#paint1_linear_2053_1213': { x1: 2283.71, y1: 231.927, x2: 1933.76, y2: -159.432, offsets: [0.346154, 1] },
+          '#paint2_linear_2053_1213': { x1: 2277.6, y1: 31.8589, x2: 2183.3, y2: -644.66, offsets: [0.548077, 1] },
+          '#paint3_linear_2053_1213': { x1: 0.869976, y1: 515.077, x2: 366.215, y2: 992.606, offsets: [0.466346, 1] },
+        },
+      };
+
+      const lerp = (start, end, t) => start + (end - start) * t;
+      const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+      svgs.forEach((svg) => {
+        let lastState = null;
+        let rafId = null;
+
+        const currentValues = {};
+        const gradNodes = {};
+
+        Object.keys(presets.default).forEach((id) => {
+          const grad = svg.querySelector(id);
+          if (!grad) return;
+          gradNodes[id] = {
+            el: grad,
+            stops: Array.from(grad.querySelectorAll('stop')),
+          };
+          currentValues[id] = JSON.parse(JSON.stringify(presets.default[id]));
+        });
+
+        const renderValues = (values) => {
+          Object.keys(gradNodes).forEach((id) => {
+            const { el, stops } = gradNodes[id];
+            const val = values[id];
+
+            el.setAttribute('x1', val.x1.toFixed(4));
+            el.setAttribute('y1', val.y1.toFixed(4));
+            el.setAttribute('x2', val.x2.toFixed(4));
+            el.setAttribute('y2', val.y2.toFixed(4));
+
+            stops.forEach((stop, index) => {
+              if (val.offsets[index] !== undefined) {
+                const offsetNum = Number(val.offsets[index].toFixed(6));
+                stop.setAttribute('offset', String(offsetNum));
+                if (stop.offset && typeof stop.offset.baseVal === 'number') {
+                  stop.offset.baseVal = offsetNum;
+                }
+              }
+            });
+          });
+        };
+
+        const animateToPreset = (targetPreset, instant = false) => {
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+
+          if (instant) {
+            Object.keys(targetPreset).forEach((id) => {
+              currentValues[id] = JSON.parse(JSON.stringify(targetPreset[id]));
+            });
+            renderValues(currentValues);
+            return;
+          }
+
+          const startValues = JSON.parse(JSON.stringify(currentValues));
+          const startTime = performance.now();
+
+          const step = (now) => {
+            const rawProgress = Math.min(1, (now - startTime) / DURATION);
+            const progress = easeInOut(rawProgress);
+
+            Object.keys(gradNodes).forEach((id) => {
+              const start = startValues[id];
+              const end = targetPreset[id];
+              const curr = currentValues[id];
+
+              curr.x1 = lerp(start.x1, end.x1, progress);
+              curr.y1 = lerp(start.y1, end.y1, progress);
+              curr.x2 = lerp(start.x2, end.x2, progress);
+              curr.y2 = lerp(start.y2, end.y2, progress);
+
+              curr.offsets = start.offsets.map((sOffset, idx) =>
+                lerp(sOffset, end.offsets[idx], progress)
+              );
+            });
+
+            renderValues(currentValues);
+
+            if (rawProgress < 1) {
+              rafId = requestAnimationFrame(step);
+            } else {
+              rafId = null;
+            }
+          };
+
+          rafId = requestAnimationFrame(step);
+        };
+
+        const checkClassState = (instant = false) => {
+          const hasBlue = svg.classList.contains('class-blue');
+          const hasModified =
+            svg.classList.contains('class-darkblue') || svg.classList.contains('class-gta');
+
+          const isModified = !hasBlue && hasModified;
+
+          if (isModified === lastState) return;
+          lastState = isModified;
+
+          animateToPreset(isModified ? presets.modified : presets.default, instant);
+        };
+
+        checkClassState(true);
+
+        const observer = new MutationObserver(() => checkClassState(false));
+        observer.observe(svg, {
+          attributes: true,
+          attributeFilter: ['class'],
+        });
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSvgGradients);
+    } else {
+      initSvgGradients();
+    }
   })();
 
   /**

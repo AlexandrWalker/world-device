@@ -313,10 +313,13 @@
     &-head {
 
       .tags {
-        margin-bottom: 1.5rem;
 
-        @include dosm {
-          margin-bottom: 2rem;
+        &:has(.tags-item) {
+          margin-bottom: 1.5rem;
+
+          @include dosm {
+            margin-bottom: 2rem;
+          }
         }
 
         &-item {

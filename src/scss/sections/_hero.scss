@@ -84,7 +84,7 @@
       font-weight: 600;
       font-size: 4rem;
       line-height: 120%;
-      text-transform: uppercase;
+      // text-transform: uppercase;
 
       @include dosm {
         margin-bottom: 3rem;
@@ -128,8 +128,16 @@
       }
     }
 
+    &-btn {
+      pointer-events: none;
+
+      .swiper-slide-active & {
+        pointer-events: all;
+      }
+    }
+
     &-cover {
-      width: auto;
+      width: 74.3rem;
       height: 67.2rem;
 
       position: absolute;
@@ -137,12 +145,42 @@
       left: 49.1rem;
 
       @include sm {
+        display: flex;
+        justify-content: center;
         width: 100vw;
         height: 28.2rem;
 
         bottom: 3.1rem;
         left: 50%;
         transform: translateX(-50%);
+      }
+
+      @include dosm {
+        clip-path: inset(0 0 10% 0);
+
+        .hero__item--iphone18 & {
+          top: 3.8rem;
+          bottom: unset;
+          left: 54.5rem;
+        }
+
+        .hero__item--duo & {
+          top: -1.2rem;
+          bottom: unset;
+          left: 50.7rem;
+        }
+
+        .hero__item--airpods & {
+          top: -6rem;
+          bottom: unset;
+          left: 50.7rem;
+        }
+
+        .hero__item--gta & {
+          top: 2.1rem;
+          bottom: unset;
+          left: 50.6rem;
+        }
       }
 
       .trade-in-page & {
@@ -358,7 +396,6 @@
   }
 }
 
-/* Регистрируем переменные как цвета — включает плавную анимацию */
 @property --gradient-color-1 {
   syntax: '<color>';
   inherits: true;
@@ -383,7 +420,7 @@
   initial-value: #013294;
 }
 
-/* Твои темы — меняешь цвета здесь как обычно */
+/* Темы - меняешь цвета здесь как обычно */
 .class-blue {
   --gradient-color-1: #003194;
   --gradient-color-2: #0EDDC9;
@@ -398,8 +435,48 @@
   --gradient-color-4: #363668;
 }
 
+.class-burgundy {
+  --gradient-color-1: #4A1721;
+  --gradient-color-2: #D4A9B0;
+  --gradient-color-3: #944759;
+  --gradient-color-4: #4A1721;
+}
+
+.class-graffit {
+  --gradient-color-1: #403E3B;
+  --gradient-color-2: #1A1A18;
+  --gradient-color-3: #1A1A18;
+  --gradient-color-4: #403E3B;
+}
+
+.class-darkblue {
+  --gradient-color-1: #0A3C87;
+  --gradient-color-2: #010101;
+  --gradient-color-3: #0A3C87;
+  --gradient-color-4: #010101;
+  --gradient-color-5: #061325;
+}
+
+.class-gta {
+  --gradient-color-1: #E176BA;
+  --gradient-color-2: #1B193A;
+  --gradient-color-3: #E176BA;
+  --gradient-color-4: #1B193A;
+  --gradient-color-5: #1B193A;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-svg {
     transition: none;
   }
+}
+
+.hero__svg.class-darkblue #paint1_linear_2053_1213 stop:first-child,
+.hero__svg.class-gta #paint1_linear_2053_1213 stop:first-child {
+  stop-color: var(--gradient-color-3);
+}
+
+.hero__svg.class-darkblue #paint1_linear_2053_1213 stop:last-child,
+.hero__svg.class-gta #paint1_linear_2053_1213 stop:last-child {
+  stop-color: var(--gradient-color-4);
 }
