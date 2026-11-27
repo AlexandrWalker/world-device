@@ -3437,6 +3437,9 @@ input[type=submit].btn--next i,
 .mobileMenu__contacts-max {
   background-color: var(--purple);
 }
+.mobileMenu__contacts-wa {
+  background-color: #25D460;
+}
 
 .mobileSearch {
   display: block;
